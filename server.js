@@ -4,6 +4,7 @@ const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 3000;
 const userRouter = require('./api/users');
+const challengeRouter = require('./api/challenges')
 //const { findUserFromToken } = require('./data/auth');
 
 app.use(cors());
@@ -28,6 +29,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 app.use('/dist', express.static(path.join(__dirname, 'dist')));
 app.use('/user', userRouter);
+app.use('/challenge', challengeRouter);
 //app.use('/auth', authRouter);
 
 app.get('/', (req, res, next) => {
