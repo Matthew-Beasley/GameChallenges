@@ -2,12 +2,20 @@ const express = require('express');
 const userRouter = express.Router();
 const {
   createUser,
+  getUserByEmail,
   getUsers
 } = require('../mongo/crud/users');
 
 userRouter.get('/', async (req, res, next) => {
   try {
-    const users = await getUsers();
+    const email = req.query.email;
+    let users;
+    req
+    if (email) {
+      users = await getUserByEmail(email);
+    } else {
+      users = await getUsers();
+    }
     res.status(200).send(users);
   } catch (error) {
     next(error);
