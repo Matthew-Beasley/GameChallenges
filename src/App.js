@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react';
 import { Route, Link, useHistory } from 'react-router-dom';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { userState } from './RecoilState';
+import CreateUser from './CreateUser';
+import Login from './Login';
 
 const App = () => {
   const [user, setUser] = useRecoilState(userState);
@@ -22,13 +24,10 @@ const App = () => {
 
   return (
     <div id="app-container">
-      <Header />
-      <Nav history={history} />
-      <Route exact path="/" render={() => <HomeView />} />
-      <Route path="/UserView" render={() => <UserView headers={headers} />} />
-      <Route path="/Admin" render={() => <Admin headers={headers} />} />
+      <CreateUser />
+      <Login />
     </div>
-  )
-}
+  );
+};
 
 export default App;

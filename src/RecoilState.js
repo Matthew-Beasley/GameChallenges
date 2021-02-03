@@ -1,13 +1,19 @@
 import {
-    atom,
-    selector
-  } from 'recoil';
+  atom,
+  selector
+} from 'recoil';
   
-  const userState = atom({
-    key: 'userState',
-    default: {}
-  });
+const userState = atom({
+  key: 'userState',
+  default: {}
+});
+
+const passwordState = atom({
+  key: 'passwordState',
+  default: ''
+});
   
-  export {
-    userState,
-  };
+export {
+  userState,
+  passwordState
+};

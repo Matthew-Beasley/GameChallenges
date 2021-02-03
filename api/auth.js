@@ -5,11 +5,12 @@ const {
   authenticate,
   compare,
   hash
-} = require('../mongo/auth')
+} = require('../mongo/auth');
 
 authRouter.get('/', async (req, res, next) => {
   try {
-    const token = await authenticate(req.body)
+    const { email, password } = req.headers;
+    const token = await authenticate({ email, password });
     res.status(201).send(token);
   } catch (error) {
     next(error);
@@ -24,13 +25,5 @@ authRouter.post('/', async (req, res, next) => {
     next(error);
   }
 });
-/*
-authRouter.get('/user', async (req, res, next) => {
-  try {
-    const user = await findUserFromToken(req.header.token)
-  } catch (error) {
-    next(error);
-  }
-})
-*/
+
 module.exports = authRouter;

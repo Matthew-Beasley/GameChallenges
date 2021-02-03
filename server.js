@@ -21,7 +21,7 @@ app.use((req, res, next) => {
       req.user = auth;
       next();
     })
-    .catch(ex => {
+    .catch(() => {
       const error = Error('not authorized');
       error.status = 401;
       next(error);
