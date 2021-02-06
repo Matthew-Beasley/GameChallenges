@@ -9,7 +9,8 @@ const CreateUser = () => {
   const [email, setEmail] = useState('');
 
 
-  const login = async () => {
+  const login = async (ev) => {
+    ev.preventDefault();
     //following passes password open text, encode it here with a jwt key, unencode it on the server with the same key, reencryptit on the server
     const token = (await axios.get('/auth', { headers: { email: email, password: password }})).data;
     window.localStorage.setItem('ktm300mxc', token);
