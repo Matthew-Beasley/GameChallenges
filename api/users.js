@@ -24,9 +24,10 @@ userRouter.get('/', async (req, res, next) => {
   }
 });
 
-userRouter.get('/token', async (req, res, next) => {
+userRouter.post('/token', async (req, res, next) => {
+  console.log(req.body.token);
   try {
-    const user = await findUserFromToken(req.header.token);
+    const user = await findUserFromToken(req.body.token);
     res.status(200).send(user);
   } catch (error) {
     next(error);

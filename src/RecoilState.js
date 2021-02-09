@@ -12,8 +12,14 @@ const passwordState = atom({
   key: 'passwordState',
   default: ''
 });
+
+const tokenState = atom({
+  key: 'tokenState',
+  default: ''
+});
   
 export {
   userState,
-  passwordState
+  passwordState,
+  tokenState
 };

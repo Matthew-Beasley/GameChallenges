@@ -1,30 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { userState, passwordState } from './RecoilState';
+import { userState, passwordState, tokenState } from './RecoilState';
 
 const CreateUser = () => {
   const [password, setPassword] = useState('');
   const [user, setUser] = useRecoilState(userState);
   const [email, setEmail] = useState('');
+  const [token, setToken] = useRecoilState(tokenState);
 
+
+  useEffect(() => {
+    if (token) {
+      axios.post('/user/token', { token: token }).then(response => {
+        setUser(response.data[0]);
+      });
+    }
+  }, [token]);
 
   const login = async (ev) => {
     ev.preventDefault();
-    //following passes password open text, encode it here with a jwt key, unencode it on the server with the same key, reencryptit on the server
-    const token = (await axios.get('/auth', { headers: { email: email, password: password }})).data;
-    window.localStorage.setItem('ktm300mxc', token);
-    const usr = (await axios.get('/user/token', token)).data;
-    setUser(usr);
-    console.log(usr);
+    const creds = (await axios.get('/auth', { headers: { email: email, password: password }})).data;
+    setToken(creds);
   };
 
   const logout = () => {
-    window.localStorage.removeItem('ktm300mxc');
+    setToken('');
+    setUser({});
   };
 
   return (
     <div id="login">
+      <div>{user.email}</div>
       <form id="login-form" onSubmit={(ev) => login(ev)}>
         <div id="login-text">
           <p>Login</p>

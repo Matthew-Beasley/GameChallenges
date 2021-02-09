@@ -22,7 +22,6 @@ const hash = (password) => {
 
 const compare = ({ plain, hashed }) => {
   return new Promise((resolve, reject) => {
-    console.log('in compare plain, hashed', plain, hashed)
     bcrypt.compare(plain, hashed, (err, verified) => {
       if (err) {
         console.log('bcrypt error', err)
@@ -38,7 +37,6 @@ const compare = ({ plain, hashed }) => {
 
 const authenticate = async ({ email, password }) => {
   const users = await User.find({ email: email });
-  console.log(users[0]);
   await compare({ plain: password, hashed: users[0].password });
   return jwt.encode({ email: users[0].email }, process.env.JWT);
 };
