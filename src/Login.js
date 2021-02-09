@@ -22,6 +22,8 @@ const CreateUser = () => {
     ev.preventDefault();
     const creds = (await axios.get('/auth', { headers: { email: email, password: password }})).data;
     setToken(creds);
+    setEmail('');
+    setPassword('');
   };
 
   const logout = () => {
