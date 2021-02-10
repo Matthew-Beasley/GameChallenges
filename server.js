@@ -6,6 +6,7 @@ const PORT = process.env.PORT || 3000;
 const userRouter = require('./api/users');
 const challengeRouter = require('./api/challenges');
 const authRouter = require('./api/auth');
+const platformsRouter = require('./api/platforms');
 const { findUserFromToken } = require('./mongo/auth');
 
 app.use(cors());
@@ -32,6 +33,7 @@ app.use('/dist', express.static(path.join(__dirname, 'dist')));
 app.use('/user', userRouter);
 app.use('/challenge', challengeRouter);
 app.use('/auth', authRouter);
+app.use('/platform', platformsRouter)
 
 app.get('/', (req, res, next) => {
   try {

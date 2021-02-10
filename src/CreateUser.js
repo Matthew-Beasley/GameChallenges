@@ -8,6 +8,7 @@ const CreateUser = () => {
   const [user, setUser] = useRecoilState(userState);
   const [token, setToken] = useRecoilState(tokenState);
   const [email, setEmail] = useState('');
+  const [gamerTag, setGamerTag] = useState('');
 
   useEffect(() => {
     if (token) {
@@ -23,7 +24,7 @@ const CreateUser = () => {
     return mail;
   };
 
-  const login = async (ev) => {
+  const login = async () => {
     const creds = (await axios.get('/auth', { headers: { email: email, password: password }})).data;
     setToken(creds);
   };
@@ -33,7 +34,7 @@ const CreateUser = () => {
     const mail = URLizeEmail(email);
     const usr = (await axios.get(`/user?email=${mail}`)).data;
     if (!usr.email) {
-      await axios.post('/user', { email, password });
+      await axios.post('/user', { email, password, gamerTag });
       await login();
     } else {
       // throw error user exists (alert?)
@@ -50,8 +51,9 @@ const CreateUser = () => {
         <div id="create-user-text">
           <p>To create an account enter email and password</p>
         </div>
-        <input id="email" type="email" placeholder="email" value={email} onChange={(ev) => setEmail(ev.target.value)} />
-        <input id="password" type="password" placeholder="password" value={password} onChange={(ev) => setPassword(ev.target.value)} />
+        <input className="create-input" type="email" placeholder="email" value={email} onChange={(ev) => setEmail(ev.target.value)} />
+        <input className="create-input" type="password" placeholder="password" value={password} onChange={(ev) => setPassword(ev.target.value)} />
+        <input className="create-input" type="text" placeholder="gamer tag" value={gamerTag} onChange={(ev) => setGamerTag(ev.target.value)} />
         <input id="submit" type="submit" value="Submit" />
       </form>
     </div>

@@ -9,14 +9,14 @@ const createChallenge = (record) => {
       return 'ok';
     }
   });
-}
+};
 
 const getChallenges = async() => {
   const challenges = await Challenge.find();
   return challenges;
-}
+};
 
 module.exports = {
   createChallenge,
   getChallenges
-}
+};
