@@ -3,6 +3,7 @@ const userRouter = express.Router();
 const {
   createUser,
   getUserByEmail,
+  getUserByUserName,
   getUsers
 } = require('../mongo/crud/users');
 const {
@@ -11,10 +12,12 @@ const {
 
 userRouter.get('/', async (req, res, next) => {
   try {
-    const email = req.query.email;
+    const userName = req.query.username;
+    console.log('userName in get ', userName)
     let users;
-    if (email) {
-      users = await getUserByEmail(email);
+    if (userName) {
+      users = await getUserByUserName(userName);
+      console.log('after getUserByUserName', users)
     } else {
       users = await getUsers();
     }

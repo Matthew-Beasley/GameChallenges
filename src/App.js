@@ -24,8 +24,8 @@ const App = () => {
 
   return (
     <div id="app-container">
-      <CreateUser />
-      <Login />
+      <Route exact path="/" component={Login} />
+      <Route path="/createUser" component={CreateUser} />
     </div>
   );
 };

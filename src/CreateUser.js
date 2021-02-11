@@ -8,7 +8,7 @@ const CreateUser = () => {
   const [user, setUser] = useRecoilState(userState);
   const [token, setToken] = useRecoilState(tokenState);
   const [email, setEmail] = useState('');
-  const [gamerTag, setGamerTag] = useState('');
+  const [userName, setUserName] = useState('');
 
   useEffect(() => {
     if (token) {
@@ -25,23 +25,23 @@ const CreateUser = () => {
   };
 
   const login = async () => {
-    const creds = (await axios.get('/auth', { headers: { email: email, password: password }})).data;
+    const creds = (await axios.get('/auth', { headers: { userName: userName, password: password, email: email }})).data;
     setToken(creds);
   };
 
   const checkCredentials = async (event) => {
     event.preventDefault();
-    const mail = URLizeEmail(email);
-    const usr = (await axios.get(`/user?email=${mail}`)).data;
-    if (!usr.email) {
-      await axios.post('/user', { email, password, gamerTag });
+    const usr = (await axios.get(`/user?username=${userName}`)).data;
+    if (!usr.userName) {
+      await axios.post('/user', { userName, password, email});
       await login();
     } else {
       // throw error user exists (alert?)
       //await login({ email, password });
     }
-    setEmail('');
+    setUserName('');
     setPassword('');
+    setEmail('');
     // history.push('/UserView');
   };
 
@@ -49,11 +49,11 @@ const CreateUser = () => {
     <div id="create-user">
       <form id="create-user-form" onSubmit={(ev) => checkCredentials(ev)}>
         <div id="create-user-text">
-          <p>To create an account enter email and password</p>
+          <p>To create an account enter user name and password</p>
         </div>
-        <input className="create-input" type="email" placeholder="email" value={email} onChange={(ev) => setEmail(ev.target.value)} />
-        <input className="create-input" type="password" placeholder="password" value={password} onChange={(ev) => setPassword(ev.target.value)} />
-        <input className="create-input" type="text" placeholder="gamer tag" value={gamerTag} onChange={(ev) => setGamerTag(ev.target.value)} />
+        <input className="create-input" type="text" placeholder="User Name" value={userName} onChange={(ev) => setUserName(ev.target.value)} />
+        <input className="create-input" type="password" placeholder="Password" value={password} onChange={(ev) => setPassword(ev.target.value)} />
+        <input className="create-input" type="text" placeholder="email" value={email} onChange={(ev) => setEmail(ev.target.value)} />
         <input id="submit" type="submit" value="Submit" />
       </form>
     </div>

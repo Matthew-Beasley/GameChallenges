@@ -25,6 +25,13 @@ const getUserByEmail = async (email) => {
   return user;
 };
 
+const getUserByUserName = async (userName) => {
+  console.log('userName in crud ', userName)
+  const user = await User.find({ username: userName });
+  console.log('user after db call ', user)
+  return user;
+};
+
 const getUsers = async () => {
   const users = await User.find();
   return users;
@@ -33,5 +40,6 @@ const getUsers = async () => {
 module.exports = {
   createUser,
   getUserByEmail,
+  getUserByUserName,
   getUsers
 };

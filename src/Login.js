@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { userState, passwordState, tokenState } from './RecoilState';
@@ -8,7 +9,7 @@ const CreateUser = () => {
   const [user, setUser] = useRecoilState(userState);
   const [email, setEmail] = useState('');
   const [token, setToken] = useRecoilState(tokenState);
-
+  const [userName, setUserName] = useState('');
 
   useEffect(() => {
     if (token) {
@@ -20,7 +21,7 @@ const CreateUser = () => {
 
   const login = async (ev) => {
     ev.preventDefault();
-    const creds = (await axios.get('/auth', { headers: { email: email, password: password }})).data;
+    const creds = (await axios.get('/auth', { headers: { userName: userName, password: password }})).data;
     setToken(creds);
     setEmail('');
     setPassword('');
@@ -32,17 +33,21 @@ const CreateUser = () => {
   };
 
   return (
-    <div id="login">
-      <div>{user.email}</div>
-      <form id="login-form" onSubmit={(ev) => login(ev)}>
+    <div id="login-container">
+      <div id="login-column">
+        <div>{user.email}</div>
         <div id="login-text">
-          <p>Login</p>
+          <h1> THWART ME</h1>
         </div>
-        <input id="email" type="email" placeholder="email" value={email} onChange={(ev) => setEmail(ev.target.value)} />
-        <input id="password" type="password" placeholder="password" value={password} onChange={(ev) => setPassword(ev.target.value)} />
-        <input id="submit" type="submit" value="Submit" />
-        <input id="logout" type="button" value="logout" onClick={() => logout()} />
-      </form>
+        <form id="login-form" onSubmit={(ev) => login(ev)}>
+          <input id="user-name" type="text" placeholder="User Name" value={userName} onChange={(ev) => setUserName(ev.target.value)} />
+          <input id="password" type="password" placeholder="Password" value={password} onChange={(ev) => setPassword(ev.target.value)} />
+          <div id="create-container">
+            <Link to="/createUser">Create User</Link>
+          </div>
+          <input id="submit" type="submit" value="Submit" />
+        </form>
+      </div>
     </div>
   );
 };
