@@ -53,7 +53,7 @@ const CreateUser = () => {
         </div>
         <input className="create-input" type="text" placeholder="User Name" value={userName} onChange={(ev) => setUserName(ev.target.value)} />
         <input className="create-input" type="password" placeholder="Password" value={password} onChange={(ev) => setPassword(ev.target.value)} />
-        <input className="create-input" type="text" placeholder="email" value={email} onChange={(ev) => setEmail(ev.target.value)} />
+        <input className="create-input" type="email" placeholder="email" value={email} onChange={(ev) => setEmail(ev.target.value)} />
         <input id="submit" type="submit" value="Submit" />
       </form>
     </div>

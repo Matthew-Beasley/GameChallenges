@@ -13,7 +13,9 @@ const CreateUser = () => {
 
   useEffect(() => {
     if (token) {
+      console.log('token in useEffect ', token)
       axios.post('/user/token', { token: token }).then(response => {
+        console.log('user after post to user/token in useEffect ', user)
         setUser(response.data[0]);
       });
     }
@@ -21,9 +23,9 @@ const CreateUser = () => {
 
   const login = async (ev) => {
     ev.preventDefault();
-    const creds = (await axios.get('/auth', { headers: { userName: userName, password: password }})).data;
+    const creds = (await axios.get('/auth', { headers: { username: userName, password: password }})).data;
     setToken(creds);
-    setEmail('');
+    setUserName('');
     setPassword('');
   };
 
@@ -35,7 +37,6 @@ const CreateUser = () => {
   return (
     <div id="login-container">
       <div id="login-column">
-        <div>{user.email}</div>
         <div id="login-text">
           <h1> THWART ME</h1>
         </div>

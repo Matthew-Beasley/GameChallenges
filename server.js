@@ -2,12 +2,15 @@ const express = require('express');
 const path = require('path');
 const cors = require('cors');
 const app = express();
-const PORT = process.env.PORT || 3000;
 const userRouter = require('./api/users');
 const challengeRouter = require('./api/challenges');
 const authRouter = require('./api/auth');
 const platformsRouter = require('./api/platforms');
 const { findUserFromToken } = require('./mongo/auth');
+
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
 
 app.use(cors());
 app.use(express.json());
@@ -56,4 +59,4 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(PORT, () => console.log('Listening on PORT ', PORT));
+app.listen(process.env. PORT, () => console.log('Listening on PORT ', process.env.PORT));

@@ -2,9 +2,15 @@ const bcrypt = require('bcrypt');
 const jwt = require('jwt-simple');
 const User = require('./models/userModel');
 
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
+
+console.log('process env jwt in auth ', process.env.JWT)
+
 const findUserFromToken = async (token) => {
-  const email = jwt.decode(token, process.env.JWT).email;
-  const user = await User.find({ email: email });
+  const userName = jwt.decode(token, process.env.JWT).userName;
+  const user = await User.find({ userName: userName });
   delete user.password;
   return user;
 };
@@ -35,10 +41,10 @@ const compare = ({ plain, hashed }) => {
   });
 };
 
-const authenticate = async ({ email, password }) => {
-  const users = await User.find({ email: email });
+const authenticate = async ({ username, password }) => {
+  const users = await User.find({ userName: username });
   await compare({ plain: password, hashed: users[0].password });
-  return jwt.encode({ email: users[0].email }, process.env.JWT);
+  return jwt.encode({ userName: users[0].userName }, process.env.JWT);
 };
 
 const isLoggedIn = (req, res, next) => {
