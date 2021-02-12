@@ -1,3 +1,4 @@
+const sslRedirect = require('heroku-ssl-redirect');
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
@@ -10,6 +11,12 @@ const { findUserFromToken } = require('./mongo/auth');
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
+}
+
+console.log('environment is ', process.env.NODE_ENV)
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(sslRedirect());
 }
 
 app.use(cors());
