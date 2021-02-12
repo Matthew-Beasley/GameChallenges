@@ -25,7 +25,7 @@ const CreateUser = () => {
   };
 
   const login = async () => {
-    const creds = (await axios.get('/auth', { headers: { userName: userName, password: password, email: email }})).data;
+    const creds = (await axios.get('/auth', { headers: { username: userName, password: password }})).data;
     setToken(creds);
   };
 
