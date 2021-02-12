@@ -1,4 +1,3 @@
-const sslRedirect = require('heroku-ssl-redirect');
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
@@ -13,10 +12,14 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
 
-console.log('environment is ', process.env.NODE_ENV)
-
-if (process.env.NODE_ENV === 'production') {
-  app.use(sslRedirect());
+if(process.env.NODE_ENV === 'production') {
+  app.use((req, res, next) => {
+    if (req.header('x-forwarded-proto') !== 'https') {
+      res.redirect(`https://${req.header('host')}${req.url}`);
+    }  else {
+      next();
+    }
+  });
 }
 
 app.use(cors());
