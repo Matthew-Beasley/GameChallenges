@@ -26,9 +26,7 @@ const getUserByEmail = async (email) => {
 };
 
 const getUserByUserName = async (userName) => {
-  console.log('userName in crud ', userName)
   const user = await User.find({ username: userName });
-  console.log('user after db call ', user[0])
   return user[0];
 };
 

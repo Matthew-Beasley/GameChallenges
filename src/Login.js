@@ -13,9 +13,7 @@ const CreateUser = () => {
 
   useEffect(() => {
     if (token) {
-      console.log('token in useEffect ', token)
       axios.post('/user/token', { token: token }).then(response => {
-        console.log('user after post to user/token in useEffect ', user)
         setUser(response.data[0]);
       });
     }

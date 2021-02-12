@@ -6,8 +6,6 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
 
-console.log('process env jwt in auth ', process.env.JWT)
-
 const findUserFromToken = async (token) => {
   const userName = jwt.decode(token, process.env.JWT).userName;
   const user = await User.find({ userName: userName });
@@ -30,7 +28,7 @@ const compare = ({ plain, hashed }) => {
   return new Promise((resolve, reject) => {
     bcrypt.compare(plain, hashed, (err, verified) => {
       if (err) {
-        console.log('bcrypt error', err)
+        console.log('bcrypt error', err);
         return reject(err);
       }
       if (verified) {
