@@ -38,7 +38,7 @@ const CreateUser = () => {
     <div id="login-container">
       <div id="login-column">
         <div id="login-text">
-          <div>Welcome back{user.userName ? user.userName : null} !</div>
+          <div>{user.userName ? 'Welcome Back ' + user.userName + '!' : null}</div>
           <h1> THWART ME</h1>
         </div>
         <form id="login-form" onSubmit={(ev) => login(ev)}>
