@@ -15,9 +15,9 @@ if (process.env.NODE_ENV !== 'production') {
 
 console.log('environment is ', process.env.NODE_ENV)
 
-if (process.env.NODE_ENV === 'production') {
+//if (process.env.NODE_ENV === 'production') {
   app.use(sslRedirect());
-}
+//}
 
 app.use(cors());
 app.use(express.json());
