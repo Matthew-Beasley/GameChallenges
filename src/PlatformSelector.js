@@ -2,24 +2,38 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { userState, passwordState, tokenState, platformsState, headerState } from './RecoilState';
+import { userState, 
+  passwordState, 
+  tokenState, 
+  platformsState, 
+  headerState,
+  platformsInPlayState,
+  gamesInPlayState } from './RecoilState';
 
 
 const GameDisplay = ({ platform }) => {
-  const [toggle, setToggle] = useState(false);
+  const [show, setShow] = useState(false);
+
+  const toggle = () => {
+    if (show) {
+      setShow(false);
+    } else {
+      setShow(true);
+    }
+  };
+
   return (
     <div>
-      {console.log('platform in GameDisplay ', platform)}
-      {toggle ? <div className="arrow" onClick={() => setToggle(false)}><p>&#9651;</p></div> :
-        <div className="arrow" onClick={() => setToggle(true)}>&#9661;</div>}
-      {toggle ? <ul id="game-list">
+      <div className="clickable-platform" onClick={() => toggle()}><p>{platform.name}</p></div>
+      {show ? <ul id="game-list">
         {platform.games.map((item, idx) => {
           return (
             <li key={idx} >{item}</li>
           );
         })}
       </ul> : null}
-    </div>);
+    </div>
+  );
 };
 
 
@@ -36,9 +50,8 @@ const PlatformSelector = () => {
     <div id="platform-selector">
       <ul>
         {platforms.map((item, idx) => {
-          let display = false;
           return (
-            <li className="platform-item" key={idx} >{item.name}
+            <li className="platform-item" key={idx} >
               <GameDisplay platform={item} /> 
             </li>
           );

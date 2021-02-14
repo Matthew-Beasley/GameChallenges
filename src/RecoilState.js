@@ -23,6 +23,16 @@ const platformsState = atom({
   default: []
 });
 
+const platformsInPlayState = atom({
+  key: 'platformsInPlayState',
+  default: []
+});
+
+const gamesInPlayState = atom({
+  key: 'gamesInPlayState',
+  default: []
+});
+
 const headerState = selector({
   key: 'headerState',
   get: ({get}) => {
@@ -40,5 +50,7 @@ export {
   passwordState,
   tokenState,
   platformsState,
-  headerState
+  headerState,
+  platformsInPlayState,
+  gamesInPlayState
 };
