@@ -4,6 +4,7 @@ const {
   createPlatform,
   getPlatforms
 } = require('../mongo/crud/platforms'); 
+const { isLoggedIn, isAdmin } = require('../mongo/auth');
 
 platformsRouter.post('/', async (req, res, next) => {
   try {

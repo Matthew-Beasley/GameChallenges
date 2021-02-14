@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
 import { userState, passwordState, tokenState } from './RecoilState';
+import PlatformSelector from './PlatformSelector';
 
 const CreateUser = () => {
   const [password, setPassword] = useState('');
@@ -47,6 +48,7 @@ const CreateUser = () => {
 
   return (
     <div id="create-user">
+      <PlatformSelector />
       <form id="create-user-form" onSubmit={(ev) => checkCredentials(ev)}>
         <div id="create-user-text">
           <p>To create an account enter user name and password</p>

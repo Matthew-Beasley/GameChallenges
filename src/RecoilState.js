@@ -22,10 +22,23 @@ const platformsState = atom({
   key: 'platformsState',
   default: []
 });
+
+const headerState = selector({
+  key: 'headerState',
+  get: ({get}) => {
+    const token = get(tokenState);
+    return {
+      headers: {
+        authorization: token
+      }
+    };
+  }
+});
   
 export {
   userState,
   passwordState,
   tokenState,
-  platformsState
+  platformsState,
+  headerState
 };

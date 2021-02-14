@@ -3,7 +3,8 @@ const Schema = Mongoose.Schema;
 
 const platformsSchema = new Schema({
   name: { type: String, required: true },
-  games: { type: [String] }
+  games: { type: [String] },
+  displayGames: { type: Boolean }
 });
 
 const Platform = Mongoose.model('platforms', platformsSchema);
