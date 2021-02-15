@@ -53,7 +53,6 @@ const CreateUser = () => {
     setUserName('');
     setPassword('');
     setEmail('');
-    //history.push('/UserView');
   };
 
   return (
