@@ -12,7 +12,7 @@ const GameSetup = () => {
       <div>
         <div id="setup-header-text">Thartme game setup page!</div>
         <div id="instruction-wrapper">
-          <div id="platform-instructions">Thartme game setup page!</div>
+          <div id="platform-instructions">Select games by platform</div>
         </div>
         <PlatformSelector />
       </div>
