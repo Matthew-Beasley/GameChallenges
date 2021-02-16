@@ -6,13 +6,16 @@ import { userState, passwordState, tokenState } from './RecoilState';
 import PlatformSelector from './PlatformSelector';
 
 const GameSetup = () => {
-  const history = useHistory();
-  //console.log(history);
 
   return (
-    <div>
-      <h1>I made it to the game setup page!</h1>
-      <PlatformSelector />
+    <div id="game-setup-container">
+      <div>
+        <div id="setup-header-text">Thartme game setup page!</div>
+        <div id="instruction-wrapper">
+          <div id="platform-instructions">Thartme game setup page!</div>
+        </div>
+        <PlatformSelector />
+      </div>
     </div>
   );
 };

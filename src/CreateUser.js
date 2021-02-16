@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom'
 import axios from 'axios';
 import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
 import { userState, passwordState, tokenState } from './RecoilState';
 import PlatformSelector from './PlatformSelector';
+
 
 const CreateUser = () => {
   const [password, setPassword] = useState('');
@@ -11,6 +13,7 @@ const CreateUser = () => {
   const [email, setEmail] = useState('');
   const [userName, setUserName] = useState('');
   const [notify, setNotify] = useState(false);
+  const history = useHistory();
 
   useEffect(() => {
     if (token) {
@@ -53,6 +56,7 @@ const CreateUser = () => {
     setUserName('');
     setPassword('');
     setEmail('');
+    history.push('/gamesetup');
   };
 
   return (

@@ -7,15 +7,16 @@ const {
 } = require('../auth');
 
 const createUser = async (record) => {
+  let returnVal = '';
   const { password } = record;
   const pwd = await hash(password);
   record.password = pwd;
   const user = new User(record);
   user.save(err => {
     if (err) {
-      throw err;
+      return err;
     } else {
-      return 'ok';
+      return 'success';
     }
   });
 };
