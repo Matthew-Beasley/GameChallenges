@@ -114,3 +114,13 @@ form > input {
   margin-top: 1.5rem;
 }
 
+
+/* ===== SelectPlatform Styles ===== */
+
+.gameSelected {
+  font-weight: bold;
+}
+
+.gameNotSelected {
+  font-weight: normal;
+}

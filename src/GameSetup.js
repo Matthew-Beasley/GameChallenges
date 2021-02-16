@@ -7,16 +7,12 @@ import PlatformSelector from './PlatformSelector';
 
 const GameSetup = () => {
   const history = useHistory();
-  console.log(history);
-  
-  const home = () => {
-    history.push('/');
-  };
+  //console.log(history);
 
   return (
     <div>
       <h1>I made it to the game setup page!</h1>
-      <button onClick={() => home()} >Home </button>
+      <PlatformSelector />
     </div>
   );
 };

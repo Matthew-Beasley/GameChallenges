@@ -8,7 +8,38 @@ import { userState,
   platformsState, 
   headerState,
   platformsInPlayState,
-  gamesInPlayState } from './RecoilState';
+  selectedGameState,
+  selectedGamesState} from './RecoilState';
+
+
+const GameListItem = ({ game, platform }) => {
+  const [gameSelected, setGameSelected] = useState(false);
+  const [userGames, setUserGames] = useRecoilState(selectedGamesState);
+
+  const gameObject = {};
+
+  const toggleSelected = () => {
+    if (gameSelected) {
+      const tempArray = [...userGames];
+      const indexToDelete = tempArray.findIndex(i => i.gameName === game);
+      if (indexToDelete > -1) {
+        tempArray.splice(indexToDelete, 1);
+        setUserGames([...tempArray]);
+      }
+      setGameSelected(false);
+    } else {
+      if (userGames.findIndex(i => i.gameName === game) < 0) {
+        gameObject.gameName = game;
+        gameObject.platform = platform.name;
+        setUserGames([...userGames, gameObject]);
+      }
+      setGameSelected(true);
+    }
+  };
+  return (
+    <li className={!gameSelected ? 'gameNotSelected' : 'gameSelected'} onClick={() => toggleSelected()}>{game}</li>
+  );     
+};
 
 
 const GameDisplay = ({ platform }) => {
@@ -26,9 +57,9 @@ const GameDisplay = ({ platform }) => {
     <div>
       <div className="clickable-platform" onClick={() => toggle()}><p>{platform.name}</p></div>
       {show ? <ul id="game-list">
-        {platform.games.map((item, idx) => {
+        {platform.games.map((game, idx) => {
           return (
-            <li key={idx} >{item}</li>
+            <GameListItem key={idx} game={game} platform={platform} />
           );
         })}
       </ul> : null}
