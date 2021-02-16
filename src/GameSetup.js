@@ -10,7 +10,7 @@ const GameSetup = () => {
   return (
     <div id="game-setup-container">
       <div>
-        <div id="setup-header-text">Thartme game setup page!</div>
+        <div id="setup-header-text">Thwartme game setup page!</div>
         <div id="instruction-wrapper">
           <div id="platform-instructions">Select games by platform</div>
         </div>
