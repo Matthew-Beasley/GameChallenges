@@ -4,7 +4,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { userState, passwordState, tokenState } from './RecoilState';
 import CreateUser from './CreateUser';
 import Login from './Login';
-import GameSetup from './GameSetup';
+import GameContainer from './GameContainer';
 
 const App = () => {
   const [user, setUser] = useRecoilState(userState);
@@ -16,9 +16,9 @@ const App = () => {
 */
   return (
     <div id="app-container">
-      <Route exact path="/" component={Login} />
+      <Route exact path="/" component={GameContainer} />
       <Route path="/createUser" component={CreateUser} />
-      <Route path="/gamesetup" component={GameSetup} />
+      <Route path="/login" component={Login} />
     </div>
   );
 };

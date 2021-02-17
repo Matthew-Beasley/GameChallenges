@@ -3,7 +3,26 @@
 #app-container {
  /* display: flex;
   flex-direction: column;*/
-  background-image: linear-gradient(to bottom right, rgb(158, 235, 35), rgb(36, 84, 218));
+  background-image: linear-gradient(rgb(7, 50, 114), rgb(1,4,4));
+}
+
+
+/* ===== GameContainer Styles ===== */
+
+#game-container {
+  height: 1080px;
+  padding-top: 3rem;
+}
+
+
+/* ===== NavBar Styles ===== */
+
+#navbar {
+  background-color: rgb(54, 51, 51);
+  width: 100%;
+  height: 2.75rem;
+  color: white;
+  border-bottom:  solid rgb(40, 226, 214) 3px;
 }
 
 
@@ -112,94 +131,4 @@ form > input {
 #check-text {
   font-size: 14px;
   margin-top: 1.5rem;
-}
-
-
-/* ===== GameSetup Styles ===== */
-
-#game-setup-container {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 1080px;
-  justify-content: center;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-
-#setup-header-text {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  font-size: 35px;
-  font-weight: bold;
-  margin: 10rem 0 5rem 0;
-}
-
-#instruction-wrapper {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: center;
-}
-
-#platform-instructions {
-  font-weight: bold;
-  font-size: 18px;
-}
-
-
-/* ===== SelectPlatform Styles ===== */
-
-#platform-selector {
-  display: flex;
-  flex-direction: column;
-  height: 1079;
-}
-
-#platform-selector > div {
-  display: flex;
-  flex-direction: row;
-
-}
-
-#platform-selector > ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-
-#platform-selector li {
-  margin: 1rem 1rem 0rem 1rem;
-}
-
-#game-list {
-  display: flex;
-  flex-direction: column;
-  list-style: none;
-  padding: 0;
-}
-
-#platform-selector li {
-  width: 8rem;
-  margin-left: 2rem;
-}
-
-
-#clickable-platform > ul {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.gameSelected {
-  font-weight: bold;
-}
-
-.gameNotSelected {
-  font-weight: normal;
 }
