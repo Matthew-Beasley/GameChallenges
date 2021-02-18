@@ -30,7 +30,7 @@ const selectedGamesState = atom({
 
 const playerListState = atom({
   key: 'playerListState',
-  default: []
+  default: ['Matthew'] //temp value
 });
 
 const headerState = selector({
