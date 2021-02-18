@@ -3,7 +3,6 @@ import { useHistory } from 'react-router-dom'
 import axios from 'axios';
 import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
 import { userState, passwordState, tokenState } from './RecoilState';
-import PlatformSelector from './PlatformSelector';
 
 
 const CreateUser = () => {
