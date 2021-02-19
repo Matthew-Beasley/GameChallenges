@@ -29,7 +29,6 @@ const GameSetup = () => {
       <div id="players">
         <label>Players</label>
         <input id="player-input" tyupe="text" value={playerName} onChange={ev => setPlayerName(ev.target.value)} />
-        <button onClick={ setPlayers( playerName )}>Add Player</button>
       </div>
       <div id="platforms">
         <label>Platforms</label>
@@ -42,10 +41,10 @@ const GameSetup = () => {
         </select>
       </div>
       <div id="checkboxes">
-        <label>Split screen only</label>
-        <input type="checkbox" onChange={ev => setSplitScreen(ev.target.value)} />
-        <label>Kid friendly</label>
-        <input type="checkbox" onChange={ev => setKidFriendly(ev.target.value)} />
+        <label id="splitscreen-label">Split screen only</label>
+        <input id="splitscreen-chk" type="checkbox" onChange={ev => setSplitScreen(ev.target.value)} />
+        <label id="kids-label">Kid friendly</label>
+        <input id="kids-chk" type="checkbox" onChange={ev => setKidFriendly(ev.target.value)} />
       </div>
       <div id="online">
         <label>Online only</label>
@@ -55,14 +54,16 @@ const GameSetup = () => {
           <option value="both">Online and Offline</option>
         </select>
       </div>
-      <div id="time-limit">
-        <label>Time Limit in minutes</label>
+      <div id="timelimit">
+        <label>Time Limit</label>
         <input type="text" />
       </div>
-      <div id="games">
+      <div id="findgames">
         <button onClick={() => findGames()} >Find Games</button>
+      </div>
+      <div id="games">
         <label>Games</label>
-        
+
       </div>
     </div>
   );

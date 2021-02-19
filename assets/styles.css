@@ -197,3 +197,86 @@ form > input {
 #contact-container > h1 {
   color: white;
 }
+
+
+/* ===== GameSetup Styles ===== */
+
+#gamesetup-container {
+  color: white;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#gamesetup-container label {
+  font-size: 10px;
+}
+
+#players > label {
+  margin: 0rem 0rem 0rem 5rem;
+  font-size: 10px;
+}
+
+#players > input {
+  margin: 5rem 0rem 0rem 3.75rem;
+  border-radius: 4px;;
+  border: none;
+  width: 10rem;
+  height: 1rem;
+}
+
+#platforms > label {
+  margin: 0rem 0rem 0rem 5rem;
+  font-size: 10px;
+}
+
+#platforms > select {
+  margin: 1rem 0rem 0rem 3rem;
+  width: 10rem;
+  height: 1rem;
+} 
+
+#checkboxes > input {
+  margin: 1rem 0rem 0rem .5rem;
+  width: 1rem;
+  height: 1rem;
+}
+
+#splitscreen-label {
+  margin: 1rem .5rem 0rem 5rem;
+}
+
+#kids-label {
+  margin: 1rem .5rem 0rem 1.5rem;
+}
+
+#online > label {
+  margin: 0rem 0rem 0rem 5rem;
+  font-size: 10px;
+}
+
+#online > select {
+  margin: 1rem 0rem 0rem 2.4rem;
+  width: 10rem;
+  height: 1rem;
+}
+
+#timelimit > label {
+  margin: 0rem 0rem 0rem 5rem;
+  font-size: 10px;
+}
+
+#timelimit > input {
+  margin: 1rem 0rem 0rem 2.5rem;
+  border: none;
+  border-radius: 4px;
+  width: 10rem;
+  height: 1rem;
+}
+
+#findgames > button {
+  margin: 1rem 0rem 0rem 13.25rem;
+}
+
+#games > label {
+  margin: 0rem 0rem 0rem 5rem;
+  font-size: 10px;
+}
