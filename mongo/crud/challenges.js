@@ -11,8 +11,8 @@ const createChallenge = (record) => {
   });
 };
 
-const getChallenges = async() => {
-  const challenges = await Challenge.find();
+const getChallenges = async(queryObj) => {
+  const challenges = await Challenge.find(queryObj);
   return challenges;
 };
 

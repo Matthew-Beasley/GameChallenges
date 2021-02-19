@@ -5,7 +5,6 @@ const app = express();
 const userRouter = require('./api/users');
 const challengeRouter = require('./api/challenges');
 const authRouter = require('./api/auth');
-const platformsRouter = require('./api/platforms');
 const { findUserFromToken } = require('./mongo/auth');
 
 if (process.env.NODE_ENV !== 'production') {
@@ -46,7 +45,6 @@ app.use('/dist', express.static(path.join(__dirname, 'dist')));
 app.use('/user', userRouter);
 app.use('/challenge', challengeRouter);
 app.use('/auth', authRouter);
-app.use('/platform', platformsRouter)
 
 app.get('/', (req, res, next) => {
   try {
