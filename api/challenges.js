@@ -8,8 +8,8 @@ const { isLoggedIn, isAdmin } = require('../mongo/auth');
 
 challengeRouter.get('/', async (req, res, next) => {
   try {
-    const users = await getChallenges();
-    res.status(200).send(users);
+    const challenges = await getChallenges(req.query);
+    res.status(200).send(challenges);
   } catch (error) {
     next(error);
   }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link , withRouter } from 'react-router-dom';
 import axios from 'axios';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { userState, passwordState, navigatorSelector, tokenState, history } from './RecoilState';
+import { userState, passwordState, navigatorSelector, tokenState } from './RecoilState';
 import { useHistory } from 'react-router-dom';
 
 
