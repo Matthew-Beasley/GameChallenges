@@ -8,8 +8,9 @@ const GameSetup = () => {
   const [players, setPlayers] = useRecoilState(playerListState);
   const [splitScreen, setSplitScreen] = useState(false);
   const [kidFriendly, setKidFriendly] = useState(false);
+  const [gameList, setGameList] = useState(['game1', 'game2', 'game3', 'game4', 'game5', 'game6', 'game7', 'game8', 'game9', 'game10','game1', 'game2', 'game3', 'game4', 'game5', 'game6', 'game7', 'game8', 'game9', 'game10']);
   let queryString = '';
-/*
+  /*
   useEffect(() => {
     //query for all platforms in challenges 
   }, []);
@@ -19,7 +20,7 @@ const GameSetup = () => {
       PC: true,
       Game: 'Grand Theft Auto V'
     };
-    console.log('queryObj in findGames ', queryObj)
+    console.log('queryObj in findGames ', queryObj);
     const games = await axios.get('/challenge', { params: queryObj });
     console.log('games in find games after axios ', games.data);
   };
@@ -63,7 +64,13 @@ const GameSetup = () => {
       </div>
       <div id="games">
         <label>Games</label>
-
+        <div id="scroller">
+          <ul id="games-list">
+            {gameList.map((game, idx) => {
+              return (<li key={idx}><input type="checkbox" />{game}</li>);
+            })}
+          </ul>
+        </div>
       </div>
     </div>
   );
