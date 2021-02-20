@@ -10,11 +10,13 @@ const GameSetup = () => {
   const [kidFriendly, setKidFriendly] = useState(false);
   const [gameList, setGameList] = useState(['game1', 'game2', 'game3', 'game4', 'game5', 'game6', 'game7', 'game8', 'game9', 'game10','game1', 'game2', 'game3', 'game4', 'game5', 'game6', 'game7', 'game8', 'game9', 'game10']);
   let queryString = '';
+  const platforms = ['PC', 'Xbox', 'Playstation',	'Switch', 'Mobile'];
   /*
   useEffect(() => {
     //query for all platforms in challenges 
   }, []);
 */
+
   const findGames = async () => {
     const queryObj = {
       PC: true,
@@ -34,11 +36,7 @@ const GameSetup = () => {
       <div id="platforms">
         <label>Platforms</label>
         <select>
-          <option value="PC">PC</option>
-          <option value="Xbox">Xbox</option>
-          <option value="PS">Play Station</option>
-          <option value="Switch">Switch</option>
-          <option value="mobile">Mobile</option>
+          {platforms.map((platform, idx) => {return (<option key={idx}>{platform}</option>)})}
         </select>
       </div>
       <div id="checkboxes">
