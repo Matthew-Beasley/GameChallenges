@@ -215,7 +215,7 @@ form > input {
 #gamesetup-container {
   color: white;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  width: 33%;
+  width: 40rem;
   height: 1080;
 }
 
@@ -244,6 +244,10 @@ form > input {
   font-size: 10px;
 }
 
+*, input, select, textarea, option, button {
+  outline: none!important;
+}
+
 #platforms > select {
   font-size: 12px;
   background-color: rgb(54, 51, 51);
@@ -251,7 +255,7 @@ form > input {
   border: solid rgb(40, 226, 214) 3px;
   margin: 1rem 0rem 0rem 3rem;
   width: 10rem;
-  height: 1.5rem;
+  height: 2.5rem;
   border-radius: 200px;
 } 
 
@@ -325,14 +329,14 @@ form > input {
   border-radius: 8px;
 }
 
-#games ul {
+#games list-container {
   color: black;
   width: 10.5rem;
   list-style: none;
   padding: 0;
 }
 
-#games li {
+#games list-item {
   font-size: 12px;
   background-color: white;
   height: 1.25rem;
