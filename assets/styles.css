@@ -233,14 +233,13 @@ form > input {
 }
 
 #players > input {
-  background-color: rgb(54, 51, 51);
+  background-image: linear-gradient(rgb(126, 123, 123), rgb(54, 51, 51));
   color: white;
   border: solid rgb(40, 226, 214) 3px;
-  margin: 5rem 0rem 0rem 3.75rem;
-  border-radius: 4px;;
-  border: none;
-  width: 10rem;
-  height: 1rem;
+  margin: 5rem 0rem 0rem 3.9rem;
+  border-radius: 8px;;
+  width: 10.2rem;
+  height: 1.5rem;
 }
 
 #platform-control {
@@ -307,9 +306,10 @@ form > input {
   background-color: rgb(54, 51, 51);
   color: white;
   border: solid rgb(40, 226, 214) 3px;
+  border-radius: 8px;
   margin: 1rem 0rem 0rem 2.4rem;
   width: 11rem;
-  height: 1.7rem;
+  height: 2rem;
 }
 
 #timelimit > label {
@@ -322,13 +322,18 @@ form > input {
   color: white;
   border: solid rgb(40, 226, 214) 3px;
   margin: 1rem 0rem 0rem 2.5rem;
-  border-radius: 4px;
+  border-radius: 8px;
   width: 10.9rem;
-  height: 1.7rem;
+  height: 2rem;
 }
 
 #findgames > button {
-  margin: 1rem 0rem 0rem 13.25rem;
+  margin: 1rem 0rem 0rem 13rem;
+  height: 2rem;
+  width: 7rem;
+  border-radius: 15px;
+  color: white;
+  background-image: linear-gradient(rgb(40, 226, 214), rgb(57, 63, 65));
 }
 
 #multi-control {
