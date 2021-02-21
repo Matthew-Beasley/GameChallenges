@@ -33,14 +33,15 @@ const GameSetup = () => {
         <label>Players</label>
         <input id="player-input" tyupe="text" value={playerName} onChange={ev => setPlayerName(ev.target.value)} />
       </div>
-      <div id="platforms">
+      <div id="platform-control">
         <label>Platforms</label>
-        <select multiple={true}>
-          <option value="grapefruit">Grapefruit</option>
-          <option value="lime">Lime</option>
-          <option value="coconut">Coconut</option>
-          <option value="mango">Mango</option>
-        </select>
+        <div id="scroller">
+          <div id="platform-list">
+            {platforms.map((game, idx) => {
+              return (<div key={idx} className="platform-list-item"><input className="platform-list-input" type="checkbox" />{game}</div>);
+            })}
+          </div>
+        </div>
       </div>
       <div id="checkboxes">
         <label id="splitscreen-label">Split screen only</label>
@@ -58,17 +59,22 @@ const GameSetup = () => {
       </div>
       <div id="timelimit">
         <label>Time Limit</label>
-        <input type="text" />
+        <select>
+          <option value="all">All</option>
+          <option value="5orless">5 or Less</option>
+          <option value="15orless">15 or Less</option>
+          <option value="over-15">Over 15</option>
+        </select>
       </div>
       <div id="findgames">
         <button onClick={() => findGames()} >Find Games</button>
       </div>
-      <div id="games">
+      <div id="multi-control">
         <label>Games</label>
         <div id="scroller">
-          <div id="games-list">
+          <div id="multi-list">
             {gameList.map((game, idx) => {
-              return (<div key={idx}><input type="checkbox" />{game}</div>);
+              return (<div key={idx} className="multi-list-item"><input className="multi-list-input" type="checkbox" />{game}</div>);
             })}
           </div>
         </div>
