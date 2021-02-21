@@ -35,8 +35,11 @@ const GameSetup = () => {
       </div>
       <div id="platforms">
         <label>Platforms</label>
-        <select>
-          {platforms.map((platform, idx) => {return (<option key={idx}>{platform}</option>)})}
+        <select multiple={true}>
+          <option value="grapefruit">Grapefruit</option>
+          <option value="lime">Lime</option>
+          <option value="coconut">Coconut</option>
+          <option value="mango">Mango</option>
         </select>
       </div>
       <div id="checkboxes">
@@ -63,11 +66,11 @@ const GameSetup = () => {
       <div id="games">
         <label>Games</label>
         <div id="scroller">
-          <ul id="games-list">
+          <div id="games-list">
             {gameList.map((game, idx) => {
-              return (<li key={idx}><input type="checkbox" />{game}</li>);
+              return (<div key={idx}><input type="checkbox" />{game}</div>);
             })}
-          </ul>
+          </div>
         </div>
       </div>
     </div>
