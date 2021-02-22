@@ -59,7 +59,7 @@ const GameSetup = () => {
       </div>
       <div id="online">
         <label>Online only</label>
-        <select multiple >
+        <select>
           <option value="online">Online</option>
           <option value="offline">Offline</option>
           <option value="both">Online and Offline</option>
@@ -67,7 +67,7 @@ const GameSetup = () => {
       </div>
       <div id="timelimit">
         <label>Time Limit</label>
-        <select multiple>
+        <select>
           <option value="all">All</option>
           <option value="5orless">5 or Less</option>
           <option value="15orless">15 or Less</option>

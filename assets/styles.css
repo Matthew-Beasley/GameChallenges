@@ -13,7 +13,7 @@
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 1080px;
+  height: 900px;
   justify-content: center;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
@@ -72,7 +72,7 @@ form > input {
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 1080px;
+  height: 900px;
   justify-content: center;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
@@ -118,7 +118,7 @@ form > input {
 /* ===== About Styles ===== */
 
 #about-container {
-  height: 1080px;
+  height: 900px;
   width: 100%;
   padding-top: 3rem;
 }
@@ -131,7 +131,7 @@ form > input {
 /* ===== Contact Styles ===== */
 
 #contact-container {
-  height: 1080px;
+  height: 900px;
   width: 100%;
   padding-top: 3rem;
 }
@@ -144,7 +144,7 @@ form > input {
 /* ===== GameContainer Styles ===== */
 
 #game-container {
-  height: 1080px;
+  height: 900px;
   padding-top: 3rem;
 }
 
@@ -220,7 +220,7 @@ form > input {
   color: white;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   width: 40rem;
-  height: 1080;
+  height: 900px;
 }
 
 #gamesetup-container label {
@@ -434,14 +434,14 @@ form > input {
     display: flex;
     flex-direction: column;
     width: 100%;
-    margin: 1rem
+    margin: 0;
   }
 
   #gamesetup-container {
     color: white;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     width: 100%;
-    height: 1080;
+    height: 900px;
   }
 
   #players > label {
