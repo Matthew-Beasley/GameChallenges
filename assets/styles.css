@@ -427,7 +427,10 @@ form > input {
 
 /* ===== Challenge Container Styles ===== */
 
+
+
 #challenge-container {
+  display:flex;
   width: 100%;
   min-height: 100vhpx;
   height: calc(var(--vh, 1vh) * 100);
@@ -476,6 +479,10 @@ form > input {
     min-width: 100vwpx;
     width: calc(var(--vw, 1vw) * 100);
     height: auto;
+  }
+
+  #challenge-container {
+    display: none;
   }
 
   #gamesetup-container {
