@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   background-image: linear-gradient(rgb(7, 50, 114), rgb(1,4,4));
-  height: 1080px;
+  height: calc(var(--vh, 1vh) * 100);
 }
 
 /* * {border: solid red 2px}*/
@@ -15,7 +15,8 @@
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 1080px;
+  min-height: 100vhpx;
+  height: calc(var(--vh, 1vh) * 100);
   justify-content: center;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
@@ -74,7 +75,7 @@ form > input {
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 1080px;
+  height: calc(var(--vh, 1vh) * 100);
   justify-content: center;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
@@ -120,7 +121,8 @@ form > input {
 /* ===== About Styles ===== */
 
 #about-container {
-  height: 1080px;
+  min-height: 100vhpx;
+  height: calc(var(--vh, 1vh) * 100);
   width: 100%;
   padding-top: 3rem;
 }
@@ -133,7 +135,8 @@ form > input {
 /* ===== Contact Styles ===== */
 
 #contact-container {
-  height: 1080px;
+  min-height: 100vhpx;
+  height: calc(var(--vh, 1vh) * 100);
   width: 100%;
   padding-top: 3rem;
 }
@@ -146,7 +149,8 @@ form > input {
 /* ===== GameContainer Styles ===== */
 
 #game-container {
-  height: 1080px;
+  min-height: 100vhpx;
+  height: calc(var(--vh, 1vh) * 100);
 }
 
 
@@ -212,7 +216,8 @@ form > input {
   flex-direction: row;
   flex-wrap: nowrap;
   width: 100%;
-  height: 1080;
+  min-height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
 }
 
 
@@ -396,7 +401,8 @@ form > input {
 
 #challenge-container {
   width: 100%;
-  /*height: 1080px;*/
+  min-height: 100vhpx;
+  height: calc(var(--vh, 1vh) * 100);
   background-image: url('../assets/monitor.png');
   background-size: 80% 600px;
   background-repeat: no-repeat;
@@ -445,7 +451,8 @@ form > input {
     color: white;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     width: 100%;
-    height: 1080px;
+    min-height: 100vhpx;
+    height: calc(var(--vh, 1vh) * 100);
   }
 
   #players > label {
@@ -565,10 +572,10 @@ form > input {
   
   #challenge-container {
     width: 100%;
-    height: 1080px;
+    min-height: 100vhpx;
+    height: calc(var(--vh, 1vh) * 100);
     background-image: url('../assets/monitor.png');
-    ;
-    height: 1080px;
+    height: calc(var(--vh, 1vh) * 100);
     background-repeat: no-repeat;
     margin: 5rem 0rem 0rem 4rem;
   }
