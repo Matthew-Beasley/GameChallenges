@@ -45,7 +45,7 @@ const GameSetup = () => {
       </div>
       <div id="phone-platformselect">
         <label>Platforms</label>
-        <select>
+        <select multiple>
           {platforms.map((game, idx) => {
             return (<option key={idx}>{game}</option>);
           })}
@@ -59,7 +59,7 @@ const GameSetup = () => {
       </div>
       <div id="online">
         <label>Online only</label>
-        <select>
+        <select multiple >
           <option value="online">Online</option>
           <option value="offline">Offline</option>
           <option value="both">Online and Offline</option>
@@ -67,7 +67,7 @@ const GameSetup = () => {
       </div>
       <div id="timelimit">
         <label>Time Limit</label>
-        <select>
+        <select multiple>
           <option value="all">All</option>
           <option value="5orless">5 or Less</option>
           <option value="15orless">15 or Less</option>
@@ -89,7 +89,7 @@ const GameSetup = () => {
       </div>
       <div id="phone-gameselect">
         <label>Games</label>
-        <select>
+        <select multiple>
           {gameList.map((game, idx) => {
             return (<option key={idx}>{game}</option>);
           })}
