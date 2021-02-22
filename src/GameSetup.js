@@ -31,7 +31,7 @@ const GameSetup = () => {
     <div id="gamesetup-container">
       <div id="players">
         <label>Players</label>
-        <input id="player-input" tyupe="text" value={playerName} onChange={ev => setPlayerName(ev.target.value)} />
+        <input id="player-input" type="text" value={playerName} placeholder="enter player name" onChange={ev => setPlayerName(ev.target.value)} />
       </div>
       <div id="platform-control">
         <label>Platforms</label>
@@ -42,6 +42,14 @@ const GameSetup = () => {
             })}
           </div>
         </div>
+      </div>
+      <div id="phone-platformselect">
+        <label>Platforms</label>
+        <select>
+          {platforms.map((game, idx) => {
+            return (<option key={idx}>{game}</option>);
+          })}
+        </select>
       </div>
       <div id="checkboxes">
         <label id="splitscreen-label">Split screen only</label>
@@ -78,6 +86,14 @@ const GameSetup = () => {
             })}
           </div>
         </div>
+      </div>
+      <div id="phone-gameselect">
+        <label>Games</label>
+        <select>
+          {gameList.map((game, idx) => {
+            return (<option key={idx}>{game}</option>);
+          })}
+        </select>
       </div>
     </div>
   );

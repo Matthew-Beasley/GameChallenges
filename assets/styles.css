@@ -242,6 +242,10 @@ form > input {
   height: 1.5rem;
 }
 
+#phone-platformselect {
+  display: none;
+}
+
 #platform-control {
   display: flex;
   flex-direction: row;
@@ -336,6 +340,10 @@ form > input {
   background-image: linear-gradient(rgb(40, 226, 214), rgb(57, 63, 65));
 }
 
+#phone-gameselect {
+  display: none;
+}
+
 #multi-control {
   display: flex;
   flex-direction: row;
@@ -393,4 +401,175 @@ form > input {
 #challenge-cards {
   color: white;
   margin: 10rem 0rem 0rem 10rem;
+}
+
+
+
+/* ========== Media Queries ========== */
+
+/* ===== iPhone ===== */
+
+
+@media only screen and (max-width: 850px) {
+  
+  #nav-links {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+  
+  #nav-links > a {
+    color: white;
+    font-size: 12px;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 1rem 0rem 0rem 1rem;
+  }
+  
+  #navbar-spacer {
+    width: 25%;
+  }
+
+  #main-gamecomponents {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 1rem
+  }
+
+  #gamesetup-container {
+    color: white;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    width: 40rem;
+    height: 1080;
+  }
+
+  #players > label {
+    margin: 1rem 3.7rem 0rem 2rem;
+    font-size: 10px;
+  }
+  
+  #players > input {
+    background-image: linear-gradient(rgb(126, 123, 123), rgb(54, 51, 51));
+    color: white;
+    border: solid rgb(40, 226, 214) 3px;
+    margin: 3rem 0rem 0rem 0rem;
+    border-radius: 6px;;
+    width: 10.3rem;
+    height: 1.5rem;
+  }
+  
+  #platform-control {
+    display: none;
+  }
+
+  #phone-platformselect {
+    display: contents;
+  }
+  #phone-platformselect > label {
+    margin: 1rem 3rem 0rem 2rem;
+    font-size: 10px;
+  }
+  
+  #phone-platformselect > select {
+    background-color: rgb(54, 51, 51);
+    color: white;
+    border: solid rgb(40, 226, 214) 3px;
+    border-radius: 8px;
+    margin: 1rem 0rem 0rem 0rem;
+    width: 11rem;
+    height: 2rem;
+  }
+  
+  #checkboxes > input {
+    margin: 1rem 0rem 0rem .5rem;
+    width: 1rem;
+    height: 1rem;
+  }
+  
+  #splitscreen-label {
+    margin: 1rem .5rem 0rem 2rem;
+  }
+  
+  #kids-label {
+    margin: 1rem .5rem 0rem 1.5rem;
+  }
+  
+  #online > label {
+    margin: 0rem 0rem 0rem 2rem;
+    font-size: 10px;
+  }
+  
+  #online > select {
+    background-color: rgb(54, 51, 51);
+    color: white;
+    border: solid rgb(40, 226, 214) 3px;
+    border-radius: 8px;
+    margin: 1rem 0rem 0rem 2.4rem;
+    width: 11rem;
+    height: 2rem;
+  }
+  
+  #timelimit > label {
+    margin: 0rem 2.75rem 0rem 2rem;
+    font-size: 10px;
+  }
+  
+  #timelimit > select {
+    background-color: rgb(54, 51, 51);
+    color: white;
+    border: solid rgb(40, 226, 214) 3px;
+    margin: 1rem 0rem 0rem 0rem;
+    border-radius: 8px;
+    width: 10.9rem;
+    height: 2rem;
+  }
+  
+  #findgames > button {
+    margin: 1rem 0rem 0rem 10rem;
+    height: 2rem;
+    width: 7rem;
+    border-radius: 15px;
+    color: white;
+    background-image: linear-gradient(rgb(40, 226, 214), rgb(57, 63, 65));
+  }
+  
+  #multi-control {
+    display: none;
+  }
+  
+  #phone-gameselect {
+    display: contents;
+  }
+  #phone-gameselect > label {
+    margin: 1rem 1.5rem 0rem 2rem;
+    font-size: 10px;
+  }
+  
+  #phone-gameselect > select {
+    background-color: rgb(54, 51, 51);
+    color: white;
+    border: solid rgb(40, 226, 214) 3px;
+    border-radius: 8px;
+    margin: 1rem 0rem 0rem 2.4rem;
+    width: 11rem;
+    height: 2rem;
+  }
+  
+  /* ===== Challenge Container Styles ===== */
+  
+  #challenge-container {
+    width: 33%;
+    height: 900px;
+    background-image: url('../assets/monitor.png');
+    width: 100%;
+    height: 900px;
+    background-repeat: no-repeat;
+    margin: 5rem 0rem 0rem 4rem;
+  }
+  
+  #challenge-cards {
+    color: white;
+    margin: 10rem 0rem 0rem 10rem;
+  }
 }
