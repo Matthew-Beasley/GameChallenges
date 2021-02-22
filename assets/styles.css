@@ -14,7 +14,8 @@
 #login-container {
   display: flex;
   flex-direction: row;
-  width: 100%;
+  min-width: 100vwpx;
+  width: calc(var(--vw, 1vw) * 100);
   min-height: 100vhpx;
   height: calc(var(--vh, 1vh) * 100);
   justify-content: center;
@@ -74,7 +75,8 @@ form > input {
 #createuser-container {
   display: flex;
   flex-direction: row;
-  width: 100%;
+  min-width: 100vwpx;
+  width: calc(var(--vw, 1vw) * 100);
   height: calc(var(--vh, 1vh) * 100);
   justify-content: center;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -123,7 +125,8 @@ form > input {
 #about-container {
   min-height: 100vhpx;
   height: calc(var(--vh, 1vh) * 100);
-  width: 100%;
+  min-width: 100vwpx;
+  width: calc(var(--vw, 1vw) * 100);
   padding-top: 3rem;
 }
 
@@ -137,7 +140,8 @@ form > input {
 #contact-container {
   min-height: 100vhpx;
   height: calc(var(--vh, 1vh) * 100);
-  width: 100%;
+  min-width: 100vwpx;
+  width: calc(var(--vw, 1vw) * 100);
   padding-top: 3rem;
 }
 
@@ -208,16 +212,17 @@ form > input {
 /* ===== Main Game Component Styles ===== */
 
 #game-container {
-  height: auto;
+  height: calc(var(--vh, 1vh) * 100);
+  min-height: 100vh;
 }
 
 #main-gamecomponents {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  width: 100%;
-  min-height: 100vh;
-  height: calc(var(--vh, 1vh) * 100);
+  min-width: 100vwpx;
+  width: calc(var(--vw, 1vw) * 100);
+  height: fit-content;
 }
 
 
@@ -231,7 +236,7 @@ form > input {
   color: white;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   width: 40rem;
-  height: 900px;
+  height: fit-content;
 }
 
 #gamesetup-container label {
@@ -239,8 +244,16 @@ form > input {
   color: white;
 }
 
+#players {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: left;
+  width: 100%;
+}
+
 #players > label {
-  margin: 0rem 0rem 0rem 5rem;
+  margin: 5rem 0rem 0rem 5rem;
 }
 
 #players > input {
@@ -249,8 +262,19 @@ form > input {
   border: solid rgb(40, 226, 214) 3px;
   margin: 5rem 0rem 0rem 3.9rem;
   border-radius: 8px;;
-  width: 10.2rem;
+  width: 8.2rem;
   height: 1.5rem;
+}
+
+#player-submit-btn {
+  width: 2rem;
+  height: 2rem;
+  margin-top: 5rem;
+  border-radius: 6px;
+  background-image: linear-gradient(rgb(40, 226, 214), rgb(57, 63, 65));
+  color: white;
+  font-size: 26px;
+  line-height: 50%;
 }
 
 #phone-platformselect {
@@ -396,6 +420,10 @@ form > input {
   background-color: turquoise;
 }
 
+#lets-play {
+  display: none;
+}
+
 
 /* ===== Challenge Container Styles ===== */
 
@@ -413,6 +441,7 @@ form > input {
   color: white;
   margin: 10rem 0rem 0rem 10rem;
 }
+
 
 
 
@@ -444,31 +473,53 @@ form > input {
   #main-gamecomponents {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    min-width: 100vwpx;
+    width: calc(var(--vw, 1vw) * 100);
+    height: auto;
   }
 
   #gamesetup-container {
     color: white;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     width: 100%;
-    min-height: 100vhpx;
-    height: calc(var(--vh, 1vh) * 100);
+    height: fit-content;
+    /*min-height: 100vhpx;
+    height: calc(var(--vh, 1vh) * 100);*/
   }
 
+  #players {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: left;
+    width: 100%;
+  }
+  
   #players > label {
-    margin: 1rem 3.7rem 0rem 2rem;
-    font-size: 10px;
+    margin: 5.75rem 0rem 0rem 2rem;
   }
   
   #players > input {
     background-image: linear-gradient(rgb(126, 123, 123), rgb(54, 51, 51));
     color: white;
     border: solid rgb(40, 226, 214) 3px;
-    margin: 3rem 0rem 0rem 0rem;
-    border-radius: 6px;;
-    width: 10.3rem;
+    margin: 5rem 0rem 0rem 3.9rem;
+    border-radius: 8px;;
+    width: 8.2rem;
     height: 1.5rem;
   }
+  
+  #player-submit-btn {
+    width: 2rem;
+    height: 2rem;
+    margin-top: 5rem;
+    border-radius: 6px;
+    background-image: linear-gradient(rgb(40, 226, 214), rgb(57, 63, 65));
+    color: white;
+    font-size: 26px;
+    line-height: 50%;
+  }
+  
   
   #platform-control {
     display: none;
@@ -567,11 +618,29 @@ form > input {
     width: 11rem;
     height: 2rem;
   }
+
+  #lets-play {
+    display:flex;
+  }
+
+  #lets-play > button {
+    margin: 5rem 0rem 0rem 6.75rem;
+    height: 4rem;
+    width: 12rem;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+    background-color: rgb(243, 16, 16);
+    /*background-image: linear-gradient(rgb(40, 226, 214), rgb(57, 63, 65));*/
+  }
   
   /* ===== Challenge Container Styles ===== */
   
   #challenge-container {
-    width: 100%;
+    min-width: 100vwpx;
+    width: calc(var(--vw, 1vw) * 100);
     min-height: 100vhpx;
     height: calc(var(--vh, 1vh) * 100);
     background-image: url('../assets/monitor.png');
