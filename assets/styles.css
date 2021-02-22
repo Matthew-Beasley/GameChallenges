@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   background-image: linear-gradient(rgb(7, 50, 114), rgb(1,4,4));
+  min-height: 100vhpx;
   height: calc(var(--vh, 1vh) * 100);
 }
 
@@ -236,7 +237,8 @@ form > input {
   color: white;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   width: 40rem;
-  height: fit-content;
+  height: 100%;
+  margin-bottom: 5rem;
 }
 
 #gamesetup-container label {
@@ -427,15 +429,12 @@ form > input {
 
 /* ===== Challenge Container Styles ===== */
 
-
-
 #challenge-container {
   display:flex;
   width: 100%;
-  min-height: 100vhpx;
-  height: calc(var(--vh, 1vh) * 100);
+  /*height: 100%;*/
   background-image: url('../assets/monitor.png');
-  background-size: 80% 600px;
+  background-size: 70% 100%;
   background-repeat: no-repeat;
   margin: 5rem 4rem 0rem 4rem;
 }
@@ -648,8 +647,7 @@ form > input {
   #challenge-container {
     min-width: 100vwpx;
     width: calc(var(--vw, 1vw) * 100);
-    min-height: 100vhpx;
-    height: calc(var(--vh, 1vh) * 100);
+    height: fit-content;
     background-image: url('../assets/monitor.png');
     height: calc(var(--vh, 1vh) * 100);
     background-repeat: no-repeat;
