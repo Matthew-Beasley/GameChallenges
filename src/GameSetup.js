@@ -32,6 +32,7 @@ const GameSetup = () => {
       <div id="players">
         <label>Players</label>
         <input id="player-input" type="text" value={playerName} placeholder="enter player name" onChange={ev => setPlayerName(ev.target.value)} />
+        <button id="player-submit-btn">+</button>
       </div>
       <div id="platform-control">
         <label>Platforms</label>
@@ -94,6 +95,9 @@ const GameSetup = () => {
             return (<option key={idx}>{game}</option>);
           })}
         </select>
+      </div>
+      <div id="lets-play">
+        <button>LETS PLAY!</button>
       </div>
     </div>
   );
