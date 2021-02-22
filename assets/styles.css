@@ -480,10 +480,6 @@ form > input {
     height: auto;
   }
 
-  #challenge-container {
-    display: none;
-  }
-
   #gamesetup-container {
     color: white;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -647,15 +643,17 @@ form > input {
   #challenge-container {
     min-width: 100vwpx;
     width: calc(var(--vw, 1vw) * 100);
-    height: fit-content;
+    /*height: fit-content;*/
     background-image: url('../assets/monitor.png');
+    background-size: 97% 80%;
+    min-height: 100vhpx;
     height: calc(var(--vh, 1vh) * 100);
     background-repeat: no-repeat;
-    margin: 5rem 0rem 0rem 4rem;
+    margin: 4rem 0rem 0rem 0rem;
   }
   
   #challenge-cards {
     color: white;
-    margin: 10rem 0rem 0rem 10rem;
+    margin: 10rem 0rem 0rem 3rem;
   }
 }
