@@ -11,7 +11,6 @@ const GameContainer = () => {
       <NavBar />
       <div id='main-gamecomponents'>
         <GameSetup />
-        <ChallengeDisplay />
       </div>
     </div>
   );
