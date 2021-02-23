@@ -7,7 +7,8 @@ import Login from './Login';
 import GameContainer from './GameContainer';
 import Contact from './Contact';
 import About from './About';
-import ChallengeDisplay from './ChallengeDisplay';
+import { MobileChallenges } from './ChallengeDisplay';
+
 
 const App = () => {
   const [user, setUser] = useRecoilState(userState);
@@ -24,7 +25,7 @@ const App = () => {
       <Route path="/login" component={Login} />
       <Route path="/contact" component={Contact} />
       <Route path="/about" component={About} />
-      <Route path="/challenges" component={ChallengeDisplay} />
+      <Route path="/mobilechallenges" component={MobileChallenges} />
     </div>
   );
 };

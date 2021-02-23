@@ -14,4 +14,17 @@ const ChallengeDisplay = () => {
   );
 };
 
-export default ChallengeDisplay;
+const MobileChallenges = () => {
+  return (
+    <div id="mobilechallenge-container">
+      <div id="challenge-cards">
+        <p>game cards go here</p>
+      </div>
+    </div>
+  );
+};
+
+export {
+  ChallengeDisplay,
+  MobileChallenges
+};

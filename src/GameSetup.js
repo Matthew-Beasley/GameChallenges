@@ -2,10 +2,10 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { playerListState } from './RecoilState';
-import { Route, Link, useHistory } from 'react-router-dom';
-
+import { useHistory } from 'react-router-dom';
 
 const GameSetup = () => {
+  const history = useHistory();
   const [playerName, setPlayerName] = useState('');
   const [players, setPlayers] = useRecoilState(playerListState);
   const [splitScreen, setSplitScreen] = useState(false);
@@ -100,7 +100,7 @@ const GameSetup = () => {
         </select>
       </div>
       <div id="lets-play">
-        <button onClick={() => history.push('/challenges')}>LETS PLAY!</button>
+        <button onClick={() => history.push('./mobilechallenges')}>LETS PLAY!</button>
       </div>
     </div>
   );
