@@ -3,12 +3,9 @@ import NavBar from './NavBar';
 
 const ChallengeDisplay = () => {
   return (
-    <div>
-      <NavBar />
-      <div id="challenge-container"> 
-        <div id="challenge-cards">
-          <p>game cards go here</p>
-        </div>
+    <div id="challenge-container"> 
+      <div id="challenge-cards">
+        <p>game cards go here</p>
       </div>
     </div>
   );
@@ -16,9 +13,12 @@ const ChallengeDisplay = () => {
 
 const MobileChallenges = () => {
   return (
-    <div id="mobilechallenge-container">
-      <div id="challenge-cards">
-        <p>game cards go here</p>
+    <div id="mobilechallenges-nav">
+      <NavBar />
+      <div id="mobilechallenge-container">
+        <div id="challenge-cards">
+          <p>game cards go here</p>
+        </div>
       </div>
     </div>
   );

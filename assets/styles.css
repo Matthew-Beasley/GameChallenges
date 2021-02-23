@@ -429,12 +429,11 @@ form > input {
 
 /* ===== Challenge Container Styles ===== */
 
-#mobilechallenge-container {
+#mobilechallenges-nav {
   display: none;
 }
 
 #challenge-container {
-  display: sflex;
   width: 100%;
   /*height: 100%;*/
   background-image: url('../assets/monitor.png');
@@ -643,18 +642,27 @@ form > input {
   }
   
   /* ===== Challenge Container Styles ===== */
-  
-  #challenge-container {
-    min-width: 100vwpx;
-    width: calc(var(--vw, 1vw) * 100);
-    /*height: fit-content;*/
-    background-image: url('../assets/monitor.png');
-    background-size: 97% 80%;
-    min-height: 100vhpx;
-    height: calc(var(--vh, 1vh) * 100);
-    background-repeat: no-repeat;
-    margin: 4rem 0rem 0rem 0rem;
-  }
+
+    #challenge-container {
+      display: none;
+    }
+
+    #mobilechallenges-nav {
+      display: flex;
+      flex-direction: column;
+    }
+
+    #mobilechallenge-container {
+      min-width: 100vwpx;
+      width: calc(var(--vw, 1vw) * 100);
+      /*height: fit-content;*/
+      background-image: url('../assets/monitor.png');
+      background-size: 97% 80%;
+      min-height: 100vhpx;
+      height: calc(var(--vh, 1vh) * 100);
+      background-repeat: no-repeat;
+      margin: 4rem 0rem 0rem 0rem;
+    }
   
   #challenge-cards {
     color: white;
