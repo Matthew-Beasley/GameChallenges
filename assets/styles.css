@@ -429,8 +429,12 @@ form > input {
 
 /* ===== Challenge Container Styles ===== */
 
+#mobilechallenge-container {
+  display: none;
+}
+
 #challenge-container {
-  display:flex;
+  display: sflex;
   width: 100%;
   /*height: 100%;*/
   background-image: url('../assets/monitor.png');
