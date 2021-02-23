@@ -429,12 +429,11 @@ form > input {
 
 /* ===== Challenge Container Styles ===== */
 
-#mobilechallenge-container {
+#mobilechallenges-nav {
   display: none;
 }
 
 #challenge-container {
-  display: sflex;
   width: 100%;
   /*height: 100%;*/
   background-image: url('../assets/monitor.png');
@@ -648,8 +647,12 @@ form > input {
       display: none;
     }
 
-    #mobilechallenge-container {
+    #mobilechallenges-nav {
       display: flex;
+      flex-direction: column;
+    }
+
+    #mobilechallenge-container {
       min-width: 100vwpx;
       width: calc(var(--vw, 1vw) * 100);
       /*height: fit-content;*/
