@@ -651,17 +651,15 @@ form > input {
       display: flex;
       flex-direction: column;
     }
-
+/* navbar 5.75rem high  w h */
     #mobilechallenge-container {
       min-width: 100vwpx;
       width: calc(var(--vw, 1vw) * 100);
-      /*height: fit-content;*/
+      height: 525px;
       background-image: url('../assets/monitor.png');
-      background-size: 97% 80%;
-      min-height: 100vhpx;
-      height: calc(var(--vh, 1vh) * 100);
+      background-size: 97% 400px;
       background-repeat: no-repeat;
-      margin: 4rem 0rem 0rem 0rem;
+      margin: 6rem 0rem 0rem 0rem;
     }
   
   #challenge-cards {
