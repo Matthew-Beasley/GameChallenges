@@ -12,7 +12,7 @@ const GameContainer = () => {
       <div id='main-gamecomponents'>
         <GameSetup />
         <ChallengeDisplay />
-        <MobileChallenges />
+        
       </div>
     </div>
   );
