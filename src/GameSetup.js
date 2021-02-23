@@ -13,6 +13,7 @@ const GameSetup = () => {
   const [gameList, setGameList] = useState(['game1', 'game2', 'game3', 'game4', 'game5', 'game6', 'game7', 'game8', 'game9', 'game10','game1', 'game2', 'game3', 'game4', 'game5', 'game6', 'game7', 'game8', 'game9', 'game10']);
   let queryString = '';
   const platforms = ['PC', 'Xbox', 'Playstation',	'Switch', 'Mobile'];
+
   /*
   useEffect(() => {
     //query for all platforms in challenges 
