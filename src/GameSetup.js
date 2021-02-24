@@ -1,81 +1,126 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { playerListState } from './RecoilState';
+import { playerListState, challengesState, gameListState } from './RecoilState';
 import { useHistory } from 'react-router-dom';
 
 const GameSetup = () => {
   const history = useHistory();
-  const [playerName, setPlayerName] = useState('');
   const [players, setPlayers] = useRecoilState(playerListState);
+  const [challenges, setChallenges] = useRecoilState(challengesState);
+  const [gameList, setGameList] = useRecoilState(gameListState);
   const [splitScreen, setSplitScreen] = useState(false);
   const [kidFriendly, setKidFriendly] = useState(false);
-  const [gameList, setGameList] = useState(['game1', 'game2', 'game3', 'game4', 'game5', 'game6', 'game7', 'game8', 'game9', 'game10','game1', 'game2', 'game3', 'game4', 'game5', 'game6', 'game7', 'game8', 'game9', 'game10']);
-  let queryString = '';
+  const [playerName, setPlayerName] = useState('');
   const platforms = ['PC', 'Xbox', 'Playstation',	'Switch', 'Mobile'];
+  /*const query = {
+    Platforms: [],
+    SplitScreen: false,
+    KidFriendly: false,
+    Online: false,
+    TimeLimit: ''
+  };*/
 
-  /*
-  useEffect(() => {
-    //query for all platforms in challenges 
-  }, []);
-*/
+  const query = { $or: [{ KidFriendly: false }, ] };
 
+  const addUserName = () => {
+    setPlayers([...players, playerName]);
+    setPlayerName('');
+  };
+
+  const selectPlatform = (platform) => {
+    if (!query.$or.find(el => el[platform] === true)) {
+      const platformObj = {[platform]: true};
+      query.$or.push(platformObj);
+    } else {
+      const index = query.$or.findIndex(el => el[platform] === true);
+      query.$or.splice(index, 1);
+    }
+  };
+
+  const setControlVal = (ev) => {
+    const index = query.$or.findIndex(el => el[ev.target.id]);
+    if (index > -1) {
+      query.$or.splice(index, 1);
+    }
+    if (!ev.target.value === '') {
+      query.$or.push({ [ev.target.id]: ev.target.value });
+    }
+  };
+ 
   const findGames = async () => {
-    const queryObj = {
-      PC: true,
-      Game: 'Grand Theft Auto V'
-    };
-    console.log('queryObj in findGames ', queryObj);
-    const games = await axios.get('/challenge', { params: queryObj });
-    console.log('games in find games after axios ', games.data);
+    const games = await axios.post('/challenge/games', query);
+    console.log(games.data);
+    setGameList(games.data);
   };
 
   return (
     <div id="gamesetup-container">
       <div id="players">
         <label>Players</label>
-        <input id="player-input" type="text" value={playerName} placeholder="enter player name" onChange={ev => setPlayerName(ev.target.value)} />
-        <button id="player-submit-btn">+</button>
+        <input 
+          id="player-input" 
+          type="text" 
+          value={playerName} 
+          placeholder="Enter player name" 
+          onChange={ev => setPlayerName(ev.target.value)} />
+        <button id="player-submit-btn" onClick={() => addUserName()}>+</button>
       </div>
       <div id="platform-control">
         <label>Platforms</label>
         <div id="scroller">
           <div id="platform-list">
-            {platforms.map((game, idx) => {
-              return (<div key={idx} className="platform-list-item"><input className="platform-list-input" type="checkbox" />{game}</div>);
+            {platforms.map((platform, idx) => {
+              return (<div key={idx} className="platform-list-item">
+                <input 
+                  className="platform-list-input" 
+                  type="checkbox" 
+                  onChange={() => selectPlatform(platform)}/>
+                {platform}
+              </div>);
             })}
           </div>
         </div>
       </div>
       <div id="phone-platformselect">
         <label>Platforms</label>
-        <select multiple>
-          {platforms.map((game, idx) => {
-            return (<option key={idx}>{game}</option>);
+        <select multiple onChange={ev => selectPlatform(ev.target.value)}>
+          {platforms.map((platform, idx) => {
+            return (<option key={idx} value={platform}>{platform} </option>);
           })}
         </select>
       </div>
-      <div id="checkboxes">
-        <label id="splitscreen-label">Split screen only</label>
-        <input id="splitscreen-chk" type="checkbox" onChange={ev => setSplitScreen(ev.target.value)} />
-        <label id="kids-label">Kid friendly</label>
-        <input id="kids-chk" type="checkbox" onChange={ev => setKidFriendly(ev.target.value)} />
-      </div>
-      <div id="online">
-        <label>Online only</label>
-        <select>
-          <option value="online">Online</option>
-          <option value="offline">Offline</option>
-          <option value="both">Online and Offline</option>
+      <div id="splitscreen-select">
+        <label>Split screen</label>
+        <select id="SplitScreen" onChange={ev => setControlVal(ev)}>
+          <option value="">No preference</option>
+          <option value="true">Split screen</option>
+          <option value="false">No split screen</option>
         </select>
       </div>
-      <div id="timelimit">
+      <div id="kidfriendly-select">
+        <label>Kid friendly</label>
+        <select id="KidFriendly" onChange={ev => setControlVal(ev)}>
+          <option value="">No preference</option>
+          <option value="true">Kid friendly</option>
+          <option value="false">Adults only</option>
+        </select>
+      </div>
+      <div id="onlineSelect">
+        <label>Online only</label>
+        <select id="Online" onChange={ev => setControlVal(ev)}>
+          <option value="">No preference</option>
+          <option value="true">Online</option>
+          <option value="false">Offline</option>
+        </select>
+      </div>
+      <div id="timeLimit">
         <label>Time Limit</label>
-        <select>
-          <option value="all">All</option>
-          <option value="5orless">5 or Less</option>
-          <option value="15orless">15 or Less</option>
-          <option value="over-15">Over 15</option>
+        <select id="TimeLimit" onChange={(ev) => setControlVal(ev)}>
+          <option value="">No preference</option>
+          <option value="5">5 minutes or Less</option>
+          <option value="15">15 minutes or Less</option>
+          <option value="Infinity">Over 15 minutes</option>
         </select>
       </div>
       <div id="findgames">
@@ -86,7 +131,7 @@ const GameSetup = () => {
         <div id="scroller">
           <div id="multi-list">
             {gameList.map((game, idx) => {
-              return (<div key={idx} className="multi-list-item"><input className="multi-list-input" type="checkbox" />{game}</div>);
+              return (<div key={idx} className="multi-list-item"><input className="multi-list-input" type="checkbox" />{game.Game}</div>);
             })}
           </div>
         </div>
@@ -95,7 +140,7 @@ const GameSetup = () => {
         <label>Games</label>
         <select multiple>
           {gameList.map((game, idx) => {
-            return (<option key={idx}>{game}</option>);
+            return (<option key={idx}>{game.Game}</option>);
           })}
         </select>
       </div>

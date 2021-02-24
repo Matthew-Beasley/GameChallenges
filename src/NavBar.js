@@ -14,7 +14,7 @@ const NavBar = () => {
       tempArray.push(firstLetter);
     });
     setInitials(tempArray);
-  }, []);
+  }, [players]);
 
   return (
     <div id="navbar">

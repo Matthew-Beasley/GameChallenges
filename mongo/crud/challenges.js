@@ -12,7 +12,10 @@ const createChallenge = (record) => {
 };
 
 const getChallenges = async(queryObj) => {
+  console.log('queryObj in crud ', queryObj);
   const challenges = await Challenge.find(queryObj);
+  //const challenges = await Challenge.find( {$or: [{PC: true}, {Xbox: true}], OnLine: false} );
+  //console.log(challenges);
   return challenges;
 };
 
