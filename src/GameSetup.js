@@ -9,17 +9,12 @@ const GameSetup = () => {
   const [players, setPlayers] = useRecoilState(playerListState);
   const [challenges, setChallenges] = useRecoilState(challengesState);
   const [gameList, setGameList] = useRecoilState(gameListState);
+  const [displayGames, setDisplayGames] = useState([]);
   const [splitScreen, setSplitScreen] = useState(false);
   const [kidFriendly, setKidFriendly] = useState(false);
   const [playerName, setPlayerName] = useState('');
   const platforms = ['PC', 'Xbox', 'Playstation',	'Switch', 'Mobile'];
-  /*const query = {
-    Platforms: [],
-    SplitScreen: false,
-    KidFriendly: false,
-    Online: false,
-    TimeLimit: ''
-  };*/
+
 
   const query = { $or: [{ KidFriendly: false }, ] };
 
@@ -50,8 +45,13 @@ const GameSetup = () => {
  
   const findGames = async () => {
     const games = await axios.post('/challenge/games', query);
-    console.log(games.data);
     setGameList(games.data);
+    console.log('games.data.length', games.data.length)
+    const display = new Set();
+    for (let i = 0; i < games.data.length; i++) {
+      display.add(games.data[i].Game);
+    }
+    setDisplayGames([...display]);
   };
 
   return (
@@ -130,8 +130,8 @@ const GameSetup = () => {
         <label>Games</label>
         <div id="scroller">
           <div id="multi-list">
-            {gameList.map((game, idx) => {
-              return (<div key={idx} className="multi-list-item"><input className="multi-list-input" type="checkbox" />{game.Game}</div>);
+            {displayGames.map((game, idx) => {
+              return (<div key={idx} className="multi-list-item"><input className="multi-list-input" type="checkbox" />{game}</div>);
             })}
           </div>
         </div>
@@ -140,8 +140,8 @@ const GameSetup = () => {
         {!!gameList.length > 0 ? <div>Choose your games below!</div> : <div> </div>}
         <label>Games</label>
         <select multiple>
-          {gameList.map((game, idx) => {
-            return (<option key={idx}>{game.Game}</option>);
+          {displayGames.map((game, idx) => {
+            return (<option key={idx}>{game}</option>);
           })}
         </select>
       </div>
