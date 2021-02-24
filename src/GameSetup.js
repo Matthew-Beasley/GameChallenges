@@ -52,16 +52,9 @@ const GameSetup = () => {
 
   const findGames = async () => {
     setQueryPlatforms();
-    console.log('query in findGames ', query);
-    const games = await axios.get('/challenge', { params:  {
-      Platforms: [],
-      PC: true,
-      SplitScreen: false,
-      KidFriendly: false,
-      Online: false,
-      TimeLimit: ''
-    }});
-    console.log('games in find games after axios ', games.data);
+    const games = await axios.get('/challenge', { params:  query });
+    console.log(games.data)
+    setGameList(games.data);
   };
 
   return (
@@ -130,7 +123,7 @@ const GameSetup = () => {
         <div id="scroller">
           <div id="multi-list">
             {gameList.map((game, idx) => {
-              return (<div key={idx} className="multi-list-item"><input className="multi-list-input" type="checkbox" />{game}</div>);
+              return (<div key={idx} className="multi-list-item"><input className="multi-list-input" type="checkbox" />{game.Game}</div>);
             })}
           </div>
         </div>
@@ -139,7 +132,7 @@ const GameSetup = () => {
         <label>Games</label>
         <select multiple>
           {gameList.map((game, idx) => {
-            return (<option key={idx}>{game}</option>);
+            return (<option key={idx}>{game.Game}</option>);
           })}
         </select>
       </div>
