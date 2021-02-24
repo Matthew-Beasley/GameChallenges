@@ -417,6 +417,7 @@ form > input {
   color: white;
   border: solid rgb(40, 226, 214) 3px;
   border-radius: 8px;
+  background-color: grey;
 }
 
 #multi-list {
@@ -564,7 +565,7 @@ form > input {
     height: 2rem;
   }
   
-  #splitscreen-label {
+  #splitscreen-select > label {
     margin: 0rem 0rem 0rem 2rem;
     font-size: 10px;
   }
@@ -579,7 +580,7 @@ form > input {
     height: 2rem;
   }
   
-  #kids-label {
+  #kidfriendly-select > label {
     margin: 0rem 0rem 0rem 2rem;
     font-size: 10px;
   }
