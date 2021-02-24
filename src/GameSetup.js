@@ -47,12 +47,20 @@ const GameSetup = () => {
     for (let i = 0; i < query.Platforms.length; i++) {
       query[platforms[i]] = true;
     }
+    query.Platforms = [];
   };
 
   const findGames = async () => {
     setQueryPlatforms();
     console.log('query in findGames ', query);
-    const games = await axios.get('/challenge', { params: query });
+    const games = await axios.get('/challenge', { params:  {
+      Platforms: [],
+      PC: true,
+      SplitScreen: false,
+      KidFriendly: false,
+      Online: false,
+      TimeLimit: ''
+    }});
     console.log('games in find games after axios ', games.data);
   };
 
