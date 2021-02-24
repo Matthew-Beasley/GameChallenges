@@ -30,7 +30,23 @@ const selectedGamesState = atom({
 
 const playerListState = atom({
   key: 'playerListState',
-  default: ['Matthew'] //temp value
+  default: []
+});
+
+const gameListState = atom({
+  key: 'gameListState',
+  default: []
+});
+
+const challengesState = atom({
+  key: 'challengesState',
+  default: {
+    players: [],
+    platforms: [],
+    splitAcreen: false,
+    kidFriendly: false,
+
+  }
 });
 
 const headerState = selector({
@@ -52,5 +68,7 @@ export {
   platformsState,
   selectedGamesState,
   playerListState,
-  headerState
+  headerState,
+  gameListState,
+  challengesState
 };

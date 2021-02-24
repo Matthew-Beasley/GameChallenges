@@ -338,12 +338,12 @@ form > input {
   margin: 1rem .5rem 0rem 1.5rem;
 }
 
-#online > label {
+#onlineSelect > label {
   margin: 0rem 0rem 0rem 5rem;
   font-size: 10px;
 }
 
-#online > select {
+#onlineSelect > select {
   background-color: rgb(54, 51, 51);
   color: white;
   border: solid rgb(40, 226, 214) 3px;
@@ -353,12 +353,12 @@ form > input {
   height: 2rem;
 }
 
-#timelimit > label {
+#timeLimit > label {
   margin: 0rem 0rem 0rem 5.2rem;
   font-size: 10px;
 }
 
-#timelimit > select {
+#timeLimit > select {
   background-color: rgb(54, 51, 51);
   color: white;
   border: solid rgb(40, 226, 214) 3px;
@@ -562,12 +562,12 @@ form > input {
     margin: 1rem .5rem 0rem 1.5rem;
   }
   
-  #online > label {
+  #onlineSelect > label {
     margin: 0rem 0rem 0rem 2rem;
     font-size: 10px;
   }
   
-  #online > select {
+  #onlineSelect > select {
     background-color: rgb(54, 51, 51);
     color: white;
     border: solid rgb(40, 226, 214) 3px;
@@ -577,12 +577,12 @@ form > input {
     height: 2rem;
   }
   
-  #timelimit > label {
+  #timeLimit > label {
     margin: 0rem 2.75rem 0rem 2rem;
     font-size: 10px;
   }
   
-  #timelimit > select {
+  #timeLimit > select {
     background-color: rgb(54, 51, 51);
     color: white;
     border: solid rgb(40, 226, 214) 3px;
