@@ -137,6 +137,7 @@ const GameSetup = () => {
         </div>
       </div>
       <div id="phone-gameselect">
+        {!!gameList.length > 0 ? <div>Choose your games below!</div> : <div> </div>}
         <label>Games</label>
         <select multiple>
           {gameList.map((game, idx) => {
