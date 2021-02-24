@@ -21,7 +21,7 @@ const GameSetup = () => {
     TimeLimit: ''
   };*/
 
-  const query = { $or: [] };
+  const query = { $or: [{ KidFriendly: false }, ] };
 
   const addUserName = () => {
     setPlayers([...players, playerName]);
@@ -38,22 +38,19 @@ const GameSetup = () => {
     }
   };
 
-  const setCheckBoxVal = (ev) => {
+  const setControlVal = (ev) => {
     const index = query.$or.findIndex(el => el[ev.target.id]);
     if (index > -1) {
       query.$or.splice(index, 1);
     }
-    query.$or.push({ [ev.target.id]: [ev.target.checked] });
+    if (!ev.target.value === '') {
+      query.$or.push({ [ev.target.id]: ev.target.value });
+    }
   };
-
-  const selectValue = (ev) => {
-    // pick up here to add platform objects to $or array
-    query[ev.target.id] = ev.target.value;
-  };
-
+ 
   const findGames = async () => {
     const games = await axios.post('/challenge/games', query);
-    console.log(games.data)
+    console.log(games.data);
     setGameList(games.data);
   };
 
@@ -93,23 +90,34 @@ const GameSetup = () => {
           })}
         </select>
       </div>
-      <div id="checkboxes">
-        <label id="SplitScreen-label">Split screen only</label>
-        <input id="SplitScreen" type="checkbox" onChange={ev => setCheckBoxVal(ev)} />
-        <label id="kid-label">Kid friendly</label>
-        <input id="kidFriendly" type="checkbox" onChange={ev => setCheckBoxVal(ev)} />
+      <div id="splitscreen-select">
+        <label>Split screen</label>
+        <select id="SplitScreen" onChange={ev => setControlVal(ev)}>
+          <option value="">No preference</option>
+          <option value="true">Split screen</option>
+          <option value="false">No split screen</option>
+        </select>
+      </div>
+      <div id="kidfriendly-select">
+        <label>Kid friendly</label>
+        <select id="KidFriendly" onChange={ev => setControlVal(ev)}>
+          <option value="">No preference</option>
+          <option value="true">Kid friendly</option>
+          <option value="false">Adults only</option>
+        </select>
       </div>
       <div id="onlineSelect">
         <label>Online only</label>
-        <select id="Online" onChange={ev => selectValue(ev)}>
+        <select id="Online" onChange={ev => setControlVal(ev)}>
+          <option value="">No preference</option>
           <option value="true">Online</option>
           <option value="false">Offline</option>
         </select>
       </div>
       <div id="timeLimit">
         <label>Time Limit</label>
-        <select id="TimeLimit" onChange={(ev) => selectValue(ev)}>
-          <option value="all">All</option>
+        <select id="TimeLimit" onChange={(ev) => setControlVal(ev)}>
+          <option value="">No preference</option>
           <option value="5">5 minutes or Less</option>
           <option value="15">15 minutes or Less</option>
           <option value="Infinity">Over 15 minutes</option>
