@@ -13,13 +13,15 @@ const GameSetup = () => {
   const [kidFriendly, setKidFriendly] = useState(false);
   const [playerName, setPlayerName] = useState('');
   const platforms = ['PC', 'Xbox', 'Playstation',	'Switch', 'Mobile'];
-  const query = {
+  /*const query = {
     Platforms: [],
     SplitScreen: false,
     KidFriendly: false,
     Online: false,
     TimeLimit: ''
-  };
+  };*/
+
+  const query = { $or: [] };
 
   const addUserName = () => {
     setPlayers([...players, playerName]);
@@ -27,32 +29,30 @@ const GameSetup = () => {
   };
 
   const selectPlatform = (platform) => {
-    if (!query.Platforms.find(el => el === platform)) {
-      query.Platforms.push(platform);
+    if (!query.$or.find(el => el[platform] === true)) {
+      const platformObj = {[platform]: true};
+      query.$or.push(platformObj);
     } else {
-      const index = query.Platforms.find(el => el === platform);
-      query.Platforms.splice(index, 1);
+      const index = query.$or.findIndex(el => el[platform] === true);
+      query.$or.splice(index, 1);
     }
   };
 
   const setCheckBoxVal = (ev) => {
-    query[ev.target.id] = ev.target.checked;
+    const index = query.$or.findIndex(el => el[ev.target.id]);
+    if (index > -1) {
+      query.$or.splice(index, 1);
+    }
+    query.$or.push({ [ev.target.id]: [ev.target.checked] });
   };
 
   const selectValue = (ev) => {
+    // pick up here to add platform objects to $or array
     query[ev.target.id] = ev.target.value;
   };
 
-  const setQueryPlatforms = () => {
-    for (let i = 0; i < query.Platforms.length; i++) {
-      query[platforms[i]] = true;
-    }
-    query.Platforms = [];
-  };
-
   const findGames = async () => {
-    setQueryPlatforms();
-    const games = await axios.get('/challenge', { params:  query });
+    const games = await axios.post('/challenge/games', query);
     console.log(games.data)
     setGameList(games.data);
   };
@@ -94,8 +94,8 @@ const GameSetup = () => {
         </select>
       </div>
       <div id="checkboxes">
-        <label id="splitscreen-label">Split screen only</label>
-        <input id="splitScreen" type="checkbox" onChange={ev => setCheckBoxVal(ev)} />
+        <label id="SplitScreen-label">Split screen only</label>
+        <input id="SplitScreen" type="checkbox" onChange={ev => setCheckBoxVal(ev)} />
         <label id="kid-label">Kid friendly</label>
         <input id="kidFriendly" type="checkbox" onChange={ev => setCheckBoxVal(ev)} />
       </div>

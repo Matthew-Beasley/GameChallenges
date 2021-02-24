@@ -330,7 +330,7 @@ form > input {
   height: 1rem;
 }
 
-#splitscreen-label {
+#SplitScreen-label {
   margin: 1rem .5rem 0rem 5rem;
 }
 
@@ -554,7 +554,7 @@ form > input {
     height: 1rem;
   }
   
-  #splitscreen-label {
+  #SplitScreen-label {
     margin: 1rem .5rem 0rem 2rem;
   }
   
