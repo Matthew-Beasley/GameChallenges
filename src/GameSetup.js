@@ -14,12 +14,11 @@ const GameSetup = () => {
   const [playerName, setPlayerName] = useState('');
   const platforms = ['PC', 'Xbox', 'Playstation',	'Switch', 'Mobile'];
   const query = {
-    Players: [],
     Platforms: [],
     SplitScreen: false,
     KidFriendly: false,
     Online: false,
-    TimeLimit: Infinity 
+    TimeLimit: ''
   };
 
   const addUserName = () => {
@@ -28,11 +27,10 @@ const GameSetup = () => {
   };
 
   const selectPlatform = (platform) => {
-    if (!query.Platforms.find(el => el.[platform] === true)) {
-      const platformObj = {[platform]: true};
-      query.Platforms.push(platformObj);
+    if (!query.Platforms.find(el => el === platform)) {
+      query.Platforms.push(platform);
     } else {
-      const index = query.Platforms.find(el => el[platform] === true);
+      const index = query.Platforms.find(el => el === platform);
       query.Platforms.splice(index, 1);
     }
   };
@@ -45,13 +43,16 @@ const GameSetup = () => {
     query[ev.target.id] = ev.target.value;
   };
 
+  const setQueryPlatforms = () => {
+    for (let i = 0; i < query.Platforms.length; i++) {
+      query[platforms[i]] = true;
+    }
+  };
+
   const findGames = async () => {
-    const queryObj = {
-      PC: true,
-      Game: 'Grand Theft Auto V'
-    };
-    console.log('queryObj in findGames ', queryObj);
-    const games = await axios.get('/challenge', { params: queryObj });
+    setQueryPlatforms();
+    console.log('query in findGames ', query);
+    const games = await axios.get('/challenge', { params: query });
     console.log('games in find games after axios ', games.data);
   };
 
