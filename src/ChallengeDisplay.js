@@ -3,6 +3,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { gameListState, challengesState, selectedTitlesState } from './RecoilState';
 import NavBar from './NavBar';
 
+/* ===== Do I want to move duplicated variables and functions out of components into the global state? ===== */
 
 const ChallengeDisplay = () => {
   const [gameList, setGameList] = useRecoilState(gameListState);
@@ -10,17 +11,12 @@ const ChallengeDisplay = () => {
   const [selectedTitles, setSelectedTitles] = useRecoilState(selectedTitlesState);
 
   useEffect(() => {
-    //console.log('gameList in useEffect ', gameList)
-    //console.log('selectedTitles in useEffect ', selectedTitles)
     const tempArr = [];
-    console.log(gameList.length)
     for( let i = 0; i < gameList.length; i++) {
       if (selectedTitles.includes(gameList[i].Game) === true) {
-        console.log('gameList[i].Game in if in loop ', gameList[i].Game)
         tempArr.push(gameList[i]);
       }
     }
-    //console.log('challenges in useEffect ', tempArr)
     setChallenges([...tempArr]);
   }, [selectedTitles]);
 
@@ -30,7 +26,7 @@ const ChallengeDisplay = () => {
         {challenges.map((item, idx) => {
           return (
             <div key={idx}>{item.Game} {item.Challenge}</div>
-          )
+          );
         })}
       </div>
     </div>
@@ -38,12 +34,30 @@ const ChallengeDisplay = () => {
 };
 
 const MobileChallenges = () => {
+  const [gameList, setGameList] = useRecoilState(gameListState);
+  const [challenges, setChallenges] = useRecoilState(challengesState);
+  const [selectedTitles, setSelectedTitles] = useRecoilState(selectedTitlesState);
+
+  useEffect(() => {
+    const tempArr = [];
+    for( let i = 0; i < gameList.length; i++) {
+      if (selectedTitles.includes(gameList[i].Game) === true) {
+        tempArr.push(gameList[i]);
+      }
+    }
+    setChallenges([...tempArr]);
+  }, [selectedTitles]);
+
   return (
     <div id="mobilechallenges-nav">
       <NavBar />
       <div id="mobilechallenge-container">
         <div id="challenge-cards">
-          <p>game cards go here</p>
+          {challenges.map((item, idx) => {
+            return (
+              <div key={idx}>{item.Game} {item.Challenge}</div>
+            );
+          })}
         </div>
       </div>
     </div>
