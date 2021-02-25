@@ -40,13 +40,7 @@ const gameListState = atom({
 
 const challengesState = atom({
   key: 'challengesState',
-  default: {
-    players: [],
-    platforms: [],
-    splitAcreen: false,
-    kidFriendly: false,
-
-  }
+  default: []
 });
 
 const selectedTitlesState = atom({
