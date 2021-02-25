@@ -1,17 +1,15 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { playerListState, challengesState, gameListState } from './RecoilState';
+import { playerListState, challengesState, gameListState, selectedTitlesState, selectedGamesState } from './RecoilState';
 import { useHistory } from 'react-router-dom';
 
 const GameSetup = () => {
   const history = useHistory();
   const [players, setPlayers] = useRecoilState(playerListState);
-  const [challenges, setChallenges] = useRecoilState(challengesState);
   const [gameList, setGameList] = useRecoilState(gameListState);
+  const [selectedTitles, setSelectedTitles] = useRecoilState(selectedTitlesState);
   const [displayGames, setDisplayGames] = useState([]);
-  const [splitScreen, setSplitScreen] = useState(false);
-  const [kidFriendly, setKidFriendly] = useState(false);
   const [playerName, setPlayerName] = useState('');
   const platforms = ['PC', 'Xbox', 'Playstation',	'Switch', 'Mobile'];
 
@@ -42,11 +40,38 @@ const GameSetup = () => {
       query.$or.push({ [ev.target.id]: ev.target.value });
     }
   };
+
+  const chooseTitle = (ev) => {
+    if (ev.target.checked === undefined) {
+      if (!selectedTitles.includes(ev.target.value)) {
+        setSelectedTitles([...selectedTitles, ev.target.value]);
+        console.log('in !selected')
+      } else {
+        const tempArr = [...selectedTitles];
+        const index = tempArr.findIndex(el => el === ev.target.value);
+        tempArr.splice(index, 1);
+        setSelectedTitles([...tempArr]);
+        console.log('in splice')
+      }
+    } else if (ev.target.checked === true) {
+      setSelectedTitles([...selectedTitles, ev.target.parentNode.innerText]);
+    } else if (ev.target.checked === false) {
+      const tempArr = [...selectedTitles];
+      const index = tempArr.findIndex(el => el === ev.target.parentNode.innerText);
+      tempArr.splice(index, 1);
+      setSelectedTitles([...tempArr]);
+    }
+  };
+
+
+  useEffect(() => {
+    console.log(selectedTitles);
+  }, [selectedTitles]);
+
  
   const findGames = async () => {
     const games = await axios.post('/challenge/games', query);
     setGameList(games.data);
-    console.log('games.data.length', games.data.length)
     const display = new Set();
     for (let i = 0; i < games.data.length; i++) {
       display.add(games.data[i].Game);
@@ -116,7 +141,7 @@ const GameSetup = () => {
       </div>
       <div id="timeLimit">
         <label>Time Limit</label>
-        <select id="TimeLimit" onChange={(ev) => setControlVal(ev)}>
+        <select id="TimeLimit" onChange={ev => setControlVal(ev)}>
           <option value="">No preference</option>
           <option value="5">5 minutes or Less</option>
           <option value="15">15 minutes or Less</option>
@@ -131,7 +156,9 @@ const GameSetup = () => {
         <div id="scroller">
           <div id="multi-list">
             {displayGames.map((game, idx) => {
-              return (<div key={idx} className="multi-list-item"><input className="multi-list-input" type="checkbox" />{game}</div>);
+              return (<div key={idx} className="multi-list-item">
+                <input className="multi-list-input" type="checkbox" onChange={ev => chooseTitle(ev)}/>{game}
+              </div>);
             })}
           </div>
         </div>
@@ -139,7 +166,7 @@ const GameSetup = () => {
       <div id="phone-gameselect">
         {!!gameList.length > 0 ? <div>Choose your games below!</div> : <div> </div>}
         <label>Games</label>
-        <select multiple>
+        <select multiple onChange={ev => chooseTitle(ev)}>
           {displayGames.map((game, idx) => {
             return (<option key={idx}>{game}</option>);
           })}
