@@ -1,7 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { gameListState, challengesState } from './RecoilState';
 import NavBar from './NavBar';
 
+
 const ChallengeDisplay = () => {
+  const [gameList, setGameList] = useRecoilState(gameListState);
+  const [challenges, setChallenges] = useRecoilState(challengesState);
+
+  useEffect(() => {
+
+  },[gameList]);
+
   return (
     <div id="challenge-container"> 
       <div id="challenge-cards">

@@ -49,6 +49,11 @@ const challengesState = atom({
   }
 });
 
+const selectedTitlesState = atom({
+  key: 'selectedTitlesState',
+  default: ''
+});
+
 const headerState = selector({
   key: 'headerState',
   get: ({get}) => {
@@ -70,5 +75,6 @@ export {
   playerListState,
   headerState,
   gameListState,
-  challengesState
+  challengesState,
+  selectedTitlesState
 };
