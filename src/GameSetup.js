@@ -1,7 +1,7 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { playerListState, challengesState, gameListState, selectedTitlesState, selectedGamesState } from './RecoilState';
+import React, { useState } from 'react';
+import { useRecoilState } from 'recoil';
+import { playerListState, gameListState, selectedTitlesState } from './RecoilState';
 import { useHistory } from 'react-router-dom';
 
 const GameSetup = () => {
@@ -62,16 +62,10 @@ const GameSetup = () => {
       setSelectedTitles([...tempArr]);
     }
   };
-
-
-  useEffect(() => {
-    console.log(selectedTitles);
-  }, [selectedTitles]);
-
  
   const findGames = async () => {
     const games = await axios.post('/challenge/games', query);
-    setGameList(games.data);
+    setGameList([...games.data]);
     const display = new Set();
     for (let i = 0; i < games.data.length; i++) {
       display.add(games.data[i].Game);
