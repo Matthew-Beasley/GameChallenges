@@ -8,7 +8,6 @@ const { isLoggedIn, isAdmin } = require('../mongo/auth');
 
 challengeRouter.post('/games', async (req, res, next) => {
   try {
-    console.log('req.body in api ', req.body)
     const challenges = await getChallenges(req.body);
     res.status(200).send(challenges);
   } catch (error) {

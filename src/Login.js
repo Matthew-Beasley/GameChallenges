@@ -14,8 +14,6 @@ const CreateUser = () => {
   const [userName, setUserName] = useState('');
   const history = useHistory();
 
-  console.log(history.location);
-
   useEffect(() => {
     if (token) {
       axios.post('/user/token', { token: token }).then(response => {
@@ -30,7 +28,6 @@ const CreateUser = () => {
     setToken(creds);
     setUserName('');
     setPassword('');
-    console.log(history.location);
     history.push('/gamesetup');
   };
 

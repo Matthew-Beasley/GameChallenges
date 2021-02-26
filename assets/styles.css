@@ -450,17 +450,23 @@ form > input {
   display: none;
 }
 
-#challenge-container {
-  width: 100%;
+#mobilechallenge-container {
+  display: none;
+}
+
+/* this is a wrapper around challenge-conainer */
+#outer-challenges-display {
+  width: 80%;
   /*height: 100%;*/
   background-image: url('../assets/monitor.png');
-  background-size: 70% 100%;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
   margin: 5rem 4rem 0rem 4rem;
 }
 
 #challenge-cards {
   color: white;
+  width: 15rem;
   margin: 10rem 0rem 0rem 10rem;
 }
 
@@ -542,7 +548,6 @@ form > input {
     line-height: 50%;
   }
   
-
   #platform-control {
     display: none;
   }
@@ -684,27 +689,42 @@ form > input {
   
   /* ===== Challenge Container Styles ===== */
 
-    #challenge-container {
-      display: none;
-    }
+  #challenge-container {
+    display: none;
+  }
 
-    #mobilechallenges-nav {
-      display: flex;
-      flex-direction: column;
-    }
-/* navbar 5.75rem high  w h */
-    #mobilechallenge-container {
-      min-width: 100vwpx;
-      width: calc(var(--vw, 1vw) * 100);
-      height: 525px;
-      background-image: url('../assets/monitor.png');
-      background-size: 97% 400px;
-      background-repeat: no-repeat;
-      margin: 6rem 0rem 0rem 0rem;
-    }
-  
+  #outer-challenges-display {
+  width: none;
+  height: none;
+  background: none;
+  margin: 0rem 0rem 0rem 0rem;
+
+    background: none;
+  }
+
+  #mobilechallenges-nav {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    width: 125%;
+  }
+
+  #mobilechallenge-container {
+    display: flex;
+    /*min-width: 100vwpx;
+    width: calc(var(--vw, 1vw) * 100);*/
+    width: 97%;
+    height: 525px;
+    background-image: url('../assets/monitor.png');
+    background-size: 100% 400px;
+    background-repeat: no-repeat;
+    margin: 6rem 0rem 0rem 0rem;
+  }
+
+
   #challenge-cards {
     color: white;
-    margin: 10rem 0rem 0rem 3rem;
+    margin: 5rem 0rem 0rem 3rem;
   }
 }
