@@ -7,7 +7,7 @@ import Login from './Login';
 import GameContainer from './GameContainer';
 import Contact from './Contact';
 import About from './About';
-import { MobileChallenges } from './ChallengeDisplay';
+import ChallengeDisplay from './ChallengeDisplay';
 
 
 const App = () => {
@@ -25,7 +25,7 @@ const App = () => {
       <Route path="/login" component={Login} />
       <Route path="/contact" component={Contact} />
       <Route path="/about" component={About} />
-      <Route path="/mobilechallenges" component={MobileChallenges} />
+      <Route path="/challenges" component={ChallengeDisplay} />
     </div>
   );
 };

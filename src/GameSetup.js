@@ -45,13 +45,11 @@ const GameSetup = () => {
     if (ev.target.checked === undefined) {
       if (!selectedTitles.includes(ev.target.value)) {
         setSelectedTitles([...selectedTitles, ev.target.value]);
-        console.log('in !selected')
       } else {
         const tempArr = [...selectedTitles];
         const index = tempArr.findIndex(el => el === ev.target.value);
         tempArr.splice(index, 1);
         setSelectedTitles([...tempArr]);
-        console.log('in splice')
       }
     } else if (ev.target.checked === true) {
       setSelectedTitles([...selectedTitles, ev.target.parentNode.innerText]);
@@ -167,7 +165,7 @@ const GameSetup = () => {
         </select>
       </div>
       <div id="lets-play">
-        <button onClick={() => history.push('./mobilechallenges')}>LETS PLAY!</button>
+        <button onClick={() => history.push('./challenges')}>LETS PLAY!</button>
       </div>
     </div>
   );
