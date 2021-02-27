@@ -3,84 +3,84 @@
 @font-face {
   font-family: "HKGrotesk-Black";
   src: local("HKGrotesk-Black"),
-    url("HKGrotesk2.41/TTF/HKGrotesk-Black.ttf") format("truetype");
+    url("../HKGrotesk2.41/TTF/HKGrotesk-Black.ttf") format("truetype");
   font-weight: normal;
 }
 
 @font-face {
   font-family: "HKGrotesk-Bold";
   src: local("HKGrotesk-Bold"),
-    url("HKGrotesk2.41/TTF/HKGrotesk-Bold.ttf") format("truetype");
+    url("../HKGrotesk2.41/TTF/HKGrotesk-Bold.ttf") format("truetype");
   font-weight: normal;
 }
 
 @font-face {
   font-family: "HKGrotesk-BoldItalic";
   src: local("HKGrotesk-BoldItalic"),
-    url("HKGrotesk2.41/TTF/HKGrotesk-BoldItalic.ttf") format("truetype");
+    url("../HKGrotesk2.41/TTF/HKGrotesk-BoldItalic.ttf") format("truetype");
   font-weight: normal;
 }
 
 @font-face {
   font-family: "HKGrotesk-ExtraBold";
   src: local("HKGrotesk-ExtraBold"),
-    url("HKGrotesk2.41/TTF/HKGrotesk-ExtraBold.ttf") format("truetype");
+    url("../HKGrotesk2.41/TTF/HKGrotesk-ExtraBold.ttf") format("truetype");
   font-weight: normal;
 }
 
 @font-face {
   font-family: "HKGrotesk-Italic";
   src: local("HKGrotesk-Italic"),
-    url("HKGrotesk2.41/TTF/HKGrotesk-Italic.ttf") format("truetype");
+    url("../HKGrotesk2.41/TTF/HKGrotesk-Italic.ttf") format("truetype");
   font-weight: normal;
 }
 
 @font-face {
   font-family: "HKGrotesk-Light";
   src: local("HKGrotesk-Light"),
-    url("HKGrotesk2.41/TTF/HKGrotesk-Light.ttf") format("truetype");
+    url("../HKGrotesk2.41/TTF/HKGrotesk-Light.ttf") format("truetype");
   font-weight: normal;
 }
 
 @font-face {
   font-family: "HKGrotesk-LightItalic";
   src: local("HKGrotesk-LightItalic"),
-    url("HKGrotesk2.41/TTF/HKGrotesk-LightItalic.ttf") format("truetype");
+    url("../HKGrotesk2.41/TTF/HKGrotesk-LightItalic.ttf") format("truetype");
   font-weight: normal;
 }
 
 @font-face {
   font-family: "HKGrotesk-Medium";
   src: local("HKGrotesk-Medium"),
-    url("HKGrotesk2.41/TTF/HKGrotesk-Medium.ttf") format("truetype");
+    url("../HKGrotesk2.41/TTF/HKGrotesk-Medium.ttf") format("truetype");
   font-weight: normal;
 }
 
 @font-face {
   font-family: "HKGrotesk-MediumItalic";
   src: local("HKGrotesk-MediumItalic"),
-    url("HKGrotesk2.41/TTF/HKGrotesk-MediumItalic.ttf") format("truetype");
+    url("../HKGrotesk2.41/TTF/HKGrotesk-MediumItalic.ttf") format("truetype");
   font-weight: normal;
 }
 
 @font-face {
   font-family: "HKGrotesk-Regular";
   src: local("HKGrotesk-Regular"),
-    url("HKGrotesk2.41/TTF/HKGrotesk-Regular.ttf") format("truetype");
+    url("../HKGrotesk2.41/TTF/HKGrotesk-Regular.ttf") format("truetype");
   font-weight: normal;
 }
 
 @font-face {
   font-family: "HKGrotesk-SemiBold";
   src: local("HKGrotesk-SemiBold"),
-    url("HKGrotesk2.41/TTF/HKGrotesk-SemiBold.ttf") format("truetype");
+    url("../HKGrotesk2.41/TTF/HKGrotesk-SemiBold.ttf") format("truetype");
   font-weight: normal;
 }
 
 @font-face {
   font-family: "HKGrotesk-SemiBoldItalic";
   src: local("HKGrotesk-SemiBold"Italic),
-    url("HKGrotesk2.41/TTF/HKGrotesk-SemiBoldItalic.ttf") format("truetype");
+    url("../HKGrotesk2.41/TTF/HKGrotesk-SemiBoldItalic.ttf") format("truetype");
   font-weight: normal;
 }
 
@@ -90,7 +90,8 @@
 #app-container {
   display: flex;
   flex-direction: column;
-  background-image: linear-gradient(rgb(7, 50, 114), rgb(1,4,4));
+  background-image: url('../images/blue-background.png');
+  background-size: cover;
   min-height: 100vhpx;
   height: calc(var(--vh, 1vh) * 100);
 }
@@ -259,6 +260,7 @@ form > input {
   color: white;
   border-bottom:  solid rgb(40, 226, 214) 3px;
   /*font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;*/
+  font-family: 'HKGrotesk-Regular';
 }
 
 #nav-links {
@@ -268,8 +270,8 @@ form > input {
 }
 
 #nav-links > a {
-  font-family: 'HKGrotesk-Light';
-  font-size: 30px;
+  /*font-family: 'HKGrotesk-Regular';*/
+  font-size: 20px;
   color: white;
   text-decoration: none;
   margin: 1rem 0rem 0rem 4rem
@@ -300,8 +302,8 @@ form > input {
 /* ===== Main Game Component Styles ===== */
 
 #game-container {
-  height: calc(var(--vh, 1vh) * 100);
-  min-height: 100vh;
+  /*height: calc(var(--vh, 1vh) * 100);
+  min-height: 100vh;*/
 }
 
 #main-gamecomponents {
@@ -321,15 +323,14 @@ form > input {
 }
 
 #gamesetup-container {
-  color: white;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  width: 40rem;
+  font-family: 'HKGrotesk-Regular';
+  width: 25rem;
   height: 100%;
-  margin-bottom: 5rem;
+  margin-bottom: 0rem;
 }
 
 #gamesetup-container label {
-  font-size: 10px;
+  font-size: 14px;
   color: white;
 }
 
@@ -342,13 +343,14 @@ form > input {
 }
 
 #players > label {
+  font-size: 14px;
   margin: 5rem 0rem 0rem 5rem;
 }
 
 #players > input {
-  background-image: linear-gradient(rgb(126, 123, 123), rgb(54, 51, 51));
-  color: white;
-  border: solid rgb(40, 226, 214) 3px;
+  background-color: rgb(214, 211, 211);
+  border: solid black 2px;
+  color: black;
   margin: 5rem 0rem 0rem 3.9rem;
   border-radius: 8px;;
   width: 8.2rem;
@@ -359,9 +361,10 @@ form > input {
   width: 2rem;
   height: 2rem;
   margin-top: 5rem;
+  border: solid black 2px;
   border-radius: 6px;
-  background-image: linear-gradient(rgb(40, 226, 214), rgb(57, 63, 65));
-  color: white;
+  background-color: rgb(214, 211, 211);
+  color: black;
   font-size: 26px;
   line-height: 50%;
 }
@@ -374,12 +377,12 @@ form > input {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  color: white;
+  color: black;
 }
 
 #platform-control > label {
   margin: 1rem 3.35rem 0rem 4.75rem;
-  font-size: 10px;
+  font-size: 14px;
 }
 
 #platform-control > #scroller {
@@ -387,8 +390,8 @@ form > input {
   height: 4rem;
   overflow-y: auto;
   overflow-x: hidden;
-  color: white;
-  border: solid rgb(40, 226, 214) 3px;
+  color: black;
+  border: solid black 2px;
   border-radius: 8px;
 }
 
@@ -400,26 +403,25 @@ form > input {
 
 .platform-list-item {
   font-size: 12px;
-  background-image: linear-gradient(rgb(126, 123, 123), rgb(54, 51, 51));
+  background-color: rgb(214, 211, 211);
   height: 2rem;
   padding-top: 5px;
 }
 
 .platform-list-input {
-  border: solid white 5px;
+  border: solid black 2px;
   margin: .25rem 1rem .25rem 1rem;
-  background-color: turquoise;
 }
 
 #splitscreen-select > label {
   margin: 0rem 0rem 0rem 5rem;
-  font-size: 10px;
+  font-size: 14px;
 }
 
 #splitscreen-select > select {
-  background-color: rgb(54, 51, 51);
-  color: white;
-  border: solid rgb(40, 226, 214) 3px;
+  background-color: rgb(214, 211, 211);
+  color: black;
+  border: solid black 2px;
   border-radius: 8px;
   margin: 1rem 0rem 0rem 2.4rem;
   width: 11rem;
@@ -428,13 +430,13 @@ form > input {
 
 #kidfriendly-select > label {
   margin: 0rem 0rem 0rem 5rem;
-  font-size: 10px;
+  font-size: 14px;
 }
 
 #kidfriendly-select > select {
-  background-color: rgb(54, 51, 51);
-  color: white;
-  border: solid rgb(40, 226, 214) 3px;
+  background-color: rgb(214, 211, 211);
+  color: black;
+  border: solid black 2px;
   border-radius: 8px;
   margin: 1rem 0rem 0rem 2.4rem;
   width: 11rem;
@@ -443,13 +445,13 @@ form > input {
 
 #onlineSelect > label {
   margin: 0rem 0rem 0rem 5rem;
-  font-size: 10px;
+  font-size: 14px;
 }
 
 #onlineSelect > select {
-  background-color: rgb(54, 51, 51);
-  color: white;
-  border: solid rgb(40, 226, 214) 3px;
+  background-color: rgb(214, 211, 211);
+  color: black;
+  border: solid black 2px;
   border-radius: 8px;
   margin: 1rem 0rem 0rem 2.4rem;
   width: 11rem;
@@ -458,13 +460,13 @@ form > input {
 
 #timeLimit > label {
   margin: 0rem 0rem 0rem 5.2rem;
-  font-size: 10px;
+  font-size: 14px;
 }
 
 #timeLimit > select {
-  background-color: rgb(54, 51, 51);
-  color: white;
-  border: solid rgb(40, 226, 214) 3px;
+  background-color: rgb(214, 211, 211);
+  color: black;
+  border: solid black 2px;
   margin: 1rem 0rem 0rem 2.5rem;
   border-radius: 8px;
   width: 10.9rem;
@@ -476,8 +478,8 @@ form > input {
   height: 2rem;
   width: 7rem;
   border-radius: 15px;
-  color: white;
-  background-image: linear-gradient(rgb(40, 226, 214), rgb(57, 63, 65));
+  color: black;
+  background-color: white;
 }
 
 #phone-gameselect {
@@ -488,23 +490,23 @@ form > input {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  color: white;
+  color: black;
 }
 
 #multi-control > label {
   margin: 1rem 3.35rem 0rem 5.5rem;
-  font-size: 10px;
+  font-size: 14px;
 }
 
 #multi-control > #scroller {
   margin-top: 1rem;
-  height: 12rem;
+  height: 5rem;
   overflow-y: auto;
   overflow-x: hidden;
-  color: white;
-  border: solid rgb(40, 226, 214) 3px;
+  color: black;
+  border: solid black 2px;
   border-radius: 8px;
-  background-color: grey;
+  background-color: rgb(214, 211, 211);
 }
 
 #multi-list {
@@ -514,8 +516,8 @@ form > input {
 }
 
 .multi-list-item {
-  font-size: 12px;
-  background-image: linear-gradient(rgb(126, 123, 123), rgb(54, 51, 51));
+  font-size: 14px;
+  background-color: rgb(214, 211, 211);
   height: 2rem;
   padding-top: 5px;
 }
@@ -523,7 +525,7 @@ form > input {
 .multi-list-input {
   border: solid white 5px;
   margin: .25rem 1rem .25rem 1rem;
-  background-color: turquoise;
+  background-color: rgb(214, 211, 211);
 }
 
 #lets-play {
@@ -543,16 +545,17 @@ form > input {
 
 /* this is a wrapper around challenge-conainer */
 #outer-challenges-display {
-  width: 80%;
+  width: 50%;
   /*height: 100%;*/
-  background-image: url('../assets/monitor.png');
+  background-image: url('../images/cartoon-monitor.png');
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  margin: 5rem 4rem 0rem 4rem;
+  margin: 5rem 15rem 0rem 4rem;
 }
 
 #challenge-cards {
-  color: white;
+  background-color: white;
+  color: black;
   width: 15rem;
   margin: 10rem 0rem 0rem 10rem;
 }
@@ -594,8 +597,7 @@ form > input {
   }
 
   #gamesetup-container {
-    color: white;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: 'HKGrotesk-Regular';
     width: 100%;
     height: fit-content;
     /*min-height: 100vhpx;
@@ -616,8 +618,6 @@ form > input {
   
   #players > input {
     background-image: linear-gradient(rgb(126, 123, 123), rgb(54, 51, 51));
-    color: white;
-    border: solid rgb(40, 226, 214) 3px;
     margin: 5rem 0rem 0rem 3.9rem;
     border-radius: 8px;;
     width: 8.2rem;
@@ -648,9 +648,6 @@ form > input {
   }
   
   #phone-platformselect > select {
-    background-color: rgb(54, 51, 51);
-    color: white;
-    border: solid rgb(40, 226, 214) 3px;
     border-radius: 8px;
     margin: 1rem 0rem 0rem 0rem;
     width: 11rem;
@@ -663,9 +660,6 @@ form > input {
   }
 
   #splitscreen-select > select {
-    background-color: rgb(54, 51, 51);
-    color: white;
-    border: solid rgb(40, 226, 214) 3px;
     border-radius: 8px;
     margin: 1rem 0rem 0rem 2.4rem;
     width: 11rem;
@@ -678,9 +672,6 @@ form > input {
   }
 
   #kidfriendly-select > select {
-    background-color: rgb(54, 51, 51);
-    color: white;
-    border: solid rgb(40, 226, 214) 3px;
     border-radius: 8px;
     margin: 1rem 0rem 0rem 2.4rem;
     width: 11rem;
@@ -693,9 +684,6 @@ form > input {
   }
   
   #onlineSelect > select {
-    background-color: rgb(54, 51, 51);
-    color: white;
-    border: solid rgb(40, 226, 214) 3px;
     border-radius: 8px;
     margin: 1rem 0rem 0rem 2.4rem;
     width: 11rem;
@@ -708,9 +696,6 @@ form > input {
   }
   
   #timeLimit > select {
-    background-color: rgb(54, 51, 51);
-    color: white;
-    border: solid rgb(40, 226, 214) 3px;
     margin: 1rem 0rem 0rem 0rem;
     border-radius: 8px;
     width: 10.9rem;
@@ -736,7 +721,7 @@ form > input {
   }
 
   #phone-gameselect > div {
-    color: white;
+    color: black;
     font-size: 10px;
     margin: .5rem 0rem .5rem 9rem;
     height: 12px;
@@ -748,9 +733,8 @@ form > input {
   }
   
   #phone-gameselect > select {
-    background-color: rgb(54, 51, 51);
-    color: white;
-    border: solid rgb(40, 226, 214) 3px;
+    background-color: rgb(214, 211, 211);
+    color: black;
     border-radius: 8px;
     margin: 1rem 0rem 0rem 2.4rem;
     width: 11rem;
@@ -803,14 +787,15 @@ form > input {
     width: calc(var(--vw, 1vw) * 100);*/
     width: 97%;
     height: 525px;
-    background-image: url('../assets/monitor.png');
+    background-image: url('../images/cartoon-monitor.png');
     background-size: 100% 400px;
     background-repeat: no-repeat;
     margin: 6rem 0rem 0rem 0rem;
   }
 
   #challenge-cards {
-    color: white;
+    color: black;
+    background-color: white;
     margin: 5rem 0rem 0rem 3rem;
   }
 }
