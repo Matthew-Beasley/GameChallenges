@@ -349,10 +349,17 @@ form > input {
 }
 
 #gamesetup-container select {
+  font-size: 14px;
   width: 13rem;
   height: 2rem;
   margin-top: 1rem;
   border: none;
+}
+
+#gamesetup-container button {
+  background-image: linear-gradient(rgb(40, 226, 214), rgb(57, 63, 65));
+  color: white;
+  font-size: 14px;
 }
 
 #players > label {
@@ -461,7 +468,6 @@ form > input {
   height: 2rem;
   width: 7rem;
   border-radius: 15px;
-  color: black;
 }
 
 #phone-gameselect {
@@ -532,10 +538,16 @@ form > input {
 #challenge-cards {
   background-color: white;
   color: black;
-  width: 15rem;
-  margin: 10rem 0rem 0rem 10rem;
+  width: 50%;
+  height: 10rem;
+  margin: 8.5rem 10% 8rem 25%;
+  font-family: 'HKGrotesk-bold';
+  font-size: 18px;
 }
 
+.challenge-text {
+  margin: 1rem 2rem 0 1rem;
+}
 
 
 
