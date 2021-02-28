@@ -43,6 +43,7 @@ const ChallengeDisplay = () => {
                 <div className="challenge-text" key={idx}>
                   <div className="challenge-title">{item.Game}</div>
                   <div className="challenge-rules">{item.Challenge}</div>
+                  {!!item.TimeLimit && <div className="challenge-time">{`Time Limit: ${item.TimeLimit}`}</div>}
                 </div>
               );
             })}

@@ -251,10 +251,9 @@ form > input {
    display: flex;
   flex-direction: column;
   background-image: url('../images/blue-background.png');
-  background-size: covor;
-  /*height: 100%;*/
-  min-height: 38;
-  height: calc(var(--vh, 1vh) * 100);
+  background-size: cover;
+  min-height: 40rem;
+  height: calc(var(--vh, 1vh) * 100);;
 }
 
 
@@ -545,7 +544,6 @@ form > input {
 }
 
 #challenge-cards > div {
-
   color: white;
   max-width: 100%;
   height: 10rem;
@@ -564,6 +562,12 @@ form > input {
 }
 
 .challenge-rules {
+  min-width: 100%;
+  text-align: center;
+}
+
+.challenge-time {
+  margin-top: 1rem;
   min-width: 100%;
   text-align: center;
 }
