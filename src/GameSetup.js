@@ -113,15 +113,15 @@ const GameSetup = () => {
       <div className="setup-control" id="splitscreen-select">
         <label>Split screen</label>
         <select id="SplitScreen" onChange={ev => setControlVal(ev)}>
-          <option value="">No preference</option>
-          <option value="true">Split screen</option>
+          <option value="">No Preference</option>
+          <option value="true">Split screen Only</option>
           <option value="false">No split screen</option>
         </select>
       </div>
       <div className="setup-control" id="kidfriendly-select">
         <label>Kid friendly</label>
         <select id="KidFriendly" onChange={ev => setControlVal(ev)}>
-          <option value="">No preference</option>
+          <option value="">No Preference</option>
           <option value="true">Kid friendly</option>
           <option value="false">Adults only</option>
         </select>
@@ -129,22 +129,22 @@ const GameSetup = () => {
       <div className="setup-control" id="onlineSelect">
         <label>Online only</label>
         <select id="Online" onChange={ev => setControlVal(ev)}>
-          <option value="">No preference</option>
-          <option value="true">Online</option>
-          <option value="false">Offline</option>
+          <option value="">No Preference</option>
+          <option value="true">Online Only</option>
+          <option value="false">Offline Only</option>
         </select>
       </div>
       <div className="setup-control" id="timeLimit">
         <label>Time Limit</label>
         <select id="TimeLimit" onChange={ev => setControlVal(ev)}>
-          <option value="">No preference</option>
+          <option value="">No Preference</option>
           <option value="5">5 minutes or Less</option>
           <option value="15">15 minutes or Less</option>
           <option value="Infinity">Over 15 minutes</option>
         </select>
       </div>
       <div id="findgames">
-        <button onClick={() => findGames()} >Get Games</button>
+        <button onClick={() => findGames()} >Find My Games</button>
       </div>
       <div className="setup-control" id="multi-control">
         <label>Games</label>

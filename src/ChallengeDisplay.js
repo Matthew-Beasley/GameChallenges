@@ -40,7 +40,10 @@ const ChallengeDisplay = () => {
           <Slider {...settings}>
             {challenges.map((item, idx) => {
               return (
-                <div className="challenge-text" key={idx}>{`${item.Game}:\n${item.Challenge}`}</div>
+                <div className="challenge-text" key={idx}>
+                  <div className="challenge-title">{item.Game}</div>
+                  <div className="challenge-rules">{item.Challenge}</div>
+                </div>
               );
             })}
           </Slider>

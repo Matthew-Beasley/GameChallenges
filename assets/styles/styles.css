@@ -86,18 +86,10 @@
 
 
 /* ===== App Styles ===== */
-/*
-body {
-  height: 50rem;
-}
 
-#root {
-  height: 50rem;
-}
-*/
 #app-container {
-  height: 50rem;
-  /*display: flex;
+ /* height: 100%;
+  display: flex;
   flex-direction: column;
   background-image: url('../images/blue-background.png');
   background-size: auto 100%;
@@ -260,7 +252,9 @@ form > input {
   flex-direction: column;
   background-image: url('../images/blue-background.png');
   background-size: covor;
-  height: 50rem;
+  /*height: 100%;*/
+  min-height: 38;
+  height: calc(var(--vh, 1vh) * 100);
 }
 
 
@@ -298,13 +292,14 @@ form > input {
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: right;
+  margin-right: 3rem;
 }
 
 .player-dot {
   height: 3rem;
   width: 3rem;
   margin-top: 15px;
-  margin-right: 4rem;
+  margin-right: 1rem;
   border-radius: 200px;
   background-color: rgb(40, 226, 214);
   display: flex;
@@ -339,7 +334,7 @@ form > input {
 #gamesetup-container {
   font-family: 'HKGrotesk-Regular';
   font-size: 1.16rem;
-  min-width: 26.5rem;
+  min-width: 28.5rem;
   height: 37.87rem;
 }
 
@@ -358,8 +353,8 @@ form > input {
 }
 
 #gamesetup-container select {
-  font-size: 1.16rem;
-  width: 13rem;
+  font-size: 1rem;
+  width: 14rem;
   height: 2rem;
   margin-top: 1rem;
   border: none;
@@ -386,7 +381,7 @@ form > input {
   background-color: rgb(54, 51, 51);
   color: white;
   border-radius: 8px;;
-  width: 10.75rem;
+  width: 11.75rem;
   height: 1.5rem;
   font-size: 1.16rem;
   margin-top: 5rem;
@@ -425,16 +420,16 @@ form > input {
 }
 
 #platform-list {
-  width: 13rem;
+  width: 14rem;
   list-style: none;
   padding: 0;
 }
 
 .platform-list-item {
-  font-size: 1.16rem;
-  width: 13rem;
+  font-size: 1rem;
+  width: 14rem;
   background-color: rgb(54, 51, 51);
-  height: 1.5rem;
+  height: 1.25rem;
   padding-top: 5px;
 }
 
@@ -452,14 +447,12 @@ form > input {
 #kidfriendly-select > select {
   background-color: rgb(54, 51, 51);
   color: white;
-  
   border-radius: 8px;
 }
 
 #onlineSelect > select {
   background-color: rgb(54, 51, 51);
   color: white;
-  
   border-radius: 8px;
 }
 
@@ -467,15 +460,14 @@ form > input {
   background-color: 
  rgb(54, 51, 51);
   color: white;
-  
   border-radius: 8px;
 }
 
 /* need to tie this to right side of game setup */
 #findgames > button {
-  margin: 1rem 0rem 0rem 14.9rem;
+  margin: 1rem 0rem 0rem 16.2rem;
   height: 2rem;
-  width: 10rem;
+  width: 10.5rem;
   border-radius: 15px;
 }
 
@@ -501,15 +493,15 @@ form > input {
 }
 
 #multi-list {
-  width: 13rem;
+  width: 14rem;
   list-style: none;
   padding: 0;
 }
 
 .multi-list-item {
-  font-size: 1.16rem;
+  font-size: 1rem;
   background-color: rgb(54, 51, 51);
-  height: 2rem;
+  height: 1.25rem;
   padding-top: 5px;
 }
 
@@ -545,17 +537,35 @@ form > input {
 }
 
 #challenge-cards {
-  background-color: white;
-  color: black;
+  /*background-color: white;
+  color: black;*/
   width: 50%;
   height: 10rem;
   margin: 8.5rem 10% 8rem 25%;
-  font-family: 'HKGrotesk-bold';
-  font-size: 1.5rem;
 }
 
-.challenge-text {
-  margin: 1rem 2rem 0 1rem;
+#challenge-cards > div {
+
+  color: white;
+  max-width: 100%;
+  height: 10rem;
+  padding: .5rem .5rem 0rem .5rem;
+  font-family: 'HKGrotesk-Regular';
+  font-size: 1rem;
+  margin: 0;
+}
+
+.challenge-title {
+  font-family: 'HKGrotesk-bold';
+  font-size: 1.5rem;
+  min-width: 100%;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.challenge-rules {
+  min-width: 100%;
+  text-align: center;
 }
 
 
