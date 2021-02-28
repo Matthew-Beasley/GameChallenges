@@ -144,7 +144,7 @@ const GameSetup = () => {
         </select>
       </div>
       <div id="findgames">
-        <button onClick={() => findGames()} >Find Games</button>
+        <button onClick={() => findGames()} >Get Games</button>
       </div>
       <div className="setup-control" id="multi-control">
         <label>Games</label>
