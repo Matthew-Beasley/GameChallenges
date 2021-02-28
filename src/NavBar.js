@@ -23,8 +23,7 @@ const NavBar = () => {
         <Link to="/about" >About</Link>
         <Link to="/contact">Contact</Link>
       </div>
-      <div id="navbar-spacer"></div>
-      <div>
+      <div id="dot-list">
         {initials.map((letter, idx) => {return ( <div key={idx} className="player-dot"><div className="player-initial">{letter}</div></div> )})}
       </div>
     </div>

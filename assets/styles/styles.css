@@ -258,14 +258,14 @@ form > input {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  justify-content: space-between;
   background-color: rgb(54, 51, 51);
-  width: 100%;
-  height: 2.75rem;
-  margin-top:3rem;
+  min-width: 100%;
+  height: 80px;
+  margin-top: 3rem;
   color: white;
   border-bottom:  solid rgb(40, 226, 214) 3px;
-  /*font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;*/
-  font-family: 'HKGrotesk-Regular';
+  font-family: 'HKGrotesk-Bold';
 }
 
 #nav-links {
@@ -275,21 +275,24 @@ form > input {
 }
 
 #nav-links > a {
-  /*font-family: 'HKGrotesk-Regular';*/
   font-size: 18px;
   color: white;
   text-decoration: none;
-  margin: .8rem 0rem 1rem 4rem
+  margin: 1.6rem 0rem 1rem 4rem
 }
 
-#navbar-spacer {
-  width: 65%;
+#dot-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: right;
 }
 
 .player-dot {
-  margin-top: 8px;
-  height: 1.7rem;
-  width: 1.7rem;
+  height: 3rem;
+  width: 3rem;
+  margin-top: 15px;
+  margin-right: 4rem;
   border-radius: 200px;
   background-color: rgb(40, 226, 214);
   display: flex;
@@ -298,7 +301,7 @@ form > input {
 }
 
 .player-dot > div {
-  font-size: 12px;
+  font-size: 14px;
   margin: 7px;
   color: black;
 }
@@ -306,10 +309,6 @@ form > input {
 
 /* ===== Main Game Component Styles ===== */
 
-#game-container {
-  /*height: calc(var(--vh, 1vh) * 100);
-  min-height: 100vh;*/
-}
 
 #main-gamecomponents {
   display: flex;
@@ -329,7 +328,8 @@ form > input {
 
 #gamesetup-container {
   font-family: 'HKGrotesk-Regular';
-  width: 25.5rem;
+  font-size: 14px;
+  width: 26.5rem;
   height: 100%;
   margin-bottom: 0rem;
 }
@@ -348,12 +348,8 @@ form > input {
   margin-top: 1rem;
 }
 
-#gamesetup-container input {
-  width: 4rem
-}
-
 #gamesetup-container select {
-  width: 12rem;
+  width: 13rem;
   height: 2rem;
   margin-top: 1rem;
   border: none;
@@ -375,7 +371,7 @@ form > input {
   background-color: rgb(54, 51, 51);
   color: white;
   border-radius: 8px;;
-  width: 9.5rem;
+  width: 10.5rem;
   height: 1.5rem;
   margin-top: 5rem;
   margin-right: 0
@@ -417,13 +413,14 @@ form > input {
 }
 
 #platform-list {
-  width: 12rem;
+  width: 13rem;
   list-style: none;
   padding: 0;
 }
 
 .platform-list-item {
   font-size: 12px;
+  width: 13rem;
   background-color: rgb(54, 51, 51);
   height: 2rem;
   padding-top: 5px;
@@ -481,7 +478,7 @@ form > input {
 
 /* need to tie this to right side of game setup */
 #findgames > button {
-  margin: 1rem 0rem 0rem 15.2rem;
+  margin: 1rem 0rem 0rem 16.2rem;
   height: 2rem;
   width: 7rem;
   border-radius: 15px;
@@ -515,7 +512,7 @@ form > input {
 }
 
 #multi-list {
-  width: 12rem;
+  width: 13rem;
   list-style: none;
   padding: 0;
 }
