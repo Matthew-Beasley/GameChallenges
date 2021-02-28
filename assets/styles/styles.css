@@ -96,6 +96,11 @@
   height: calc(var(--vh, 1vh) * 100);
 }
 
+  select {
+    background-color: black;
+  }
+
+
 /* * {border: solid red 2px}*/
 
 /* ===== Login Styles ===== */
@@ -271,10 +276,10 @@ form > input {
 
 #nav-links > a {
   /*font-family: 'HKGrotesk-Regular';*/
-  font-size: 20px;
+  font-size: 18px;
   color: white;
   text-decoration: none;
-  margin: 1rem 0rem 0rem 4rem
+  margin: .8rem 0rem 1rem 4rem
 }
 
 #navbar-spacer {
@@ -324,47 +329,64 @@ form > input {
 
 #gamesetup-container {
   font-family: 'HKGrotesk-Regular';
-  width: 25rem;
+  width: 25.5rem;
   height: 100%;
   margin-bottom: 0rem;
 }
 
-#gamesetup-container label {
-  font-size: 14px;
-  color: white;
-}
-
-#players {
+.setup-control {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: left;
-  width: 100%;
+  justify-content: space-between;
+} 
+
+#gamesetup-container label {
+  font-size: 14px;
+  color: white;
+  margin-left: 4rem;
+  margin-top: 1rem;
+}
+
+#gamesetup-container input {
+  width: 4rem
+}
+
+#gamesetup-container select {
+  width: 12rem;
+  height: 2rem;
+  margin-top: 1rem;
+  border: none;
 }
 
 #players > label {
   font-size: 14px;
-  margin: 5rem 0rem 0rem 5rem;
+  margin-top: 5rem;
 }
 
-#players > input {
-  background-color: rgb(214, 211, 211);
-  border: solid black 2px;
-  color: black;
-  margin: 5rem 0rem 0rem 3.9rem;
+#text-bttn-combo {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: right;
+}
+
+#text-bttn-combo > input {
+  background-color: rgb(54, 51, 51);
+  color: white;
   border-radius: 8px;;
-  width: 8.2rem;
+  width: 9.5rem;
   height: 1.5rem;
+  margin-top: 5rem;
+  margin-right: 0
 }
 
 #player-submit-btn {
   width: 2rem;
   height: 2rem;
   margin-top: 5rem;
-  border: solid black 2px;
+  border: none;
   border-radius: 6px;
-  background-color: rgb(214, 211, 211);
-  color: black;
   font-size: 26px;
   line-height: 50%;
 }
@@ -377,11 +399,10 @@ form > input {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  color: black;
+  color: white;
 }
 
 #platform-control > label {
-  margin: 1rem 3.35rem 0rem 4.75rem;
   font-size: 14px;
 }
 
@@ -390,96 +411,81 @@ form > input {
   height: 4rem;
   overflow-y: auto;
   overflow-x: hidden;
-  color: black;
-  border: solid black 2px;
+  color: white;
+  
   border-radius: 8px;
 }
 
 #platform-list {
-  width: 10.5rem;
+  width: 12rem;
   list-style: none;
   padding: 0;
 }
 
 .platform-list-item {
   font-size: 12px;
-  background-color: rgb(214, 211, 211);
+  background-color: rgb(54, 51, 51);
   height: 2rem;
   padding-top: 5px;
 }
 
 .platform-list-input {
-  border: solid black 2px;
+  
   margin: .25rem 1rem .25rem 1rem;
 }
 
 #splitscreen-select > label {
-  margin: 0rem 0rem 0rem 5rem;
   font-size: 14px;
 }
 
 #splitscreen-select > select {
-  background-color: rgb(214, 211, 211);
-  color: black;
-  border: solid black 2px;
+  background-color: rgb(54, 51, 51);
+  color: white;
+  
   border-radius: 8px;
-  margin: 1rem 0rem 0rem 2.4rem;
-  width: 11rem;
-  height: 2rem;
 }
 
 #kidfriendly-select > label {
-  margin: 0rem 0rem 0rem 5rem;
   font-size: 14px;
 }
 
 #kidfriendly-select > select {
-  background-color: rgb(214, 211, 211);
-  color: black;
-  border: solid black 2px;
+  background-color: rgb(54, 51, 51);
+  color: white;
+  
   border-radius: 8px;
-  margin: 1rem 0rem 0rem 2.4rem;
-  width: 11rem;
-  height: 2rem;
 }
 
 #onlineSelect > label {
-  margin: 0rem 0rem 0rem 5rem;
   font-size: 14px;
 }
 
 #onlineSelect > select {
-  background-color: rgb(214, 211, 211);
-  color: black;
-  border: solid black 2px;
+  background-color: rgb(54, 51, 51);
+  color: white;
+  
   border-radius: 8px;
-  margin: 1rem 0rem 0rem 2.4rem;
-  width: 11rem;
-  height: 2rem;
 }
 
 #timeLimit > label {
-  margin: 0rem 0rem 0rem 5.2rem;
   font-size: 14px;
 }
 
 #timeLimit > select {
-  background-color: rgb(214, 211, 211);
-  color: black;
-  border: solid black 2px;
-  margin: 1rem 0rem 0rem 2.5rem;
+  background-color: 
+ rgb(54, 51, 51);
+  color: white;
+  
   border-radius: 8px;
-  width: 10.9rem;
-  height: 2rem;
 }
 
+/* need to tie this to right side of game setup */
 #findgames > button {
-  margin: 1rem 0rem 0rem 13rem;
+  margin: 1rem 0rem 0rem 15.2rem;
   height: 2rem;
   width: 7rem;
   border-radius: 15px;
   color: black;
-  background-color: white;
 }
 
 #phone-gameselect {
@@ -490,34 +496,33 @@ form > input {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  color: black;
+  color: white;
 }
 
 #multi-control > label {
-  margin: 1rem 3.35rem 0rem 5.5rem;
   font-size: 14px;
 }
 
 #multi-control > #scroller {
   margin-top: 1rem;
-  height: 5rem;
+  height: 10rem;
   overflow-y: auto;
   overflow-x: hidden;
-  color: black;
-  border: solid black 2px;
+  color: white;
+  
   border-radius: 8px;
-  background-color: rgb(214, 211, 211);
+  background-color: rgb(54, 51, 51);
 }
 
 #multi-list {
-  width: 10.5rem;
+  width: 12rem;
   list-style: none;
   padding: 0;
 }
 
 .multi-list-item {
   font-size: 14px;
-  background-color: rgb(214, 211, 211);
+  background-color: rgb(54, 51, 51);
   height: 2rem;
   padding-top: 5px;
 }
@@ -525,7 +530,7 @@ form > input {
 .multi-list-input {
   border: solid white 5px;
   margin: .25rem 1rem .25rem 1rem;
-  background-color: rgb(214, 211, 211);
+  background-color: rgb(54, 51, 51);
 }
 
 #lets-play {
@@ -733,7 +738,8 @@ form > input {
   }
   
   #phone-gameselect > select {
-    background-color: rgb(214, 211, 211);
+    background-color: 
+ rgb(54, 51, 51);
     color: black;
     border-radius: 8px;
     margin: 1rem 0rem 0rem 2.4rem;

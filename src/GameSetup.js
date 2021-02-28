@@ -73,17 +73,20 @@ const GameSetup = () => {
 
   return (
     <div id="gamesetup-container">
-      <div id="players">
+      <div className="setup-control" id="players">
         <label>Players</label>
-        <input 
-          id="player-input" 
-          type="text" 
-          value={playerName} 
-          placeholder="Enter player name" 
-          onChange={ev => setPlayerName(ev.target.value)} />
-        <button id="player-submit-btn" onClick={() => addUserName()}>+</button>
+        <div id="text-bttn-combo">
+          <input 
+            id="player-input" 
+            type="text" 
+            value={playerName} 
+            placeholder="Enter player name" 
+            onChange={ev => setPlayerName(ev.target.value)} 
+          />
+          <button id="player-submit-btn" onClick={() => addUserName()}>+</button>
+        </div>
       </div>
-      <div id="platform-control">
+      <div className="setup-control" id="platform-control">
         <label>Platforms</label>
         <div id="scroller">
           <div id="platform-list">
@@ -99,7 +102,7 @@ const GameSetup = () => {
           </div>
         </div>
       </div>
-      <div id="phone-platformselect">
+      <div className="setup-control" id="phone-platformselect">
         <label>Platforms</label>
         <select multiple onChange={ev => selectPlatform(ev.target.value)}>
           {platforms.map((platform, idx) => {
@@ -107,7 +110,7 @@ const GameSetup = () => {
           })}
         </select>
       </div>
-      <div id="splitscreen-select">
+      <div className="setup-control" id="splitscreen-select">
         <label>Split screen</label>
         <select id="SplitScreen" onChange={ev => setControlVal(ev)}>
           <option value="">No preference</option>
@@ -115,7 +118,7 @@ const GameSetup = () => {
           <option value="false">No split screen</option>
         </select>
       </div>
-      <div id="kidfriendly-select">
+      <div className="setup-control" id="kidfriendly-select">
         <label>Kid friendly</label>
         <select id="KidFriendly" onChange={ev => setControlVal(ev)}>
           <option value="">No preference</option>
@@ -123,7 +126,7 @@ const GameSetup = () => {
           <option value="false">Adults only</option>
         </select>
       </div>
-      <div id="onlineSelect">
+      <div className="setup-control" id="onlineSelect">
         <label>Online only</label>
         <select id="Online" onChange={ev => setControlVal(ev)}>
           <option value="">No preference</option>
@@ -131,7 +134,7 @@ const GameSetup = () => {
           <option value="false">Offline</option>
         </select>
       </div>
-      <div id="timeLimit">
+      <div className="setup-control" id="timeLimit">
         <label>Time Limit</label>
         <select id="TimeLimit" onChange={ev => setControlVal(ev)}>
           <option value="">No preference</option>
@@ -143,7 +146,7 @@ const GameSetup = () => {
       <div id="findgames">
         <button onClick={() => findGames()} >Find Games</button>
       </div>
-      <div id="multi-control">
+      <div className="setup-control" id="multi-control">
         <label>Games</label>
         <div id="scroller">
           <div id="multi-list">
