@@ -15,7 +15,7 @@ const ChallengeDisplay = () => {
   const [selectedTitles, setSelectedTitles] = useRecoilState(selectedTitlesState);
 
   var settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
@@ -40,7 +40,7 @@ const ChallengeDisplay = () => {
           <Slider {...settings}>
             {challenges.map((item, idx) => {
               return (
-                <div key={idx}>{item.Game} {item.Challenge}</div>
+                <div className="challenge-text" key={idx}>{`${item.Game}:\n${item.Challenge}`}</div>
               );
             })}
           </Slider>

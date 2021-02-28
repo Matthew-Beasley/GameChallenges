@@ -96,6 +96,11 @@
   height: calc(var(--vh, 1vh) * 100);
 }
 
+  select {
+    background-color: black;
+  }
+
+
 /* * {border: solid red 2px}*/
 
 /* ===== Login Styles ===== */
@@ -253,14 +258,14 @@ form > input {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  justify-content: space-between;
   background-color: rgb(54, 51, 51);
-  width: 100%;
-  height: 2.75rem;
-  margin-top:3rem;
+  min-width: 100%;
+  height: 80px;
+  margin-top: 3rem;
   color: white;
   border-bottom:  solid rgb(40, 226, 214) 3px;
-  /*font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;*/
-  font-family: 'HKGrotesk-Regular';
+  font-family: 'HKGrotesk-Bold';
 }
 
 #nav-links {
@@ -270,21 +275,24 @@ form > input {
 }
 
 #nav-links > a {
-  /*font-family: 'HKGrotesk-Regular';*/
-  font-size: 20px;
+  font-size: 18px;
   color: white;
   text-decoration: none;
-  margin: 1rem 0rem 0rem 4rem
+  margin: 1.6rem 0rem 1rem 4rem
 }
 
-#navbar-spacer {
-  width: 65%;
+#dot-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: right;
 }
 
 .player-dot {
-  margin-top: 8px;
-  height: 1.7rem;
-  width: 1.7rem;
+  height: 3rem;
+  width: 3rem;
+  margin-top: 15px;
+  margin-right: 4rem;
   border-radius: 200px;
   background-color: rgb(40, 226, 214);
   display: flex;
@@ -293,18 +301,14 @@ form > input {
 }
 
 .player-dot > div {
-  font-size: 12px;
-  margin: 7px;
+  font-size: 22px;
+  margin: 10px;
   color: black;
 }
 
 
 /* ===== Main Game Component Styles ===== */
 
-#game-container {
-  /*height: calc(var(--vh, 1vh) * 100);
-  min-height: 100vh;*/
-}
 
 #main-gamecomponents {
   display: flex;
@@ -324,49 +328,70 @@ form > input {
 
 #gamesetup-container {
   font-family: 'HKGrotesk-Regular';
-  width: 25rem;
+  font-size: 14px;
+  min-width: 26.5rem;
   height: 100%;
   margin-bottom: 0rem;
 }
 
-#gamesetup-container label {
-  font-size: 14px;
-  color: white;
-}
-
-#players {
+.setup-control {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: left;
-  width: 100%;
+  justify-content: space-between;
+} 
+
+#gamesetup-container label {
+  color: white;
+  margin-left: 4rem;
+  margin-top: 1rem;
+  font-size: 14px;
+}
+
+#gamesetup-container select {
+  font-size: 14px;
+  width: 13rem;
+  height: 2rem;
+  margin-top: 1rem;
+  border: none;
+}
+
+#gamesetup-container button {
+  background-image: linear-gradient(rgb(40, 226, 214), rgb(57, 63, 65));
+  color: white;
+  font-size: 14px;
 }
 
 #players > label {
-  font-size: 14px;
-  margin: 5rem 0rem 0rem 5rem;
+  margin-top: 5rem;
 }
 
-#players > input {
-  background-color: rgb(214, 211, 211);
-  border: solid black 2px;
-  color: black;
-  margin: 5rem 0rem 0rem 3.9rem;
+#text-bttn-combo {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: right;
+}
+
+#text-bttn-combo > input {
+  background-color: rgb(54, 51, 51);
+  color: white;
   border-radius: 8px;;
-  width: 8.2rem;
+  width: 10.75rem;
   height: 1.5rem;
+  font-size: 14px;
+  margin-top: 5rem;
+  margin-right: 0
 }
 
 #player-submit-btn {
-  width: 2rem;
-  height: 2rem;
-  margin-top: 5rem;
-  border: solid black 2px;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-top: 5.2rem;
+  border: none;
   border-radius: 6px;
-  background-color: rgb(214, 211, 211);
-  color: black;
   font-size: 26px;
-  line-height: 50%;
+  line-height: 40%;
 }
 
 #phone-platformselect {
@@ -377,12 +402,7 @@ form > input {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  color: black;
-}
-
-#platform-control > label {
-  margin: 1rem 3.35rem 0rem 4.75rem;
-  font-size: 14px;
+  color: white;
 }
 
 #platform-control > #scroller {
@@ -390,96 +410,64 @@ form > input {
   height: 4rem;
   overflow-y: auto;
   overflow-x: hidden;
-  color: black;
-  border: solid black 2px;
+  color: white;
+  
   border-radius: 8px;
 }
 
 #platform-list {
-  width: 10.5rem;
+  width: 13rem;
   list-style: none;
   padding: 0;
 }
 
 .platform-list-item {
-  font-size: 12px;
-  background-color: rgb(214, 211, 211);
-  height: 2rem;
+  font-size: 14px;
+  width: 13rem;
+  background-color: rgb(54, 51, 51);
+  height: 1.5rem;
   padding-top: 5px;
 }
 
 .platform-list-input {
-  border: solid black 2px;
-  margin: .25rem 1rem .25rem 1rem;
-}
-
-#splitscreen-select > label {
-  margin: 0rem 0rem 0rem 5rem;
-  font-size: 14px;
+  margin: .25rem .75rem .25rem 1rem;
 }
 
 #splitscreen-select > select {
-  background-color: rgb(214, 211, 211);
-  color: black;
-  border: solid black 2px;
+  background-color: rgb(54, 51, 51);
+  color: white;
+  
   border-radius: 8px;
-  margin: 1rem 0rem 0rem 2.4rem;
-  width: 11rem;
-  height: 2rem;
-}
-
-#kidfriendly-select > label {
-  margin: 0rem 0rem 0rem 5rem;
-  font-size: 14px;
 }
 
 #kidfriendly-select > select {
-  background-color: rgb(214, 211, 211);
-  color: black;
-  border: solid black 2px;
+  background-color: rgb(54, 51, 51);
+  color: white;
+  
   border-radius: 8px;
-  margin: 1rem 0rem 0rem 2.4rem;
-  width: 11rem;
-  height: 2rem;
-}
-
-#onlineSelect > label {
-  margin: 0rem 0rem 0rem 5rem;
-  font-size: 14px;
 }
 
 #onlineSelect > select {
-  background-color: rgb(214, 211, 211);
-  color: black;
-  border: solid black 2px;
+  background-color: rgb(54, 51, 51);
+  color: white;
+  
   border-radius: 8px;
-  margin: 1rem 0rem 0rem 2.4rem;
-  width: 11rem;
-  height: 2rem;
-}
-
-#timeLimit > label {
-  margin: 0rem 0rem 0rem 5.2rem;
-  font-size: 14px;
 }
 
 #timeLimit > select {
-  background-color: rgb(214, 211, 211);
-  color: black;
-  border: solid black 2px;
-  margin: 1rem 0rem 0rem 2.5rem;
+  background-color: 
+ rgb(54, 51, 51);
+  color: white;
+  
   border-radius: 8px;
-  width: 10.9rem;
-  height: 2rem;
 }
 
+/* need to tie this to right side of game setup */
 #findgames > button {
-  margin: 1rem 0rem 0rem 13rem;
+  margin: 1rem 0rem 0rem 16.2rem;
   height: 2rem;
   width: 7rem;
   border-radius: 15px;
-  color: black;
-  background-color: white;
 }
 
 #phone-gameselect {
@@ -490,34 +478,28 @@ form > input {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  color: black;
-}
-
-#multi-control > label {
-  margin: 1rem 3.35rem 0rem 5.5rem;
-  font-size: 14px;
+  color: white;
 }
 
 #multi-control > #scroller {
   margin-top: 1rem;
-  height: 5rem;
+  height: 10rem;
   overflow-y: auto;
   overflow-x: hidden;
-  color: black;
-  border: solid black 2px;
+  color: white;
   border-radius: 8px;
-  background-color: rgb(214, 211, 211);
+  background-color: rgb(54, 51, 51);
 }
 
 #multi-list {
-  width: 10.5rem;
+  width: 13rem;
   list-style: none;
   padding: 0;
 }
 
 .multi-list-item {
   font-size: 14px;
-  background-color: rgb(214, 211, 211);
+  background-color: rgb(54, 51, 51);
   height: 2rem;
   padding-top: 5px;
 }
@@ -525,7 +507,7 @@ form > input {
 .multi-list-input {
   border: solid white 5px;
   margin: .25rem 1rem .25rem 1rem;
-  background-color: rgb(214, 211, 211);
+  background-color: rgb(54, 51, 51);
 }
 
 #lets-play {
@@ -556,10 +538,16 @@ form > input {
 #challenge-cards {
   background-color: white;
   color: black;
-  width: 15rem;
-  margin: 10rem 0rem 0rem 10rem;
+  width: 50%;
+  height: 10rem;
+  margin: 8.5rem 10% 8rem 25%;
+  font-family: 'HKGrotesk-bold';
+  font-size: 18px;
 }
 
+.challenge-text {
+  margin: 1rem 2rem 0 1rem;
+}
 
 
 
@@ -733,7 +721,8 @@ form > input {
   }
   
   #phone-gameselect > select {
-    background-color: rgb(214, 211, 211);
+    background-color: 
+ rgb(54, 51, 51);
     color: black;
     border-radius: 8px;
     margin: 1rem 0rem 0rem 2.4rem;
