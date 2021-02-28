@@ -301,8 +301,8 @@ form > input {
 }
 
 .player-dot > div {
-  font-size: 14px;
-  margin: 7px;
+  font-size: 22px;
+  margin: 10px;
   color: black;
 }
 
@@ -329,7 +329,7 @@ form > input {
 #gamesetup-container {
   font-family: 'HKGrotesk-Regular';
   font-size: 14px;
-  width: 26.5rem;
+  min-width: 26.5rem;
   height: 100%;
   margin-bottom: 0rem;
 }
@@ -342,10 +342,10 @@ form > input {
 } 
 
 #gamesetup-container label {
-  font-size: 14px;
   color: white;
   margin-left: 4rem;
   margin-top: 1rem;
+  font-size: 14px;
 }
 
 #gamesetup-container select {
@@ -356,7 +356,6 @@ form > input {
 }
 
 #players > label {
-  font-size: 14px;
   margin-top: 5rem;
 }
 
@@ -371,20 +370,21 @@ form > input {
   background-color: rgb(54, 51, 51);
   color: white;
   border-radius: 8px;;
-  width: 10.5rem;
+  width: 10.75rem;
   height: 1.5rem;
+  font-size: 14px;
   margin-top: 5rem;
   margin-right: 0
 }
 
 #player-submit-btn {
-  width: 2rem;
-  height: 2rem;
-  margin-top: 5rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-top: 5.2rem;
   border: none;
   border-radius: 6px;
   font-size: 26px;
-  line-height: 50%;
+  line-height: 40%;
 }
 
 #phone-platformselect {
@@ -396,10 +396,6 @@ form > input {
   flex-direction: row;
   flex-wrap: nowrap;
   color: white;
-}
-
-#platform-control > label {
-  font-size: 14px;
 }
 
 #platform-control > #scroller {
@@ -419,20 +415,15 @@ form > input {
 }
 
 .platform-list-item {
-  font-size: 12px;
+  font-size: 14px;
   width: 13rem;
   background-color: rgb(54, 51, 51);
-  height: 2rem;
+  height: 1.5rem;
   padding-top: 5px;
 }
 
 .platform-list-input {
-  
-  margin: .25rem 1rem .25rem 1rem;
-}
-
-#splitscreen-select > label {
-  font-size: 14px;
+  margin: .25rem .75rem .25rem 1rem;
 }
 
 #splitscreen-select > select {
@@ -442,10 +433,6 @@ form > input {
   border-radius: 8px;
 }
 
-#kidfriendly-select > label {
-  font-size: 14px;
-}
-
 #kidfriendly-select > select {
   background-color: rgb(54, 51, 51);
   color: white;
@@ -453,19 +440,11 @@ form > input {
   border-radius: 8px;
 }
 
-#onlineSelect > label {
-  font-size: 14px;
-}
-
 #onlineSelect > select {
   background-color: rgb(54, 51, 51);
   color: white;
   
   border-radius: 8px;
-}
-
-#timeLimit > label {
-  font-size: 14px;
 }
 
 #timeLimit > select {
@@ -496,17 +475,12 @@ form > input {
   color: white;
 }
 
-#multi-control > label {
-  font-size: 14px;
-}
-
 #multi-control > #scroller {
   margin-top: 1rem;
   height: 10rem;
   overflow-y: auto;
   overflow-x: hidden;
   color: white;
-  
   border-radius: 8px;
   background-color: rgb(54, 51, 51);
 }
