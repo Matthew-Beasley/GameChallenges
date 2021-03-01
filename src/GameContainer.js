@@ -3,6 +3,7 @@ import { Route, Link, history } from 'react-router-dom';
 import NavBar from './NavBar';
 import GameSetup from './GameSetup';
 import ChallengeDisplay from './ChallengeDisplay';
+import Ads from './Ads';
 
 const GameContainer = () => {
 
@@ -12,6 +13,7 @@ const GameContainer = () => {
       <div id='main-gamecomponents'>
         <GameSetup />
         <ChallengeDisplay />
+        <Ads />
       </div>
     </div>
   );

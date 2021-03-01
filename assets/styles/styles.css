@@ -252,7 +252,7 @@ form > input {
   flex-direction: column;
   background-image: url('../images/blue-background.png');
   background-size: cover;
-  min-height: 40rem;
+  min-height: 42rem;
   height: calc(var(--vh, 1vh) * 100);;
 }
 
@@ -527,27 +527,30 @@ form > input {
 
 /* this is a wrapper around challenge-conainer */
 #outer-challenges-display {
-  width: 50%;
+  min-width: 40rem;
   /*height: 100%;*/
   background-image: url('../images/cartoon-monitor.png');
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  margin: 5rem 15rem 0rem 4rem;
+  margin: 5rem 2rem 0rem 2rem;
+}
+
+#challenge-container {
+  width: 20rem;
+  height: 10rem;
 }
 
 #challenge-cards {
-  /*background-color: white;
-  color: black;*/
-  width: 50%;
-  height: 10rem;
-  margin: 8.5rem 10% 8rem 25%;
+  width: 23rem;
+  height: 10.5rem;
+  margin: 8.5rem 0rem 0rem 8.5rem;
 }
 
 #challenge-cards > div {
   color: white;
-  max-width: 100%;
+  width: 100%;
   height: 10rem;
-  padding: .5rem .5rem 0rem .5rem;
+  padding: .5rem 1rem 0rem 1rem;
   font-family: 'HKGrotesk-Regular';
   font-size: 1rem;
   margin: 0;
@@ -570,6 +573,16 @@ form > input {
   margin-top: 1rem;
   min-width: 100%;
   text-align: center;
+}
+
+
+/* ===== Ads Styles ===== */
+
+#advertisements {
+  background-color: white;
+  height: 20rem;
+  width: 10rem;
+  margin: 7rem 3rem 0rem 0rem;
 }
 
 
