@@ -85,23 +85,6 @@
 }
 
 
-/* ===== App Styles ===== */
-
-#app-container {
- /* height: 100%;
-  display: flex;
-  flex-direction: column;
-  background-image: url('../images/blue-background.png');
-  background-size: auto 100%;
-  min-height: 100vhpx;
-  height: calc(var(--vh, 1vh) * 100);
-  min-height: 37.87rem;*/
-}
-
-  select {
-    background-color: black;
-  }
-
 */* {border: solid red 2px}*/
 
 /* ===== Login Styles ===== */
@@ -226,7 +209,7 @@ form > input {
 }
 
 #about-container > h1 {
-  color: white;
+  color: black;
 }
 
 
@@ -241,19 +224,19 @@ form > input {
 }
 
 #contact-container > h1 {
-  color: white;
+  color: black;
 }
 
 
 /* ===== GameContainer Styles ===== */
 
 #game-container {
-   display: flex;
+  display: flex;
   flex-direction: column;
   background-image: url('../images/blue-background.png');
   background-size: cover;
   min-height: 42rem;
-  height: calc(var(--vh, 1vh) * 100);;
+  height: calc(var(--vh, 1vh) * 100);
 }
 
 
@@ -379,7 +362,7 @@ form > input {
 #text-bttn-combo > input {
   background-color: rgb(54, 51, 51);
   color: white;
-  border-radius: 8px;;
+  border-radius: 8px;
   width: 11.75rem;
   height: 1.5rem;
   font-size: 1.16rem;
@@ -460,14 +443,6 @@ form > input {
  rgb(54, 51, 51);
   color: white;
   border-radius: 8px;
-}
-
-/* need to tie this to right side of game setup */
-#findgames > button {
-  margin: 1rem 0rem 0rem 16.2rem;
-  height: 2rem;
-  width: 10.5rem;
-  border-radius: 15px;
 }
 
 #phone-gameselect {
@@ -587,8 +562,168 @@ form > input {
 
 
 
+
 /* ========== Media Queries ========== */
 
 /* ===== iPhone ===== */
 
 
+@media only screen and (max-width: 600px) {
+
+
+  #game-container {
+    max-width: 100vw;
+    width: calc(var(--vw, 1vw) * 100);
+  }
+
+  #gamesetup-container {
+    font-family: 'HKGrotesk-Regular';
+    min-width: 0;
+    height: 100%;
+  }
+
+  #gamesetup-container label {
+    color: white;
+    margin-left: 1rem;
+    margin-top: 2rem;
+  }
+
+  #gamesetup-container select {
+    width: 10rem;
+    height: 2rem;
+    margin: 2rem 2rem 0rem 0rem;
+  }
+
+  #gamesetup-container input {
+    width: 10rem;
+    height: 2rem;
+    margin: 2rem 1rem 0rem 0rem;
+  }
+
+  #navbar {
+    min-width: 100%;
+    height: 40px;
+    margin-top: 1rem;
+    font-family: 'HKGrotesk-Regular';
+  }
+
+  #nav-links {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+  
+  #nav-links > a {
+    font-size: 1rem;
+    color: white;
+    text-decoration: none;
+    margin: 1rem 0rem 0rem 1rem;
+  }
+  
+  #navbar-spacer {
+    width: 0%;
+  }
+
+  #main-gamecomponents {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .setup-control {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  #text-bttn-combo > input {
+    background-color: rgb(54, 51, 51);
+    color: white;
+    width: 9rem;
+    margin-top: 2rem;
+    height: 1.5rem;
+  }
+  
+  #player-submit-btn {
+    margin-top: 2.1rem;
+    margin-right: 1rem
+  }
+  
+  #platform-control {
+    display: none;
+  }
+
+  #phone-platformselect {
+    display: flex;
+  }
+
+  #phone-platformselect select {
+    background-color: rgb(54, 51, 51);
+    color: white;
+  }
+  
+  #multi-control {
+    display: none;
+  }
+  
+  #phone-gameselect {
+    display: flex;
+  }
+  
+  #phone-gameselect > select {
+    background-color: rgb(54, 51, 51);
+    color: white;
+    width: 16rem;
+  }
+
+  #lets-play {
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  #lets-play > button {
+    /*margin: 5rem 0rem 0rem 6.75rem;*/
+    height: 4rem;
+    width: 12rem;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+    background-image: none;
+    background-color: rgb(243, 16, 16);
+    margin-top: 3rem;
+  }
+  
+  /* ===== Challenge Container Styles ===== */
+
+  #challenge-container {
+    display: none;
+  }
+
+  #mobilechallenges-nav {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    width: 125%;
+  }
+
+  #mobilechallenge-container {
+    display: flex;
+    /*min-width: 100vwpx;
+    width: calc(var(--vw, 1vw) * 100);*/
+    width: 97%;
+    height: 525px;
+    background-image: url('../images/cartoon-monitor.png');
+    background-size: 100% 400px;
+    background-repeat: no-repeat;
+    margin: 6rem 0rem 0rem 0rem;
+  }
+
+  #challenge-cards {
+    color: black;
+    background-color: white;
+    margin: 5rem 0rem 0rem 3rem;
+  }
+} 

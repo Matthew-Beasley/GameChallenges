@@ -143,9 +143,6 @@ const GameSetup = () => {
           <option value="Infinity">Over 15 minutes</option>
         </select>
       </div>
-      <div id="findgames">
-        <button onClick={() => findGames()} >Find My Games</button>
-      </div>
       <div className="setup-control" id="multi-control">
         <label>Games</label>
         <div id="scroller">
@@ -158,8 +155,7 @@ const GameSetup = () => {
           </div>
         </div>
       </div>
-      <div id="phone-gameselect">
-        {!!gameList.length > 0 ? <div>Choose your games below!</div> : <div> </div>}
+      <div className="setup-control" id="phone-gameselect">
         <label>Games</label>
         <select multiple onChange={ev => chooseTitle(ev)}>
           {displayGames.map((game, idx) => {
