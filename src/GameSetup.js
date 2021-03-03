@@ -10,7 +10,14 @@ const GameSetup = () => {
   const [challenges, setChallenges] = useRecoilState(challengesState);
   const [displayGames, setDisplayGames] = useState([]);
   const [playerName, setPlayerName] = useState('');
-  const [query, setQuery] = useState({$or: []});
+
+  const [PCChk, setPCChk] = useState(true);
+  const [XboxChk, setXboxChk] = useState(true);
+  const [PlaystationChk, setPlaystationChk] = useState(true);
+  const [SwitchChk, setSwitchChk] = useState(true);
+  const [MobileChk, setMobileChk] = useState(true);
+
+  const [query, setQuery] = useState({$and: []});
 
 
   const addUserName = (playerName) => {
@@ -69,7 +76,7 @@ const GameSetup = () => {
     const queryCopy = {...query};
     queryCopy.$or.push({'PC': true}); 
     queryCopy.$or.push({'Xbox': true}); 
-    queryCopy.$or.push({'Playstation': true});
+    queryCopy.$or.push({'PS': true});
     queryCopy.$or.push({'Switch': true}); 
     queryCopy.$or.push({'Mobile': true});
     setQuery({...queryCopy});
@@ -88,7 +95,7 @@ const GameSetup = () => {
           <input 
             id="player-input" 
             type="text" 
-            value={playerName} 
+            checked={playerName} 
             placeholder="Enter player name" 
             onChange={ev => setPlayerName(ev.target.value)} 
           />
@@ -103,31 +110,36 @@ const GameSetup = () => {
             <input 
               className="platform-list-input" 
               type="checkbox" 
-              onChange={() => selectPlatform('PC')}
+              checked={PCChk}
+              onChange={(ev) => {selectPlatform('PC'); setPCChk(ev.target.value)}}
             />
             <label>Xbox</label>
             <input 
               className="platform-list-input" 
               type="checkbox" 
-              onChange={() => selectPlatform('Xbox')}
+              checked={XboxChk}
+              onChange={(ev) => {selectPlatform('Xbox'); setXboxChk(ev.target.value);}}
             />
             <label>Playstation</label>
             <input 
               className="platform-list-input" 
               type="checkbox" 
-              onChange={() => selectPlatform('Playstation')}
+              checked={PlaystationChk}
+              onChange={(ev) => {selectPlatform('PS'); setPlaystationChk(ev.target.value);}}
             />
             <label>Switch</label>
             <input 
               className="platform-list-input" 
               type="checkbox" 
-              onChange={() => selectPlatform('Switch')}
+              checked={SwitchChk}
+              onChange={(ev) => {selectPlatform('Switch'); setSwitchChk(ev.target.value);}}
             />
             <label>Mobile</label>
             <input 
               className="platform-list-input" 
               type="checkbox" 
-              onChange={() => selectPlatform('Mobile')}
+              checked={MobileChk}
+              onChange={(ev) => {selectPlatform('Mobile'); setMobileChk(ev.target.value);}}
             />
           </div>
         </div>
