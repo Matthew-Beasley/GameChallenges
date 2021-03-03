@@ -1,75 +1,84 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { playerListState, gameListState, selectedTitlesState } from './RecoilState';
+import { playerListState, challengesState, gameListState, selectedTitlesState } from './RecoilState';
 import { useHistory } from 'react-router-dom';
 
 const GameSetup = () => {
   const history = useHistory();
   const [players, setPlayers] = useRecoilState(playerListState);
-  const [gameList, setGameList] = useRecoilState(gameListState);
-  const [selectedTitles, setSelectedTitles] = useRecoilState(selectedTitlesState);
+  const [challenges, setChallenges] = useRecoilState(challengesState);
   const [displayGames, setDisplayGames] = useState([]);
   const [playerName, setPlayerName] = useState('');
-  const platforms = ['PC', 'Xbox', 'Playstation',	'Switch', 'Mobile'];
+  const [query, setQuery] = useState({$or: []});
 
 
-  const query = { $or: [{ KidFriendly: false }, ] };
-
-  const addUserName = () => {
+  const addUserName = (playerName) => {
     setPlayers([...players, playerName]);
     setPlayerName('');
   };
 
   const selectPlatform = (platform) => {
-    if (!query.$or.find(el => el[platform] === true)) {
+    const queryCopy = {...query};
+    if (!queryCopy.$or.find(el => el[platform] === true)) {
       const platformObj = {[platform]: true};
-      query.$or.push(platformObj);
+      queryCopy.$or.push(platformObj);
     } else {
-      const index = query.$or.findIndex(el => el[platform] === true);
-      query.$or.splice(index, 1);
+      const index = queryCopy.$or.findIndex(el => el[platform] === true);
+      queryCopy.$or.splice(index, 1);
     }
+    setQuery({...queryCopy});
   };
 
   const setControlVal = (ev) => {
-    const index = query.$or.findIndex(el => el[ev.target.id]);
+    const queryCopy = {...query};
+    const index = queryCopy.$or.findIndex(el => el[ev.target.id]);
     if (index > -1) {
-      query.$or.splice(index, 1);
+      queryCopy.$or.splice(index, 1);
     }
     if (!ev.target.value === '') {
-      query.$or.push({ [ev.target.id]: ev.target.value });
+      queryCopy.$or.push({ [ev.target.id]: ev.target.value });
     }
+    setQuery({...queryCopy});
   };
 
-  const chooseTitle = (ev) => {
-    if (ev.target.checked === undefined) {
-      if (!selectedTitles.includes(ev.target.value)) {
-        setSelectedTitles([...selectedTitles, ev.target.value]);
-      } else {
-        const tempArr = [...selectedTitles];
-        const index = tempArr.findIndex(el => el === ev.target.value);
-        tempArr.splice(index, 1);
-        setSelectedTitles([...tempArr]);
-      }
-    } else if (ev.target.checked === true) {
-      setSelectedTitles([...selectedTitles, ev.target.parentNode.innerText]);
-    } else if (ev.target.checked === false) {
-      const tempArr = [...selectedTitles];
-      const index = tempArr.findIndex(el => el === ev.target.parentNode.innerText);
-      tempArr.splice(index, 1);
-      setSelectedTitles([...tempArr]);
+  const getChallenges = (ev) => {
+    const queryCopy = {...query};
+    const gameObj = {Game: ev.target.id};
+    const index = queryCopy.$or.findIndex(el => el[ev.target.value]);
+    if (index === -1) {
+      queryCopy.$or.push(gameObj);
+    } else {
+      queryCopy.$or.splice(index, 1);
     }
+    setQuery({...queryCopy});
   };
- 
+
   const findGames = async () => {
     const games = await axios.post('/challenge/games', query);
-    setGameList([...games.data]);
     const display = new Set();
     for (let i = 0; i < games.data.length; i++) {
       display.add(games.data[i].Game);
     }
+    console.log('games.data in findgames ', games.data);
     setDisplayGames([...display]);
+    setChallenges([...games.data]);
   };
+
+  useEffect(() => {
+    const queryCopy = {...query};
+    queryCopy.$or.push({'PC': true}); 
+    queryCopy.$or.push({'Xbox': true}); 
+    queryCopy.$or.push({'Playstation': true});
+    queryCopy.$or.push({'Switch': true}); 
+    queryCopy.$or.push({'Mobile': true});
+    setQuery({...queryCopy});
+  }, []);
+
+  useEffect(() => {
+    console.log('query in [query]', query);
+    findGames();
+  }, [query]);
 
   return (
     <div id="gamesetup-container">
@@ -90,24 +99,47 @@ const GameSetup = () => {
         <label>Platforms</label>
         <div id="scroller">
           <div id="platform-list">
-            {platforms.map((platform, idx) => {
-              return (<div key={idx} className="platform-list-item">
-                <input 
-                  className="platform-list-input" 
-                  type="checkbox" 
-                  onChange={() => selectPlatform(platform)}/>
-                {platform}
-              </div>);
-            })}
+            <label>PC</label>
+            <input 
+              className="platform-list-input" 
+              type="checkbox" 
+              onChange={() => selectPlatform('PC')}
+            />
+            <label>Xbox</label>
+            <input 
+              className="platform-list-input" 
+              type="checkbox" 
+              onChange={() => selectPlatform('Xbox')}
+            />
+            <label>Playstation</label>
+            <input 
+              className="platform-list-input" 
+              type="checkbox" 
+              onChange={() => selectPlatform('Playstation')}
+            />
+            <label>Switch</label>
+            <input 
+              className="platform-list-input" 
+              type="checkbox" 
+              onChange={() => selectPlatform('Switch')}
+            />
+            <label>Mobile</label>
+            <input 
+              className="platform-list-input" 
+              type="checkbox" 
+              onChange={() => selectPlatform('Mobile')}
+            />
           </div>
         </div>
       </div>
       <div className="setup-control" id="phone-platformselect">
         <label>Platforms</label>
         <select multiple onChange={ev => selectPlatform(ev.target.value)}>
-          {platforms.map((platform, idx) => {
-            return (<option key={idx} value={platform}>{platform} </option>);
-          })}
+          <option value="PC">PC</option>
+          <option value="Xbox">Xbox</option>
+          <option value="Playstation">Playstation</option>
+          <option value="Switch">Switch</option>
+          <option value="Mobile">Mobile</option>
         </select>
       </div>
       <div className="setup-control" id="splitscreen-select">
@@ -149,7 +181,7 @@ const GameSetup = () => {
           <div id="multi-list">
             {displayGames.map((game, idx) => {
               return (<div key={idx} className="multi-list-item">
-                <input className="multi-list-input" type="checkbox" onChange={ev => chooseTitle(ev)}/>{game}
+                <input className="multi-list-input" id={game} type="checkbox" onChange={ev => getChallenges(ev)}/>{game}
               </div>);
             })}
           </div>
@@ -157,7 +189,7 @@ const GameSetup = () => {
       </div>
       <div className="setup-control" id="phone-gameselect">
         <label>Games</label>
-        <select multiple onChange={ev => chooseTitle(ev)}>
+        <select multiple id="Game" onChange={ev => getChallenges(ev)}>
           {displayGames.map((game, idx) => {
             return (<option key={idx}>{game}</option>);
           })}
