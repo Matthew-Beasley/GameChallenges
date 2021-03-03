@@ -64,12 +64,14 @@ const GameSetup = () => {
   const findGames = async () => {
     const games = await axios.post('/challenge/games', query);
     const display = new Set();
-    for (let i = 0; i < games.data.length; i++) {
-      display.add(games.data[i].Game);
+    for (let i = 0; i < games.data.games.length; i++) {
+      display.add(games.data.games[i].Game);
     }
-    console.log('games.data in findgames ', games.data);
+    //console.log('games.data in findgames ', games.data);
+    
     setDisplayGames([...display]);
-    setChallenges([...games.data]);
+    setChallenges([...games.data.games ]);
+    console.log('display in find games from axios call ', display)
   };
 
   useEffect(() => {
@@ -83,7 +85,7 @@ const GameSetup = () => {
   }, []);
 
   useEffect(() => {
-    console.log('query in [query]', query);
+    //console.log('query in [query]', query);
     findGames();
   }, [query]);
 
