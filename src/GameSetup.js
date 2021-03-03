@@ -17,7 +17,7 @@ const GameSetup = () => {
   const [SwitchChk, setSwitchChk] = useState(true);
   const [MobileChk, setMobileChk] = useState(true);
 
-  const [query, setQuery] = useState({$and: []});
+  const [query, setQuery] = useState({$or: []});
 
 
   const addUserName = (playerName) => {
