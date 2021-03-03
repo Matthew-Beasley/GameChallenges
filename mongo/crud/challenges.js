@@ -11,7 +11,7 @@ const createChallenge = (record) => {
   });
 };
 
-const getChallenges = async(queryObj) => {
+const getChallenges = async (queryObj) => {
   try {
     const challenges = await Challenge.find(queryObj);
     return challenges;
@@ -19,11 +19,20 @@ const getChallenges = async(queryObj) => {
     return error;
     //throw here?
   }
-  
-  
+};
+
+const getGameNames = async () => {
+  try {
+    const challenges = await Challenge.find({}, {Game: 1, _id: 0});
+    return challenges;
+  } catch (error) {
+    return error;
+    //throw here?
+  }
 };
 
 module.exports = {
   createChallenge,
-  getChallenges
+  getChallenges,
+  getGameNames
 };

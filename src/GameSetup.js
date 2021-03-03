@@ -62,7 +62,7 @@ const GameSetup = () => {
   };
 
   const findGames = async () => {
-    const games = await axios.post('/challenge/games', query);
+    const games = await axios.get('/challenge/gamenames');
     const display = new Set();
     for (let i = 0; i < games.data.length; i++) {
       display.add(games.data[i].Game);
