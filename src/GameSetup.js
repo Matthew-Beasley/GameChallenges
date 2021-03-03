@@ -111,35 +111,35 @@ const GameSetup = () => {
               className="platform-list-input" 
               type="checkbox" 
               checked={PCChk}
-              onChange={(ev) => {selectPlatform('PC'); setPCChk(ev.target.value)}}
+              onChange={(ev) => {selectPlatform('PC'); setPCChk(ev.target.checked)}}
             />
             <label>Xbox</label>
             <input 
               className="platform-list-input" 
               type="checkbox" 
               checked={XboxChk}
-              onChange={(ev) => {selectPlatform('Xbox'); setXboxChk(ev.target.value);}}
+              onChange={(ev) => {selectPlatform('Xbox'); setXboxChk(ev.target.checked);}}
             />
             <label>Playstation</label>
             <input 
               className="platform-list-input" 
               type="checkbox" 
               checked={PlaystationChk}
-              onChange={(ev) => {selectPlatform('PS'); setPlaystationChk(ev.target.value);}}
+              onChange={(ev) => {selectPlatform('PS'); setPlaystationChk(ev.target.checked);}}
             />
             <label>Switch</label>
             <input 
               className="platform-list-input" 
               type="checkbox" 
               checked={SwitchChk}
-              onChange={(ev) => {selectPlatform('Switch'); setSwitchChk(ev.target.value);}}
+              onChange={(ev) => {selectPlatform('Switch'); setSwitchChk(ev.target.checked);}}
             />
             <label>Mobile</label>
             <input 
               className="platform-list-input" 
               type="checkbox" 
               checked={MobileChk}
-              onChange={(ev) => {selectPlatform('Mobile'); setMobileChk(ev.target.value);}}
+              onChange={(ev) => {selectPlatform('Mobile'); setMobileChk(ev.target.checked);}}
             />
           </div>
         </div>
@@ -149,7 +149,7 @@ const GameSetup = () => {
         <select multiple onChange={ev => selectPlatform(ev.target.value)}>
           <option value="PC">PC</option>
           <option value="Xbox">Xbox</option>
-          <option value="Playstation">Playstation</option>
+          <option value="PS">Playstation</option>
           <option value="Switch">Switch</option>
           <option value="Mobile">Mobile</option>
         </select>
