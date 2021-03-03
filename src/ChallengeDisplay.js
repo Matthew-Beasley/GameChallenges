@@ -22,7 +22,7 @@ const ChallengeDisplay = () => {
   };
 
   useEffect(() => {
-    console.log('challenges in challenges ', challenges)
+    //console.log('challenges in challenges ', challenges)
   }, [challenges]);
 
   return (
