@@ -6,8 +6,6 @@ import Slider from 'react-slick';
 import { gameListState, challengesState, selectedTitlesState } from './RecoilState';
 import NavBar from './NavBar';
 
-/* ===== Do I want to move duplicated variables and functions out of components into the global state? ===== */
-
 
 const ChallengeDisplay = () => {
   const [gameList, setGameList] = useRecoilState(gameListState);
@@ -24,14 +22,8 @@ const ChallengeDisplay = () => {
   };
 
   useEffect(() => {
-    const tempArr = [];
-    for( let i = 0; i < gameList.length; i++) {
-      if (selectedTitles.includes(gameList[i].Game) === true) {
-        tempArr.push(gameList[i]);
-      }
-    }
-    setChallenges([...tempArr]);
-  }, [selectedTitles]);
+    console.log('challenges in challenges ', challenges)
+  }, [challenges]);
 
   return (
     <div id="outer-challenges-display">
