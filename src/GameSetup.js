@@ -67,11 +67,8 @@ const GameSetup = () => {
     for (let i = 0; i < games.data.games.length; i++) {
       display.add(games.data.games[i].Game);
     }
-    //console.log('games.data in findgames ', games.data);
-    
     setDisplayGames([...display]);
-    setChallenges([...games.data.games ]);
-    console.log('display in find games from axios call ', display)
+    setChallenges([...games.data.games]);
   };
 
   useEffect(() => {
@@ -85,7 +82,6 @@ const GameSetup = () => {
   }, []);
 
   useEffect(() => {
-    //console.log('query in [query]', query);
     findGames();
   }, [query]);
 
@@ -113,7 +109,7 @@ const GameSetup = () => {
               className="platform-list-input" 
               type="checkbox" 
               checked={PCChk}
-              onChange={(ev) => {selectPlatform('PC'); setPCChk(ev.target.checked)}}
+              onChange={(ev) => {selectPlatform('PC'); setPCChk(ev.target.checked);}}
             />
             <label>Xbox</label>
             <input 
