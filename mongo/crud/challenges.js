@@ -14,6 +14,7 @@ const createChallenge = (record) => {
 const getChallenges = async (queryObj) => {
   try {
     const challenges = await Challenge.find(queryObj);
+    console.log('challenges ', challenges)
     return challenges;
   } catch (error) {
     return error;

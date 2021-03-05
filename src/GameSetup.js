@@ -10,13 +10,11 @@ const GameSetup = () => {
   const [challenges, setChallenges] = useRecoilState(challengesState);
   const [displayGames, setDisplayGames] = useState([]);
   const [playerName, setPlayerName] = useState('');
-
   const [PCChk, setPCChk] = useState(true);
   const [XboxChk, setXboxChk] = useState(true);
   const [PlaystationChk, setPlaystationChk] = useState(true);
   const [SwitchChk, setSwitchChk] = useState(true);
   const [MobileChk, setMobileChk] = useState(true);
-
   const [query, setQuery] = useState({$or: []});
 
 
