@@ -387,42 +387,13 @@ form > input {
 #platform-control {
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
-  color: white;
-}
-
-#platform-control > #scroller {
-  margin-top: 1rem;
-  height: 4rem;
-  overflow-y: auto;
-  overflow-x: hidden;
-  color: white;
-  
-  border-radius: 8px;
-}
-
-#platform-list {
-  width: 14rem;
-  list-style: none;
-  padding: 0;
-}
-
-.platform-list-item {
-  font-size: 1rem;
-  width: 14rem;
-  background-color: rgb(54, 51, 51);
-  height: 1.25rem;
-  padding-top: 5px;
-}
-
-.platform-list-input {
-  margin: .25rem .75rem .25rem 1rem;
+  flex-wrap: wrap;
+  width: 28.5rem;
 }
 
 #splitscreen-select > select {
   background-color: rgb(54, 51, 51);
   color: white;
-  
   border-radius: 8px;
 }
 
