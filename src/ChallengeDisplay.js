@@ -3,12 +3,11 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 //import css from'slick-carousel/slick/slick.css';
 //import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
-import { gameListState, challengesState, selectedTitlesState } from './RecoilState';
+import { challengesState, selectedTitlesState } from './RecoilState';
 import NavBar from './NavBar';
 
 
 const ChallengeDisplay = () => {
-  const [gameList, setGameList] = useRecoilState(gameListState);
   const [challenges, setChallenges] = useRecoilState(challengesState);
   const [selectedTitles, setSelectedTitles] = useRecoilState(selectedTitlesState);
 
@@ -21,23 +20,20 @@ const ChallengeDisplay = () => {
     draggable: true
   };
 
-  useEffect(() => {
-    //console.log('challenges in challenges ', challenges)
-  }, [challenges]);
-
   return (
     <div id="outer-challenges-display">
       <div id="challenge-container"> 
         <div id="challenge-cards">
           <Slider {...settings}>
-            {challenges.map((item, idx) => {
-              return (
-                <div className="challenge-text" key={idx}>
-                  <div className="challenge-title">{item.Game}</div>
-                  <div className="challenge-rules">{item.Challenge}</div>
-                  {!!item.TimeLimit && <div className="challenge-time">{`Time Limit: ${item.TimeLimit}`}</div>}
-                </div>
-              );
+            {challenges.map((item, idx) => { 
+              if (item.show) {
+                return (
+                  <div className="challenge-text" key={idx}>
+                    <div className="challenge-title">{item.Game}</div>
+                    <div className="challenge-rules">{item.Challenge}</div>
+                    {!!item.TimeLimit && <div className="challenge-time">{`Time Limit: ${item.TimeLimit}`}</div>}
+                  </div>
+                );}
             })}
           </Slider>
         </div>
@@ -48,9 +44,10 @@ const ChallengeDisplay = () => {
           <div id="challenge-cards">
             <Slider {...settings}>
               {challenges.map((item, idx) => {
-                return (
-                  <div key={idx}>{item.Game} {item.Challenge}</div>
-                );
+                if (item.show) {
+                  return (
+                    <div key={idx}>{item.Game} {item.Challenge}</div>
+                  );}
               })}
             </Slider>
           </div>

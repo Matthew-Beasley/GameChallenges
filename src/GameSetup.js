@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { playerListState, challengesState, gameListState, selectedTitlesState } from './RecoilState';
+import { playerListState, challengesState } from './RecoilState';
 import { useHistory } from 'react-router-dom';
 
 const GameSetup = () => {
@@ -48,15 +48,16 @@ const GameSetup = () => {
   };
 
   const getChallenges = (ev) => {
-    const queryCopy = {...query};
-    const gameObj = {Game: ev.target.id};
-    const index = queryCopy.$or.findIndex(el => el[ev.target.value]);
-    if (index === -1) {
-      queryCopy.$or.push(gameObj);
-    } else {
-      queryCopy.$or.splice(index, 1);
+    const tempChallenges = [...challenges];
+    for (let i = 0; i < tempChallenges.length; i++) {
+      if (tempChallenges[i].Game === ev.target.id) {
+        const tempGame = {...tempChallenges[i]};
+        tempGame.show = ev.target.checked;
+        tempChallenges.splice(i, 1);
+        tempChallenges.splice(i, 0, tempGame);
+      }
     }
-    setQuery({...queryCopy});
+    setChallenges([...tempChallenges]);
   };
 
   const findGames = async () => {
@@ -98,45 +99,52 @@ const GameSetup = () => {
           <button id="player-submit-btn" onClick={() => addUserName()}>+</button>
         </div>
       </div>
-      <div className="setup-control" id="platform-control">
-        <label>Platforms</label>
-        <div id="scroller">
-          <div id="platform-list">
+      <div id="platform-groups">
+        <div className="platform-checkgroup">
+          <div>
             <label>PC</label>
             <input 
-              className="platform-list-input" 
               type="checkbox" 
               checked={PCChk}
               onChange={(ev) => {selectPlatform('PC'); setPCChk(ev.target.checked);}}
             />
-            <label>Xbox</label>
+          </div>
+          <div>
+            <label>&nbsp;&nbsp;Xbox</label>
             <input 
-              className="platform-list-input" 
               type="checkbox" 
               checked={XboxChk}
               onChange={(ev) => {selectPlatform('Xbox'); setXboxChk(ev.target.checked);}}
             />
+          </div>
+        </div>
+        <div className="platform-checkgroup">
+          <div>
             <label>Playstation</label>
             <input 
-              className="platform-list-input" 
               type="checkbox" 
               checked={PlaystationChk}
               onChange={(ev) => {selectPlatform('PS'); setPlaystationChk(ev.target.checked);}}
             />
+          </div>
+          <div>
             <label>Switch</label>
             <input 
-              className="platform-list-input" 
               type="checkbox" 
               checked={SwitchChk}
               onChange={(ev) => {selectPlatform('Switch'); setSwitchChk(ev.target.checked);}}
             />
+          </div> 
+        </div>
+        <div className="platform-checkgroup">
+          <div>
             <label>Mobile</label>
             <input 
-              className="platform-list-input" 
               type="checkbox" 
               checked={MobileChk}
               onChange={(ev) => {selectPlatform('Mobile'); setMobileChk(ev.target.checked);}}
             />
+            <div id="mobile-spacer"></div>
           </div>
         </div>
       </div>
