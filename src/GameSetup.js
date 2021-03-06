@@ -75,7 +75,13 @@ const GameSetup = () => {
   }, []);
 
   useEffect(() => {
-    findGames();
+    if(query.$or) {
+      if (query.$or.length < 1) {
+        setChallenges([]);
+      } else {
+        findGames();
+      }
+    }
   }, [query]);
 
   return (
