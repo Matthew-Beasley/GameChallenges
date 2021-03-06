@@ -387,15 +387,17 @@ form > input {
 }
 
 .platform-checkgroup {
-  width: 24rem;
+  max-width: 14rem;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: flex-end;
+  justify-content: space-between;
+  margin-right: 0;
+  margin-left: 10rem;
 }
 
 .platform-checkgroup label {
-  margin-left: 4rem;
+  margin-left: 0rem;
 }
 
 #mobile-spacer {
