@@ -4,13 +4,11 @@ import NavBar from './NavBar';
 import GameSetup from './GameSetup';
 import ChallengeDisplay from './ChallengeDisplay';
 import Ads from './Ads';
-import { set } from 'mongoose';
 
 const GameContainer = () => {
   const [width, setWidth] = useState(window.screen.width);
-  window.onresize = function (ev) {
+  window.onresize = function () {
     setWidth(window.screen.width);
-    console.log('width = ', width);
   };
 
   return (

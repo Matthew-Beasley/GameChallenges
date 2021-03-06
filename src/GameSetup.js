@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { playerListState, challengesState, gameListState, selectedTitlesState } from './RecoilState';
+import { playerListState, challengesState } from './RecoilState';
 import { useHistory } from 'react-router-dom';
 
 const GameSetup = () => {
@@ -48,15 +48,16 @@ const GameSetup = () => {
   };
 
   const getChallenges = (ev) => {
-    const queryCopy = {...query};
-    const gameObj = {Game: ev.target.id};
-    const index = queryCopy.$or.findIndex(el => el[ev.target.value]);
-    if (index === -1) {
-      queryCopy.$or.push(gameObj);
-    } else {
-      queryCopy.$or.splice(index, 1);
+    const tempChallenges = [...challenges];
+    for (let i = 0; i < tempChallenges.length; i++) {
+      if (tempChallenges[i].Game === ev.target.id) {
+        const tempGame = {...tempChallenges[i]};
+        tempGame.show = ev.target.checked;
+        tempChallenges.splice(i, 1);
+        tempChallenges.splice(i, 0, tempGame);
+      }
     }
-    setQuery({...queryCopy});
+    setChallenges([...tempChallenges]);
   };
 
   const findGames = async () => {
@@ -98,8 +99,6 @@ const GameSetup = () => {
           <button id="player-submit-btn" onClick={() => addUserName()}>+</button>
         </div>
       </div>
-      
-
       <div id="platform-groups">
         <div className="platform-checkgroup">
           <div>
@@ -145,11 +144,10 @@ const GameSetup = () => {
               checked={MobileChk}
               onChange={(ev) => {selectPlatform('Mobile'); setMobileChk(ev.target.checked);}}
             />
+            <div id="mobile-spacer"></div>
           </div>
         </div>
       </div>
-
-
       <div className="setup-control" id="phone-platformselect">
         <label>Platforms</label>
         <select multiple onChange={ev => selectPlatform(ev.target.value)}>

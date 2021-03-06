@@ -33,11 +33,6 @@ const playerListState = atom({
   default: []
 });
 
-const gameListState = atom({
-  key: 'gameListState',
-  default: []
-});
-
 const challengesState = atom({
   key: 'challengesState',
   default: []
@@ -68,7 +63,6 @@ export {
   selectedGamesState,
   playerListState,
   headerState,
-  gameListState,
   challengesState,
   selectedTitlesState
 };
