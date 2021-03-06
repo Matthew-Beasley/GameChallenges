@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { playerListState, challengesState } from './RecoilState';
+import { playerListState, challengesState, queryState } from './RecoilState';
 import { useHistory } from 'react-router-dom';
 
 const GameSetup = () => {
@@ -15,7 +15,7 @@ const GameSetup = () => {
   const [PlaystationChk, setPlaystationChk] = useState(false);
   const [SwitchChk, setSwitchChk] = useState(false);
   const [MobileChk, setMobileChk] = useState(false);
-  const [query, setQuery] = useState({$or: []});
+  const [query, setQuery] = useState(queryState);
 
 
   const addUserName = (playerName) => {
@@ -69,17 +69,11 @@ const GameSetup = () => {
     setDisplayGames([...display]);
     setChallenges([...games.data.games]);
   };
-/*
+
   useEffect(() => {
-    const queryCopy = {...query};
-    queryCopy.$or.push({'PC': true}); 
-    queryCopy.$or.push({'Xbox': true}); 
-    queryCopy.$or.push({'PS': true});
-    queryCopy.$or.push({'Switch': true}); 
-    queryCopy.$or.push({'Mobile': true});
-    setQuery({...queryCopy});
+    setQuery({$or: []});
   }, []);
-*/
+
   useEffect(() => {
     findGames();
   }, [query]);
