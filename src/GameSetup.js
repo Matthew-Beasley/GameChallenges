@@ -98,43 +98,58 @@ const GameSetup = () => {
           <button id="player-submit-btn" onClick={() => addUserName()}>+</button>
         </div>
       </div>
-      <div id="platform-control">
-        <label>PC</label>
-        <input 
-          className="platform-list-input" 
-          type="checkbox" 
-          checked={PCChk}
-          onChange={(ev) => {selectPlatform('PC'); setPCChk(ev.target.checked);}}
-        />
-        <label>Xbox</label>
-        <input 
-          className="platform-list-input" 
-          type="checkbox" 
-          checked={XboxChk}
-          onChange={(ev) => {selectPlatform('Xbox'); setXboxChk(ev.target.checked);}}
-        />
-        <label>Playstation</label>
-        <input 
-          className="platform-list-input" 
-          type="checkbox" 
-          checked={PlaystationChk}
-          onChange={(ev) => {selectPlatform('PS'); setPlaystationChk(ev.target.checked);}}
-        />
-        <label>Switch</label>
-        <input 
-          className="platform-list-input" 
-          type="checkbox" 
-          checked={SwitchChk}
-          onChange={(ev) => {selectPlatform('Switch'); setSwitchChk(ev.target.checked);}}
-        />
-        <label>Mobile</label>
-        <input 
-          className="platform-list-input" 
-          type="checkbox" 
-          checked={MobileChk}
-          onChange={(ev) => {selectPlatform('Mobile'); setMobileChk(ev.target.checked);}}
-        />
+      
+
+      <div id="platform-groups">
+        <div className="platform-checkgroup">
+          <div>
+            <label>PC</label>
+            <input 
+              type="checkbox" 
+              checked={PCChk}
+              onChange={(ev) => {selectPlatform('PC'); setPCChk(ev.target.checked);}}
+            />
+          </div>
+          <div>
+            <label>&nbsp;&nbsp;Xbox</label>
+            <input 
+              type="checkbox" 
+              checked={XboxChk}
+              onChange={(ev) => {selectPlatform('Xbox'); setXboxChk(ev.target.checked);}}
+            />
+          </div>
+        </div>
+        <div className="platform-checkgroup">
+          <div>
+            <label>Playstation</label>
+            <input 
+              type="checkbox" 
+              checked={PlaystationChk}
+              onChange={(ev) => {selectPlatform('PS'); setPlaystationChk(ev.target.checked);}}
+            />
+          </div>
+          <div>
+            <label>Switch</label>
+            <input 
+              type="checkbox" 
+              checked={SwitchChk}
+              onChange={(ev) => {selectPlatform('Switch'); setSwitchChk(ev.target.checked);}}
+            />
+          </div> 
+        </div>
+        <div className="platform-checkgroup">
+          <div>
+            <label>Mobile</label>
+            <input 
+              type="checkbox" 
+              checked={MobileChk}
+              onChange={(ev) => {selectPlatform('Mobile'); setMobileChk(ev.target.checked);}}
+            />
+          </div>
+        </div>
       </div>
+
+
       <div className="setup-control" id="phone-platformselect">
         <label>Platforms</label>
         <select multiple onChange={ev => selectPlatform(ev.target.value)}>

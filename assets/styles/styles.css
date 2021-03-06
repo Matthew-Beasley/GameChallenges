@@ -349,7 +349,7 @@ form > input {
 }
 
 #players > label {
-  margin-top: 5rem;
+  margin-top: 3rem;
 }
 
 #text-bttn-combo {
@@ -366,14 +366,15 @@ form > input {
   width: 11.75rem;
   height: 1.5rem;
   font-size: 1.16rem;
-  margin-top: 5rem;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
   margin-right: 0
 }
 
 #player-submit-btn {
   width: 1.5rem;
   height: 1.5rem;
-  margin-top: 5.2rem;
+  margin-top: 3.2rem;
   border: none;
   border-radius: 6px;
   font-size: 26px;
@@ -384,11 +385,12 @@ form > input {
   display: none;
 }
 
-#platform-control {
+.platform-checkgroup {
+  width: 28.5rem;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  width: 28.5rem;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
 }
 
 #splitscreen-select > select {
@@ -478,7 +480,7 @@ form > input {
   background-image: url('../images/cartoon-monitor.png');
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  margin: 5rem 2rem 0rem 2rem;
+  margin: 3rem 2rem 0rem 2rem;
 }
 
 #challenge-container {
@@ -619,7 +621,7 @@ form > input {
     margin-right: 1rem
   }
   
-  #platform-control {
+  #platform-groups {
     display: none;
   }
 
