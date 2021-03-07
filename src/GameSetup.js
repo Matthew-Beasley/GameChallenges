@@ -100,7 +100,7 @@ const GameSetup = () => {
             id="player-input" 
             type="text" 
             placeholder="Enter player name" 
-            value=""
+            value={playerName}
             onChange={ev => setPlayerName(ev.target.value)} 
           />
           <button id="player-submit-btn" onClick={() => addUserName()}>+</button>
