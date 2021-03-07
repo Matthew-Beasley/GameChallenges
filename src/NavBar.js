@@ -47,12 +47,13 @@ const NavBar = () => {
         isOpen={isOpen}
         onRequestClose={toggleModal}
         overlayClassName="myoverlay"
-        contentLabel="My dialog"
+        contentLabel="Player Stats"
         className="mymodal"
-        closeTimeoutMS={500}
+        closeTimeoutMS={0}
       >
-        <div>My modal dialog.</div>
-        <button onClick={toggleModal}>Close modal</button>
+        <div className="modal-close" onClick={toggleModal}>x</div>
+        <div>Player Stats</div>
+        <button className="player-retires">I quit!</button>
       </Modal>
     </div>
   );

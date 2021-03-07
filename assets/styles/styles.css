@@ -302,19 +302,31 @@ form > input {
   transform: translate(-50%, -50%);
   border: 1px solid #ccc;
   background: #fff;
-  /*overflow: auto;*/
+  overflow: auto;
   border-radius: 15px;
   outline: none;
-  padding: 20px;
+  padding: 5px 20px 10px 20px;
+  font-family: 'HKGrotesk-Regular';
 }
 
 .myoverlay {
- /* position: fixed;
+  /*position: fixed;
   top: 0;
-  left: 0;
+  left: 25rem;
   right: 0;
-  bottom: 0;
+  bottom: 25rem;
   background-color: rgba(0, 0, 0, 0.75);*/
+}
+
+.modal-close {
+  margin-left: 100%;
+  cursor: pointer;
+}
+
+.player-retires {
+  width: 4rem;
+  height: 1.25rem;
+  margin: 1rem 20% .5rem 20%;
 }
 
 
