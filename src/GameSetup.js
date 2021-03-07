@@ -87,6 +87,7 @@ const GameSetup = () => {
         findGames();
       }
     }
+    findGames()
   }, [query]);
 
   return (
