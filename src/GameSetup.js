@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { playerListState, challengesState } from './RecoilState';
+import { playerListState, challengesState, queryState } from './RecoilState';
 import { useHistory } from 'react-router-dom';
 
 const GameSetup = () => {
@@ -10,12 +10,12 @@ const GameSetup = () => {
   const [challenges, setChallenges] = useRecoilState(challengesState);
   const [displayGames, setDisplayGames] = useState([]);
   const [playerName, setPlayerName] = useState('');
-  const [PCChk, setPCChk] = useState(true);
-  const [XboxChk, setXboxChk] = useState(true);
-  const [PlaystationChk, setPlaystationChk] = useState(true);
-  const [SwitchChk, setSwitchChk] = useState(true);
-  const [MobileChk, setMobileChk] = useState(true);
-  const [query, setQuery] = useState({$or: []});
+  const [PCChk, setPCChk] = useState(false);
+  const [XboxChk, setXboxChk] = useState(false);
+  const [PlaystationChk, setPlaystationChk] = useState(false);
+  const [SwitchChk, setSwitchChk] = useState(false);
+  const [MobileChk, setMobileChk] = useState(false);
+  const [query, setQuery] = useState(queryState);
 
 
   const addUserName = (playerName) => {
@@ -71,17 +71,17 @@ const GameSetup = () => {
   };
 
   useEffect(() => {
-    const queryCopy = {...query};
-    queryCopy.$or.push({'PC': true}); 
-    queryCopy.$or.push({'Xbox': true}); 
-    queryCopy.$or.push({'PS': true});
-    queryCopy.$or.push({'Switch': true}); 
-    queryCopy.$or.push({'Mobile': true});
-    setQuery({...queryCopy});
+    setQuery({$or: []});
   }, []);
 
   useEffect(() => {
-    findGames();
+    if(query.$or) {
+      if (query.$or.length < 1) {
+        setChallenges([]);
+      } else {
+        findGames();
+      }
+    }
   }, [query]);
 
   return (
@@ -102,12 +102,12 @@ const GameSetup = () => {
       <div id="platform-groups">
         <div className="platform-checkgroup">
           <div>
-            <label>PC</label>
             <input 
               type="checkbox" 
               checked={PCChk}
               onChange={(ev) => {selectPlatform('PC'); setPCChk(ev.target.checked);}}
             />
+            <label>PC</label>
           </div>
           <div>
             <label>&nbsp;&nbsp;Xbox</label>
@@ -119,13 +119,13 @@ const GameSetup = () => {
           </div>
         </div>
         <div className="platform-checkgroup">
-          <div>
-            <label>Playstation</label>
+          <div>    
             <input 
               type="checkbox" 
               checked={PlaystationChk}
               onChange={(ev) => {selectPlatform('PS'); setPlaystationChk(ev.target.checked);}}
             />
+            <label>Playstation</label>
           </div>
           <div>
             <label>Switch</label>
@@ -138,12 +138,12 @@ const GameSetup = () => {
         </div>
         <div className="platform-checkgroup">
           <div>
-            <label>Mobile</label>
             <input 
               type="checkbox" 
               checked={MobileChk}
               onChange={(ev) => {selectPlatform('Mobile'); setMobileChk(ev.target.checked);}}
             />
+            <label>Mobile</label>
             <div id="mobile-spacer"></div>
           </div>
         </div>

@@ -3,13 +3,13 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 //import css from'slick-carousel/slick/slick.css';
 //import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
-import { challengesState, selectedTitlesState } from './RecoilState';
+import { challengesState, queryState } from './RecoilState';
 import NavBar from './NavBar';
 
 
 const ChallengeDisplay = () => {
   const [challenges, setChallenges] = useRecoilState(challengesState);
-  const [selectedTitles, setSelectedTitles] = useRecoilState(selectedTitlesState);
+  const [query, setQuery] = useRecoilState(queryState);
 
   var settings = {
     dots: false,

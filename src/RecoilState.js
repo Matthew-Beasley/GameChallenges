@@ -33,14 +33,14 @@ const playerListState = atom({
   default: []
 });
 
+const queryState = atom({
+  key: 'queryState',
+  default: {}
+})
+
 const challengesState = atom({
   key: 'challengesState',
   default: []
-});
-
-const selectedTitlesState = atom({
-  key: 'selectedTitlesState',
-  default: ''
 });
 
 const headerState = selector({
@@ -64,5 +64,5 @@ export {
   playerListState,
   headerState,
   challengesState,
-  selectedTitlesState
+  queryState
 };
