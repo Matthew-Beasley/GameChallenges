@@ -19,9 +19,9 @@ const GameSetup = () => {
 
 
   const addUserName = () => {
-    console.log(playerName)
+    //console.log(playerName)
     if( !playerName) {
-      alert(`Oops! Player name can't be empty`)
+      alert('Oops! Player name can\'t be empty');
     } else {
       setPlayers([...players, playerName]);
       setPlayerName('');
@@ -87,7 +87,7 @@ const GameSetup = () => {
         findGames();
       }
     }
-    findGames()
+    findGames();
   }, [query]);
 
   return (

@@ -10,9 +10,20 @@ const NavBar = () => {
   const [initials, setInitials] = useState([]);
   const [players, setPlayers] = useRecoilState(playerListState);
   const [isOpen, setIsOpen] = useState(false);
+  const [scoresOpen, setScoresOpen] = useState(false);
 
   const  toggleModal = () => {
     setIsOpen(!isOpen);
+  };
+
+  const toggleScores = () => {
+    console.log('in toggleScores')
+    setScoresOpen(!scoresOpen);
+  }
+
+  const retirePlayer = (ev) => {
+    //console.log(ev.target)
+    setPlayers([]);
   };
 
   useEffect(() => {
@@ -30,7 +41,20 @@ const NavBar = () => {
         <Link to="/" >Thwart Me</Link>
         <Link to="/about" >About</Link>
         <Link to="/contact">Contact</Link>
+        <div id="scores" onClick={toggleScores}>Scores</div>
       </div>
+      <Modal
+        isOpen={scoresOpen}
+        onRequestClose={toggleScores}
+        overlayClassName="myoverlay"
+        contentLabel="Player Stats"
+        className="scores-modal"
+        closeTimeoutMS={0}
+      >
+        <div className="modal-close" onClick={toggleScores}>x</div>
+        <div>Scores</div>
+        <div>Scores would go here </div>
+      </Modal>
       <div id="dot-list">
         {initials.map((letter, idx) => {return ( 
           <div 
@@ -53,7 +77,7 @@ const NavBar = () => {
       >
         <div className="modal-close" onClick={toggleModal}>x</div>
         <div>Player Stats</div>
-        <button className="player-retires">I quit!</button>
+        <button className="player-retires" onClick={ev => retirePlayer(ev)}>I quit!</button>
       </Modal>
     </div>
   );
