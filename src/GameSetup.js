@@ -24,6 +24,7 @@ const GameSetup = () => {
       alert('Oops! Player name can\'t be empty');
     } else {
       setPlayers([...players, playerName]);
+      console.log(playerName)
       setPlayerName('');
     }
   };
@@ -99,6 +100,7 @@ const GameSetup = () => {
             id="player-input" 
             type="text" 
             placeholder="Enter player name" 
+            value=""
             onChange={ev => setPlayerName(ev.target.value)} 
           />
           <button id="player-submit-btn" onClick={() => addUserName()}>+</button>

@@ -17,9 +17,9 @@ const NavBar = () => {
   };
 
   const toggleScores = () => {
-    console.log('in toggleScores')
+    console.log('in toggleScores');
     setScoresOpen(!scoresOpen);
-  }
+  };
 
   const retirePlayer = (ev) => {
     //console.log(ev.target)
@@ -57,28 +57,18 @@ const NavBar = () => {
       </Modal>
       <div id="dot-list">
         {initials.map((letter, idx) => {return ( 
-          <div 
-            key={idx} 
-            className="player-dot"
-            onClick={toggleModal}
-          >
+          <div className="player-square" key={idx}>
             <div 
-              className="player-initial">{letter}
-            </div>
-          </div> );})}
+              className="player-dot"
+              onClick={toggleModal}
+            >
+              <div 
+                className="player-initial">{letter}
+              </div>
+            </div> 
+          </div>
+        );})}
       </div>
-      <Modal
-        isOpen={isOpen}
-        onRequestClose={toggleModal}
-        overlayClassName="myoverlay"
-        contentLabel="Player Stats"
-        className="mymodal"
-        closeTimeoutMS={0}
-      >
-        <div className="modal-close" onClick={toggleModal}>x</div>
-        <div>Player Stats</div>
-        <button className="player-retires" onClick={ev => retirePlayer(ev)}>I quit!</button>
-      </Modal>
     </div>
   );
 };
