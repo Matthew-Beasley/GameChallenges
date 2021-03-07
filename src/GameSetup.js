@@ -18,9 +18,14 @@ const GameSetup = () => {
   const [query, setQuery] = useState(queryState);
 
 
-  const addUserName = (playerName) => {
-    setPlayers([...players, playerName]);
-    setPlayerName('');
+  const addUserName = () => {
+    console.log(playerName)
+    if( !playerName) {
+      alert(`Oops! Player name can't be empty`)
+    } else {
+      setPlayers([...players, playerName]);
+      setPlayerName('');
+    }
   };
 
   const selectPlatform = (platform) => {
@@ -92,7 +97,6 @@ const GameSetup = () => {
           <input 
             id="player-input" 
             type="text" 
-            checked={playerName} 
             placeholder="Enter player name" 
             onChange={ev => setPlayerName(ev.target.value)} 
           />
