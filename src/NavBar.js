@@ -1,11 +1,30 @@
 import React, {useState, useEffect} from 'react';
 import { Route, Link, history } from 'react-router-dom';
 import { RecoilState, useRecoilState } from 'recoil';
+import Modal from 'react-modal';
 import { playerListState } from './RecoilState';
+
+Modal.setAppElement('#root');
 
 const NavBar = () => {
   const [initials, setInitials] = useState([]);
   const [players, setPlayers] = useRecoilState(playerListState);
+  const [isOpen, setIsOpen] = useState(false);
+  const [scoresOpen, setScoresOpen] = useState(false);
+
+  const  toggleModal = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const toggleScores = () => {
+    console.log('in toggleScores')
+    setScoresOpen(!scoresOpen);
+  }
+
+  const retirePlayer = (ev) => {
+    //console.log(ev.target)
+    setPlayers([]);
+  };
 
   useEffect(() => {
     const tempArray = [];
@@ -22,10 +41,44 @@ const NavBar = () => {
         <Link to="/" >Thwart Me</Link>
         <Link to="/about" >About</Link>
         <Link to="/contact">Contact</Link>
+        <div id="scores" onClick={toggleScores}>Scores</div>
       </div>
+      <Modal
+        isOpen={scoresOpen}
+        onRequestClose={toggleScores}
+        overlayClassName="myoverlay"
+        contentLabel="Player Stats"
+        className="scores-modal"
+        closeTimeoutMS={0}
+      >
+        <div className="modal-close" onClick={toggleScores}>x</div>
+        <div>Scores</div>
+        <div>Scores would go here </div>
+      </Modal>
       <div id="dot-list">
-        {initials.map((letter, idx) => {return ( <div key={idx} className="player-dot"><div className="player-initial">{letter}</div></div> )})}
+        {initials.map((letter, idx) => {return ( 
+          <div 
+            key={idx} 
+            className="player-dot"
+            onClick={toggleModal}
+          >
+            <div 
+              className="player-initial">{letter}
+            </div>
+          </div> );})}
       </div>
+      <Modal
+        isOpen={isOpen}
+        onRequestClose={toggleModal}
+        overlayClassName="myoverlay"
+        contentLabel="Player Stats"
+        className="mymodal"
+        closeTimeoutMS={0}
+      >
+        <div className="modal-close" onClick={toggleModal}>x</div>
+        <div>Player Stats</div>
+        <button className="player-retires" onClick={ev => retirePlayer(ev)}>I quit!</button>
+      </Modal>
     </div>
   );
 };
