@@ -317,29 +317,6 @@ form > input {
   color: black;
 }
 
-.mymodal {
-  position: fixed;
-  top: 12rem;
-  left: 90%;
-  transform: translate(-50%, -50%);
-  border: 1px solid #ccc;
-  background: #fff;
-  overflow: auto;
-  border-radius: 15px;
-  outline: none;
-  padding: 5px 20px 10px 20px;
-  font-family: 'HKGrotesk-Regular';
-}
-
-.myoverlay {
-  /*position: fixed;
-  top: 0;
-  left: 25rem;
-  right: 0;
-  bottom: 25rem;
-  background-color: rgba(0, 0, 0, 0.75);*/
-}
-
 .modal-close {
   margin-left: 100%;
   cursor: pointer;
