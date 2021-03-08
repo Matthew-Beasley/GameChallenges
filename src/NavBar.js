@@ -3,18 +3,15 @@ import { Route, Link, history } from 'react-router-dom';
 import { RecoilState, useRecoilState } from 'recoil';
 import Modal from 'react-modal';
 import { playerListState } from './RecoilState';
+import NavModal from './NavModal';
 
 Modal.setAppElement('#root');
 
 const NavBar = () => {
   const [initials, setInitials] = useState([]);
   const [players, setPlayers] = useRecoilState(playerListState);
-  const [isOpen, setIsOpen] = useState(false);
   const [scoresOpen, setScoresOpen] = useState(false);
-
-  const  toggleModal = () => {
-    setIsOpen(!isOpen);
-  };
+  // TODO: Should I put the letter in recoil?
 
   const toggleScores = () => {
     setScoresOpen(!scoresOpen);
@@ -57,15 +54,9 @@ const NavBar = () => {
       </Modal>
       <div id="dot-list">
         {initials.map((letter, idx) => {return ( 
-          <div 
-            className="player-dot"
-            key={idx}
-          >
-            <div 
-              className="player-initial">{letter}
-            </div>
-          </div> 
-        );})}
+          <NavModal key={idx} letter={letter} />
+        );
+        })} 
       </div>
     </div>
   );
