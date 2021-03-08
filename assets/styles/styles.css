@@ -303,6 +303,7 @@ form > input {
   height: 3rem;
   width: 3rem;
   margin-top: 15px;
+  margin-right: 1rem;
   border-radius: 200px;
   background-color: rgb(40, 226, 214);
   display: flex;
@@ -321,11 +322,27 @@ form > input {
   cursor: pointer;
 }
 
+.player-modal {
+  position: fixed;
+  top: 12rem;
+  left: 88%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #ccc;
+  background: #fff;
+  overflow: auto;
+  border-radius: 15px;
+  outline: none;
+  padding: 5px 20px 10px 20px;
+  font-family: 'HKGrotesk-Regular';
+}
+
 .player-retires {
   width: 4rem;
   height: 1.25rem;
   margin: 1rem 20% .5rem 20%;
 }
+
+
 
 
 /* ===== Main Game Component Styles ===== */

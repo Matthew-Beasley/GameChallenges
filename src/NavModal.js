@@ -27,16 +27,15 @@ const NavModal = ({ index, letter }) => {
         onRequestClose={toggleModal}
         overlayClassName="myoverlay"
         contentLabel="Player Stats"
-        className="scores-modal"
+        className="player-modal"
         closeTimeoutMS={0}
       >
         <div className="modal-close" onClick={toggleModal}>x</div>
-        <button className="retirre-bttn" onClick={() => {retirePlayer(); toggleModal()}}>Bye guys!</button>
+        <button className="retire-bttn" onClick={() => {retirePlayer(); toggleModal()}}>Bye guys!</button>
       </Modal>
       <div className="player-dot" onClick={toggleModal}>
         <div 
           className="player-initial">{letter}
-          {console.log('key in NavModal ', index)}
         </div>
       </div> 
     </div>
