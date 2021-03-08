@@ -5,7 +5,8 @@ import Modal from 'react-modal';
 
 Modal.setAppElement('#root');
 
-const NavModal = ({ letter }) => {
+// eslint-disable-next-line react/prop-types
+const NavModal = ({ index, letter }) => {
   const [players, setPlayers] = useRecoilState(playerListState);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -13,9 +14,9 @@ const NavModal = ({ letter }) => {
     setIsOpen(!isOpen);
   };
 
-  const retirePlayer = (idx) => {
+  const retirePlayer = () => {
     const tmpArr = [...players];
-    tmpArr.splice(idx, 1);
+    tmpArr.splice(index, 1);
     setPlayers([...tmpArr]);
   };
 
@@ -30,11 +31,12 @@ const NavModal = ({ letter }) => {
         closeTimeoutMS={0}
       >
         <div className="modal-close" onClick={toggleModal}>x</div>
-        <button className="retirre-bttn" onClick={() => retirePlayer()}>Bye guys!</button>
+        <button className="retirre-bttn" onClick={() => {retirePlayer(); toggleModal()}}>Bye guys!</button>
       </Modal>
       <div className="player-dot" onClick={toggleModal}>
         <div 
           className="player-initial">{letter}
+          {console.log('key in NavModal ', index)}
         </div>
       </div> 
     </div>

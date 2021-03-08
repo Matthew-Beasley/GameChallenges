@@ -11,16 +11,9 @@ const NavBar = () => {
   const [initials, setInitials] = useState([]);
   const [players, setPlayers] = useRecoilState(playerListState);
   const [scoresOpen, setScoresOpen] = useState(false);
-  // TODO: Should I put the letter in recoil?
 
   const toggleScores = () => {
     setScoresOpen(!scoresOpen);
-  };
-
-  const retirePlayer = (idx) => {
-    const tmpArr = [...players];
-    tmpArr.splice(idx, 1);
-    setPlayers([...tmpArr]);
   };
 
   useEffect(() => {
@@ -53,9 +46,10 @@ const NavBar = () => {
         <div>Scores would go here </div>
       </Modal>
       <div id="dot-list">
-        {initials.map((letter, idx) => {return ( 
-          <NavModal key={idx} letter={letter} />
-        );
+        {initials.map((letter, idx) => {
+          return ( 
+            <NavModal key={idx} index={idx} letter={letter} />
+          );
         })} 
       </div>
     </div>
