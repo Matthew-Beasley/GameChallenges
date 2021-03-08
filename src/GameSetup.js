@@ -19,12 +19,10 @@ const GameSetup = () => {
 
 
   const addUserName = () => {
-    //console.log(playerName)
     if( !playerName) {
       alert('Oops! Player name can\'t be empty');
     } else {
       setPlayers([...players, playerName]);
-      console.log(playerName)
       setPlayerName('');
     }
   };

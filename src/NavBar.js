@@ -17,13 +17,13 @@ const NavBar = () => {
   };
 
   const toggleScores = () => {
-    console.log('in toggleScores');
     setScoresOpen(!scoresOpen);
   };
 
-  const retirePlayer = (ev) => {
-    //console.log(ev.target)
-    setPlayers([]);
+  const retirePlayer = (idx) => {
+    const tmpArr = [...players];
+    tmpArr.splice(idx, 1);
+    setPlayers([...tmpArr]);
   };
 
   useEffect(() => {
@@ -57,16 +57,14 @@ const NavBar = () => {
       </Modal>
       <div id="dot-list">
         {initials.map((letter, idx) => {return ( 
-          <div className="player-square" key={idx}>
+          <div 
+            className="player-dot"
+            key={idx}
+          >
             <div 
-              className="player-dot"
-              onClick={toggleModal}
-            >
-              <div 
-                className="player-initial">{letter}
-              </div>
-            </div> 
-          </div>
+              className="player-initial">{letter}
+            </div>
+          </div> 
         );})}
       </div>
     </div>
