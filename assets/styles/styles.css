@@ -414,7 +414,7 @@ form > input {
   color: white;
   border-radius: 8px;
   width: 11.75rem;
-  height: 1.5rem;
+  height: 2rem;
   font-size: 1.16rem;
   margin-top: 3rem;
   margin-bottom: 1rem;
@@ -422,8 +422,8 @@ form > input {
 }
 
 #player-submit-btn {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 2rem;
+  height: 2rem;
   margin-top: 3.2rem;
   border: none;
   border-radius: 6px;
@@ -446,7 +446,11 @@ form > input {
 }
 
 .platform-checkgroup label {
-  margin-left: 0rem;
+  margin: 0rem .5rem 0rem .5rem;
+}
+
+.platform-checkgroup input {
+  margin: 0;
 }
 
 #mobile-spacer {
