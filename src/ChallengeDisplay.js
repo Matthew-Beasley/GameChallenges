@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-//import css from'slick-carousel/slick/slick.css';
-//import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
 import { challengesState } from './RecoilState';
 import NavBar from './NavBar';
