@@ -1,18 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import {RecoilState, useRecoilState} from 'recoil';
 import { playerListState } from './RecoilState';
-import Modal from 'react-modal';
+import { Button, Icon, Image, Modal } from 'semantic-ui-react';
 
-Modal.setAppElement('#root');
 
 // eslint-disable-next-line react/prop-types
 const NavModal = ({ index, letter }) => {
   const [players, setPlayers] = useRecoilState(playerListState);
-  const [isOpen, setIsOpen] = useState(false);
-
-  const  toggleModal = () => {
-    setIsOpen(!isOpen);
-  };
+  const [open, setOpen] = React.useState(false);
 
   const retirePlayer = () => {
     const tmpArr = [...players];
@@ -23,21 +18,61 @@ const NavModal = ({ index, letter }) => {
   return (
     <div id="navmodal-container">
       <Modal
-        isOpen={isOpen}
-        onRequestClose={toggleModal}
-        overlayClassName="myoverlay"
-        contentLabel="Player Stats"
-        className="player-modal"
-        closeTimeoutMS={0}
+        open={open}
+        onClose={() => setOpen(false)}
+        onOpen={() => setOpen(true)}
+        trigger={ <div className="player-dot" onClick={() => setOpen(true)}>
+          <div 
+            className="player-initial">{letter}
+          </div>
+        </div> }
       >
-        <div className="modal-close" onClick={toggleModal}>x</div>
-        <button className="retire-bttn" onClick={() => {retirePlayer(); toggleModal()}}>Bye guys!</button>
+        <Modal.Header>Modal Header</Modal.Header>
+        <Modal.Content image>
+          <Image size='medium' src='/images/wireframe/image.png' wrapped />
+          <Modal.Description>
+            <p>
+            This is an example of expanded content that will cause the modal's
+            dimmer to scroll.
+            </p>
+
+            <Image
+              src='/images/wireframe/paragraph.png'
+              style={{ marginBottom: 10 }}
+            />
+            <Image
+              src='/images/wireframe/paragraph.png'
+              style={{ marginBottom: 10 }}
+            />
+            <Image
+              src='/images/wireframe/paragraph.png'
+              style={{ marginBottom: 10 }}
+            />
+            <Image
+              src='/images/wireframe/paragraph.png'
+              style={{ marginBottom: 10 }}
+            />
+            <Image
+              src='/images/wireframe/paragraph.png'
+              style={{ marginBottom: 10 }}
+            />
+            <Image
+              src='/images/wireframe/paragraph.png'
+              style={{ marginBottom: 10 }}
+            />
+            <Image
+              src='/images/wireframe/paragraph.png'
+              style={{ marginBottom: 10 }}
+            />
+            <Image src='/images/wireframe/paragraph.png' />
+          </Modal.Description>
+        </Modal.Content>
+        <Modal.Actions>
+          <Button primary onClick={() => setOpen(false)}>
+          Proceed <Icon name='right chevron' />
+          </Button>
+        </Modal.Actions>
       </Modal>
-      <div className="player-dot" onClick={toggleModal}>
-        <div 
-          className="player-initial">{letter}
-        </div>
-      </div> 
     </div>
   );
 };
