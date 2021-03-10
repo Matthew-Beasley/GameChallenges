@@ -8,6 +8,7 @@ import GameContainer from './GameContainer';
 import Contact from './Contact';
 import About from './About';
 import ChallengeDisplay from './ChallengeDisplay';
+import SiteDown from './SiteDown';
 
 
 const App = () => {
@@ -20,7 +21,8 @@ const App = () => {
 */
   return (
     <div id="app-container">
-      <Route exact path="/" component={GameContainer} />
+      <Route exact path='/' component={SiteDown} />
+      {/*<Route exact path="/" component={GameContainer} />*/}
       <Route path="/createUser" component={CreateUser} />
       <Route path="/login" component={Login} />
       <Route path="/contact" component={Contact} />
