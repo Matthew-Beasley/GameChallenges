@@ -31,20 +31,7 @@ const NavBar = () => {
         <Link to="/" >Thwart Me</Link>
         <Link to="/about" >About</Link>
         <Link to="/contact">Contact</Link>
-        <div id="scores" onClick={toggleScores}>Scores</div>
       </div>
-      <Modal
-        isOpen={scoresOpen}
-        onRequestClose={toggleScores}
-        overlayClassName="myoverlay"
-        contentLabel="Player Stats"
-        className="scores-modal"
-        closeTimeoutMS={0}
-      >
-        <div className="modal-close" onClick={toggleScores}>x</div>
-        <div>Scores</div>
-        <div>Scores would go here </div>
-      </Modal>
       <div id="dot-list">
         {initials.map((letter, idx) => {
           return ( 

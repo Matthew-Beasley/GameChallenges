@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {RecoilState, useRecoilState} from 'recoil';
 import { playerListState } from './RecoilState';
-import { Button, Icon, Image, Modal } from 'semantic-ui-react';
+import { Button, Icon, Header, Modal } from 'semantic-ui-react';
 
 
 // eslint-disable-next-line react/prop-types
@@ -18,58 +18,31 @@ const NavModal = ({ index, letter }) => {
   return (
     <div id="navmodal-container">
       <Modal
+        closeIcon
+        size='mini'
+        dimmer='blurring'
         open={open}
+        trigger={ 
+          <div className="player-dot" onClick={() => setOpen(true)}>
+            <div 
+              className="player-initial">{letter}
+            </div>
+          </div> }
         onClose={() => setOpen(false)}
         onOpen={() => setOpen(true)}
-        trigger={ <div className="player-dot" onClick={() => setOpen(true)}>
-          <div 
-            className="player-initial">{letter}
-          </div>
-        </div> }
       >
-        <Modal.Header>Modal Header</Modal.Header>
-        <Modal.Content image>
-          <Image size='medium' src='/images/wireframe/image.png' wrapped />
-          <Modal.Description>
-            <p>
-            This is an example of expanded content that will cause the modal's
-            dimmer to scroll.
-            </p>
-
-            <Image
-              src='/images/wireframe/paragraph.png'
-              style={{ marginBottom: 10 }}
-            />
-            <Image
-              src='/images/wireframe/paragraph.png'
-              style={{ marginBottom: 10 }}
-            />
-            <Image
-              src='/images/wireframe/paragraph.png'
-              style={{ marginBottom: 10 }}
-            />
-            <Image
-              src='/images/wireframe/paragraph.png'
-              style={{ marginBottom: 10 }}
-            />
-            <Image
-              src='/images/wireframe/paragraph.png'
-              style={{ marginBottom: 10 }}
-            />
-            <Image
-              src='/images/wireframe/paragraph.png'
-              style={{ marginBottom: 10 }}
-            />
-            <Image
-              src='/images/wireframe/paragraph.png'
-              style={{ marginBottom: 10 }}
-            />
-            <Image src='/images/wireframe/paragraph.png' />
-          </Modal.Description>
+        <Header icon='archive' content='Leave the Game' />
+        <Modal.Content>
+          <p>
+            I'm Outa Here!
+          </p>
         </Modal.Content>
         <Modal.Actions>
-          <Button primary onClick={() => setOpen(false)}>
-          Proceed <Icon name='right chevron' />
+          <Button color='red' onClick={() => setOpen(false)}>
+            <Icon name='remove' /> No
+          </Button>
+          <Button color='green' onClick={() => {retirePlayer(); setOpen(false)}}>
+            <Icon name='checkmark' /> Yes
           </Button>
         </Modal.Actions>
       </Modal>
