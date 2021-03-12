@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { playerListState, challengesState, queryState } from './RecoilState';
+import { playerListState, challengesState, queryState, userState } from './RecoilState';
 import { useHistory } from 'react-router-dom';
 
 const GameSetup = () => {

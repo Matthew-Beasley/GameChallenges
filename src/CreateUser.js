@@ -14,7 +14,7 @@ const CreateUser = () => {
   const [userName, setUserName] = useState('');
   const [notify, setNotify] = useState(false);
   const history = useHistory();
-  const [cookies, setCookie, removeCookie] = useCookies(['cookie-name']);
+  const [cookies, setCookie] = useCookies(['cookie-name']);
 
   useEffect(() => {
     const tok = cookies.get('token')
@@ -42,8 +42,8 @@ const CreateUser = () => {
 
   const login = async () => {
     const creds = (await axios.get('/auth', { headers: { username: userName, password: password }})).data;
-    //setToken(creds);
-    setCookie('token', creds, { path: '/', maxAge: 43200, httpOnly: true, secure: true, sameSite: 'lax' });
+    setCookie('token', creds, { path: '/', maxAge: 43200 });
+    setToken(creds);
   };
 
   const checkCredentials = async (event) => {
