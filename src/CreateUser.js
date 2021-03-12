@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
 import { userState, passwordState, tokenState } from './RecoilState';
+import { useCookies } from 'react-cookie';
 
 
 const CreateUser = () => {
@@ -13,8 +14,11 @@ const CreateUser = () => {
   const [userName, setUserName] = useState('');
   const [notify, setNotify] = useState(false);
   const history = useHistory();
+  const [cookies, setCookie, removeCookie] = useCookies(['cookie-name']);
 
   useEffect(() => {
+    const tok = cookies.get('token')
+    console.log(tok)
     if (token) {
       axios.post('/user/token', { token: token }).then(response => {
         setUser(response.data[0]);
@@ -38,7 +42,8 @@ const CreateUser = () => {
 
   const login = async () => {
     const creds = (await axios.get('/auth', { headers: { username: userName, password: password }})).data;
-    setToken(creds);
+    //setToken(creds);
+    setCookie('token', creds, { path: '/', maxAge: 43200, httpOnly: true, secure: true, sameSite: 'lax' });
   };
 
   const checkCredentials = async (event) => {

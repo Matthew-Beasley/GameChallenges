@@ -4,15 +4,17 @@ import axios from 'axios';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { userState, passwordState, navigatorSelector, tokenState } from './RecoilState';
 import { useHistory } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
 
-const CreateUser = () => {
+const Login = () => {
   const [password, setPassword] = useState('');
   const [user, setUser] = useRecoilState(userState);
   const [email, setEmail] = useState('');
   const [token, setToken] = useRecoilState(tokenState);
   const [userName, setUserName] = useState('');
   const history = useHistory();
+  const [cookies, setCookie] = useCookies(['token']);
 
   useEffect(() => {
     if (token) {
@@ -23,12 +25,12 @@ const CreateUser = () => {
   }, [token]);
 
   const login = async (ev) => {
-    ev.preventDefault();
+    ev.preventDefault(ev);
     const creds = (await axios.get('/auth', { headers: { username: userName, password: password }})).data;
-    setToken(creds);
+    setCookie('token', creds, { path: '/', maxAge: 43200, httpOnly: true, secure: true, sameSite: 'lax' });
     setUserName('');
     setPassword('');
-    history.push('/gamesetup');
+    setToken(creds);
   };
 
   const logout = () => {
@@ -56,4 +58,4 @@ const CreateUser = () => {
   );
 };
 
-export default CreateUser;
+export default Login;

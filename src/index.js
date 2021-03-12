@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { RecoilRoot } from 'recoil';
 import { HashRouter as Router } from 'react-router-dom';
+import { CookiesProvider } from 'react-cookie';
 import App from './App';
 
 import '../assets/HKGrotesk2.41/TTF/HKGrotesk-Black.ttf'; 
@@ -24,6 +25,12 @@ import '../assets/styles/styles.css';
 const root = document.querySelector('#root');
 
 ReactDOM.render(
-  <RecoilRoot><Router><App /></Router></RecoilRoot>,
+  <RecoilRoot>
+    <Router>
+      <CookiesProvider>
+        <App />
+      </CookiesProvider>
+    </Router>
+  </RecoilRoot>,
   root
 );
