@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
-import { userState, passwordState, tokenState } from './RecoilState';
+import { userState, passwordState, csrfState, tokenState } from './RecoilState';
 import { useCookies } from 'react-cookie';
 
 
@@ -10,6 +10,7 @@ const CreateUser = () => {
   const [password, setPassword] = useState('');
   const [user, setUser] = useRecoilState(userState);
   const [token, setToken] = useRecoilState(tokenState);
+  const [csrf, setCsrf] = useRecoilState(csrfState);
   const [email, setEmail] = useState('');
   const [userName, setUserName] = useState('');
   const [notify, setNotify] = useState(false);
@@ -17,8 +18,11 @@ const CreateUser = () => {
   const [cookies, setCookie] = useCookies(['cookie-name']);
 
   useEffect(() => {
-    const tok = cookies.get('token')
-    console.log(tok)
+    axios.defaults.headers.post['X-CSRF-Token'] = csrf;
+  }, []);
+
+  useEffect(() => {
+    const token = cookies.get('token');
     if (token) {
       axios.post('/user/token', { token: token }).then(response => {
         setUser(response.data[0]);

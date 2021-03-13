@@ -6,7 +6,8 @@ const csurf = require('csurf');
 const userRouter = require('./api/users');
 const challengeRouter = require('./api/challenges');
 const authRouter = require('./api/auth');
-const { findUserFromToken } = require('./mongo/auth');
+const { findUserFromToken, isLoggedIn, isAdmin } = require('./mongo/auth');
+
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
@@ -22,21 +23,11 @@ if(process.env.NODE_ENV === 'production') {
   });
 }
 
-app.use(cookieParser());
-app.use(csurf({
-  cookie: {
-    key: '_csrf-my-app',
-    path: '/context-route',
-    httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    maxAge: 3600 // 1-hour
-  }
-}));
-app.use((req,res,next)=>{
-  res.cookie('CSRF_token', req.csrfToken(), { sameSite: true });
-  next();
+const csrfProtection = csurf({
+  cookie: true
 });
 
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use((req, res, next) => {
@@ -57,13 +48,13 @@ app.use((req, res, next) => {
 });
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 app.use('/dist', express.static(path.join(__dirname, 'dist')));
-app.use('/user', userRouter);
-app.use('/challenge', challengeRouter);
-app.use('/auth', authRouter);
+app.use('/user', csrfProtection, userRouter);
+app.use('/challenge', csrfProtection, challengeRouter);
+app.use('/auth', csrfProtection, authRouter);
 
-app.get('/', (req, res, next) => {
+app.get('/', csrfProtection, (req, res, next) => {
   try {
-    res.sendFile(path.join(__dirname, 'index.html'));
+    res.cookie('CSRF_token', req.csrfToken()).sendFile(path.join(__dirname, 'index.html'))
   } catch (error) {
     next(error);
   }
