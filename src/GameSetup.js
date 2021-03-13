@@ -65,6 +65,7 @@ const GameSetup = () => {
   };
 
   const findGames = async () => {
+    console.log('csrf', )
     const games = await axios.post('/challenge/games', query);
     const display = new Set();
     for (let i = 0; i < games.data.games.length; i++) {

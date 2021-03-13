@@ -1,15 +1,12 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-var cookieParser = require('cookie-parser')
-var csrf = require('csurf')
-var bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser');
+const csurf = require('csurf');
 const userRouter = require('./api/users');
 const challengeRouter = require('./api/challenges');
 const authRouter = require('./api/auth');
 const { findUserFromToken } = require('./mongo/auth');
-var csrfProtection = csrf({ cookie: true })
-var parseForm = bodyParser.urlencoded({ extended: false })
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
@@ -25,7 +22,20 @@ if(process.env.NODE_ENV === 'production') {
   });
 }
 
-app.use(cookieParser())
+app.use(cookieParser());
+app.use(csurf({
+  cookie: {
+    key: '_csrf-my-app',
+    path: '/context-route',
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    maxAge: 3600 // 1-hour
+  }
+}));
+app.use((req,res,next)=>{
+  res.cookie('CSRF_token', req.csrfToken(), { sameSite: true });
+  next();
+});
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
