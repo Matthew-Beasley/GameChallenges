@@ -1,15 +1,13 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-var cookieParser = require('cookie-parser')
-var csrf = require('csurf')
-var bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser');
+const csurf = require('csurf');
 const userRouter = require('./api/users');
 const challengeRouter = require('./api/challenges');
 const authRouter = require('./api/auth');
-const { findUserFromToken } = require('./mongo/auth');
-var csrfProtection = csrf({ cookie: true })
-var parseForm = bodyParser.urlencoded({ extended: false })
+const { findUserFromToken, isLoggedIn, isAdmin } = require('./mongo/auth');
+
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
@@ -25,8 +23,11 @@ if(process.env.NODE_ENV === 'production') {
   });
 }
 
-app.use(cookieParser())
+const csrfProtection = csurf({
+  cookie: true
+});
 
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use((req, res, next) => {
@@ -47,13 +48,13 @@ app.use((req, res, next) => {
 });
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 app.use('/dist', express.static(path.join(__dirname, 'dist')));
-app.use('/user', userRouter);
-app.use('/challenge', challengeRouter);
-app.use('/auth', authRouter);
+app.use('/user', csrfProtection, userRouter);
+app.use('/challenge', csrfProtection, challengeRouter);
+app.use('/auth', csrfProtection, authRouter);
 
-app.get('/', (req, res, next) => {
+app.get('/', csrfProtection, (req, res, next) => {
   try {
-    res.sendFile(path.join(__dirname, 'index.html'));
+    res.cookie('CSRF_token', req.csrfToken()).sendFile(path.join(__dirname, 'index.html'))
   } catch (error) {
     next(error);
   }

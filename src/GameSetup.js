@@ -1,13 +1,14 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { playerListState, challengesState, queryState, userState } from './RecoilState';
+import { playerListState, challengesState, csrfState, queryState, userState } from './RecoilState';
 import { useHistory } from 'react-router-dom';
 
 const GameSetup = () => {
   const history = useHistory();
   const [players, setPlayers] = useRecoilState(playerListState);
   const [challenges, setChallenges] = useRecoilState(challengesState);
+  const [csrf, setCsrf] = useRecoilState(csrfState);
   const [displayGames, setDisplayGames] = useState([]);
   const [playerName, setPlayerName] = useState('');
   const [PCChk, setPCChk] = useState(false);
@@ -75,6 +76,7 @@ const GameSetup = () => {
   };
 
   useEffect(() => {
+    axios.defaults.headers.post['X-CSRF-Token'] = csrf;
     setQuery({$or: []});
   }, []);
 

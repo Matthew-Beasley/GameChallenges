@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link , withRouter } from 'react-router-dom';
 import axios from 'axios';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { userState, passwordState, navigatorSelector, tokenState } from './RecoilState';
+import { userState, passwordState, csrfState, tokenState } from './RecoilState';
 import { useHistory } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 
@@ -12,9 +12,14 @@ const Login = () => {
   const [user, setUser] = useRecoilState(userState);
   const [email, setEmail] = useState('');
   const [token, setToken] = useRecoilState(tokenState);
+  const [csrf, setCsrf] = useRecoilState(csrfState);
   const [userName, setUserName] = useState('');
   const history = useHistory();
   const [cookies, setCookie] = useCookies(['token']);
+
+  useEffect(() => {
+    axios.defaults.headers.post['X-CSRF-Token'] = csrf;
+  }, []);
 
   useEffect(() => {
     if (token) {
