@@ -1,11 +1,15 @@
 const express = require('express');
 const path = require('path');
-const cors = require('cors');
 const app = express();
+var cookieParser = require('cookie-parser')
+var csrf = require('csurf')
+var bodyParser = require('body-parser')
 const userRouter = require('./api/users');
 const challengeRouter = require('./api/challenges');
 const authRouter = require('./api/auth');
 const { findUserFromToken } = require('./mongo/auth');
+var csrfProtection = csrf({ cookie: true })
+var parseForm = bodyParser.urlencoded({ extended: false })
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
@@ -21,7 +25,8 @@ if(process.env.NODE_ENV === 'production') {
   });
 }
 
-app.use(cors());
+app.use(cookieParser())
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use((req, res, next) => {

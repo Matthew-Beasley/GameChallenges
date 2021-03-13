@@ -24,10 +24,11 @@ const Login = () => {
     }
   }, [token]);
 
+  // need to alert user that credentials are not valid
   const login = async (ev) => {
     ev.preventDefault(ev);
     const creds = (await axios.get('/auth', { headers: { username: userName, password: password }})).data;
-    setCookie('token', creds, { path: '/', maxAge: 43200, httpOnly: true, secure: true, sameSite: 'lax' });
+    setCookie('token', creds, { path: '/', maxAge: 43200 });
     setUserName('');
     setPassword('');
     setToken(creds);

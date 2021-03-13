@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { Route } from 'react-router-dom';
+
 import CreateUser from './CreateUser';
 import Login from './Login';
 import GameContainer from './GameContainer';
@@ -9,18 +10,17 @@ import ChallengeDisplay from './ChallengeDisplay';
 import { useCookies } from 'react-cookie';
 import { useRecoilState } from 'recoil';
 import { tokenState } from './RecoilState';
-//import { set } from 'mongoose';
 
 const App = () => {
   const [cookies, setCookie] = useCookies(['token']);
   const [token, setToken] = useRecoilState(tokenState);
-/*
+
   useEffect(() => {
     if (!token) {
       setToken(cookies.token);
     }
   }, []);
-*/
+
   if (!token){
     return (
       <Route component={Login} />
