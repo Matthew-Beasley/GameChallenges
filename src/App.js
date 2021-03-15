@@ -37,7 +37,7 @@ const App = () => {
   if (!token){
     return (
       <div id="start">
-        <Route exact path="/" component={SiteDown} />
+        <Route exact path="/" component={Login} />
         <Route path="/createuser" component={CreateUser} />
       </div>
     );
