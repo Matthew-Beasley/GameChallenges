@@ -45,7 +45,7 @@ const Login = () => {
       <div id="login-column">
         <div id="login-text">
           <div>{user.userName ? 'Welcome Back ' + user.userName + '!' : null}</div>
-          <h1> THWART ME</h1>
+          <h1> Thwart Me Login</h1>
         </div>
         <Link to="/createuser">Create an account</Link>
         <form id="login-form" onSubmit={(ev) => login(ev)}>

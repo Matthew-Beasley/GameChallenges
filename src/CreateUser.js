@@ -19,7 +19,6 @@ const CreateUser = () => {
   const [cookies, setCookie] = useCookies(['token']);
 
   useEffect(() => {
-    console.log('csrf in useEffect ', csrf)
     axios.defaults.headers.post['X-CSRF-Token'] = csrf;
   }, []);
 
@@ -48,7 +47,6 @@ const CreateUser = () => {
 
   const login = async () => {
     const creds = (await axios.get('/auth', { headers: { username: userName, password: password }})).data;
-    console.log('creds in login ', creds)
     setCookie('token', creds, { path: '/', maxAge: 43200 });
     setToken(creds);
   };
@@ -56,11 +54,8 @@ const CreateUser = () => {
   const checkCredentials = async (event) => {
     event.preventDefault();
     const usr = (await axios.get(`/user?username=${userName}`)).data;
-    console.log('user in checkCredentials ', user)
     if (!usr.userName) {
-      console.log('axios default headers ', axios.defaults.headers)
       await axios.post('/user', { userName, password, email, notify });
-      console.log('posted user data')
       await login();
     } else {
       // throw error user exists (alert?)
@@ -70,7 +65,7 @@ const CreateUser = () => {
     setUserName('');
     setPassword('');
     setEmail('');
-    history.push('/gamesetup');
+    history.push('/');
   };
 
   return (

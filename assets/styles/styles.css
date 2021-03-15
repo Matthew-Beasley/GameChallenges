@@ -133,9 +133,12 @@ form > input {
   margin-top: 1rem;
 }
 
-#create-container > a {
-  color: white;
-  font-size: 12px;
+#login-container a {
+  justify-self: center;
+  font-size: 2rem;
+  color: blue;
+  margin-top: 1rem;
+  font-size: 1.5rem;
   text-decoration: none;
 }
 
