@@ -7,7 +7,9 @@ const {
   getUsers
 } = require('../mongo/crud/users');
 const {
-  findUserFromToken 
+  findUserFromToken,
+  isLoggedIn, 
+  isAdmin
 } = require('../mongo/auth');
 
 userRouter.get('/', async (req, res, next) => {

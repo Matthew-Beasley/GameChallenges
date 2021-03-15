@@ -15,7 +15,7 @@ const passwordState = atom({
 
 const tokenState = atom({
   key: 'tokenState',
-  default: ''
+  default: undefined
 });
 
 const platformsState = atom({
@@ -43,6 +43,11 @@ const challengesState = atom({
   default: []
 });
 
+const csrfState = atom({
+  key: 'csrfState',
+  default: ''
+});
+
 const headerState = selector({
   key: 'headerState',
   get: ({get}) => {
@@ -64,5 +69,6 @@ export {
   playerListState,
   headerState,
   challengesState,
-  queryState
+  queryState,
+  csrfState
 };

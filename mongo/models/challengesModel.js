@@ -13,7 +13,7 @@ const challengesSchema = new Schema({
   Online: { type: Boolean },
   TimeLimit: { type: String },
   Attempts: { type: Number },
-  Game: { type: String },
+  Games: { type: String },
   Challenge: { type: String, required: true, unique: true },
   DeckNumber: [Number]
 });
