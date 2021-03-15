@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { Route } from 'react-router-dom';
+import axios from 'axios';
 import CreateUser from './CreateUser';
 import Login from './Login';
 import GameContainer from './GameContainer';
@@ -8,22 +9,27 @@ import About from './About';
 import ChallengeDisplay from './ChallengeDisplay';
 import { useCookies } from 'react-cookie';
 import { useRecoilState } from 'recoil';
-import { tokenState, csrfState } from './RecoilState';
+import { tokenState, csrfState, userState } from './RecoilState';
 
 const App = () => {
   const [cookies, setCookie] = useCookies(['token']);
   const [token, setToken] = useRecoilState(tokenState);
   const [csrf, setCsrf] = useRecoilState(csrfState);
+  const [user, setUser] = useRecoilState(userState);
 
   useEffect(() => {
+    axios.defaults.headers.post['X-CSRF-Token'] = csrf;
+    setToken(cookies.token);
     setCsrf(cookies.CSRF_token);
   }, []);
 
   useEffect(() => {
-    if (!token) {
-      setToken(cookies.token);
+    if (token) {
+      axios.post('/user/token', { token: token }).then(response => {
+        setUser(response.data[0]);
+      });
     }
-  }, []);
+  }, [token]);
 
   if (!token){
     return (

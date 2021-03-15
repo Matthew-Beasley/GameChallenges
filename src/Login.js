@@ -21,18 +21,15 @@ const Login = () => {
     axios.defaults.headers.post['X-CSRF-Token'] = csrf;
   }, []);
 
-  useEffect(() => {
-    if (token) {
-      axios.post('/user/token', { token: token }).then(response => {
-        setUser(response.data[0]);
-      });
-    }
-  }, [token]);
-
   // need to alert user that credentials are not valid
   const login = async (ev) => {
     ev.preventDefault(ev);
-    const creds = (await axios.get('/auth', { headers: { username: userName, password: password }})).data;
+    let creds = undefined;
+    try {
+      creds = (await axios.get('/auth', { headers: { username: userName, password: password }})).data;
+    } catch (err) {
+      const placeholder = err;
+    }
     setCookie('token', creds, { path: '/', maxAge: 43200 });
     setUserName('');
     setPassword('');
