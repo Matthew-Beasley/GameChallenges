@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
-import { userState, passwordState, csrfState, tokenState } from './RecoilState';
+import { userState, passwordState, headerState, csrfState, tokenState } from './RecoilState';
 import { useCookies } from 'react-cookie';
 
 
 const CreateUser = () => {
+  const headers = useRecoilValue(headerState);
   const [password, setPassword] = useState('');
   const [user, setUser] = useRecoilState(userState);
   const [token, setToken] = useRecoilState(tokenState);
@@ -24,7 +25,7 @@ const CreateUser = () => {
   useEffect(() => {
     const token = cookies.get('token');
     if (token) {
-      axios.post('/user/token', { token: token }).then(response => {
+      axios.post('/user/token', { token: token }, headers).then(response => {
         setUser(response.data[0]);
       });
     }
@@ -54,7 +55,7 @@ const CreateUser = () => {
     event.preventDefault();
     const usr = (await axios.get(`/user?username=${userName}`)).data;
     if (!usr.userName) {
-      await axios.post('/user', { userName, password, email, notify });
+      await axios.post('/user', { userName, password, email, notify }, headers);
       await login();
     } else {
       // throw error user exists (alert?)

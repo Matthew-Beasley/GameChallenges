@@ -8,14 +8,15 @@ import Contact from './Contact';
 import About from './About';
 import ChallengeDisplay from './ChallengeDisplay';
 import { useCookies } from 'react-cookie';
-import { useRecoilState } from 'recoil';
-import { tokenState, csrfState, userState } from './RecoilState';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { tokenState, csrfState, userState, headerState } from './RecoilState';
 
 const App = () => {
   const [cookies, setCookie] = useCookies(['token']);
   const [token, setToken] = useRecoilState(tokenState);
   const [csrf, setCsrf] = useRecoilState(csrfState);
   const [user, setUser] = useRecoilState(userState);
+  const headers = useRecoilValue(headerState);
 
   useEffect(() => {
     axios.defaults.headers.post['X-CSRF-Token'] = csrf;
@@ -25,7 +26,7 @@ const App = () => {
 
   useEffect(() => {
     if (token) {
-      axios.post('/user/token', { token: token }).then(response => {
+      axios.post('/user/token', { token: token }, headers).then(response => {
         setUser(response.data[0]);
       });
     }
