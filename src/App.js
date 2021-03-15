@@ -37,7 +37,7 @@ const App = () => {
   if (!token){
     return (
       <div id="start">
-        <Route exact path="/" component={SiteDown} />
+        <Route exact path="/" component={Login} />
         <Route path="/createuser" component={CreateUser} />
       </div>
     );
@@ -45,7 +45,7 @@ const App = () => {
   else {
     return (
       <div id="app-container">
-        <Route exact path={'/' || 'game-container'} component={GameContainer} />
+        <Route exact path="/" component={GameContainer} />
         <Route path="/contact" component={Contact} />
         <Route path="/about" component={About} />
         <Route path="/challenges" component={ChallengeDisplay} />
