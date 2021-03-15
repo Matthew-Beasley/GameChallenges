@@ -49,7 +49,7 @@ app.use((req, res, next) => {
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 app.use('/dist', express.static(path.join(__dirname, 'dist')));
 app.use('/user', csrfProtection, userRouter);
-app.use('/challenge', csrfProtection, challengeRouter);
+app.use('/challenge', isLoggedIn, csrfProtection, challengeRouter);
 app.use('/auth', csrfProtection, authRouter);
 
 app.get('/', csrfProtection, (req, res, next) => {

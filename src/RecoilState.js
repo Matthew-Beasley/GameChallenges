@@ -15,7 +15,7 @@ const passwordState = atom({
 
 const tokenState = atom({
   key: 'tokenState',
-  default: ''
+  default: undefined
 });
 
 const platformsState = atom({

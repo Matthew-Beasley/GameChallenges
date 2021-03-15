@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
-import { userState, passwordState, csrfState, tokenState } from './RecoilState';
+import { userState, passwordState, headerState, csrfState, tokenState } from './RecoilState';
 import { useCookies } from 'react-cookie';
 
 
 const CreateUser = () => {
+  const headers = useRecoilValue(headerState);
   const [password, setPassword] = useState('');
   const [user, setUser] = useRecoilState(userState);
   const [token, setToken] = useRecoilState(tokenState);
@@ -15,16 +16,16 @@ const CreateUser = () => {
   const [userName, setUserName] = useState('');
   const [notify, setNotify] = useState(false);
   const history = useHistory();
-  const [cookies, setCookie] = useCookies(['cookie-name']);
+  const [cookies, setCookie] = useCookies(['token']);
 
   useEffect(() => {
     axios.defaults.headers.post['X-CSRF-Token'] = csrf;
   }, []);
 
   useEffect(() => {
-    const token = cookies.get('token');
+    const token = cookies.token;
     if (token) {
-      axios.post('/user/token', { token: token }).then(response => {
+      axios.post('/user/token', { token: token }, headers).then(response => {
         setUser(response.data[0]);
       });
     }
@@ -64,7 +65,7 @@ const CreateUser = () => {
     setUserName('');
     setPassword('');
     setEmail('');
-    history.push('/gamesetup');
+    history.push('/');
   };
 
   return (

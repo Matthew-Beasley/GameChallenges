@@ -1,13 +1,15 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useRecoilState } from 'recoil';
-import { playerListState, challengesState, csrfState, queryState, userState } from './RecoilState';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { playerListState, challengesState, csrfState, queryState, headerState, userState } from './RecoilState';
 import { useHistory } from 'react-router-dom';
 
 const GameSetup = () => {
   const history = useHistory();
+  const headers = useRecoilValue(headerState);
   const [players, setPlayers] = useRecoilState(playerListState);
   const [challenges, setChallenges] = useRecoilState(challengesState);
+  const [user, setUser] = useRecoilState(userState);
   const [csrf, setCsrf] = useRecoilState(csrfState);
   const [displayGames, setDisplayGames] = useState([]);
   const [playerName, setPlayerName] = useState('');
@@ -52,8 +54,20 @@ const GameSetup = () => {
     setQuery({...queryCopy});
   };
 
+  // Need an array of game objects for this to work games: [{game: CoD, deck: 1}, {game: CoD, deck: 2}]
+  const getPurchasedChallenges = (challengeArray) => {
+    return challengeArray.reduce((acc, item) => {
+      if(user.decks.includes(item.decknumbers)) {
+        acc.push(item);
+      }
+      return acc;
+    });
+  };
+
   const getChallenges = (ev) => {
-    const tempChallenges = [...challenges];
+    const rawChallenges = [...challenges];
+    const tempChallenges = getPurchasedChallenges(rawChallenges);
+console.log(tempChallenges);
     for (let i = 0; i < tempChallenges.length; i++) {
       if (tempChallenges[i].Game === ev.target.id) {
         const tempGame = {...tempChallenges[i]};
@@ -66,7 +80,7 @@ const GameSetup = () => {
   };
 
   const findGames = async () => {
-    const games = await axios.post('/challenge/games', query);
+    const games = await axios.post('/challenge/games', query, headers);
     const display = new Set();
     for (let i = 0; i < games.data.games.length; i++) {
       display.add(games.data.games[i].Game);

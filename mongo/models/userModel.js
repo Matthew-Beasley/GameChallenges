@@ -7,8 +7,7 @@ const userSchema = new Schema({
   email: { type: String, unique: true},
   notify: { type: Boolean }, 
   platforms: [String],
-  gameTitles: [String],
-  decks: [{}]
+  decks: [{game: {type: String, deck: {type: Number}}}]
 });
 
 const User = Mongoose.model('User', userSchema);
