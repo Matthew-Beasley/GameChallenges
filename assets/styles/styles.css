@@ -87,6 +87,16 @@
 
 */* {border: solid red 2px}*/
 
+#site-down {
+  height: 1080px;
+  background-image: url('../images/blue-background.png');
+  padding: 20rem;
+}
+
+#site-down h1 {
+  color: white;
+}
+
 /* ===== Login Styles ===== */
 
 #login-container {
