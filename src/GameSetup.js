@@ -54,8 +54,20 @@ const GameSetup = () => {
     setQuery({...queryCopy});
   };
 
+  // Need an array of game objects for this to work games: [{game: CoD, deck: 1}, {game: CoD, deck: 2}]
+  const getPurchasedChallenges = (challengeArray) => {
+    return challengeArray.reduce((acc, item) => {
+      if(user.decks.includes(item.decknumbers)) {
+        acc.push(item);
+      }
+      return acc;
+    });
+  };
+
   const getChallenges = (ev) => {
-    const tempChallenges = [...challenges];
+    const rawChallenges = [...challenges];
+    const tempChallenges = getPurchasedChallenges(rawChallenges);
+console.log(tempChallenges);
     for (let i = 0; i < tempChallenges.length; i++) {
       if (tempChallenges[i].Game === ev.target.id) {
         const tempGame = {...tempChallenges[i]};

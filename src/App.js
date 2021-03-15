@@ -19,9 +19,9 @@ const App = () => {
   const headers = useRecoilValue(headerState);
 
   useEffect(() => {
-    axios.defaults.headers.post['X-CSRF-Token'] = csrf;
     setToken(cookies.token);
     setCsrf(cookies.CSRF_token);
+    axios.defaults.headers.post['X-CSRF-Token'] = csrf;
   }, []);
 
   useEffect(() => {
@@ -34,14 +34,16 @@ const App = () => {
 
   if (!token){
     return (
-      <Route component={Login} />
+      <div id="start">
+        <Route exact path="/" component={Login} />
+        <Route path="/createuser" component={CreateUser} />
+      </div>
     );
   }
   else {
     return (
       <div id="app-container">
         <Route exact path="/" component={GameContainer} />
-        <Route path="/createuser" component={CreateUser} />
         <Route path="/contact" component={Contact} />
         <Route path="/about" component={About} />
         <Route path="/challenges" component={ChallengeDisplay} />

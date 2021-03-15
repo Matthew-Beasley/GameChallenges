@@ -155,9 +155,11 @@ form > input {
   flex-direction: row;
   min-width: 100vwpx;
   width: calc(var(--vw, 1vw) * 100);
+  min-height: 1080px;/*100vhpx;*/
   height: calc(var(--vh, 1vh) * 100);
   justify-content: center;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color: black;
 }
 
 #create-column {

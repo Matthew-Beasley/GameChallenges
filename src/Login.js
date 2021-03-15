@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Link , withRouter } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { userState, passwordState, csrfState, tokenState } from './RecoilState';
-import { useHistory } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 
 
@@ -48,12 +47,10 @@ const Login = () => {
           <div>{user.userName ? 'Welcome Back ' + user.userName + '!' : null}</div>
           <h1> THWART ME</h1>
         </div>
+        <Link to="/createuser">Create an account</Link>
         <form id="login-form" onSubmit={(ev) => login(ev)}>
           <input id="user-name" type="text" placeholder="User Name" value={userName} onChange={(ev) => setUserName(ev.target.value)} />
           <input id="password" type="password" placeholder="Password" value={password} onChange={(ev) => setPassword(ev.target.value)} />
-          <div id="create-container">
-            <Link to="/createUser">Create User</Link>
-          </div>
           <input id="submit" type="submit" value="Submit" />
         </form>
       </div>

@@ -16,14 +16,15 @@ const CreateUser = () => {
   const [userName, setUserName] = useState('');
   const [notify, setNotify] = useState(false);
   const history = useHistory();
-  const [cookies, setCookie] = useCookies(['cookie-name']);
+  const [cookies, setCookie] = useCookies(['token']);
 
   useEffect(() => {
+    console.log('csrf in useEffect ', csrf)
     axios.defaults.headers.post['X-CSRF-Token'] = csrf;
   }, []);
 
   useEffect(() => {
-    const token = cookies.get('token');
+    const token = cookies.token;
     if (token) {
       axios.post('/user/token', { token: token }, headers).then(response => {
         setUser(response.data[0]);
@@ -47,6 +48,7 @@ const CreateUser = () => {
 
   const login = async () => {
     const creds = (await axios.get('/auth', { headers: { username: userName, password: password }})).data;
+    console.log('creds in login ', creds)
     setCookie('token', creds, { path: '/', maxAge: 43200 });
     setToken(creds);
   };
@@ -54,8 +56,11 @@ const CreateUser = () => {
   const checkCredentials = async (event) => {
     event.preventDefault();
     const usr = (await axios.get(`/user?username=${userName}`)).data;
+    console.log('user in checkCredentials ', user)
     if (!usr.userName) {
-      await axios.post('/user', { userName, password, email, notify }, headers);
+      console.log('axios default headers ', axios.defaults.headers)
+      await axios.post('/user', { userName, password, email, notify });
+      console.log('posted user data')
       await login();
     } else {
       // throw error user exists (alert?)
