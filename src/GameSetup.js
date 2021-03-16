@@ -31,7 +31,7 @@ const GameSetup = () => {
   };
 
   const selectPlatform = (platform) => {
-    const queryCopy = {...query};
+    /* const queryCopy = {...query};
     if (!queryCopy.$or.find(el => el[platform] === true)) {
       const platformObj = {[platform]: true};
       queryCopy.$or.push(platformObj);
@@ -39,11 +39,11 @@ const GameSetup = () => {
       const index = queryCopy.$or.findIndex(el => el[platform] === true);
       queryCopy.$or.splice(index, 1);
     }
-    setQuery({...queryCopy});
+    setQuery({...queryCopy});*/
   };
 
   const setControlVal = (ev) => {
-    const queryCopy = {...query};
+    /*   const queryCopy = {...query};
     const index = queryCopy.$or.findIndex(el => el[ev.target.id]);
     if (index > -1) {
       queryCopy.$or.splice(index, 1);
@@ -51,23 +51,23 @@ const GameSetup = () => {
     if (!ev.target.value === '') {
       queryCopy.$or.push({ [ev.target.id]: ev.target.value });
     }
-    setQuery({...queryCopy});
+    setQuery({...queryCopy});*/
   };
 
   // Need an array of game objects for this to work games: [{game: CoD, deck: 1}, {game: CoD, deck: 2}]
   const getPurchasedChallenges = (challengeArray) => {
-    return challengeArray.reduce((acc, item) => {
-      if(user.decks.includes(item.decknumbers)) {
+    const temp = challengeArray.reduce((acc, item) => {
+      /*if(user.decks.includes(item.decknumbers)) {
         acc.push(item);
-      }
+      }*/
+      acc += 'test';
       return acc;
     });
+    return temp;
   };
 
   const getChallenges = (ev) => {
-    const rawChallenges = [...challenges];
-    const tempChallenges = getPurchasedChallenges(rawChallenges);
-console.log(tempChallenges);
+    /*   const tempChallenges = [...challenges];
     for (let i = 0; i < tempChallenges.length; i++) {
       if (tempChallenges[i].Game === ev.target.id) {
         const tempGame = {...tempChallenges[i]};
@@ -76,33 +76,61 @@ console.log(tempChallenges);
         tempChallenges.splice(i, 0, tempGame);
       }
     }
-    setChallenges([...tempChallenges]);
+    setChallenges([...tempChallenges]);*/
   };
-
+  /*
+  const filterOnDecks = () => {
+    query.$or.push({game: 'Fortnight', });
+  };
+*/
   const findGames = async () => {
     const games = await axios.post('/challenge/games', query, headers);
-    const display = new Set();
+    console.log(games.data);
+  /*    const display = new Set();
     for (let i = 0; i < games.data.games.length; i++) {
       display.add(games.data.games[i].Game);
     }
     setDisplayGames([...display]);
-    setChallenges([...games.data.games]);
+    setChallenges([...games.data.games]);*/
+  };
+
+  const getDecks = async () => {
+    //console.log('user in setDecks ', user);
+    //let query = {$and: [], $or: []};
+    const games = [];
+    if (user.decks) {
+      for (let i = 0; i < user.decks.length; i++) {
+        let query = {
+          Game: user.decks[i].game,
+          DeckNumber: user.decks[i].deck
+        };
+        const response = await axios.post('/challenge/games', query, headers);
+        games.push(...response.data.games);
+      }
+    }
+    //console.log('games in getDecks ', games);
+    setChallenges([...games]);
+    //setQuery({$and: [{Game: 'Among Us'}, {$or: [{DeckNumber: 0}, {DeckNumber: 1}]}]});
   };
 
   useEffect(() => {
     axios.defaults.headers.post['X-CSRF-Token'] = csrf;
-    setQuery({$or: []});
-  }, []);
+    getDecks();
+  }, [user]);
 
   useEffect(() => {
-    if(query.$or) {
+    console.log('challneges in useEffect[challenges', challenges)
+  }, [challenges]);
+
+  useEffect(() => {
+    /* if(query.$or) {
       if (query.$or.length < 1) {
         setChallenges([]);
       } else {
         findGames();
       }
-    }
-    findGames();
+    }*/
+    //findGames();
   }, [query]);
 
   return (
