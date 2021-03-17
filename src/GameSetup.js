@@ -18,7 +18,10 @@ const GameSetup = () => {
   const [PlaystationChk, setPlaystationChk] = useState(false);
   const [SwitchChk, setSwitchChk] = useState(false);
   const [MobileChk, setMobileChk] = useState(false);
-  const [query, setQuery] = useState(queryState);
+  const [splitScreen, setSplitScreen] = useState('');
+  const [kidFriendly, setKidFriendly] = useState('');
+  const [online, setOnline] = useState('');
+  const [timeLimit, setTimeLimit] = useState('');
 
 
   const addUserName = () => {
@@ -30,73 +33,49 @@ const GameSetup = () => {
     }
   };
 
-  const selectPlatform = (platform) => {
-    /* const queryCopy = {...query};
-    if (!queryCopy.$or.find(el => el[platform] === true)) {
-      const platformObj = {[platform]: true};
-      queryCopy.$or.push(platformObj);
-    } else {
-      const index = queryCopy.$or.findIndex(el => el[platform] === true);
-      queryCopy.$or.splice(index, 1);
+  const selectPlatform = (platform, ev) => {
+    switch (platform) {
+    case 'PC':
+      setPCChk(ev.target.checked);
+      return;
+    case 'Xbox':
+      setXboxChk(ev.target.checked);
+      return;
+    case 'Playstation':
+      setPlaystationChk(ev.target.checked);
+      return;
+    case 'Switch':
+      setSwitchChk(ev.target.checked);
+      return;
+    case 'Mobile':
+      setMobileChk(ev.target.checked);
+      return;
+    default:
+      return;
     }
-    setQuery({...queryCopy});*/
   };
 
   const setControlVal = (ev) => {
-    /*   const queryCopy = {...query};
-    const index = queryCopy.$or.findIndex(el => el[ev.target.id]);
-    if (index > -1) {
-      queryCopy.$or.splice(index, 1);
+    //console.log('target.value in setControlVal ', ev.target.value)
+    switch (ev.target.id) {
+    case 'SplitScreen':
+      setSplitScreen(ev.target.value);
+      return;
+    case 'KidFriendly':
+      setKidFriendly(ev.target.value);
+      return;
+    case 'Online':
+      setOnline(ev.target.value);
+      return;
+    case 'TimeLimit':
+      setTimeLimit(ev.target.value);
+      return;
+    default:
+      return;
     }
-    if (!ev.target.value === '') {
-      queryCopy.$or.push({ [ev.target.id]: ev.target.value });
-    }
-    setQuery({...queryCopy});*/
-  };
-
-  // Need an array of game objects for this to work games: [{game: CoD, deck: 1}, {game: CoD, deck: 2}]
-  const getPurchasedChallenges = (challengeArray) => {
-    const temp = challengeArray.reduce((acc, item) => {
-      /*if(user.decks.includes(item.decknumbers)) {
-        acc.push(item);
-      }*/
-      acc += 'test';
-      return acc;
-    });
-    return temp;
-  };
-
-  const getChallenges = (ev) => {
-    /*   const tempChallenges = [...challenges];
-    for (let i = 0; i < tempChallenges.length; i++) {
-      if (tempChallenges[i].Game === ev.target.id) {
-        const tempGame = {...tempChallenges[i]};
-        tempGame.show = ev.target.checked;
-        tempChallenges.splice(i, 1);
-        tempChallenges.splice(i, 0, tempGame);
-      }
-    }
-    setChallenges([...tempChallenges]);*/
-  };
-  /*
-  const filterOnDecks = () => {
-    query.$or.push({game: 'Fortnight', });
-  };
-*/
-  const findGames = async () => {
-    const games = await axios.post('/challenge/games', query, headers);
-    console.log(games.data);
-  /*    const display = new Set();
-    for (let i = 0; i < games.data.games.length; i++) {
-      display.add(games.data.games[i].Game);
-    }
-    setDisplayGames([...display]);
-    setChallenges([...games.data.games]);*/
   };
 
   const getDecks = async () => {
-    //console.log('user in setDecks ', user);
-    //let query = {$and: [], $or: []};
     const games = [];
     if (user.decks) {
       for (let i = 0; i < user.decks.length; i++) {
@@ -108,30 +87,63 @@ const GameSetup = () => {
         games.push(...response.data.games);
       }
     }
-    //console.log('games in getDecks ', games);
-    setChallenges([...games]);
-    //setQuery({$and: [{Game: 'Among Us'}, {$or: [{DeckNumber: 0}, {DeckNumber: 1}]}]});
+    //console.log('games ', games)
+    return games;
+  };
+
+  const parseChallneges = async () => {
+    const tmpChallenges = await getDecks();
+    const parsed = new Set();
+    for (let i = 0; i < tmpChallenges.length; i++) {
+      if (PCChk === true && tmpChallenges[i].PC === true) {
+        !parsed.has(tmpChallenges[i].Game) ? parsed.add(tmpChallenges[i]) : null;
+      }
+      if (XboxChk === true && tmpChallenges[i].Xbox === true) {
+        !parsed.has(tmpChallenges[i].Game) ? parsed.add(tmpChallenges[i]) : null;
+      }
+      if (PlaystationChk === true && tmpChallenges[i].Playstation === true) {
+        !parsed.has(tmpChallenges[i].Game) ? parsed.add(tmpChallenges[i]) : null;
+      }
+      if (SwitchChk === true && tmpChallenges[i].Switch === true) {
+        !parsed.has(tmpChallenges[i].Game) ? parsed.add(tmpChallenges[i]) : null;
+      }
+      if (MobileChk === true && tmpChallenges[i].Mobile === true) {
+        !parsed.has(tmpChallenges[i].Game) ? parsed.add(tmpChallenges[i]) : null;
+      }
+
+      if (splitScreen === true && tmpChallenges[i].SplitScreen === false || tmpChallenges[i].SplitScreen === '') {
+        //parsed.delete(challenges[i]);
+      }
+    }
+    console.log('parsed end', parsed)
+    //console.log('PCChk in parse ', PCChk)
+    setChallenges([...parsed]);
+  };
+
+  const getChallenges = (ev) => {
+    const tempChallenges = [...challenges];
+    for (let i = 0; i < tempChallenges.length; i++) {
+      if (tempChallenges[i].Game === ev.target.id) {
+        const tempGame = {...tempChallenges[i]};
+        tempGame.show = ev.target.checked;
+        tempChallenges.splice(i, 1);
+        tempChallenges.splice(i, 0, tempGame);
+      }
+    }
+    setChallenges([...tempChallenges]);
   };
 
   useEffect(() => {
     axios.defaults.headers.post['X-CSRF-Token'] = csrf;
-    getDecks();
   }, [user]);
 
   useEffect(() => {
-    console.log('challneges in useEffect[challenges', challenges)
-  }, [challenges]);
+    parseChallneges();
+  }, [PCChk, XboxChk, PlaystationChk, SwitchChk, MobileChk, splitScreen, kidFriendly, online, timeLimit]);
 
   useEffect(() => {
-    /* if(query.$or) {
-      if (query.$or.length < 1) {
-        setChallenges([]);
-      } else {
-        findGames();
-      }
-    }*/
-    //findGames();
-  }, [query]);
+    //console.log('challenges ', challenges);
+  }, [challenges]);
 
   return (
     <div id="gamesetup-container">
@@ -154,7 +166,7 @@ const GameSetup = () => {
             <input 
               type="checkbox" 
               checked={PCChk}
-              onChange={(ev) => {selectPlatform('PC'); setPCChk(ev.target.checked);}}
+              onChange={(ev) => selectPlatform('PC', ev)}
             />
             <label>PC</label>
           </div>
@@ -163,7 +175,7 @@ const GameSetup = () => {
             <input 
               type="checkbox" 
               checked={XboxChk}
-              onChange={(ev) => {selectPlatform('Xbox'); setXboxChk(ev.target.checked);}}
+              onChange={(ev) => selectPlatform('Xbox', ev)}
             />
           </div>
         </div>
@@ -172,7 +184,7 @@ const GameSetup = () => {
             <input 
               type="checkbox" 
               checked={PlaystationChk}
-              onChange={(ev) => {selectPlatform('PS'); setPlaystationChk(ev.target.checked);}}
+              onChange={(ev) => selectPlatform('PS', ev)}
             />
             <label>Playstation</label>
           </div>
@@ -181,7 +193,7 @@ const GameSetup = () => {
             <input 
               type="checkbox" 
               checked={SwitchChk}
-              onChange={(ev) => {selectPlatform('Switch'); setSwitchChk(ev.target.checked);}}
+              onChange={(ev) => selectPlatform('Switch', ev)}
             />
           </div> 
         </div>
@@ -190,7 +202,7 @@ const GameSetup = () => {
             <input 
               type="checkbox" 
               checked={MobileChk}
-              onChange={(ev) => {selectPlatform('Mobile'); setMobileChk(ev.target.checked);}}
+              onChange={(ev) => selectPlatform('Mobile', ev)}
             />
             <label>Mobile</label>
             <div id="mobile-spacer"></div>
@@ -207,7 +219,7 @@ const GameSetup = () => {
           <option value="Mobile">Mobile</option>
         </select>
       </div>
-      <div className="setup-control" id="splitscreen-select">
+      <div className="setup-control" id="splitscreen">
         <label>Split screen</label>
         <select id="SplitScreen" onChange={ev => setControlVal(ev)}>
           <option value="">No Preference</option>
@@ -215,7 +227,7 @@ const GameSetup = () => {
           <option value="false">No split screen</option>
         </select>
       </div>
-      <div className="setup-control" id="kidfriendly-select">
+      <div className="setup-control" id="kidfriendly">
         <label>Kid friendly</label>
         <select id="KidFriendly" onChange={ev => setControlVal(ev)}>
           <option value="">No Preference</option>
@@ -223,7 +235,7 @@ const GameSetup = () => {
           <option value="false">Adults only</option>
         </select>
       </div>
-      <div className="setup-control" id="onlineSelect">
+      <div className="setup-control" id="online">
         <label>Online only</label>
         <select id="Online" onChange={ev => setControlVal(ev)}>
           <option value="">No Preference</option>
@@ -231,7 +243,7 @@ const GameSetup = () => {
           <option value="false">Offline Only</option>
         </select>
       </div>
-      <div className="setup-control" id="timeLimit">
+      <div className="setup-control" id="timelimit">
         <label>Time Limit</label>
         <select id="TimeLimit" onChange={ev => setControlVal(ev)}>
           <option value="">No Preference</option>
