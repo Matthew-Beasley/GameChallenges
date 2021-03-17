@@ -17,9 +17,6 @@ const ChallengeDisplay = () => {
     draggable: true
   };
 
-
-  return ( <h1>hello</h1>)
-/*
   return (
     <div id="outer-challenges-display">
       <div id="challenge-container"> 
@@ -55,7 +52,6 @@ const ChallengeDisplay = () => {
       </div>
     </div>
   );
-  */
 };
 
 export default ChallengeDisplay;

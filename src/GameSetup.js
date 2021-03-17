@@ -33,6 +33,14 @@ const GameSetup = () => {
     }
   };
 
+  const getDisplayGames = () => {
+    const tmpGames = new Set();
+    for (let i = 0; i < challenges.length; i++) {
+      tmpGames.add(challenges[i].Game);
+    }
+    setDisplayGames([...tmpGames]);
+  };
+
   const selectPlatform = (platform, ev) => {
     switch (platform) {
     case 'PC':
@@ -56,7 +64,6 @@ const GameSetup = () => {
   };
 
   const setControlVal = (ev) => {
-    //console.log('target.value in setControlVal ', ev.target.value)
     switch (ev.target.id) {
     case 'SplitScreen':
       setSplitScreen(ev.target.value);
@@ -87,7 +94,6 @@ const GameSetup = () => {
         games.push(...response.data.games);
       }
     }
-    //console.log('games ', games)
     return games;
   };
 
@@ -119,9 +125,6 @@ const GameSetup = () => {
       if (online === 'true' && tmpChallenges[i].Online !== true) {
         parsed.forEach(item => item.Game === tmpChallenges[i].Game ? parsed.delete(item) : item);
       }
-
-      //console.log('sliced TimeLimit ', parseInt(tmpChallenges[i].TimeLimit.slice(0, 2)));
-
       if (parseInt(timeLimit) !== 'NaN' &&  parseInt(tmpChallenges[i].TimeLimit.slice(0, 2)) !== 'NaN') {
         if (parseInt(timeLimit) <  parseInt(tmpChallenges[i].TimeLimit.slice(0, 2))) {
           parsed.forEach(item => item.Game === tmpChallenges[i].Game ? parsed.delete(item) : item);
@@ -154,6 +157,7 @@ const GameSetup = () => {
 
   useEffect(() => {
     console.log('challenges ', challenges);
+    getDisplayGames();
   }, [challenges]);
 
   return (
