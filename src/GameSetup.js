@@ -41,7 +41,7 @@ const GameSetup = () => {
     case 'Xbox':
       setXboxChk(ev.target.checked);
       return;
-    case 'Playstation':
+    case 'PS':
       setPlaystationChk(ev.target.checked);
       return;
     case 'Switch':
@@ -110,13 +110,24 @@ const GameSetup = () => {
       if (MobileChk === true && tmpChallenges[i].Mobile === true) {
         !parsed.has(tmpChallenges[i].Game) ? parsed.add(tmpChallenges[i]) : null;
       }
+      if (splitScreen === 'true' && tmpChallenges[i].SplitScreen !== true) {
+        parsed.forEach(item => item.Game === tmpChallenges[i].Game ? parsed.delete(item) : item);
+      }
+      if (kidFriendly === 'true' && tmpChallenges[i].kidFriendly !== true) {
+        parsed.forEach(item => item.Game === tmpChallenges[i].Game ? parsed.delete(item) : item);
+      }
+      if (online === 'true' && tmpChallenges[i].Online !== true) {
+        parsed.forEach(item => item.Game === tmpChallenges[i].Game ? parsed.delete(item) : item);
+      }
 
-      if (splitScreen === true && tmpChallenges[i].SplitScreen === false || tmpChallenges[i].SplitScreen === '') {
-        //parsed.delete(challenges[i]);
+      //console.log('sliced TimeLimit ', parseInt(tmpChallenges[i].TimeLimit.slice(0, 2)));
+
+      if (parseInt(timeLimit) !== 'NaN' &&  parseInt(tmpChallenges[i].TimeLimit.slice(0, 2)) !== 'NaN') {
+        if (parseInt(timeLimit) <  parseInt(tmpChallenges[i].TimeLimit.slice(0, 2))) {
+          parsed.forEach(item => item.Game === tmpChallenges[i].Game ? parsed.delete(item) : item);
+        }
       }
     }
-    console.log('parsed end', parsed)
-    //console.log('PCChk in parse ', PCChk)
     setChallenges([...parsed]);
   };
 
@@ -142,7 +153,7 @@ const GameSetup = () => {
   }, [PCChk, XboxChk, PlaystationChk, SwitchChk, MobileChk, splitScreen, kidFriendly, online, timeLimit]);
 
   useEffect(() => {
-    //console.log('challenges ', challenges);
+    console.log('challenges ', challenges);
   }, [challenges]);
 
   return (
@@ -224,7 +235,6 @@ const GameSetup = () => {
         <select id="SplitScreen" onChange={ev => setControlVal(ev)}>
           <option value="">No Preference</option>
           <option value="true">Split screen Only</option>
-          <option value="false">No split screen</option>
         </select>
       </div>
       <div className="setup-control" id="kidfriendly">
@@ -232,7 +242,6 @@ const GameSetup = () => {
         <select id="KidFriendly" onChange={ev => setControlVal(ev)}>
           <option value="">No Preference</option>
           <option value="true">Kid friendly</option>
-          <option value="false">Adults only</option>
         </select>
       </div>
       <div className="setup-control" id="online">
