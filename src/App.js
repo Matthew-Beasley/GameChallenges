@@ -31,7 +31,6 @@ const App = () => {
         setUser(response.data[0]);
       });
     }
-    console.log('token in app useEffect[token] ', token);
   }, [token]);
 
   if (!token){
