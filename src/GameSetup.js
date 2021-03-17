@@ -158,7 +158,7 @@ const GameSetup = () => {
   useEffect(() => {
     console.log('challenges ', challenges);
     getDisplayGames();
-  }, [challenges]);
+  }, [challenges, PCChk, XboxChk, PlaystationChk, SwitchChk, MobileChk, splitScreen, kidFriendly, online, timeLimit]);
 
   return (
     <div id="gamesetup-container">
