@@ -317,8 +317,7 @@ form > input {
 .player-dot {
   height: 3rem;
   width: 3rem;
-  margin-top: 15px;
-  margin-right: 1rem;
+  margin: .5rem 1rem .2rem 0rem;
   border-radius: 200px;
   background-color: rgb(40, 226, 214);
   display: flex;
