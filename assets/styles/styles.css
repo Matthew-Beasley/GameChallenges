@@ -284,7 +284,7 @@ form > input {
   margin: 1.6rem 0rem 1rem 4rem
 }
 
-#scores {
+#retire {
   font-size: 1.5rem;
   color: white;
   text-decoration: none;
@@ -292,7 +292,7 @@ form > input {
   cursor: pointer;
 }
 
-.scores-modal {
+.retire-modal {
   position: fixed;
   top: 12rem;
   left: 35rem;

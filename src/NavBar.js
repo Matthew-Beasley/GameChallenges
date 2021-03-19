@@ -10,10 +10,10 @@ Modal.setAppElement('#root');
 const NavBar = () => {
   const [initials, setInitials] = useState([]);
   const [players, setPlayers] = useRecoilState(playerListState);
-  const [scoresOpen, setScoresOpen] = useState(false);
+  const [retireOpen, setRetireOpen] = useState(false);
 
-  const toggleScores = () => {
-    setScoresOpen(!scoresOpen);
+  const toggleRetire = () => {
+    setRetireOpen(!retireOpen);
   };
 
   useEffect(() => {
@@ -35,7 +35,11 @@ const NavBar = () => {
       <div id="dot-list">
         {initials.map((letter, idx) => {
           return ( 
-            <NavModal key={idx} index={idx} letter={letter} />
+            // create a score variable
+            <div key={idx} className="dot-container">
+              <NavModal index={idx} letter={letter} />
+              <div>Score</div>
+            </div>
           );
         })} 
       </div>
