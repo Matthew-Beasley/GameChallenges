@@ -1,13 +1,13 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { playerListState, challengesState, csrfState, queryState, headerState, userState } from './RecoilState';
+import { playersState, challengesState, csrfState, headerState, userState } from './RecoilState';
 import { useHistory } from 'react-router-dom';
 
 const GameSetup = () => {
   const history = useHistory();
   const headers = useRecoilValue(headerState);
-  const [players, setPlayers] = useRecoilState(playerListState);
+  const [players, setPlayers] = useRecoilState(playersState);
   const [challenges, setChallenges] = useRecoilState(challengesState);
   const [user, setUser] = useRecoilState(userState);
   const [csrf, setCsrf] = useRecoilState(csrfState);
