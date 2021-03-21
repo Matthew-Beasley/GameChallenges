@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { playersState, challengesState, csrfState, headerState, userState } from './RecoilState';
 import { useHistory } from 'react-router-dom';
+import e from 'express';
 
 const GameSetup = () => {
   const history = useHistory();
@@ -22,13 +23,18 @@ const GameSetup = () => {
   const [kidFriendly, setKidFriendly] = useState('');
   const [online, setOnline] = useState('');
   const [timeLimit, setTimeLimit] = useState('');
-
-
+/*
+  const lookForEnter = (ev) => {
+    ev.key === 'Enter' ? addUserName : null;
+  };
+*/
   const addUserName = () => {
     if( !playerName) {
       alert('Oops! Player name can\'t be empty');
     } else {
-      setPlayers([...players, playerName]);
+      const contestant = { Name: playerName, MyTurn: false, Score: 0 };
+      players.length ? contestant.MyTurn = false : contestant.MyTurn = true;
+      setPlayers([...players, contestant]);
       setPlayerName('');
     }
   };
@@ -172,7 +178,7 @@ const GameSetup = () => {
             value={playerName}
             onChange={ev => setPlayerName(ev.target.value)} 
           />
-          <button id="player-submit-btn" onClick={() => addUserName()}>+</button>
+          <button id="player-submit-btn" /*onKeyPress={(ev) => lookForEnter(ev)}*/ onClick={() => addUserName()}>+</button>
         </div>
       </div>
       <div id="platform-groups">

@@ -29,7 +29,7 @@ const selectedGamesState = atom({
 });
 
 const playersState = atom({
-  key: 'playerListState',
+  key: 'playersState',
   default: []
 });
 

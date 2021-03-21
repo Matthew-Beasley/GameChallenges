@@ -284,83 +284,8 @@ form > input {
   margin: 1.6rem 0rem 1rem 4rem
 }
 
-#retire {
-  font-size: 1.5rem;
-  color: white;
-  text-decoration: none;
-  margin: 1.6rem 0rem 1rem 4rem;
-  cursor: pointer;
-}
-
-.retire-modal {
-  position: fixed;
-  top: 12rem;
-  left: 35rem;
-  transform: translate(-50%, -50%);
-  border: 1px solid #ccc;
-  background: #fff;
-  overflow: auto;
-  border-radius: 15px;
-  outline: none;
-  padding: 5px 20px 10px 20px;
-  font-family: 'HKGrotesk-Regular';
-}
-
-#dot-list {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: right;
-  margin-right: 3rem;
-}
-
-.player-dot {
-  height: 3rem;
-  width: 3rem;
-  margin: .5rem 1rem .2rem 0rem;
-  border-radius: 200px;
-  background-color: rgb(40, 226, 214);
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-
-.player-dot > div {
-  font-size: 22px;
-  margin: 10px;
-  color: black;
-}
-
-.modal-close {
-  margin-left: 100%;
-  cursor: pointer;
-}
-
-.player-modal {
-  position: fixed;
-  top: 12rem;
-  left: 88%;
-  transform: translate(-50%, -50%);
-  border: 1px solid #ccc;
-  background: #fff;
-  overflow: auto;
-  border-radius: 15px;
-  outline: none;
-  padding: 5px 20px 10px 20px;
-  font-family: 'HKGrotesk-Regular';
-}
-
-.player-retires {
-  width: 4rem;
-  height: 1.25rem;
-  margin: 1rem 20% .5rem 20%;
-}
-
-
-
 
 /* ===== Main Game Component Styles ===== */
-
 
 #main-gamecomponents {
   display: flex;
@@ -578,6 +503,45 @@ form > input {
   margin-top: 1rem;
   min-width: 100%;
   text-align: center;
+}
+
+
+/* ===== Players Styles ===== */
+
+#player-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+#player-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 20rem;
+  margin: 3rem 2rem 5rem 2rem;
+}
+
+.player {
+  height: 8rem;
+  width: 5rem;
+  margin: 1rem;
+  background-color: burlywood;
+  color: black;
+}
+
+.myturn {
+  height: 10rem;
+  width: 5rem;
+  margin: 1rem;
+  background-color: burlywood;
+  color: black;
+}
+
+#player-buttons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
 }
 
 
