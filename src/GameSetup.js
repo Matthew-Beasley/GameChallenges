@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { playersState, challengesState, csrfState, headerState, userState } from './RecoilState';
 import { useHistory } from 'react-router-dom';
-import e from 'express';
 
 const GameSetup = () => {
   const history = useHistory();

@@ -1,4 +1,3 @@
-
 module.exports = {
   module: {
     rules: [
@@ -40,5 +39,17 @@ module.exports = {
         ],
       },
     ]
-  }
+  },
+  resolve: {
+    fallback: {
+      'buffer': require.resolve('buffer/'),
+      'url': require.resolve('url/'),
+      'stream': require.resolve('stream-browserify'),
+      'querystring': require.resolve('querystring-es3'),
+      'http': require.resolve('stream-http'),
+      'crypto': require.resolve('crypto-browserify'),
+      'zlib': require.resolve('browserify-zlib'),
+      'assert': require.resolve('assert/'),
+    }
+  },
 };
