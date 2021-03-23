@@ -10,7 +10,6 @@ import ChallengeDisplay from './ChallengeDisplay';
 import { useCookies } from 'react-cookie';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { tokenState, csrfState, userState, headerState } from './RecoilState';
-import SiteDown from './SiteDown';
 
 const App = () => {
   const [cookies, setCookie] = useCookies(['token']);
@@ -31,13 +30,12 @@ const App = () => {
         setUser(response.data[0]);
       });
     }
-    console.log('token in app useEffect[token] ', token);
   }, [token]);
 
   if (!token){
     return (
       <div id="start">
-        <Route exact path="/" component={SiteDown} />
+        <Route exact path="/" component={Login} />
         <Route path="/createuser" component={CreateUser} />
       </div>
     );
