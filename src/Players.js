@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import React, { useState } from 'react';
+import { useRecoilState } from 'recoil';
 import {playersState} from './RecoilState'; 
 
 const Player = ({player}) => {
-  const [itsMyTurn, setItsMyTurn] = useState('');
-  //console.log('player in Player ', player);
+  let itsMyTurn = '';
+  player.MyTurn ? itsMyTurn = 'myturn' : itsMyTurn = '';
   return ( 
     <div className={`player ${itsMyTurn}`}>
       <div>{player.Name}</div>
@@ -27,15 +27,16 @@ const Players = () => {
 
   const nextPlayer = (tmpArray) => {
     for (let i = 0; i < tmpArray.length; i++) {
-     // console.log(tmpArray[i], tmpArray.length)
-      if (tmpArray[i].MyTurn === true && i < tmpArray.length && tmpArray[++i] !== undefined) {
+      if (tmpArray[i].MyTurn === true) {
         tmpArray[i].MyTurn = false;
-        tmpArray[++i].MyTurn = true;
-        return tmpArray;
-      } else if (tmpArray[i].MyTurn === true && i === tmpArray[++i] === undefined) {
-        tmpArray[i].MyTurn = false;
-        tmpArray[0].MyTurn = true;
-        return tmpArray;
+
+        if(tmpArray[i + 1] !== undefined) {
+          tmpArray[i + 1].MyTurn = true;
+          return tmpArray;
+        } else {
+          tmpArray[0].MyTurn = true;
+          return tmpArray;
+        }
       }
     }
   };
@@ -47,9 +48,7 @@ const Players = () => {
   };
 
   const addPoint = () => {
-    console.log(players.length)
     const tmpPlayers = massageStateArray(players);
-    console.log(tmpPlayers.length)
     tmpPlayers.forEach(person => person.MyTurn ? ++person.Score : null);
     const incrementedPlayers = nextPlayer(tmpPlayers);
     setPlayers([...incrementedPlayers]);

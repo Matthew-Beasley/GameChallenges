@@ -7,10 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
     "build:dev": "npm run build -- --watch --mode=development",
-    "start:dev": "nodemon server.js --ignore dist/ --ignore src/ & npm run build:dev"
+    "start:dev": "nodemon --delay 50ms server.js --ignore dist/ --ignore src/ & npm run build:dev"
   },
   "keywords": [],
-  "author": "",
+  "author": "Conbec Development",
   "license": "ISC",
   "dependencies": {
     "@ctrl/react-adsense": "^1.3.1",
@@ -24,8 +24,6 @@
     "crypto-browserify": "^3.12.0",
     "csurf": "^1.11.0",
     "dotenv": "^8.2.0",
-    "eslint": "^7.19.0",
-    "eslint-plugin-react": "^7.22.0",
     "express": "^4.17.1",
     "fs": "^0.0.1-security",
     "jwt-simple": "^0.5.6",
@@ -54,6 +52,8 @@
     "@babel/preset-react": "^7.12.10",
     "babel-loader": "^8.2.2",
     "css-loader": "^5.1.1",
+    "eslint": "^7.22.0",
+    "eslint-plugin-react": "^7.23.0",
     "file-loader": "^6.2.0",
     "install": "^0.13.0",
     "jest": "^26.6.3",
