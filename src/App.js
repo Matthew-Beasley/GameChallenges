@@ -10,7 +10,6 @@ import ChallengeDisplay from './ChallengeDisplay';
 import { useCookies } from 'react-cookie';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { tokenState, csrfState, userState, headerState } from './RecoilState';
-import SiteDown from './SiteDown';
 
 const App = () => {
   const [cookies, setCookie] = useCookies(['token']);

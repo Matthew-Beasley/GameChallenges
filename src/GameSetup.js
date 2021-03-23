@@ -1,13 +1,13 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { playerListState, challengesState, csrfState, queryState, headerState, userState } from './RecoilState';
+import { playersState, challengesState, csrfState, headerState, userState } from './RecoilState';
 import { useHistory } from 'react-router-dom';
 
 const GameSetup = () => {
   const history = useHistory();
   const headers = useRecoilValue(headerState);
-  const [players, setPlayers] = useRecoilState(playerListState);
+  const [players, setPlayers] = useRecoilState(playersState);
   const [challenges, setChallenges] = useRecoilState(challengesState);
   const [user, setUser] = useRecoilState(userState);
   const [csrf, setCsrf] = useRecoilState(csrfState);
@@ -22,13 +22,18 @@ const GameSetup = () => {
   const [kidFriendly, setKidFriendly] = useState('');
   const [online, setOnline] = useState('');
   const [timeLimit, setTimeLimit] = useState('');
-
-
+/*
+  const lookForEnter = (ev) => {
+    ev.key === 'Enter' ? addUserName : null;
+  };
+*/
   const addUserName = () => {
     if( !playerName) {
       alert('Oops! Player name can\'t be empty');
     } else {
-      setPlayers([...players, playerName]);
+      const contestant = { Name: playerName, MyTurn: false, Score: 0 };
+      players.length ? contestant.MyTurn = false : contestant.MyTurn = true;
+      setPlayers([...players, contestant]);
       setPlayerName('');
     }
   };
@@ -172,7 +177,7 @@ const GameSetup = () => {
             value={playerName}
             onChange={ev => setPlayerName(ev.target.value)} 
           />
-          <button id="player-submit-btn" onClick={() => addUserName()}>+</button>
+          <button id="player-submit-btn" /*onKeyPress={(ev) => lookForEnter(ev)}*/ onClick={() => addUserName()}>+</button>
         </div>
       </div>
       <div id="platform-groups">
