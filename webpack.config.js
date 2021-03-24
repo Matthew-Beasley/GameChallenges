@@ -31,16 +31,10 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-react', '@babel/preset-env']
+            presets: ['@babel/preset-react']
           }
         }
       },
-      /*[
-      "@babel/preset-env",
-      {
-        "useBuiltIns": "entry"
-      }
-    ]*/
       {
         test: /\.(png|jpg|gif|svg)$/i,
         use: [
