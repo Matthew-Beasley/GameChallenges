@@ -99,61 +99,28 @@
 
 /* ===== Login Styles ===== */
 
-#login-container {
+#login-container form {
   display: flex;
   flex-direction: row;
-  min-width: 100vwpx;
-  width: calc(var(--vw, 1vw) * 100);
-  min-height: 100vhpx;
-  height: calc(var(--vh, 1vh) * 100);
-  justify-content: center;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  width: 40rem;
+  margin: .3rem 1rem 0rem 0rem;
+  height: 2rem;
 }
 
-#login-column {
-  display: flex;
-  flex-direction: column;
-}
-
-#login-text {
-  margin-top: 70%;
-  font-size: 22px;
-}
-
-form {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  margin-top: 30%;
-  width: 17rem;
+#login-container form > a div {
+  margin-top: 1rem
 }
 
 form > input {
-  width: 98%;
+  width: 8rem;
+  height: 1.25rem;
   margin-top: 1rem;
-  border-radius: 15px;
-}
-
-#create-container {
-  width: 98%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  margin-top: 1rem;
-}
-
-#login-container a {
-  justify-self: center;
-  font-size: 2rem;
-  color: blue;
-  margin-top: 1rem;
-  font-size: 1.5rem;
-  text-decoration: none;
 }
 
 #login-form > #submit {
-  margin-top: 4rem;
+  margin-top: .5rem;
   width: 8rem;
   height: 2rem;
   background-color: black;
@@ -166,9 +133,9 @@ form > input {
 #createuser-container {
   display: flex;
   flex-direction: row;
-  min-width: 100vwpx;
-  width: calc(var(--vw, 1vw) * 100);
-  min-height: 1080px;/*100vhpx;*/
+  width: 100vwpx;
+  width: 100vw;
+  height: 100vh;
   height: calc(var(--vh, 1vh) * 100);
   justify-content: center;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -248,10 +215,11 @@ form > input {
 #game-container {
   display: flex;
   flex-direction: column;
+  height: 100vh;
   background-image: url('../images/blue-background.png');
-  background-size: cover;
-  min-height: 42rem;
-  height: calc(var(--vh, 1vh) * 100);
+  background-repeat: no-repeat;
+  background-size: auto;
+  /*min-height: 1080px;*/
 }
 
 
@@ -264,7 +232,7 @@ form > input {
   justify-content: space-between;
   background-color: rgb(54, 51, 51);
   min-width: 100%;
-  height: 80px;
+  height: 5rem;
   margin-top: 3rem;
   color: white;
   border-bottom:  solid rgb(40, 226, 214) 3px;
@@ -573,7 +541,7 @@ form > input {
   #gamesetup-container {
     font-family: 'HKGrotesk-Regular';
     min-width: 0;
-    height: 100%;
+    /*min-height: 1080px;*/
   }
 
   #gamesetup-container label {
