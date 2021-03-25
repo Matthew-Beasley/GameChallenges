@@ -21,18 +21,19 @@ const Login = () => {
   }, []);
 
   useEffect(() => {
- /*   const token = cookies.token;
+    const token = cookies.token;
     if (token) {
       axios.post('/user/token', { token: token }, headers).then(response => {
         setUser(response.data[0]);
       });
-    }*/
+    }
   }, [token]);
 
   // need to alert user that credentials are not valid
   const login = async (ev) => {
     let creds = undefined;
     try {
+      // TO DO: Check to make sure csrf headers are getting sent here
       creds = (await axios.get('/auth', { headers: { username: userName, password: password }})).data;
     } catch (err) {
       const placeholder = err;
@@ -54,8 +55,8 @@ const Login = () => {
       {!!token && <div id="welcome-user">Welcome {user.userName}</div>}
       <input id="user-name" type="text" placeholder="User Name" value={userName} onChange={(ev) => setUserName(ev.target.value)} />
       <input id="password" type="password" placeholder="Password" value={password} onChange={(ev) => setPassword(ev.target.value)} />
-      <button className="login-submit" onClick={() => login()}>Login</button>
-      <button className="login-submit" onClick={() => logout()}>Log Out</button>
+      {!token && <button className="login-submit" onClick={() => login()}>Login</button>}
+      {!!token && <button className="login-submit" onClick={() => logout()}>Log Out</button>}
       <Link to="/createuser">Create an account</Link>
     </div>
   );

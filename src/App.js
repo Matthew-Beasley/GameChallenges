@@ -17,7 +17,6 @@ const App = () => {
   const [cookies, setCookie] = useCookies(['token']);
   const [token, setToken] = useRecoilState(tokenState);
   const [csrf, setCsrf] = useRecoilState(csrfState);
-  const headers = useRecoilValue(headerState);
 
   useEffect(() => {
     setToken(cookies.token);
