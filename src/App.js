@@ -17,7 +17,6 @@ const App = () => {
   const [cookies, setCookie] = useCookies(['token']);
   const [token, setToken] = useRecoilState(tokenState);
   const [csrf, setCsrf] = useRecoilState(csrfState);
-  const [user, setUser] = useRecoilState(userState);
   const headers = useRecoilValue(headerState);
 
   useEffect(() => {
@@ -25,14 +24,6 @@ const App = () => {
     setCsrf(cookies.CSRF_token);
     axios.defaults.headers.post['X-CSRF-Token'] = csrf;
   }, []);
-
-  useEffect(() => {
-    if (token) {
-      axios.post('/user/token', { token: token }, headers).then(response => {
-        setUser(response.data[0]);
-      });
-    }
-  }, [token]);
 
   if (!token){
     return (

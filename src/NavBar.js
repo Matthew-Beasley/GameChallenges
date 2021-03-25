@@ -7,7 +7,6 @@ import { tokenState, userState } from './RecoilState';
 
 const NavBar = () => {
   const [token, setToken] = useRecoilState(tokenState);
-  const [user, setUser] = useRecoilState(userState);
 
   return (
     <div id="navbar">

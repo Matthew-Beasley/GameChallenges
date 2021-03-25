@@ -97,36 +97,6 @@
   color: white;
 }
 
-/* ===== Login Styles ===== */
-
-#login-container form {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  width: 40rem;
-  margin: .3rem 1rem 0rem 0rem;
-  height: 2rem;
-}
-
-#login-container form > a div {
-  margin-top: 1rem
-}
-
-form > input {
-  width: 8rem;
-  height: 1.25rem;
-  margin-top: 1rem;
-}
-
-#login-form > #submit {
-  margin-top: .5rem;
-  width: 8rem;
-  height: 2rem;
-  background-color: black;
-  color: white;
-}
-
 
 /* ===== CreateUser Styles ===== */
 
@@ -210,19 +180,6 @@ form > input {
 }
 
 
-/* ===== GameContainer Styles ===== */
-
-#game-container {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  background-image: url('../images/blue-background.png');
-  background-repeat: no-repeat;
-  background-size: auto;
-  /*min-height: 1080px;*/
-}
-
-
 /* ===== NavBar Styles ===== */
 
 #navbar {
@@ -250,6 +207,58 @@ form > input {
   color: white;
   text-decoration: none;
   margin: 1.6rem 0rem 1rem 4rem
+}
+
+
+/* ===== Login Styles ===== */
+
+#login-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  width: 50rem;
+  height: 5rem;
+  margin-top: 2rem;
+  margin-right: 1rem;
+  font-family: HKGrotesk-Regular;
+  font-size: 1.2rem;
+}
+
+#login-container > a {
+  color: white;
+  text-decoration: none;
+}
+
+#welcome-user {
+  width: fit-content;
+}
+
+#login-container > input {
+  width: 8rem;
+  height: 1.5rem;
+}
+
+#login-container > button {
+  height: 1.5rem;
+  width: fit-content;
+  color: white;
+  background-color: rgb(54, 51, 51);
+  border: none;
+  border-radius: 10%;
+}
+
+
+/* ===== GameContainer Styles ===== */
+
+#game-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-image: url('../images/blue-background.png');
+  background-repeat: no-repeat;
+  background-size: auto;
+  /*min-height: 1080px;*/
 }
 
 
