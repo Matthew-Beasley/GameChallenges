@@ -26,6 +26,9 @@ const App = () => {
     return (
       <div id="start">
         <Route exact path="/" component={LandingPage} />
+        <Route path="/contact" component={Contact} />
+        <Route path="/about" component={About} />
+        <Route path="/createuser" component={CreateUser} />
       </div>
     );
   }
