@@ -249,6 +249,18 @@
 }
 
 
+/* ===== Landing Page Styles ===== */
+
+#landingpage {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-image: url('../images/blue-background.png');
+  background-repeat: no-repeat;
+  background-size: auto;
+}
+
+
 /* ===== GameContainer Styles ===== */
 
 #game-container {
