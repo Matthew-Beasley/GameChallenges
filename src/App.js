@@ -10,7 +10,6 @@ import Login from './Login';
 import GameContainer from './GameContainer';
 import Contact from './Contact';
 import About from './About';
-import ChallengeDisplay from './ChallengeDisplay';
 
 
 const App = () => {
@@ -21,7 +20,6 @@ const App = () => {
   useEffect(() => {
     setToken(cookies.token);
     setCsrf(cookies.CSRF_token);
-    axios.defaults.headers.post['X-CSRF-Token'] = csrf;
   }, []);
 
   if (!token){

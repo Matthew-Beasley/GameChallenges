@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { userState, csrfState, tokenState, headerState } from './RecoilState';
 import { useCookies } from 'react-cookie';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { tokenState, csrfState, headerState, userState } from './RecoilState';
 
 
 const Login = () => {
@@ -15,10 +15,14 @@ const Login = () => {
   const [userName, setUserName] = useState('');
   const headers = useRecoilValue(headerState);
   const [cookies, setCookie, removeCookie] = useCookies(['token']);
+  const history = useHistory();
 
   useEffect(() => {
-    axios.defaults.headers.post['X-CSRF-Token'] = csrf;
-  }, []);
+    axios.defaults.headers.common['X-CSRF-Token'] = csrf;
+  }, [token]);
+
+  useEffect(() => {
+  }, [user]);
 
   useEffect(() => {
     const token = cookies.token;
@@ -30,10 +34,9 @@ const Login = () => {
   }, [token]);
 
   // need to alert user that credentials are not valid
-  const login = async (ev) => {
+  const login = async () => {
     let creds = undefined;
     try {
-      // TO DO: Check to make sure csrf headers are getting sent here
       creds = (await axios.get('/auth', { headers: { username: userName, password: password }})).data;
     } catch (err) {
       const placeholder = err;
@@ -48,6 +51,7 @@ const Login = () => {
     removeCookie('token');
     setToken('');
     setUser({});
+    history.push('/');
   };
 
   return (
