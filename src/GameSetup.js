@@ -161,7 +161,6 @@ const GameSetup = () => {
   }, [PCChk, XboxChk, PlaystationChk, SwitchChk, MobileChk, splitScreen, kidFriendly, online, timeLimit]);
 
   useEffect(() => {
-    console.log('challenges ', challenges);
     getDisplayGames();
   }, [challenges]);
 

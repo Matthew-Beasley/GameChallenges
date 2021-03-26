@@ -6,12 +6,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "build:dev": "npm run build -- --watch --mode=development",
-    "start:dev": "nodemon --delay 50ms server.js --ignore dist/ --ignore src/ & npm run build:dev"
+    "build:dev": "npm run build -- --watch --mode=production",
+    "start:dev": "nodemon server.js --ignore dist/ --ignore src/ & npm run build:dev"
   },
   "keywords": [],
   "author": "Conbec Development",
   "license": "ISC",
+  "browserslist": "> 0.25%, not dead",
   "dependencies": {
     "@ctrl/react-adsense": "^1.3.1",
     "assert": "^2.0.0",
