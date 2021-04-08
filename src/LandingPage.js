@@ -9,7 +9,15 @@ const LandingPage = () => {
 
   return (
     <div id="landingpage">
-      <NavBar />      
+      <NavBar />
+      <div id="characters">
+        <div id="text1">
+
+        </div>
+        <div id="text2">
+          
+        </div>
+      </div>      
     </div>
   );
 };

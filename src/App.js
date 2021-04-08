@@ -22,26 +22,16 @@ const App = () => {
     setCsrf(cookies.CSRF_token);
   }, []);
 
-  if (!token){
-    return (
-      <div id="start">
-        <Route exact path="/" component={LandingPage} />
-        <Route path="/contact" component={Contact} />
-        <Route path="/about" component={About} />
-        <Route path="/createuser" component={CreateUser} />
-      </div>
-    );
-  }
-  else {
-    return (
-      <div id="app-container">
-        <Route exact path="/" component={LandingPage} />
-        <Route path="/gamepage" component={GameContainer} />
-        <Route path="/contact" component={Contact} />
-        <Route path="/about" component={About} />
-      </div>
-    );
-  }
+  return (
+    <div id="app-container">
+      <Route exact path="/" component={LandingPage} />
+      {!!token && <Route path="/gamepage" component={GameContainer} />}
+      <Route path="/contact" component={Contact} />
+      <Route path="/about" component={About} />
+      {!token && <Route path="/login" component={Login} />}
+      {!token && <Route path="/createuser" component={CreateUser} />}
+    </div>
+  );
 };
 
 export default App;
