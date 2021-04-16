@@ -85,7 +85,7 @@
 }
 */
 
-*/* {border: solid red 2px}*/
+/** {border: solid red 2px}*/
 
 #site-down {
   height: 1080px;
@@ -256,26 +256,179 @@
   flex-direction: column;
   height: 100vh;
   background-color: rgb(190, 205, 211);
+  font-family: 'Arial Rounded MT Bold';
 }
 
 #characters {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: space-around; /* ???? */
+  justify-content: space-around; 
+  height: fit-content;
 }
 
 .character {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  height: fit-content;
+  justify-content: flex-end;
+  height: calc(100vh - 8rem); /* This value = viewport height - height of NavBar and its margin */
   width: fit-content;
 }
 
-#icecream {
-  
+
+@media only screen and (min-width: 2800px) {
+
+  #landingpage-content {
+    z-index: 1;
+    width: fit-content;
+    height: fit-content;
+  }
+
+  #landingpage-content > image {
+    margin-top: 5rem;
+    width: 1000px;
+    height: auto;
+  }
+
+  #landingpage-signup {
+    position: absolute;
+    width: fit-content;
+    height: fit-content;
+    margin-left: -710px;
+    margin-top: 160px;
+    z-index: 2;
+  }
+
+  #landingpage-signup > img {
+    width: 28rem;
+  }
 }
+
+
+@media only screen and (min-width: 1900px) {
+
+  #landingpage-content {
+    z-index: 1;
+    margin-top: 50px;
+    width: fit-content;
+    height: fit-content;
+    position: relative;
+  }
+
+  #landingpage-content > image {
+    width: 1000px;
+    height: auto;
+  }
+
+  #landingpage-text {
+    z-index: 2;
+    font-size: 1.2rem;
+    position: absolute;
+    width: 375px;
+    margin-left: 230px;
+    margin-top: 85px;
+  }
+
+  #landingpage-text > button {
+    margin-top: 20px;
+    margin-left: 20px;
+    border-radius: 8px;
+    border-width: 0;
+    background-color: gray;
+    color: white;
+  }
+
+  #landingpage-signup {
+    position: absolute;
+    width: fit-content;
+    height: 200px;
+    margin-left: -300px;
+    margin-top: 50px;
+    cursor: pointer;
+    z-index: 2;
+  }
+
+  #landingpage-signup img {
+    width: 300px;
+  }
+
+  #signup-text {
+    z-index: 3;
+    font-size: 2.5rem;
+    position: absolute;
+    height: 200px;
+    margin-left: -300px;
+    margin-top: 60px;
+  }
+
+  #signup-text > div {
+    margin-top: 1.75rem;
+    margin-bottom: 1.5rem;
+  }
+} 
+
+@media only screen and (min-width: 1500px) {
+
+  #landingpage-content {
+    z-index: 1;
+    margin-top: 50px;
+    width: fit-content;
+    height: fit-content;
+    position: relative;
+  }
+
+  #landingpage-content > image {
+    width: 1000px;
+    height: auto;
+  }
+
+  #landingpage-text {
+    z-index: 2;
+    font-size: 1.2rem;
+    position: absolute;
+    width: 375px;
+    margin-left: 230px;
+    margin-top: 85px;
+  }
+
+  #landingpage-text > button {
+    margin-top: 20px;
+    margin-left: 20px;
+    border-radius: 8px;
+    border-width: 0;
+    background-color: gray;
+    color: white;
+  }
+
+  #landingpage-signup {
+    position: absolute;
+    width: fit-content;
+    height: 200px;
+    margin-left: -300px;
+    margin-top: 50px;
+    cursor: pointer;
+    z-index: 2;
+  }
+
+  #landingpage-signup img {
+    width: 300px;
+  }
+
+  #signup-text {
+    z-index: 3;
+    font-size: 2.5rem;
+    position: absolute;
+    height: 200px;
+    margin-left: -300px;
+    margin-top: 60px;
+  }
+
+  #signup-text > div {
+    margin-top: 1.75rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
 
 
 /* ===== GameContainer Styles ===== */

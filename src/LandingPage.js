@@ -6,37 +6,37 @@ import NavBar from './NavBar';
 
 
 const LandingPage = () => {
+  const history = useHistory();
 
   return (
     <div id="landingpage">
       <NavBar />
       <div id="characters">
-        <div id="icecream" className="character">
-          <img src="./assets/images/icecream.png"  />
+        <div id="landingpage-content" className="character">
+          <img src="../assets/images/GameOn-small.png" />
         </div>
-        <div id="milkshake" className="character">
-
+        <div id="landingpage-text">
+          <h2>Challenge your friends to ridiculous stunts in games you already have!</h2>
+          <h3>Never play the objective again:</h3>
+          <ol>
+            <li>Gather your gaming friends.</li>
+            <li>Pull out all those games that you loved but have played out.</li>
+            <li>Start a round of “Thwart Me!”</li>
+          </ol>
+          <p>
+            You’ll find new ways to love your games all over again, as you attempt crazy 
+            challenges that have nothing to do with how the game was meant to be played.  
+            Whether it’s an unconventional race or a treasure hunt,<br></br> you’ll laugh your 
+            way through an epic<br></br> fail or ultimate victory.
+          </p>
+          <button onClick={() => history.push('/ReadMore')}>Read More</button>
         </div>
-        <div id="chocolatebar" className="character">
-
+        <div id="landingpage-signup" >
+          <img src="../assets/images/SignupNow-small.png" />
         </div>
-        <div id="tea" className="character">
-
-        </div>
-        <div id="cake" className="character">
-
-        </div>
-        <div is="textpanel" className="character">
-
-        </div>
-        <div id="olives" className="character">
-
-        </div>
-        <div id="candy" className="character">
-
-        </div>
-        <div id="toast"  className="character">
-
+        <div id="signup-text" onClick={() => history.push('/Shopping')}>
+          <div>Sign Up Now!</div>
+          <div>Play For Free!</div>
         </div>
       </div>      
     </div>
