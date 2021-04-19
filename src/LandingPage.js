@@ -11,10 +11,8 @@ const LandingPage = () => {
   return (
     <div id="landingpage">
       <NavBar />
-      <div id="characters">
-        <div id="landingpage-content" className="character">
-          <img src="../assets/images/GameOn-small.png" />
-        </div>
+      <div id="contents">
+        
         <div id="landingpage-text">
           <h2>Challenge your friends to ridiculous stunts in games you already have!</h2>
           <h3>Never play the objective again:</h3>
@@ -24,10 +22,10 @@ const LandingPage = () => {
             <li>Start a round of “Thwart Me!”</li>
           </ol>
           <p>
-            You’ll find new ways to love your games all over again, as you attempt crazy 
-            challenges that have nothing to do with how the game was meant to be played.  
-            Whether it’s an unconventional race or a treasure hunt,<br></br> you’ll laugh your 
-            way through an epic<br></br> fail or ultimate victory.
+              You’ll find new ways to love your games all over again, as you attempt crazy 
+              challenges that have nothing to do with how the game was meant to be played.  
+              Whether it’s an unconventional race or a treasure hunt,<br></br> you’ll laugh your 
+              way through an epic<br></br> fail or ultimate victory.
           </p>
           <button onClick={() => history.push('/ReadMore')}>Read More</button>
         </div>
@@ -38,8 +36,11 @@ const LandingPage = () => {
           <div>Sign Up Now!</div>
           <div>Play For Free!</div>
         </div>
-      </div>      
-    </div>
+        <div id="landingpage-image">
+          <img src="../assets/images/GameOn-small.png" />
+        </div>
+      </div>
+    </div>   
   );
 };
 

@@ -250,41 +250,45 @@
 #landingpage {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   height: 100vh;
+  width: 100vw;
   background-color: rgb(190, 205, 211);
   font-family: 'Arial Rounded MT Bold';
 }
 
-#characters {
+#contents {
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-around; 
-  height: fit-content;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
-@media only screen and (min-width: 1500px) {
+@media only screen and (min-width: 1900px) {
 
-  #landingpage-content {
+  #contents {
+    height: calc(100vh - 8rem);
+  }
+
+  #landingpage-image {
     z-index: 1;
-    margin-top: 50px;
     width: fit-content;
     height: fit-content;
     position: absolute;
   }
 
-  #landingpage-content > image {
-    width: 1000px;
+  #landingpage-image > img {
+    width: 1920px;
     height: auto;
   }
 
   #landingpage-text {
     z-index: 2;
-    font-size: 1.2rem;
-    /*position: absolute;*/
-    width: 375px;
-    margin-left: 470px;
-    margin-top: 85px;
+    font-size: 1.6rem;
+    width: 35rem;
+    height: fit-content;
+    margin-left: 1030px;
+    margin-bottom: 280px;
+    position: absolute;
   }
 
   #landingpage-text > button {
@@ -297,12 +301,13 @@
   }
 
   #landingpage-signup {
-    position: fixed;
     width: fit-content;
+    position: relative;
     height: 200px;
-    margin-left: -500px;
-    margin-top: 50px;
-    z-index: 2;
+    margin-left: 400px;
+    margin-bottom: 560px;
+    cursor: pointer;
+    z-index: 3;
   }
 
   #landingpage-signup img {
@@ -310,13 +315,12 @@
   }
 
   #signup-text {
-    z-index: 3;
+    z-index: 4;
     font-size: 2.5rem;
-    position: fixed;
     height: 200px;
-    margin-left: -490px;
-    margin-top: 60px;
-    cursor: pointer;
+    margin-left: 400px;
+    margin-bottom: 560px;
+    position: absolute;
   }
 
   #signup-text > div {
@@ -324,74 +328,6 @@
     margin-bottom: 1.5rem;
   }
 }
-/*
-This content lines up safari but breaks chrome since they both except webkit prefixes
-@media screen and (-webkit-min-device-pixel-ratio:0)
-  and (min-resolution:.001dpcm) {
-
-  @media only screen and (min-width: 1500px) {
-
-    #landingpage-content {
-      z-index: 1;
-      margin-top: 50px;
-      width: fit-content;
-      height: fit-content;
-      position: relative;
-    }
-
-    #landingpage-content > image {
-      width: 1000px;
-      height: auto;
-    }
-
-    #landingpage-text {
-      z-index: 2;
-      font-size: 1.2rem;
-      position: absolute;
-      width: 375px;
-      margin-left: 230px;
-      margin-top: 85px;
-    }
-
-    #landingpage-text > button {
-      margin-top: 20px;
-      margin-left: 20px;
-      border-radius: 8px;
-      border-width: 0;
-      background-color: gray;
-      color: white;
-    }
-
-    #landingpage-signup {
-      position: absolute;
-      width: fit-content;
-      height: 200px;
-      margin-left: -300px;
-      margin-top: 50px;
-      cursor: pointer;
-      z-index: 2;
-    }
-
-    #landingpage-signup img {
-      width: 300px;
-    }
-
-    #signup-text {
-      z-index: 3;
-      font-size: 2.5rem;
-      position: absolute;
-      height: 200px;
-      margin-left: -300px;
-      margin-top: 60px;
-    }
-
-    #signup-text > div {
-      margin-top: 1.75rem;
-      margin-bottom: 1.5rem;
-    }
-  }
-}*/
-
 
 
 /* ===== GameContainer Styles ===== */
