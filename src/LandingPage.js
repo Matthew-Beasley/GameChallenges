@@ -24,8 +24,8 @@ const LandingPage = () => {
           <p>
               You’ll find new ways to love your games all over again, as you attempt crazy 
               challenges that have nothing to do with how the game was meant to be played.  
-              Whether it’s an unconventional race or a treasure hunt,<br></br> you’ll laugh your 
-              way through an epic<br></br> fail or ultimate victory.
+              Whether it’s an unconventional race or a treasure hunt, you’ll laugh your 
+              way through an epic fail or<br/> ultimate victory.
           </p>
           <button onClick={() => history.push('/ReadMore')}>Read More</button>
         </div>
