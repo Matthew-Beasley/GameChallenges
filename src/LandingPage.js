@@ -30,11 +30,13 @@ const LandingPage = () => {
           <button onClick={() => history.push('/ReadMore')}>Read More</button>
         </div>
         <div id="landingpage-signup" >
-          <img src="../assets/images/SignupNow-small.png" />
-        </div>
-        <div id="signup-text" onClick={() => history.push('/Shopping')}>
-          <div>Sign Up Now!</div>
-          <div>Play For Free!</div>
+          <div id="bubble">
+            <img src="../assets/images/SignupNow-small.png" />
+          </div>
+          <div id="signup-text" onClick={() => history.push('/Shopping')}>
+            <div>Sign Up Now!</div>
+            <div>Play For Free!</div>
+          </div>
         </div>
         <div id="landingpage-image">
           <img src="../assets/images/GameOn-small.png" />
