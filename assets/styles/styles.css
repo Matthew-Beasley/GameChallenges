@@ -188,8 +188,7 @@
   height: 5rem;
   margin-top: 3rem;
   color: white;
-  border-bottom:  solid rgb(40, 226, 214) 3px;
-  font-family: 'HKGrotesk-Bold';
+  font-family: 'Arial Rounded MT Bold';
 }
 
 #nav-links {
@@ -286,8 +285,8 @@
     font-size: 1.6rem;
     width: 35rem;
     height: fit-content;
-    margin-left: 1030px;
-    margin-bottom: 280px;
+    margin-left: 1020px;
+    margin-bottom: 250px;
     position: absolute;
   }
 
@@ -300,26 +299,37 @@
     color: white;
   }
 
+  .landingpage-header {
+    font-size: 2rem;
+    font-weight: bolder;
+    margin-bottom: 2rem;
+    line-height: 120%;
+  }
+
+  #landingpage-text li:not(:last-child) {
+    margin-bottom: .75rem;
+  }
+
   #landingpage-signup {
     width: fit-content;
     position: relative;
     height: 200px;
-    margin-left: 400px;
-    margin-bottom: 560px;
+    margin-left: 420px;
+    margin-bottom: 580px;
     cursor: pointer;
     z-index: 3;
   }
 
   #landingpage-signup img {
-    width: 300px;
+    width: 325px;
   }
 
   #signup-text {
     z-index: 4;
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     height: 200px;
-    margin-left: 400px;
-    margin-bottom: 560px;
+    margin-left: 460px;
+    margin-bottom: 565px;
     position: absolute;
   }
 

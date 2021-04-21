@@ -14,8 +14,8 @@ const LandingPage = () => {
       <div id="contents">
         
         <div id="landingpage-text">
-          <h2>Challenge your friends to ridiculous stunts in games you already have!</h2>
-          <h3>Never play the objective again:</h3>
+          <div className="landingpage-header" >Challenge your friends to ridiculous stunts in games you already have!</div>
+          <div className="landingpage-header" >Never play the objective again:</div>
           <ol>
             <li>Gather your gaming friends.</li>
             <li>Pull out all those games that you loved but have played out.</li>
