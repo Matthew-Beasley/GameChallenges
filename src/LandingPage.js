@@ -12,8 +12,8 @@ const LandingPage = () => {
     <div id="landingpage">
       <NavBar />
       <div id="contents">
-        
         <div id="landingpage-text">
+          <div id="thwartme-header">Thwart Me!</div>
           <div className="landingpage-header" >Challenge your friends to ridiculous stunts in games you already have!</div>
           <div className="landingpage-header" >Never play the objective again:</div>
           <ol>

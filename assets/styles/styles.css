@@ -191,17 +191,17 @@
   font-family: 'Arial Rounded MT Bold';
 }
 
-#nav-links {
+.nav-links {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
 }
 
-#nav-links > a {
+.nav-links > a {
   font-size: 1.5rem;
   color: white;
   text-decoration: none;
-  margin: 1.6rem 0rem 1rem 4rem
+  margin: 1.7rem 4rem 1rem 4rem
 }
 
 
@@ -280,34 +280,42 @@
     height: auto;
   }
 
+  #thwartme-header {
+    font-size: 4rem;
+    font-weight: bolder;
+    margin-top: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .landingpage-header {
+    font-size: 2rem;
+    font-weight: bolder;
+    margin-bottom: 1.7rem;
+    line-height: 120%;
+  }
+
   #landingpage-text {
     z-index: 2;
     font-size: 1.6rem;
     width: 35rem;
     height: fit-content;
     margin-left: 1020px;
-    margin-bottom: 250px;
+    margin-bottom: 180px;
     position: absolute;
   }
 
   #landingpage-text > button {
     margin-top: 20px;
-    margin-left: 20px;
+    margin-left: 40px;
     border-radius: 8px;
     border-width: 0;
     background-color: gray;
     color: white;
   }
 
-  .landingpage-header {
-    font-size: 2rem;
-    font-weight: bolder;
-    margin-bottom: 2rem;
-    line-height: 120%;
-  }
-
   #landingpage-text li:not(:last-child) {
     margin-bottom: .75rem;
+    line-height: 120%;
   }
 
   #landingpage-signup {
