@@ -11,7 +11,7 @@ const NavBar = () => {
   return (
     <div id="navbar">
       <div className="nav-links">
-        <Link to="/landingpage" >Thwart Me</Link>
+        <Link to="/" >Thwart Me</Link>
         <Link to="/about" >About Us</Link>
         <Link to="/contact">Contact Us</Link>
       </div>

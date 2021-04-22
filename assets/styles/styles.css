@@ -262,6 +262,187 @@
   justify-content: flex-end;
 }
 
+@media only screen and (min-width: 1200px) {
+
+  #contents {
+    height: calc(100vh - 8rem);
+  }
+
+  #landingpage-image {
+    z-index: 1;
+    width: fit-content;
+    height: fit-content;
+    position: absolute;
+  }
+
+  #landingpage-image > img {
+    width: 1200px;
+    height: auto;
+  }
+
+  #thwartme-header {
+    font-size: 2.5rem;
+    font-weight: bolder;
+    margin-bottom: 1.8rem;
+  }
+
+  .landingpage-header {
+    font-size: 1.2rem;
+    font-weight: bolder;
+    margin-bottom: 1rem;
+    line-height: 120%;
+  }
+
+  #landingpage-text {
+    z-index: 2;
+    font-size: .8rem;
+    width: 22rem;
+    height: fit-content;
+    margin-left: 630px;
+    margin-bottom: 142px;
+    position: absolute;
+  }
+
+  #landingpage-text > button {
+    margin-top: 20px;
+    margin-left: 40px;
+    border-radius: 8px;
+    border-width: 0;
+    background-color: gray;
+    color: white;
+  }
+
+  #landingpage-text li:not(:last-child) {
+    margin-bottom: .75rem;
+    line-height: 120%;
+  }
+
+  #landingpage-signup {
+    width: fit-content;
+    position: relative;
+    height: 100px;
+    margin-left: 260px;
+    margin-bottom: 440px;
+    cursor: pointer;
+    z-index: 3;
+  }
+
+  #bubble {
+    width: fit-content;
+    height: fit-content;
+    z-index: 4;
+    position: absolute;
+  }
+
+  #landingpage-signup img {
+    width: 225px;;
+  }
+
+  #signup-text {
+    z-index: 5;
+    font-size: 2rem;
+    height: 200px;
+    width: 320px;
+    margin-left: 25px;
+    position: absolute;
+  }
+
+  #signup-text > div {
+    margin-top: 1.4rem;
+  }
+}
+
+@media only screen and (min-width: 1300px) {
+
+  #contents {
+    height: calc(100vh - 8rem);
+  }
+
+  #landingpage-image {
+    z-index: 1;
+    width: fit-content;
+    height: fit-content;
+    position: absolute;
+  }
+
+  #landingpage-image > img {
+    width: 1300px;
+    height: auto;
+  }
+
+  #thwartme-header {
+    font-size: 3rem;
+    font-weight: bolder;
+    margin-bottom: 1.6rem;
+  }
+
+  .landingpage-header {
+    font-size: 1.2rem;
+    font-weight: bolder;
+    margin-bottom: 1.1rem;
+    line-height: 120%;
+  }
+
+  #landingpage-text {
+    z-index: 2;
+    font-size: 1rem;
+    width: 22.5rem;
+    height: fit-content;
+    margin-left: 690px;
+    margin-bottom: 130px;
+    position: absolute;
+  }
+
+  #landingpage-text > button {
+    margin-top: 20px;
+    margin-left: 40px;
+    border-radius: 8px;
+    border-width: 0;
+    background-color: gray;
+    color: white;
+  }
+
+  #landingpage-text li:not(:last-child) {
+    margin-bottom: .75rem;
+    line-height: 120%;
+  }
+
+  #landingpage-signup {
+    width: fit-content;
+    position: relative;
+    height: 180px;
+    margin-left: 275px;
+    margin-bottom: 400px;
+    cursor: pointer;
+    z-index: 3;
+  }
+
+  #bubble {
+    width: fit-content;
+    height: fit-content;
+    z-index: 4;
+    position: absolute;
+  }
+
+  #landingpage-signup img {
+    width: 250px;;
+  }
+
+  #signup-text {
+    z-index: 5;
+    font-size: 2.2rem;
+    height: 200px;
+    width: 320px;
+    margin-left: 30px;
+    margin-top: 10px;
+    position: absolute;
+  }
+
+  #signup-text > div {
+    margin-top: 1.2rem;
+  }
+}
+
 @media only screen and (min-width: 1500px) {
 
   #contents {
@@ -281,25 +462,24 @@
   }
 
   #thwartme-header {
-    font-size: 2.2rem;
+    font-size: 3.5rem;
     font-weight: bolder;
-    margin-top: 1.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.6rem;
   }
 
   .landingpage-header {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     font-weight: bolder;
-    margin-bottom: 1rem;
+    margin-bottom: 1.1rem;
     line-height: 120%;
   }
 
   #landingpage-text {
     z-index: 2;
-    font-size: 1rem;
-    width: 20rem;
+    font-size: 1.3rem;
+    width: 27rem;
     height: fit-content;
-    margin-left: 700px;
+    margin-left: 800px;
     margin-bottom: 110px;
     position: absolute;
   }
@@ -322,28 +502,35 @@
     width: fit-content;
     position: relative;
     height: 200px;
-    margin-left: 260px;
-    margin-bottom: 390px;
+    margin-left: 300px;
+    margin-bottom: 450px;
     cursor: pointer;
     z-index: 3;
   }
 
+  #bubble {
+    width: fit-content;
+    height: fit-content;
+    z-index: 4;
+    position: absolute;
+  }
+
   #landingpage-signup img {
-    width: 325px;
+    width: 325px;;
   }
 
   #signup-text {
-    z-index: 4;
+    z-index: 5;
     font-size: 2.8rem;
     height: 200px;
-    margin-left: 300px;
-    margin-bottom: 375px;
+    width: 320px;
+    margin-left: 40px;
+    margin-top: 15px;
     position: absolute;
   }
 
   #signup-text > div {
-    margin-top: 1.75rem;
-    margin-bottom: 1.5rem;
+    margin-top: 2rem;
   }
 }
 
@@ -366,10 +553,9 @@
   }
 
   #thwartme-header {
-    font-size: 2.4rem;
+    font-size: 3.5rem;
     font-weight: bolder;
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.8rem;
   }
 
   .landingpage-header {
@@ -385,7 +571,7 @@
     width: 29rem;
     height: fit-content;
     margin-left: 875px;
-    margin-bottom: 150px;
+    margin-bottom: 140px;
     position: absolute;
   }
 
@@ -433,6 +619,10 @@
     margin-top: 15px;
     position: absolute;
   }
+
+  #signup-text > div {
+    margin-top: 2rem;
+  }
 }
 
 
@@ -450,31 +640,30 @@
   }
 
   #landingpage-image > img {
-    width: 1920px;
+    width: 1900px;
     height: auto;
   }
 
   #thwartme-header {
     font-size: 4rem;
     font-weight: bolder;
-    margin-top: 1.5rem;
-    margin-bottom: 3rem;
+    margin-bottom: 2.5rem;
   }
 
   .landingpage-header {
-    font-size: 2rem;
+    font-size: 1.6rem;
     font-weight: bolder;
-    margin-bottom: 1.7rem;
+    margin-bottom: 1rem;
     line-height: 120%;
   }
 
   #landingpage-text {
     z-index: 2;
     font-size: 1.6rem;
-    width: 35rem;
+    width: 31rem;
     height: fit-content;
-    margin-left: 1020px;
-    margin-bottom: 180px;
+    margin-left: 1010px;
+    margin-bottom: 160px;
     position: absolute;
   }
 
@@ -496,28 +685,126 @@
     width: fit-content;
     position: relative;
     height: 200px;
-    margin-left: 420px;
-    margin-bottom: 580px;
+    margin-left: 400px;
+    margin-bottom: 590px;
     cursor: pointer;
     z-index: 3;
   }
 
+  #bubble {
+    width: fit-content;
+    height: fit-content;
+    z-index: 4;
+    position: absolute;
+  }
+
   #landingpage-signup img {
-    width: 325px;
+    width: 325px;;
   }
 
   #signup-text {
-    z-index: 4;
+    z-index: 5;
     font-size: 2.8rem;
     height: 200px;
-    margin-left: 460px;
-    margin-bottom: 565px;
+    width: 320px;
+    margin-left: 40px;
+    margin-top: 15px;
     position: absolute;
   }
 
   #signup-text > div {
-    margin-top: 1.75rem;
-    margin-bottom: 1.5rem;
+    margin-top: 2rem;
+  }
+}
+
+@media only screen and (min-width: 1900px) {
+
+  #contents {
+    height: calc(100vh - 8rem);
+  }
+
+  #landingpage-image {
+    z-index: 1;
+    width: fit-content;
+    height: fit-content;
+    position: absolute;
+  }
+
+  #landingpage-image > img {
+    width: 2500px;
+    height: auto;
+  }
+
+  #thwartme-header {
+    font-size: 4.8rem;
+    font-weight: bolder;
+    margin-bottom: 3.5rem;
+  }
+
+  .landingpage-header {
+    font-size: 2.3rem;
+    font-weight: bolder;
+    margin-bottom: 1rem;
+    line-height: 120%;
+  }
+
+  #landingpage-text {
+    z-index: 2;
+    font-size: 2rem;
+    width: 40rem;
+    height: fit-content;
+    margin-left: 1350px;
+    margin-bottom: 260px;
+    position: absolute;
+  }
+
+  #landingpage-text > button {
+    margin-top: 20px;
+    margin-left: 40px;
+    border-radius: 8px;
+    border-width: 0;
+    background-color: gray;
+    color: white;
+  }
+
+  #landingpage-text li:not(:last-child) {
+    margin-bottom: .75rem;
+    line-height: 120%;
+  }
+
+  #landingpage-signup {
+    width: fit-content;
+    position: relative;
+    height: 200px;
+    margin-left: 490px;
+    margin-bottom: 900px;
+    cursor: pointer;
+    z-index: 3;
+  }
+
+  #bubble {
+    width: fit-content;
+    height: fit-content;
+    z-index: 4;
+    position: absolute;
+  }
+
+  #landingpage-signup img {
+    width: 425px;;
+  }
+
+  #signup-text {
+    z-index: 5;
+    font-size: 3.8rem;
+    height: 200px;
+    width: 420px;
+    margin-left: 40px;
+    margin-top: 15px;
+    position: absolute;
+  }
+
+  #signup-text > div {
+    margin-top: 3rem;
   }
 }
 
