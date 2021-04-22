@@ -179,6 +179,7 @@
 /* ===== NavBar Styles ===== */
 
 #navbar {
+  z-index: 10;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -265,7 +266,7 @@
 @media only screen and (min-width: 1200px) {
 
   #contents {
-    height: calc(100vh - 8rem);
+    height: 2000px;
   }
 
   #landingpage-image {
@@ -310,6 +311,7 @@
     border-width: 0;
     background-color: gray;
     color: white;
+    cursor: pointer;
   }
 
   #landingpage-text li:not(:last-child) {
@@ -355,7 +357,7 @@
 @media only screen and (min-width: 1300px) {
 
   #contents {
-    height: calc(100vh - 8rem);
+    height: 2000px;
   }
 
   #landingpage-image {
@@ -400,6 +402,7 @@
     border-width: 0;
     background-color: gray;
     color: white;
+    cursor: pointer;
   }
 
   #landingpage-text li:not(:last-child) {
@@ -446,7 +449,7 @@
 @media only screen and (min-width: 1500px) {
 
   #contents {
-    height: calc(100vh - 8rem);
+    height: 2000px;
   }
 
   #landingpage-image {
@@ -491,6 +494,7 @@
     border-width: 0;
     background-color: gray;
     color: white;
+    cursor: pointer;
   }
 
   #landingpage-text li:not(:last-child) {
@@ -537,7 +541,7 @@
 @media only screen and (min-width: 1650px) {
 
   #contents {
-    height: calc(100vh - 8rem);
+    height: 2000px;
   }
 
   #landingpage-image {
@@ -582,6 +586,7 @@
     border-width: 0;
     background-color: gray;
     color: white;
+    cursor: pointer;
   }
 
   #landingpage-text li:not(:last-child) {
@@ -629,7 +634,7 @@
 @media only screen and (min-width: 1900px) {
 
   #contents {
-    height: calc(100vh - 8rem);
+    height: 2000px;
   }
 
   #landingpage-image {
@@ -641,7 +646,6 @@
 
   #landingpage-image > img {
     width: 1900px;
-    height: auto;
   }
 
   #thwartme-header {
@@ -674,6 +678,7 @@
     border-width: 0;
     background-color: gray;
     color: white;
+    cursor: pointer;
   }
 
   #landingpage-text li:not(:last-child) {
@@ -717,10 +722,10 @@
   }
 }
 
-@media only screen and (min-width: 2000px) {
+@media only screen and (min-width: 2500px) {
 
   #contents {
-    height: calc(100vh - 8rem);
+    height: 2000px;
   }
 
   #landingpage-image {
@@ -765,6 +770,7 @@
     border-width: 0;
     background-color: gray;
     color: white;
+    cursor: pointer;
   }
 
   #landingpage-text li:not(:last-child) {
