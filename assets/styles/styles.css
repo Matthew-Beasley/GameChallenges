@@ -188,7 +188,7 @@
   height: 5rem;
   margin-top: 3rem;
   color: white;
-  font-family: 'Arial Rounded MT Bold';
+  font-family: 'Arial Rounded MT Bold', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .nav-links {
@@ -253,7 +253,7 @@
   height: 100vh;
   width: 100vw;
   background-color: rgb(190, 205, 211);
-  font-family: 'Arial Rounded MT Bold';
+  font-family: 'Arial Rounded MT Bold', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 #contents {
@@ -717,7 +717,7 @@
   }
 }
 
-@media only screen and (min-width: 1900px) {
+@media only screen and (min-width: 2000px) {
 
   #contents {
     height: calc(100vh - 8rem);
