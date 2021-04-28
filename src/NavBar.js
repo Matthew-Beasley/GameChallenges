@@ -10,12 +10,15 @@ const NavBar = () => {
 
   return (
     <div id="navbar">
-      <div id="nav-links">
-        {token ? <Link to="/gamepage" >Thwart Me</Link> : <div id="thwartme-link-spacer" style={{width: '8rem'}} />}
-        <Link to="/about" >About</Link>
-        <Link to="/contact">Contact</Link>
+      <div className="nav-links">
+        <Link to="/" >Thwart Me</Link>
+        <Link to="/about" >About Us</Link>
+        <Link to="/contact">Contact Us</Link>
       </div>
-      <Login />
+      <div className="nav-links">
+        <Link to="/login">Sign in</Link>
+        <Link to="/createuser">Create Account</Link>
+      </div>
     </div>
   );
 };
