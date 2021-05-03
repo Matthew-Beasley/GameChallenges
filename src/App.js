@@ -10,6 +10,8 @@ import Login from './Login';
 import GameContainer from './GameContainer';
 import Contact from './Contact';
 import About from './About';
+import Ecwid from './Ecwid';
+import ReadMore from './ReadMore';
 
 
 const App = () => {
@@ -28,8 +30,10 @@ const App = () => {
       {!!token && <Route path="/gamepage" component={GameContainer} />}
       <Route path="/contact" component={Contact} />
       <Route path="/about" component={About} />
-      {!token && <Route path="/login" component={Login} />}
-      {!token && <Route path="/createuser" component={CreateUser} />}
+      <Route path='/readmore' component={ReadMore} />
+      <Route path="/login" component={Login} />
+      <Route path="/createuser" component={CreateUser} />
+      {!!token && <Route path='/shopping' component={Ecwid} />}
     </div>
   );
 };

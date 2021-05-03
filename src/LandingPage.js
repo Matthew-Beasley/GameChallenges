@@ -18,7 +18,7 @@ const LandingPage = () => {
             <div id="bubble">
               <img src="../assets/images/SignupNow-small.png" />
             </div>
-            <div id="signup-text" onClick={() => history.push('/Shopping')}>
+            <div id="signup-text" onClick={() => history.push('/login')}>
               <div>Sign Up Now!</div>
               <div>Play For Free!</div>
             </div>
@@ -41,7 +41,7 @@ const LandingPage = () => {
           Whether it’s an unconventional race or a treasure hunt, you’ll laugh your 
           way through an epic fail or<br/> ultimate victory.
           </p>
-          <button onClick={() => history.push('/ReadMore')}>Read More</button>
+          <button onClick={() => history.push('/readmore')}>Read More</button>
         </div>
         
       </div>

@@ -45,6 +45,7 @@ const Login = () => {
     setUserName('');
     setPassword('');
     setToken(creds);
+    history.push('/shopping');
   };
 
   const logout = () => {
