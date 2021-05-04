@@ -10,7 +10,7 @@ import Login from './Login';
 import GameContainer from './GameContainer';
 import Contact from './Contact';
 import About from './About';
-import Ecwid from './Ecwid';
+import Foxy from './Foxy';
 import ReadMore from './ReadMore';
 
 
@@ -33,7 +33,7 @@ const App = () => {
       <Route path='/readmore' component={ReadMore} />
       <Route path="/login" component={Login} />
       <Route path="/createuser" component={CreateUser} />
-      {!!token && <Route path='/shopping' component={Ecwid} />}
+      {!!token && <Route path='/shopping' component={Foxy} />}
     </div>
   );
 };
