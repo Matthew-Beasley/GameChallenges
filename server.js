@@ -6,6 +6,7 @@ const csurf = require('csurf');
 const userRouter = require('./api/users');
 const challengeRouter = require('./api/challenges');
 const authRouter = require('./api/auth');
+const foxyRouter = require('./api/foxy');
 const { findUserFromToken, isLoggedIn, isAdmin } = require('./mongo/auth');
 
 
@@ -51,12 +52,21 @@ app.use('/dist', express.static(path.join(__dirname, 'dist')));
 app.use('/user', csrfProtection, userRouter);
 app.use('/challenge', isLoggedIn, csrfProtection, challengeRouter);
 app.use('/auth', csrfProtection, authRouter);
+app.use('/foxy', foxyRouter);
 
 app.get('/', csrfProtection, (req, res, next) => {
   try {
     res.cookie('CSRF_token', req.csrfToken()).sendFile(path.join(__dirname, 'index.html'))
   } catch (error) {
     next(error);
+  }
+});
+
+app.get('/logo', (req, res, next) => {
+  try {
+    res.sendFile(path.join(__dirname, '/assets/images/logo.png'));
+  } catch (error) {
+    next(error)
   }
 });
 
