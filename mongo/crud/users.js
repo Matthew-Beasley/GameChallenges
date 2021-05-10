@@ -26,11 +26,6 @@ const getUserByEmail = async (email) => {
   return user;
 };
 
-const getUserByUserName = async (userName) => {
-  const user = await User.find({ username: userName });
-  return user[0];
-};
-
 const getUsers = async () => {
   const users = await User.find();
   return users;
@@ -39,6 +34,5 @@ const getUsers = async () => {
 module.exports = {
   createUser,
   getUserByEmail,
-  getUserByUserName,
   getUsers
 };

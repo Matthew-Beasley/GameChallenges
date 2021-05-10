@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { tokenState, csrfState, userState, headerState } from './RecoilState';
+import { tokenState, csrfState, headerState } from './RecoilState';
 import LandingPage from './LandingPage';
 import CreateUser from './CreateUser';
 import Login from './Login';
