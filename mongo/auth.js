@@ -28,7 +28,6 @@ const compare = ({ plain, hashed }) => {
   return new Promise((resolve, reject) => {
     bcrypt.compare(plain, hashed, (err, verified) => {
       if (err) {
-        console.log('bcrypt error', err);
         return reject(err);
       }
       if (verified) {

@@ -35,7 +35,6 @@ userRouter.post('/token', async (req, res, next) => {
 
 userRouter.post('/', async (req, res, next) => {
   try {
-    console.log('req in create user api ', req.body)
     const val = await createUser(req.body);
     res.status(201).send(val);
   } catch (error) {

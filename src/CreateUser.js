@@ -45,7 +45,6 @@ const CreateUser = () => {
 
   const login = async () => {
     const creds = (await axios.get('/auth', { headers: { email: email, password: password }})).data;
-    console.log(creds)
     setCookie('token', creds, { path: '/', maxAge: 43200 });
     setToken(creds);
   };
@@ -53,7 +52,6 @@ const CreateUser = () => {
   const checkCredentials = async (event) => {
     event.preventDefault();
     const usr = (await axios.get(`/user?email=${email}`)).data;
-    console.log('usr in createuser ', usr)
     if (!usr.email) {
       await axios.post('/user', { password, email, notify });
       await login();

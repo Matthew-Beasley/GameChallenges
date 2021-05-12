@@ -37,7 +37,6 @@ const Login = () => {
     let creds = undefined;
     try {
       creds = (await axios.get('/auth', { headers: { email: email, password: password }})).data;
-      console.log('creds in login ', creds)
     } catch (err) {
       const placeholder = err;
     }
