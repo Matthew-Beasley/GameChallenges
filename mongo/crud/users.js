@@ -14,8 +14,11 @@ const createUser = async (record) => {
   const user = new User(record);
   user.save(err => {
     if (err) {
+      console.log('in err ', user)
+      console.log('err ', err)
       return err;
     } else {
+      console.log('in success ', user)
       return 'success';
     }
   });

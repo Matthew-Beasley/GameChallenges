@@ -4,7 +4,6 @@ const Schema = Mongoose.Schema;
 const userSchema = new Schema({
   email: { type: String, unique: true, required: true },
   password: { type: String, required: true },
-  userName: { type: String, unique: true },
   notify: { type: Boolean }, 
   platforms: [String],
   decks: [{game: {type: String, deck: {type: Number}}}]

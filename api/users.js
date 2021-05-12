@@ -17,8 +17,6 @@ userRouter.get('/', async (req, res, next) => {
     let user;
     if (email) {
       user = await getUserByEmail(email);
-    } else {
-      user = await getUsers();
     }
     res.status(200).send(user);
   } catch (error) {
@@ -37,6 +35,7 @@ userRouter.post('/token', async (req, res, next) => {
 
 userRouter.post('/', async (req, res, next) => {
   try {
+    console.log('req in create user api ', req.body)
     const val = await createUser(req.body);
     res.status(201).send(val);
   } catch (error) {

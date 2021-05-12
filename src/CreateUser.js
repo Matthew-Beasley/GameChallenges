@@ -45,6 +45,7 @@ const CreateUser = () => {
 
   const login = async () => {
     const creds = (await axios.get('/auth', { headers: { email: email, password: password }})).data;
+    console.log(creds)
     setCookie('token', creds, { path: '/', maxAge: 43200 });
     setToken(creds);
   };
@@ -52,6 +53,7 @@ const CreateUser = () => {
   const checkCredentials = async (event) => {
     event.preventDefault();
     const usr = (await axios.get(`/user?email=${email}`)).data;
+    console.log('usr in createuser ', usr)
     if (!usr.email) {
       await axios.post('/user', { password, email, notify });
       await login();
@@ -62,7 +64,7 @@ const CreateUser = () => {
     setNotify(false);
     setPassword('');
     setEmail('');
-    history.push('/');
+    history.push('/shopping');
   };
 
   return (
@@ -72,8 +74,8 @@ const CreateUser = () => {
           <div id="createuser-text">
             <p>To create an account enter user name and password</p>
           </div>
-          <input className="create-input" type="password" placeholder="Password" value={password} onChange={(ev) => setPassword(ev.target.value)} />
           <input className="create-input" type="email" placeholder="email" value={email} onChange={(ev) => setEmail(ev.target.value)} />
+          <input className="create-input" type="password" placeholder="Password" value={password} onChange={(ev) => setPassword(ev.target.value)} />
           <div id="create-email">
             <input id="create-checkbox" type="checkbox" value={notify} onChange={() => toggleCheckbox()}></input>
             <p id="check-text">Do you want game news in your inbox?</p>
