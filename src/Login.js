@@ -12,7 +12,6 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [token, setToken] = useRecoilState(tokenState);
   const [csrf, setCsrf] = useRecoilState(csrfState);
-  const [userName, setUserName] = useState('');
   const headers = useRecoilValue(headerState);
   const [cookies, setCookie, removeCookie] = useCookies(['token']);
   const history = useHistory();
@@ -37,12 +36,12 @@ const Login = () => {
   const login = async () => {
     let creds = undefined;
     try {
-      creds = (await axios.get('/auth', { headers: { username: userName, password: password }})).data;
+      creds = (await axios.get('/auth', { headers: { email: email, password: password }})).data;
     } catch (err) {
       const placeholder = err;
     }
     setCookie('token', creds, { path: '/', maxAge: 43200 });
-    setUserName('');
+    setEmail('');
     setPassword('');
     setToken(creds);
     history.push('/shopping');
@@ -57,8 +56,8 @@ const Login = () => {
 
   return (
     <div id="login-container" >
-      {!!token && <div id="welcome-user">Welcome {user.userName}</div>}
-      <input id="user-name" type="text" placeholder="User Name" value={userName} onChange={(ev) => setUserName(ev.target.value)} />
+      {!!token && <div id="welcome-user">Welcome {user.email}</div>}
+      <input id="user-name" type="text" placeholder="Email" value={email} onChange={(ev) => setEmail(ev.target.value)} />
       <input id="password" type="password" placeholder="Password" value={password} onChange={(ev) => setPassword(ev.target.value)} />
       {!token && <button className="login-submit" onClick={() => login()}>Login</button>}
       {!!token && <button className="login-submit" onClick={() => logout()}>Log Out</button>}

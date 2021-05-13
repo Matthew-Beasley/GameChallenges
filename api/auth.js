@@ -9,8 +9,8 @@ const {
 
 authRouter.get('/', async (req, res, next) => {
   try {
-    const { username, password } = req.headers;
-    const token = await authenticate({ username, password });
+    const { email, password } = req.headers;
+    const token = await authenticate({ email, password });
     res.status(201).send(token);
   } catch (error) {
     next(error);
