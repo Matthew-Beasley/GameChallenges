@@ -16,22 +16,22 @@ const validRequest = (headers, body) => {
     return false;
   }
   if (request.method !== 'POST' || 
-      request.headers.foxy-store-domain !== 'thwartme.foxycart.com' ||
-      request.headers.foxy-store-id !== '98241'
-    ) {
+      request.headers['foxy-store-domain'] !== 'thwartme.foxycart.com' ||
+      request.headers['foxy-store-id ']!== '98241'
+  ) {
     return false;
   }
   return true;
-}
+};
 
 foxyRouter.post('/', async (req, res, next) => {
   try {
-    if (isValidRequest(req.headers, req.body)) {
-      console.log('validation failed')
+    if (validRequest(req.headers, req.body)) {
+      console.log('validation failed');
       res.status(403).json({ text: 'Invalid Request' });
     } else {
-      console.log('Validation successful')
-      res.status(200).json({ text: 'Success!' })
+      console.log('Validation successful');
+      res.status(200).json({ text: 'Success!' });
     }
   } catch (err) {
     next(err);
