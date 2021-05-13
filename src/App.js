@@ -3,13 +3,15 @@ import { Route } from 'react-router-dom';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { tokenState, csrfState, userState, headerState } from './RecoilState';
+import { tokenState, csrfState, headerState } from './RecoilState';
 import LandingPage from './LandingPage';
 import CreateUser from './CreateUser';
 import Login from './Login';
 import GameContainer from './GameContainer';
 import Contact from './Contact';
 import About from './About';
+import Foxy from './Foxy';
+import ReadMore from './ReadMore';
 
 
 const App = () => {
@@ -28,8 +30,10 @@ const App = () => {
       {!!token && <Route path="/gamepage" component={GameContainer} />}
       <Route path="/contact" component={Contact} />
       <Route path="/about" component={About} />
-      {!token && <Route path="/login" component={Login} />}
-      {!token && <Route path="/createuser" component={CreateUser} />}
+      <Route path='/readmore' component={ReadMore} />
+      <Route path="/login" component={Login} />
+      <Route path="/createuser" component={CreateUser} />
+      {!!token && <Route path='/shopping' component={Foxy} />}
     </div>
   );
 };

@@ -7,8 +7,8 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const findUserFromToken = async (token) => {
-  const userName = jwt.decode(token, process.env.JWT).userName;
-  const user = await User.find({ userName: userName });
+  const email = jwt.decode(token, process.env.JWT).email;
+  const user = await User.find({ email: email });
   delete user.password;
   return user;
 };
@@ -28,7 +28,6 @@ const compare = ({ plain, hashed }) => {
   return new Promise((resolve, reject) => {
     bcrypt.compare(plain, hashed, (err, verified) => {
       if (err) {
-        console.log('bcrypt error', err);
         return reject(err);
       }
       if (verified) {
@@ -39,10 +38,10 @@ const compare = ({ plain, hashed }) => {
   });
 };
 
-const authenticate = async ({ username, password }) => {
-  const users = await User.find({ userName: username });
+const authenticate = async ({ email, password }) => {
+  const users = await User.find({ email: email });
   await compare({ plain: password, hashed: users[0].password });
-  return jwt.encode({ userName: users[0].userName }, process.env.JWT);
+  return jwt.encode({ email: users[0].email }, process.env.JWT);
 };
 
 const isLoggedIn = (req, res, next) => {

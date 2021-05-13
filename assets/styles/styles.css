@@ -242,7 +242,7 @@
 
 #login-container > button {
   height: 1.5rem;
-  width: fit-content;
+  width: 10rem;
   color: white;
   background-color: rgb(54, 51, 51);
   border: none;
