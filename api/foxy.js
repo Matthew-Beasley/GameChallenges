@@ -7,8 +7,8 @@ const foxyStoreId = process.env.FOXY_STORE_ID;
 const foxyStoreDomain = process.env.FOXY_STORE_DOMAIN;
 
 const validSignature = (headers, payload) => {
-  const referenceSignature = crypto.createHmac('sha256', foxyEncryptionKey).update(body).digest('hex');
-  return signature === referenceSignature;
+  const referenceSignature = crypto.createHmac('sha256', foxyEncryptionKey).update(JSON.stringify(payload)).digest('hex');
+  return headers['foxy-webhook-signature'] === referenceSignature;
 };
 
 const validRequest = (headers, body) => {
