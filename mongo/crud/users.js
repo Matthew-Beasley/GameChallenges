@@ -32,6 +32,7 @@ const addDeck = async (transaction) => {
   const user = await User.find({ email: email });
   if(transaction.status === 'captured') {
     user.decks.push({ sku: transaction.sku, transaction: transaction });
+    await user.save();
     return true;
   }
   return false;
