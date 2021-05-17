@@ -28,8 +28,13 @@ const getUserByEmail = async (email) => {
 
 const addDeck = async (transaction) => {
   transaction = JSON.parse(transaction);
-  //const email 
+  const email = transaction.email;
   const user = await User.find({ email: email });
+  if(transaction.status === 'captured') {
+    user.decks.push({ sku: transaction.sku, transaction: transaction });
+    return true;
+  }
+  return false;
 };
 
 const getUsers = async () => {
