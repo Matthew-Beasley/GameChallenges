@@ -6,7 +6,10 @@ const userSchema = new Schema({
   password: { type: String, required: true },
   notify: { type: Boolean }, 
   platforms: [String],
-  decks: [{game: {type: String, deck: {type: Number}}}]
+  decks: [{
+    sku: { type: String, required: true },
+    transaction: { type: String, required: true }
+  }]
 });
 
 const User = Mongoose.model('User', userSchema);

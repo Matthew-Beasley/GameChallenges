@@ -26,6 +26,12 @@ const getUserByEmail = async (email) => {
   return user;
 };
 
+const addDeck = async (transaction) => {
+  transaction = JSON.parse(transaction);
+  //const email 
+  const user = await User.find({ email: email });
+};
+
 const getUsers = async () => {
   const users = await User.find();
   return users;
@@ -34,5 +40,6 @@ const getUsers = async () => {
 module.exports = {
   createUser,
   getUserByEmail,
+  addDeck,
   getUsers
 };

@@ -6,6 +6,7 @@ const foxyEncryptionKey = process.env.FOXY_ENCRYPTION_KEY;
 const foxyStoreId = process.env.FOXY_STORE_ID;
 const foxyStoreDomain = process.env.FOXY_STORE_DOMAIN;
 
+
 const validSignature = (headers, payload) => {
   const referenceSignature = crypto.createHmac('sha256', foxyEncryptionKey).update(JSON.stringify(payload)).digest('hex');
   return headers['foxy-webhook-signature'] === referenceSignature;
@@ -27,10 +28,9 @@ const validRequest = (headers, body) => {
 foxyRouter.post('/', async (req, res, next) => {
   try {
     if (validRequest(req.headers, req.body)) {
-      console.log('validation failed');
       res.status(403).json({ text: 'Invalid Request' });
     } else {
-      console.log('Validation successful');
+      console.log(req.body)
       res.status(200).json({ text: 'Success!' });
     }
   } catch (err) {
