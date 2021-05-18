@@ -19,8 +19,8 @@ const validRequest = (headers, body) => {
     return false;
   }
   if (headers.method !== 'POST' || 
-      headers.headers['foxy-store-domain'] !== 'thwartme.foxycart.com' ||
-      headers.headers['foxy-store-id ']!== '98241'
+      headers['foxy-store-domain'] !== 'thwartme.foxycart.com' ||
+      headers['foxy-store-id ']!== '98241'
   ) {
     return false;
   }
@@ -33,9 +33,6 @@ foxyRouter.post('/', async (req, res, next) => {
       console.log(req.body)
       res.status(200).json({ text: 'Success' });
     } else {
-      //const val = JSON.stringify(req.body)
-     // console.log(JSON.parse(val));
-      //const status = await addDeck(req.body);
       res.status(403).json({ text: 'Not Authorized' });
     }
   } catch (err) {
