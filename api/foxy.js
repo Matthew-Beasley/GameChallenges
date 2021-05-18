@@ -29,11 +29,13 @@ const validRequest = (headers, body) => {
 foxyRouter.post('/', async (req, res, next) => {
   try {
     if (validRequest(req.headers, req.body)) {
-      res.status(403).json({ text: 'Invalid Request' });
+      console.log(req.body)
+      res.status(200).json({ text: 'Success' });
     } else {
-      console.log(req.body);
-      const status = await addDeck(req.body);
-      res.status(200).json({ text: 'Success!' });
+      //const val = JSON.stringify(req.body)
+     // console.log(JSON.parse(val));
+      //const status = await addDeck(req.body);
+      res.status(403).json({ text: 'Not Authorized' });
     }
   } catch (err) {
     next(err);

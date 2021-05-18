@@ -27,12 +27,16 @@ const getUserByEmail = async (email) => {
 };
 
 const addDeck = async (transaction) => {
-  transaction = JSON.parse(transaction);
-  const email = transaction.email;
+  const email = transaction.customer_email;
   const user = await User.find({ email: email });
   if(transaction.status === 'captured') {
-    user.decks.push({ sku: transaction.sku, transaction: transaction });
-    await user.save();
+    if (!user[0].decks) {
+      user[0].decks = [];
+    }
+    //console.log(transaction)
+    user[0].decks.push({ sku: transaction.sku, transaction: transaction });
+    //console.log(user[0].decks)
+    //await User.updateOne( { email: email }, { decks: user[0].decks } );
     return true;
   }
   return false;
