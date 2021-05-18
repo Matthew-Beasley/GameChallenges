@@ -15,18 +15,18 @@ const validSignature = (headers, payload) => {
 
 const validRequest = (headers, body) => {
   if (!validSignature(headers, body)) {
-    console.log(('validSignature is TRUE!'));
+    console.log(('validSignature is False!'));
     return false;
   }
-  if (headers.method !== 'POST' || 
+ /* if (headers.method !== 'POST' || 
       headers['foxy-store-domain'] !== 'thwartme.foxycart.com' ||
       headers['foxy-store-id ']!== '98241'
-  ) {
+  ) {*/
     console.log('store domain in headers', headers['foxy-store-domain']);
     console.log('store id in headers', headers['foxy-store-id ']);
-    return false;
-  }
-  return true;
+    //return false;
+  //}
+  //return true;
 };
 
 foxyRouter.post('/', async (req, res, next) => {
