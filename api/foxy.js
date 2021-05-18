@@ -23,6 +23,9 @@ const validRequest = (headers, body) => {
       request.headers['foxy-store-id ']!== '98241'
   ) {
     console.log('Problem with headers!')
+    console.log('request.method ', request.method)
+    console.log('store domain ', request.headers['foxy-store-domain'])
+    console.log('store id ', request.headers['foxy-store-id '])
     return false;
   }
   return true;
