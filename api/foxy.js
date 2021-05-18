@@ -10,6 +10,8 @@ const foxyStoreDomain = process.env.FOXY_STORE_DOMAIN;
 
 const validSignature = (headers, payload) => {
   const referenceSignature = crypto.createHmac('sha256', foxyEncryptionKey).update(JSON.stringify(payload)).digest('hex');
+  console.log('reference header ', headers['foxy-webhook-signature'])
+  console.log('reference signature', referenceSignature)
   return headers['foxy-webhook-signature'] === referenceSignature;
 };
 
