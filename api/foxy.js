@@ -10,19 +10,19 @@ const foxyStoreDomain = process.env.FOXY_STORE_DOMAIN;
 
 const validSignature = (headers, payload) => {
   const referenceSignature = crypto.createHmac('sha256', foxyEncryptionKey).update(JSON.stringify(payload)).digest('hex');
-  console.log('reference header ', headers['foxy-webhook-signature'])
-  console.log('reference signature', referenceSignature)
   return headers['foxy-webhook-signature'] === referenceSignature;
 };
 
 const validRequest = (headers, body) => {
   if (!validSignature(headers, body)) {
+    console.log(('validSignature is TRUE!'))
     return false;
   }
   if (request.method !== 'POST' || 
       request.headers['foxy-store-domain'] !== 'thwartme.foxycart.com' ||
       request.headers['foxy-store-id ']!== '98241'
   ) {
+    console.log('Problem with headers!')
     return false;
   }
   return true;
