@@ -18,16 +18,11 @@ const validRequest = (request, body) => {
     console.log(('validSignature is False!'));
     return false;
   }
-  if (request.type !== 'POST' || 
+  if (request.method !== 'POST' || 
     request.headers['foxy-store-domain'] !== 'thwartme.foxycart.com' || 
     request.headers['foxy-store-id'] !== '98241') {
-    console.log('method ', request.method)
-    console.log('store domain in headers', request.headers['foxy-store-domain']);
-    console.log('store id in headers', request.headers['foxy-store-id']);
     return false;
   }
-  console.log('store domain in headers', request.headers['foxy-store-domain']);
-  console.log('store id in headers', request.headers['foxy-store-id']);
   return true;
 };
 
