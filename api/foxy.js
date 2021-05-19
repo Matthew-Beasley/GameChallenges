@@ -13,25 +13,27 @@ const validSignature = (headers, payload) => {
   return headers['foxy-webhook-signature'] === referenceSignature;
 };
 
-const validRequest = (headers, body) => {
-  (if (!validSignature(headers, body)) {
+const validRequest = (request, body) => {
+  if (!validSignature(request.headers, body)) {
     console.log(('validSignature is False!'));
     return false;
   }
-  if (headers['foxy-store-domain'] !== 'thwartme.foxycart.com' || headers['foxy-store-id'] !== '98241') {
-    console.log('method ', headers.method)
-    console.log('store domain in headers', headers['foxy-store-domain']);
-    console.log('store id in headers', headers['foxy-store-id']);
+  if (request.type !== 'POST' || 
+    request.headers['foxy-store-domain'] !== 'thwartme.foxycart.com' || 
+    request.headers['foxy-store-id'] !== '98241') {
+    console.log('method ', request.method)
+    console.log('store domain in headers', request.headers['foxy-store-domain']);
+    console.log('store id in headers', request.headers['foxy-store-id']);
     return false;
   }
-  console.log('store domain in headers', headers['foxy-store-domain']);
-  console.log('store id in headers', headers['foxy-store-id']);
+  console.log('store domain in headers', request.headers['foxy-store-domain']);
+  console.log('store id in headers', request.headers['foxy-store-id']);
   return true;
 };
 
 foxyRouter.post('/', async (req, res, next) => {
   try {
-    if (validRequest(req.headers, req.body)) {
+    if (validRequest(req, req.body)) {
       console.log(req.body);
       res.status(200).json({ text: 'Success' });
     } else {
