@@ -26,6 +26,23 @@ const getUserByEmail = async (email) => {
   return user;
 };
 
+const addTransaction = async (transaction) => {
+  const email = transaction.customer_email;
+  const user = await User.find({ email: email });
+  if(transaction.status === 'captured') {
+    if (!user[0].decks) {
+      user[0].decks = [];
+    }
+    const decks = new Set(...user[0].decks);
+    decks.push( ...transaction._embedded['fx:items']);
+    await User.updateOne( { email: email }, { decks: decks } );
+    user[0].transactions.push(transaction);
+    await User.updateOne( { email: email }, { transactions: transaction });
+    return true;
+  }
+  return false;
+};
+
 const getUsers = async () => {
   const users = await User.find();
   return users;
@@ -34,5 +51,6 @@ const getUsers = async () => {
 module.exports = {
   createUser,
   getUserByEmail,
+  addTransaction,
   getUsers
 };

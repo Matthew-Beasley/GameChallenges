@@ -36,7 +36,7 @@ userRouter.post('/token', async (req, res, next) => {
 userRouter.post('/', async (req, res, next) => {
   try {
     const val = await createUser(req.body);
-    res.status(201).send(val);
+    res.status(200).send(val);
   } catch (error) {
     next(error);
   }
