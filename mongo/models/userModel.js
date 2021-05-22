@@ -6,11 +6,9 @@ const userSchema = new Schema({
   email: { type: String, unique: true, required: true },
   password: { type: String, required: true },
   notify: { type: Boolean }, 
-  platforms: [String],
-  decks: [{
-    sku: { type: String, required: true },
-    transaction: { type: String, required: true }
-  }]
+  platforms: [ String ],
+  transactions: [ Schema.Types.Mixed ],
+  decks: [ Schema.Types.Mixed ]
 });
 
 const User = Mongoose.model('User', userSchema);
