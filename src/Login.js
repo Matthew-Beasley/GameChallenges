@@ -27,7 +27,9 @@ const Login = () => {
     const token = cookies.token;
     if (token) {
       axios.post('/user/token', { token: token }, headers).then(response => {
+        console.log('in login ', response.data[0]);
         setUser(response.data[0]);
+        history.push('/shopping')
       });
     }
   }, [token]);
@@ -44,7 +46,6 @@ const Login = () => {
     setEmail('');
     setPassword('');
     setToken(creds);
-    history.push('/shopping');
   };
 
   const logout = () => {
