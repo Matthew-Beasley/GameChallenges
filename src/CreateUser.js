@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
-import { usereState, passwordState, headerState, csrfState, tokenState } from './RecoilState';
+import { userState, passwordState, headerState, csrfState, tokenState } from './RecoilState';
 import { useCookies } from 'react-cookie';
 
 
