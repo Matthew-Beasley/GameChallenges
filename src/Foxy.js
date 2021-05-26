@@ -13,6 +13,7 @@ const Foxy = () => {
   const headers = useRecoilValue(headerState);
   const [csrf, setCsrf] = useRecoilState(csrfState);
   const [user, setUser] = useRecoilState(userState);
+  const [cookies, setCookie, removeCookie] = useCookies(['token']);
   const history = useHistory();
 
   useEffect(() => {
@@ -20,7 +21,12 @@ const Foxy = () => {
   }, []);
 
   useEffect(() => {
-    console.log('in Foxy.js ', user)
+    if(cookies.token && !user) {
+      axios.post('/user/token', { token: cookies.token }, headers).then(response => {
+        setUser(response.data[0]);
+      });
+    }
+    console.log('in foxyjs ', user)
   },[]);
 
   return (
