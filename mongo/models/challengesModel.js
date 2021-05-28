@@ -15,7 +15,7 @@ const challengesSchema = new Schema({
   Attempts: { type: Number },
   Games: { type: String },
   Challenge: { type: String, required: true, unique: true },
-  DeckNumber: [Number]
+  Deck: { type: Number}
 });
 
 const Challenge = Mongoose.model('Challenge', challengesSchema);

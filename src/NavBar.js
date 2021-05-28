@@ -23,7 +23,7 @@ const NavBar = () => {
 
   useEffect(() => {
 
-  }, [user])
+  }, [user]);
 
   return (
     <div id="navbar">
