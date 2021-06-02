@@ -14,8 +14,8 @@ const Foxy = () => {
   const [csrf, setCsrf] = useRecoilState(csrfState);
   const [user, setUser] = useRecoilState(userState);
   const [cookies, setCookie, removeCookie] = useCookies(['token']);
-  const [decks, setDecks] = useState([]);
-  const sortedDecks = {};
+  const [challenges, setChallenges] = useState([]);
+  const [decks, setDecks] = useState({});
   const history = useHistory();
 
   useEffect(() => {
@@ -25,23 +25,25 @@ const Foxy = () => {
         setUser(response.data[0]);
       });
       axios.post('/challenge/list', {}, headers).then(response => {
-        setDecks(response.data.games);
+        setChallenges(response.data.games);
       });
     }
   },[]);
 
   useEffect(() => {
-    for(let i = 0; i < decks.length; i++) {
-      if(decks[i].Game in sortedDecks) {
-        if(sortedDecks.Game && sortedDecks.Game.some(el => el.deck === decks[i].Deck).length === 0) {
-          sortedDecks[decks[i].Game].push(decks[i].Deck);
+    const sortedDecks = {};
+    for(let i = 0; i < challenges.length; i++) {
+      if(challenges[i].Game in sortedDecks) {
+        if(sortedDecks.Game && sortedDecks.Game.some(el => el.deck === challenges[i].Deck).length === 0) {
+          sortedDecks[challenges[i].Game].push(challenges[i].Deck);
         }
       } else {
-        sortedDecks[decks[i].Game] = [decks[i].Deck];
+        sortedDecks[challenges[i].Game] = [challenges[i].Deck];
       }
     }
-    console.log(sortedDecks);
-  },[decks]);
+    //console.log(sortedDecks);
+    setDecks(sortedDecks);
+  },[challenges]);
 
   return (
     <div id="foxy">
@@ -61,7 +63,26 @@ const Foxy = () => {
         </ul>
         <h3>Buy some of these</h3>
         <ul>
-          {}
+          {!!decks && Object.entries(decks).map(([game, deckList]) => {
+            if(deckList.includes(0) && deckList.length > 1 || !deckList.includes(0)) {
+              return (
+                <li key={game}>
+                  {game}
+                  <ul>
+                    {deckList.map((deck, el) => {
+                      if(deck > 0) {
+                        return (
+                          <li key={el}>
+                            {deck}
+                            <a href="https://thwartme.foxycart.com/cart?name=Cool%20Example&price=10&color=red&code=sku123">Add a red Cool Example</a>
+                          </li>
+                        );
+                      }
+                    })}
+                  </ul>
+                </li>
+              );}
+          })}
         </ul>
       </div>
 
