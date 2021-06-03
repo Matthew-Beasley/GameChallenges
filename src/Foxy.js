@@ -43,7 +43,7 @@ const Foxy = () => {
     }
     //console.log(sortedDecks);
     setDecks(sortedDecks);
-  },[challenges]);
+  },[challenges, user]);
 
   return (
     <div id="foxy">
@@ -70,11 +70,17 @@ const Foxy = () => {
                   {game}
                   <ul>
                     {deckList.map((deck, el) => {
-                      if(deck > 0) {
+                      if(deck > 0 && !user.decks.some(deck => deck.code === `${game}${deck}`)) {
                         return (
                           <li key={el}>
                             {deck}
-                            <a href="https://thwartme.foxycart.com/cart?name=Cool%20Example&price=10&color=red&code=sku123">Add a red Cool Example</a>
+                            {/*<a href={`https://thwartme.foxycart.com/cart?name=Cool%20Example&price=1.99&color=red&code=${game}${deck}`}>Add {`${game} ${deck}`}</a>*/}
+                            <form action="https://thwartme.foxycart.com/cart" method="post" acceptCharset="utf-8">
+                              <input type="hidden" name="name" value={`${game} deck ${deck}`} />
+                              <input type="hidden" name="price" value="1.99" />
+                              <input type="hidden" name="code" value={`${game}${deck}`} />
+                              <input type="submit" value={`Add ${game}, deck ${deck}`} className="submit" />
+                            </form>
                           </li>
                         );
                       }
@@ -85,22 +91,6 @@ const Foxy = () => {
           })}
         </ul>
       </div>
-
-
-
-      <a href="https://thwartme.foxycart.com/cart?name=Cool%20Example&price=10&color=red&code=sku123">Add a red Cool Example</a>
-      <form action="https://thwartme.foxycart.com/cart" method="post" acceptCharset="utf-8">
-        <input type="hidden" name="name" value="Cool Example" />
-        <input type="hidden" name="price" value="10" />
-        <input type="hidden" name="code" value="sku123" />
-        <label className="label_left">Size</label>
-        <select name="size">
-          <option value="small">Small</option>
-          <option value="medium">Medium</option>
-          <option value="large">Large</option>
-        </select>
-        <input type="submit" value="Add a Cool Example" className="submit" />
-      </form>
     </div>
   );
 };
