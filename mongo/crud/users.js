@@ -33,6 +33,7 @@ const addTransaction = async (transaction) => {
     if (!user[0].decks) {
       user[0]['decks'] = [];
     }
+    console.log('user.decks in crud: ', user[0].decks)
     const decks = new Set(...user[0].decks);
     decks.add( ...transaction._embedded['fx:items']);
     console.log('decks in crud: ', decks)
