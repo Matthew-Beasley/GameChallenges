@@ -29,7 +29,6 @@ const validRequest = (request, body) => {
 foxyRouter.post('/', async (req, res, next) => {
   try {
     if (validRequest(req, req.body)) {
-      //console.log('items in api ', req.body)//._embedded['fx:items']);
       addTransaction(req.body);
       res.status(200).json({ text: 'Success' });
     } else {

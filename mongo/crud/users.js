@@ -27,17 +27,14 @@ const getUserByEmail = async (email) => {
 };
 
 const addTransaction = async (transaction) => {
-  console.log('email in transaction ', transaction.customer_email)
   const email = transaction.customer_email.trim();
-  console.log('email in crud', email)
   const user = await User.find({ email: email });
-  console.log('user in crud ', user)
   if(transaction.status === 'captured') {
     if (!user[0].decks) {
       user[0]['decks'] = [];
     }
     const decks = new Set(...user[0].decks);
-    decks.push( ...transaction._embedded['fx:items']);
+    decks.Add( ...transaction._embedded['fx:items']);
     await User.updateOne( { email: email }, { decks: decks } );
     user[0].transactions.push(transaction);
     await User.updateOne( { email: email }, { transactions: transaction });
