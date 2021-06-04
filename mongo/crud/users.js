@@ -34,7 +34,7 @@ const addTransaction = async (transaction) => {
       user[0]['decks'] = [];
     }
     const decks = new Set(...user[0].decks);
-    decks.Add( ...transaction._embedded['fx:items']);
+    decks.add( ...transaction._embedded['fx:items']);
     await User.updateOne( { email: email }, { decks: decks } );
     user[0].transactions.push(transaction);
     await User.updateOne( { email: email }, { transactions: transaction });
