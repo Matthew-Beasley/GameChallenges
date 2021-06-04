@@ -27,7 +27,7 @@ const getUserByEmail = async (email) => {
 };
 
 const addTransaction = async (transaction) => {
-  const email = transaction.customer_email;
+  const email = transaction.customer_email.trim();
   console.log('email in crud ', email)
   const user = await User.find({ email: email });
   console.log('user in crud '. user)
