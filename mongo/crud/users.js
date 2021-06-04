@@ -28,8 +28,8 @@ const getUserByEmail = async (email) => {
 
 const addTransaction = async (transaction) => {
   const email = transaction.customer_email;
+  console.log('email in crud ', email)
   const user = await User.find({ email: email });
-  console.log('transaction in crud ', transaction)
   console.log('user in crud '. user)
   if(transaction.status === 'captured') {
     if (!user[0].decks) {
