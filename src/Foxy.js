@@ -70,7 +70,7 @@ const Foxy = () => {
                   {game}
                   <ul>
                     {deckList.map((deck, el) => {
-                      if(deck > 0 && !user.decks.some(deck => deck.code === `${game}${deck}`)) {
+                      if(deck > 0 /*&& !user.decks.some(deck => deck.code === `${game}${deck}`)*/) {
                         return (
                           <li key={el}>
                             {deck}
