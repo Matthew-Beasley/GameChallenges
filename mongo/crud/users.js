@@ -35,6 +35,7 @@ const addTransaction = async (transaction) => {
     }
     const decks = new Set(...user[0].decks);
     decks.add( ...transaction._embedded['fx:items']);
+    console.log('decks in crud: ', decks)
     await User.updateOne( { email: email }, { decks: decks } );
     user[0].transactions.push(transaction);
     await User.updateOne( { email: email }, { transactions: transaction });
