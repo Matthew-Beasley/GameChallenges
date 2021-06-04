@@ -34,10 +34,10 @@ const addTransaction = async (transaction) => {
       user[0]['decks'] = [];
     }
     console.log('user.decks in crud: ', user[0].decks)
-    const decks = new Set(...user[0].decks);
-    decks.add( ...transaction._embedded['fx:items']);
+    const decks = new Set();
+    decks.add( ...transaction._embedded['fx:items'], ...user[0].decks);
     console.log('decks in crud: ', decks)
-    await User.updateOne( { email: email }, { decks: decks } );
+    await User.updateOne( { email: email }, { decks: [...decks] } );
     user[0].transactions.push(transaction);
     await User.updateOne( { email: email }, { transactions: transaction });
     return true;
