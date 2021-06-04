@@ -43,7 +43,7 @@ const Foxy = () => {
     }
     //console.log(sortedDecks);
     setDecks(sortedDecks);
-  },[challenges, user]);
+  },[challenges]);
 
   return (
     <div id="foxy">
