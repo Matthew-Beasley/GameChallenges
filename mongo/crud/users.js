@@ -30,16 +30,21 @@ const addTransaction = async (transaction) => {
   const email = transaction.customer_email.trim();
   const user = await User.find({ email: email });
   if(transaction.status === 'captured') {
-    if (!user[0].decks) {
+    if (!user[0].decks) { //Do I need this?
       user[0]['decks'] = [];
     }
-    console.log('user.decks in crud: ', user[0].decks)
-    const decks = new Set();
-    decks.add( ...transaction._embedded['fx:items'], ...user[0].decks);
-    console.log('decks in crud: ', decks)
-    await User.updateOne( { email: email }, { decks: [...decks] } );
+    const purchasedDecks = [...transaction._embedded['fx:items']];
+    const codes = user[0].decks.map(deck => deck.code);
+    const uniqueDecks = purchasedDecks.reduce((accum, item) => {
+      if(!codes.includes(item.code)) {
+        accum.push(item);
+      }
+      return accum;
+    }, []);
+    const allDecks = [...user[0].decks, ...uniqueDecks];
+    await User.updateOne( { email: email }, { decks: allDecks });
     user[0].transactions.push(transaction);
-    await User.updateOne( { email: email }, { transactions: transaction });
+    await User.updateOne( { email: email }, { transactions: user[0].transactions });
     return true;
   }
   return false;
