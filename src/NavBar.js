@@ -1,7 +1,30 @@
-import React from 'react';
-import { Route, Link, history } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Route, Link, useHistory } from 'react-router-dom';
+import { useRecoilState, useRecoilValue} from 'recoil';
+import { useCookies } from 'react-cookie';
+import { tokenState, csrfState, headerState, userState } from './RecoilState';
+
 
 const NavBar = () => {
+  const [user, setUser] = useRecoilState(userState);
+
+  const [token, setToken] = useRecoilState(tokenState);
+  //const [csrf, setCsrf] = useRecoilState(csrfState);
+  //const headers = useRecoilValue(headerState);
+  const [cookies, setCookie, removeCookie] = useCookies(['token']);
+  const history = useHistory();
+
+  const logout = () => {
+    removeCookie('token');
+    setToken('');
+    setUser({});
+    history.push('/');
+  };
+
+  useEffect(() => {
+
+  }, [user]);
+
   return (
     <div id="navbar">
       <div className="nav-links">
@@ -10,12 +33,19 @@ const NavBar = () => {
         <Link to="/contact">Contact Us</Link>
         <Link to="/shopping">Get Decks</Link>
       </div>
-      <div className="nav-links">
-        <Link to="/login">Sign in</Link>
-        <Link to="/createuser">Create Account</Link>
-      </div>
+      {!user.email &&
+        <div className="nav-links">
+          <Link to="/login">Sign in</Link>
+          <Link to="/createuser">Create Account</Link>
+        </div>
+      }
+      {!!user.email && 
+        <div className="logout-text" onClick={() => logout()}>
+          Logout
+        </div>
+      }
     </div>
   );
 };
 
-export default NavBar; 
+export default NavBar;
