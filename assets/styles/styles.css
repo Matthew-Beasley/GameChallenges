@@ -197,6 +197,14 @@
   font-family: 'Arial Rounded MT Bold', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
+.logout-text {
+  font-size: 1.4rem;
+  color: white;
+  text-decoration: none;
+  margin: 1rem 4rem 0rem 2rem;
+  cursor: pointer;
+}
+
 .nav-links {
   display: flex;
   flex-direction: row;
@@ -207,7 +215,7 @@
   font-size: 1.4rem;
   color: white;
   text-decoration: none;
-  margin: 1rem 4rem 0rem 2rem
+  margin: 1rem 4rem 0rem 2rem;
 }
 
 

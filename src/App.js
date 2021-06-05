@@ -12,7 +12,7 @@ import Contact from './Contact';
 import About from './About';
 import Foxy from './Foxy';
 import ReadMore from './ReadMore';
-
+import { LogOut } from './NavBar';
 
 const App = () => {
   const [cookies, setCookie] = useCookies(['token']);
@@ -27,6 +27,7 @@ const App = () => {
   return (
     <div id="app-container">
       <Route exact path="/" component={LandingPage} />
+      <Route path="/logout" component={LogOut} />
       {!!token && <Route path="/gamepage" component={GameContainer} />}
       <Route path="/contact" component={Contact} />
       <Route path="/about" component={About} />

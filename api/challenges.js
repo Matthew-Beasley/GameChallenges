@@ -25,7 +25,7 @@ const checkCache = (req, res, next) => {
   });
 };
 
-challengeRouter.post('/games', checkCache, async (req, res, next) => {
+challengeRouter.post('/list', checkCache, async (req, res, next) => {
   try {
     const data = await getChallenges(req.body);
     console.log('SERVED UP BY MONGO');
