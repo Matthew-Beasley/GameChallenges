@@ -16,19 +16,22 @@ const Foxy = () => {
   const [cookies, setCookie, removeCookie] = useCookies(['token']);
   const [challenges, setChallenges] = useState([]);
   const [decks, setDecks] = useState({});
-  const history = useHistory();
 
   useEffect(() => {
     axios.defaults.headers.post['X-CSRF-Token'] = csrf;
-    if(cookies.token && !user.email) {
-      axios.post('/user/token', { token: cookies.token }, headers).then(response => {
-        setUser(response.data[0]);
-      });
-      axios.post('/challenge/list', {}, headers).then(response => {
-        setChallenges(response.data.games);
-      });
+    if(cookies.token) {
+      axios.post('/user/token', { token: cookies.token }, headers)
+        .then(response => {
+          setUser(response.data[0]);
+        })
+        .then(() => {
+          axios.post('/challenge/list', {}, headers)
+            .then(response => {
+              setChallenges(response.data.games);
+            });
+        });
     }
-  },[]);
+  }, []);
 
   useEffect(() => {
     const sortedDecks = {};
@@ -41,7 +44,6 @@ const Foxy = () => {
         sortedDecks[challenges[i].Game] = [challenges[i].Deck];
       }
     }
-    //console.log(sortedDecks);
     setDecks(sortedDecks);
   },[challenges]);
 
@@ -70,7 +72,7 @@ const Foxy = () => {
                   {game}
                   <ul>
                     {deckList.map((deck, el) => {
-                      if(deck > 0 /*&& !user.decks.some(deck => deck.code === `${game}${deck}`)*/) {
+                      if(deck > 0 && !user.decks.some(deck => deck.code === `${game}${deck}`)) {
                         return (
                           <li key={el}>
                             {deck}
