@@ -75,7 +75,7 @@ const Foxy = () => {
                       if(deck > 0 && !user.decks.some(deck => deck.code === `${game}${deck}`)) {
                         return (
                           <li key={el}>
-                            {deck}
+                            {/*deck*/}
                             {/*<a href={`https://thwartme.foxycart.com/cart?name=Cool%20Example&price=1.99&color=red&code=${game}${deck}`}>Add {`${game} ${deck}`}</a>*/}
                             <form action="https://thwartme.foxycart.com/cart" method="post" acceptCharset="utf-8">
                               <input type="hidden" name="name" value={`${game} deck ${deck}`} />
