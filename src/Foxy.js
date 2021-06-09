@@ -45,7 +45,19 @@ const Foxy = () => {
       }
     }
     setDecks(sortedDecks);
-  },[challenges]);
+    console.log(sortedDecks);
+  }, [challenges]);
+
+  const addFreeDeck = async (deck) => {
+    user.decks.push(deck);
+    await axios.put('/user/updatedecks', {email: user.email, decks: user.decks}, headers);
+  };
+
+  const parseCode = (deck) => {
+    const name = deck.name;
+    const deckNum = deck.code.replace(name, '');
+    return `${name} deck ${deckNum}`;
+  };
 
   return (
     <div id="foxy">
@@ -57,8 +69,7 @@ const Foxy = () => {
           {!!user.email && user.decks.map((item, ord) => {
             return (
               <li key={ord}>
-                <div>{item.name}</div>
-                <div>{item.code}</div>
+                <div>{parseCode(item)}</div>
               </li>
             );
           })}
@@ -72,24 +83,35 @@ const Foxy = () => {
                   {game}
                   <ul>
                     {deckList.map((deck, el) => {
-                      if(deck > 0 && !user.decks.some(deck => deck.code === `${game}${deck}`)) {
+                      if(deck > 0 && !user.decks.find(testDeck => testDeck.code === `${game}${deck}`)) {
                         return (
                           <li key={el}>
                             {/*deck*/}
-                            {/*<a href={`https://thwartme.foxycart.com/cart?name=Cool%20Example&price=1.99&color=red&code=${game}${deck}`}>Add {`${game} ${deck}`}</a>*/}
-                            <form action="https://thwartme.foxycart.com/cart" method="post" acceptCharset="utf-8">
+                            {<a href={`https://thwartme.foxycart.com/cart?name=${game}${deck}&price=1.99&code=${game}${deck}`}>Add {`${game} deck ${deck}`}</a>}
+                            { /* <form action="https://thwartme.foxycart.com/cart" method="post" acceptCharset="utf-8">
                               <input type="hidden" name="name" value={`${game} deck ${deck}`} />
                               <input type="hidden" name="price" value="1.99" />
                               <input type="hidden" name="code" value={`${game}${deck}`} />
                               <input type="submit" value={`Add ${game}, deck ${deck}`} className="submit" />
-                            </form>
+                            </form>  */}
                           </li>
                         );
-                      }
+                      } else if(deck > 0 && user.decks.find(testDeck => testDeck.code === `${game}${deck}`)) {
+                        return (
+                          <li key={el}><button>{`Deck ${deck} Play This Deck`}</button></li>
+                        );
+                      } else if(deck > 0 && user.decks.length === 0) {
+                        const deckObj = decks.find(obj => obj.code === `${game}${deck}`);
+                        return (
+                          <li>
+                            <div onClick={deckObj => addFreeDeck(deckObj)}>{`Play this deck free! ${game}${deck}`}</div>
+                          </li>
+                        );
+                      } 
                     })}
                   </ul>
                 </li>
-              );}
+              );} 
           })}
         </ul>
       </div>
