@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { cloneDeep } from 'lodash';
 import NavBar from './NavBar';
 import axios from 'axios';
-
-
-import { useHistory } from 'react-router-dom';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { userState, headerState, csrfState, tokenState } from './RecoilState';
 import { useCookies } from 'react-cookie';
@@ -16,6 +15,8 @@ const Foxy = () => {
   const [cookies, setCookie, removeCookie] = useCookies(['token']);
   const [challenges, setChallenges] = useState([]);
   const [decks, setDecks] = useState({});
+  const [freeDeck, setFreeDeck] = useState({});
+
 
   useEffect(() => {
     axios.defaults.headers.post['X-CSRF-Token'] = csrf;
@@ -31,6 +32,7 @@ const Foxy = () => {
             });
         });
     }
+    console.log('challenges useEffect fired')
   }, []);
 
   useEffect(() => {
@@ -45,20 +47,67 @@ const Foxy = () => {
       }
     }
     setDecks(sortedDecks);
-  },[challenges]);
+    console.log('sortedDecks useEffect fired user is', user)
+  },[challenges, user]);
+
+
+  useEffect(() => {
+    // beef this check up
+    if('code' in freeDeck) {
+      axios.post('/user/updatedecks', { email: user.email, decks: [freeDeck] }, headers);
+    }
+    const tmpUser = cloneDeep(user);
+    if('decks' in user) {
+      tmpUser.decks.push(freeDeck);
+      setUser(tmpUser);
+    }
+  }, [freeDeck]);
+
+  const addFreeDeck = async (event) => {
+    // put get date method in recoil state;
+    const date = new Date();
+    const time = `${date.getFullYear()}-${(date.getMonth() + 1)}-${date.getDate()}T${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+    if(user.decks.length === 0) {
+      const deckName = event.target.innerText.replace('Play this deck free! ', '');
+      const deckCode = deckName.replace(' deck ', '');
+      const deck = {
+        code: deckCode,
+        name: deckName,
+        base_price: 0.00,
+        price: 0.00,
+        quantitiy: 1,
+        date_modified: time,
+        date_created: time,
+        image: null,
+        _embedded: {
+          date_created: time,
+          date_modified: time
+        }
+      };
+      setFreeDeck(deck);
+    }
+  };
+
+  const parseCode = (deck) => {
+    if('name' in deck) {
+      const name = deck.name;
+      const deckNum = deck.code.replace(name, '');
+      return `${name} deck ${deckNum}`;
+    } else {
+      return null;
+    }
+  };
 
   return (
     <div id="foxy">
       <NavBar />
-
       <div className="shoppinglist" id="owned-decks">
         <h3>Decks I own</h3>
         <ul className="decklist mydecks">
           {!!user.email && user.decks.map((item, ord) => {
             return (
               <li key={ord}>
-                <div>{item.name}</div>
-                <div>{item.code}</div>
+                <div>{parseCode(item)}</div>
               </li>
             );
           })}
@@ -72,24 +121,35 @@ const Foxy = () => {
                   {game}
                   <ul>
                     {deckList.map((deck, el) => {
-                      if(deck > 0 && !user.decks.some(deck => deck.code === `${game}${deck}`)) {
+                      {/* deck list is a list of deck numbers */}
+                      if(deck > 0 && user.decks.length > 0 && !user.decks.find(testDeck => testDeck.code === `${game}${deck}`)) {
                         return (
                           <li key={el}>
-                            {deck}
-                            {/*<a href={`https://thwartme.foxycart.com/cart?name=Cool%20Example&price=1.99&color=red&code=${game}${deck}`}>Add {`${game} ${deck}`}</a>*/}
-                            <form action="https://thwartme.foxycart.com/cart" method="post" acceptCharset="utf-8">
+                            {/*deck*/}
+                            {<a href={`https://thwartme.foxycart.com/cart?name=${game}${deck}&price=1.99&code=${game}${deck}`}>Add {`${game} deck ${deck}`}</a>}
+                            { /* <form action="https://thwartme.foxycart.com/cart" method="post" acceptCharset="utf-8">
                               <input type="hidden" name="name" value={`${game} deck ${deck}`} />
                               <input type="hidden" name="price" value="1.99" />
                               <input type="hidden" name="code" value={`${game}${deck}`} />
                               <input type="submit" value={`Add ${game}, deck ${deck}`} className="submit" />
-                            </form>
+                            </form>  */}
                           </li>
                         );
-                      }
+                      } else if(deck > 0 && user.decks.find(testDeck => testDeck.code === `${game}${deck}`)) {
+                        return (
+                          <li key={el}><Link to="/gamepage">{`${game} deck ${deck} Play This Deck`}</Link></li>
+                        );
+                      } else if(user.decks.length === 0) {
+                        return (
+                          <li key={el}>
+                            <div onClick={(ev) => addFreeDeck(ev)}>{`Play this deck free! ${game} deck ${deck}`}</div>
+                          </li>
+                        );
+                      } 
                     })}
                   </ul>
                 </li>
-              );}
+              );} 
           })}
         </ul>
       </div>
