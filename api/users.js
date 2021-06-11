@@ -3,7 +3,8 @@ const userRouter = express.Router();
 const {
   createUser,
   getUserByEmail,
-  getUsers
+  getUsers,
+  updateDecks
 } = require('../mongo/crud/users');
 const {
   findUserFromToken,
@@ -37,6 +38,16 @@ userRouter.post('/', async (req, res, next) => {
   try {
     const val = await createUser(req.body);
     res.status(200).send(val);
+  } catch (error) {
+    next(error);
+  }
+});
+
+userRouter.post('/updatedecks', isLoggedIn, async (req, res, next) => {
+  try {
+    const { email, decks } = req.body;
+    updateDecks(email, decks);
+    res.status(200).send('success in updatedecks');
   } catch (error) {
     next(error);
   }

@@ -64,5 +64,5 @@ export {
   playersState,
   headerState,
   challengesState,
-  csrfState
+  csrfState,
 };

@@ -55,9 +55,18 @@ const getUsers = async () => {
   return users;
 };
 
+const updateDecks = async (email, decks) => {
+  try {
+    await User.updateOne({ email: email }, { decks: decks });
+  } catch(err) {
+    return err;
+  }
+};
+
 module.exports = {
   createUser,
   getUserByEmail,
   addTransaction,
-  getUsers
+  getUsers,
+  updateDecks
 };
