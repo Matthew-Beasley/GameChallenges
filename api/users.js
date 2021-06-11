@@ -43,10 +43,11 @@ userRouter.post('/', async (req, res, next) => {
   }
 });
 
-userRouter.post('updatedecks', async (req, res, next) => {
+userRouter.post('/updatedecks', isLoggedIn, async (req, res, next) => {
   try {
     const { email, decks } = req.body;
     updateDecks(email, decks);
+    res.status(200).send('success in updatedecks');
   } catch (error) {
     next(error);
   }
