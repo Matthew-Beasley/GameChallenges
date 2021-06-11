@@ -107,7 +107,7 @@ const Foxy = () => {
           {!!user.email && user.decks.map((item, ord) => {
             return (
               <li key={ord}>
-                <div>{parseCode(item)}</div>
+                <Link to="/gamepage">{parseCode(item)}</Link>
               </li>
             );
           })}
