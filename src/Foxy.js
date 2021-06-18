@@ -102,7 +102,7 @@ const Foxy = () => {
     <div id="foxy">
       <NavBar />
       <div className="shoppinglist" id="owned-decks">
-        <h3>Decks I own</h3>
+        <h3 className="heading">Decks I own</h3>
         <ul className="decklist mydecks">
           {!!user.email && user.decks.map((item, ord) => {
             return (
@@ -112,14 +112,14 @@ const Foxy = () => {
             );
           })}
         </ul>
-        <h3>Buy some of these</h3>
-        <ul>
+        <h3 className="heading">Buy some of these</h3>
+        <ul className="gamelist decklist">
           {!!decks && Object.entries(decks).map(([game, deckList]) => {
             if(deckList.includes(0) && deckList.length > 1 || !deckList.includes(0)) {
               return (
-                <li key={game}>
+                <li key={game} >
                   {game}
-                  <ul>
+                  <ul className="decks decklist">
                     {deckList.map((deck, el) => {
                       {/* deck list is a list of deck numbers */}
                       if(deck > 0 && user.decks.length > 0 && !user.decks.find(testDeck => testDeck.code === `${game}${deck}`)) {

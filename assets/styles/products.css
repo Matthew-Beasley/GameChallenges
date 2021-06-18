@@ -1,0 +1,42 @@
+ #foxy {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: rgb(190, 205, 211);
+    font-family: 'Arial Rounded MT Bold', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    height: 100%;
+ }
+
+ #navbar {
+     margin-bottom: 3rem;
+ }
+
+ .heading {
+     margin-left: 5rem;
+     margin-right: 5rem;
+     border-bottom: black 2px solid;
+ }
+
+ .decklist {
+     list-style: none;
+     padding: 0;
+     margin: 0;
+ }
+
+ .mydecks {
+     margin-left: 8rem;
+ }
+
+ .gamelist {
+     display: flex;
+     flex-direction: column;
+     justify-content: space-between;
+     flex-wrap: wrap;
+     margin: 1rem 0rem 1rem 8rem;
+     max-height: 100vh;
+     width: 60rem;
+ }
+
+ .decks {
+     margin: 0rem 0rem 1rem 3rem;
+ }
