@@ -37,6 +37,11 @@
      width: 60rem;
  }
 
+.icon {
+    height: 20px;
+    width: 20px;
+}
+
  .decks {
      margin: 0rem 0rem 1rem 3rem;
  }

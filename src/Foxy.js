@@ -88,16 +88,6 @@ const Foxy = () => {
     }
   };
 
-  const parseCode = (deck) => {
-    if('name' in deck) {
-      const name = deck.name;
-      const deckNum = deck.code.replace(name, '');
-      return `${name} deck ${deckNum}`;
-    } else {
-      return null;
-    }
-  };
-
   return (
     <div id="foxy">
       <NavBar />
@@ -107,7 +97,7 @@ const Foxy = () => {
           {!!user.email && user.decks.map((item, ord) => {
             return (
               <li key={ord}>
-                <Link to="/gamepage">{parseCode(item)}</Link>
+                <Link to="/gamepage">{item.name}</Link>
               </li>
             );
           })}
@@ -118,7 +108,8 @@ const Foxy = () => {
             if(deckList.includes(0) && deckList.length > 1 || !deckList.includes(0)) {
               return (
                 <li key={game} >
-                  {game}
+                  <img className="icon" src={`../assets/icons/${game.replace(':', '')}.png`} />
+                  {`  ${game}`}
                   <ul className="decks decklist">
                     {deckList.map((deck, el) => {
                       {/* deck list is a list of deck numbers */}
