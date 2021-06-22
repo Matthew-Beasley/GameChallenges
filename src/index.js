@@ -9,6 +9,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import '../assets/styles/styles.css';
 import '../assets/styles/landingpage.css';
+import '../assets/styles/products.css';
 
 const root = document.querySelector('#root');
 

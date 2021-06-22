@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { cloneDeep } from 'lodash';
 import NavBar from './NavBar';
+import LandingPage from './LandingPage';
 import axios from 'axios';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { userState, headerState, csrfState, tokenState } from './RecoilState';
@@ -16,6 +17,7 @@ const Foxy = () => {
   const [challenges, setChallenges] = useState([]);
   const [decks, setDecks] = useState({});
   const [freeDeck, setFreeDeck] = useState({});
+  const history = useHistory();
 
 
   useEffect(() => {
@@ -32,7 +34,6 @@ const Foxy = () => {
             });
         });
     }
-    console.log('challenges useEffect fired')
   }, []);
 
   useEffect(() => {
@@ -47,7 +48,6 @@ const Foxy = () => {
       }
     }
     setDecks(sortedDecks);
-    console.log('sortedDecks useEffect fired user is', user)
   },[challenges, user]);
 
 
@@ -88,73 +88,72 @@ const Foxy = () => {
     }
   };
 
-  const parseCode = (deck) => {
-    if('name' in deck) {
-      const name = deck.name;
-      const deckNum = deck.code.replace(name, '');
-      return `${name} deck ${deckNum}`;
-    } else {
-      return null;
-    }
-  };
-
-  return (
-    <div id="foxy">
-      <NavBar />
-      <div className="shoppinglist" id="owned-decks">
-        <h3>Decks I own</h3>
-        <ul className="decklist mydecks">
-          {!!user.email && user.decks.map((item, ord) => {
-            return (
-              <li key={ord}>
-                <Link to="/gamepage">{parseCode(item)}</Link>
-              </li>
-            );
-          })}
-        </ul>
-        <h3>Buy some of these</h3>
-        <ul>
-          {!!decks && Object.entries(decks).map(([game, deckList]) => {
-            if(deckList.includes(0) && deckList.length > 1 || !deckList.includes(0)) {
+  if(cookies.token) {
+    return (
+      <div id="foxy">
+        <NavBar />
+        <div className="shoppinglist" id="owned-decks">
+          <h3 className="heading">Decks I own</h3>
+          <ul className="decklist decks">
+            {!!user.email && user.decks.map((item, ord) => {
               return (
-                <li key={game}>
-                  {game}
-                  <ul>
-                    {deckList.map((deck, el) => {
-                      {/* deck list is a list of deck numbers */}
-                      if(deck > 0 && user.decks.length > 0 && !user.decks.find(testDeck => testDeck.code === `${game}${deck}`)) {
-                        return (
-                          <li key={el}>
-                            {/*deck*/}
-                            {<a href={`https://thwartme.foxycart.com/cart?name=${game}${deck}&price=1.99&code=${game}${deck}`}>Add {`${game} deck ${deck}`}</a>}
-                            { /* <form action="https://thwartme.foxycart.com/cart" method="post" acceptCharset="utf-8">
-                              <input type="hidden" name="name" value={`${game} deck ${deck}`} />
-                              <input type="hidden" name="price" value="1.99" />
-                              <input type="hidden" name="code" value={`${game}${deck}`} />
-                              <input type="submit" value={`Add ${game}, deck ${deck}`} className="submit" />
-                            </form>  */}
-                          </li>
-                        );
-                      } else if(deck > 0 && user.decks.find(testDeck => testDeck.code === `${game}${deck}`)) {
-                        return (
-                          <li key={el}><Link to="/gamepage">{`${game} deck ${deck} Play This Deck`}</Link></li>
-                        );
-                      } else if(user.decks.length === 0) {
-                        return (
-                          <li key={el}>
-                            <div onClick={(ev) => addFreeDeck(ev)}>{`Play this deck free! ${game} deck ${deck}`}</div>
-                          </li>
-                        );
-                      } 
-                    })}
-                  </ul>
+                <li key={ord}>
+                  <Link to="/gamepage">{item.name}</Link>
                 </li>
-              );} 
-          })}
-        </ul>
+              );
+            })}
+          </ul>
+          <h3 className="heading">Buy some of these</h3>
+          <ul className="gamelist decklist">
+            {!!decks && Object.entries(decks).map(([game, deckList]) => {
+              if(deckList.includes(0) && deckList.length > 1 || !deckList.includes(0)) {
+                return (
+                  <li key={game} >
+                    <div className="gamename-img-container">
+                      <img className="icon" src={`../assets/icons/${game.replace(':', '')}.png`} />
+                      <div className="gamename" >{game}</div>
+                    </div>
+                    <ul className="decks decklist">
+                      {deckList.map((deck, el) => {
+                        {/* deck list is a list of deck numbers */}
+                        if(deck > 0 && user.decks.length > 0 && !user.decks.find(testDeck => testDeck.code === `${game}${deck}`)) {
+                          return (
+                            <li key={el}>
+                              {/*deck*/}
+                              {<a href={`https://thwartme.foxycart.com/cart?name=${game}${deck}&price=1.99&code=${game}${deck}`}>Add {`${game} deck ${deck} $1.99`}</a>}
+                              { /* <form action="https://thwartme.foxycart.com/cart" method="post" acceptCharset="utf-8">
+                                <input type="hidden" name="name" value={`${game} deck ${deck}`} />
+                                <input type="hidden" name="price" value="1.99" />
+                                <input type="hidden" name="code" value={`${game}${deck}`} />
+                                <input type="submit" value={`Add ${game}, deck ${deck}`} className="submit" />
+                              </form>  */}
+                            </li>
+                          );
+                        } else if(deck > 0 && user.decks.find(testDeck => testDeck.code === `${game}${deck}`)) {
+                          return (
+                            <li key={el}><Link to="/gamepage">{`${game} deck ${deck} Play This Deck`}</Link></li>
+                          );
+                        } else if(user.decks.length === 0) {
+                          return (
+                            <li key={el}>
+                              <div onClick={(ev) => addFreeDeck(ev)}>{`Play this deck free! ${game} deck ${deck}`}</div>
+                            </li>
+                          );
+                        } 
+                      })}
+                    </ul>
+                  </li>
+                );} 
+            })}
+          </ul>
+        </div>
+        <Link id="creditslink" to="/credits">Art credits</Link>
       </div>
-    </div>
-  );
+    );
+  } else {
+    history.push('/'); 
+    return null;   
+  }
 };
 
 export default Foxy;
