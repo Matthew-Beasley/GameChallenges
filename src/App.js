@@ -13,6 +13,7 @@ import About from './About';
 import Foxy from './Foxy';
 import ReadMore from './ReadMore';
 import { LogOut } from './NavBar';
+import Credits from './Credits';
 
 const App = () => {
   const [cookies, setCookie] = useCookies(['token']);
@@ -34,7 +35,8 @@ const App = () => {
       <Route path='/readmore' component={ReadMore} />
       <Route path="/login" component={Login} />
       <Route path="/createuser" component={CreateUser} />
-      {!!token && <Route path='/shopping' component={Foxy} />}
+      <Route path='/shopping' component={Foxy} />
+      <Route path='/credits' component={Credits} />
     </div>
   );
 };
