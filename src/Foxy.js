@@ -34,7 +34,6 @@ const Foxy = () => {
             });
         });
     }
-    console.log('challenges useEffect fired');
   }, []);
 
   useEffect(() => {
@@ -49,7 +48,6 @@ const Foxy = () => {
       }
     }
     setDecks(sortedDecks);
-    console.log('sortedDecks useEffect fired user is', user);
   },[challenges, user]);
 
 
@@ -122,7 +120,7 @@ const Foxy = () => {
                           return (
                             <li key={el}>
                               {/*deck*/}
-                              {<a href={`https://thwartme.foxycart.com/cart?name=${game}${deck}&price=1.99&code=${game}${deck}`}>Add {`${game} deck ${deck}`}</a>}
+                              {<a href={`https://thwartme.foxycart.com/cart?name=${game}${deck}&price=1.99&code=${game}${deck}`}>Add {`${game} deck ${deck} $1.99`}</a>}
                               { /* <form action="https://thwartme.foxycart.com/cart" method="post" acceptCharset="utf-8">
                                 <input type="hidden" name="name" value={`${game} deck ${deck}`} />
                                 <input type="hidden" name="price" value="1.99" />
@@ -149,6 +147,7 @@ const Foxy = () => {
             })}
           </ul>
         </div>
+        <Link id="creditslink" to="/credits">Art credits</Link>
       </div>
     );
   } else {
