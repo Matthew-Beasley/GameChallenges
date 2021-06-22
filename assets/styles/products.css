@@ -12,6 +12,7 @@
  }
 
  .heading {
+     font-size: 2rem;
      margin-left: 5rem;
      margin-right: 5rem;
      border-bottom: black 2px solid;
@@ -43,6 +44,7 @@
  }
 
  .gamename {
+     font-size: 1.6rem;
      margin: .5rem 0rem .5rem 2rem;
  }
 
@@ -52,5 +54,6 @@
 }
 
  .decks {
+     font-size: 1.3rem;
      margin: 0rem 0rem 1rem 5rem;
  }

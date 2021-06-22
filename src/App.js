@@ -34,7 +34,7 @@ const App = () => {
       <Route path='/readmore' component={ReadMore} />
       <Route path="/login" component={Login} />
       <Route path="/createuser" component={CreateUser} />
-      {!!token && <Route path='/shopping' component={Foxy} />}
+      <Route path='/shopping' component={Foxy} />
     </div>
   );
 };
