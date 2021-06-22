@@ -108,8 +108,10 @@ const Foxy = () => {
             if(deckList.includes(0) && deckList.length > 1 || !deckList.includes(0)) {
               return (
                 <li key={game} >
-                  <img className="icon" src={`../assets/icons/${game.replace(':', '')}.png`} />
-                  {`  ${game}`}
+                  <div className="gamename-img-container">
+                    <img className="icon" src={`../assets/icons/${game.replace(':', '')}.png`} />
+                    <div className="gamename" >{game}</div>
+                  </div>
                   <ul className="decks decklist">
                     {deckList.map((deck, el) => {
                       {/* deck list is a list of deck numbers */}
