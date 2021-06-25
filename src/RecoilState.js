@@ -43,6 +43,12 @@ const csrfState = atom({
   default: ''
 });
 
+//store key
+const keyState = atom({
+  key: 'keyState',
+  default: 'U794s2F9FxHjBB9z1PcwvpFjXbYWQYbxkT17gwfH44cFJRuRvM52WWxF5iSi'
+});
+
 const headerState = selector({
   key: 'headerState',
   get: ({get}) => {
@@ -65,4 +71,5 @@ export {
   headerState,
   challengesState,
   csrfState,
+  keyState
 };

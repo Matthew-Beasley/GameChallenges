@@ -5,12 +5,17 @@ import NavBar from './NavBar';
 import LandingPage from './LandingPage';
 import axios from 'axios';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { userState, headerState, csrfState, tokenState } from './RecoilState';
+import { userState, headerState, csrfState, keyState, tokenState } from './RecoilState';
 import { useCookies } from 'react-cookie';
+import  CryptoJS from 'crypto-js';
+
+/*var hash = CryptoJS.HmacSHA256("Message", "secret");
+  var hashInBase64 = CryptoJS.enc.Base64.stringify(hash);*/
 
 
 const Foxy = () => {
   const headers = useRecoilValue(headerState);
+  const [key, setKey] = useRecoilState(keyState);
   const [csrf, setCsrf] = useRecoilState(csrfState);
   const [user, setUser] = useRecoilState(userState);
   const [cookies, setCookie, removeCookie] = useCookies(['token']);
@@ -21,7 +26,9 @@ const Foxy = () => {
 
 
   useEffect(() => {
-    axios.defaults.headers.post['X-CSRF-Token'] = csrf;
+    axios.defaults.headers.post['X-CSRF-Token'] = cookies.CSRF_token;
+    console.log('csrf token ', cookies.CSRF_token)
+    console.log('token in useEffect ', cookies.token)
     if(cookies.token) {
       axios.post('/user/token', { token: cookies.token }, headers)
         .then(response => {
@@ -88,6 +95,13 @@ const Foxy = () => {
     }
   };
 
+  const hashedRef = (game, deck) => {
+    const concatThis = `code${game}${deck}name${game}${deck}price1.99quantity1`;
+    const hash = CryptoJS.HmacSHA256(concatThis, key);
+    const hashInBase64 = CryptoJS.enc.Base64.stringify(hash);
+    return `https://thwartme.foxycart.com/cart?name||${hashInBase64}${game.replace(' ', '+')}${deck}`;
+  };
+
   if(cookies.token) {
     return (
       <div id="foxy">
@@ -119,14 +133,8 @@ const Foxy = () => {
                         if(deck > 0 && user.decks.length > 0 && !user.decks.find(testDeck => testDeck.code === `${game}${deck}`)) {
                           return (
                             <li key={el}>
-                              {/*deck*/}
-                              {<a href={`https://thwartme.foxycart.com/cart?name=${game}${deck}&price=1.99&code=${game}${deck}`}>Add {`${game} deck ${deck} $1.99`}</a>}
-                              { /* <form action="https://thwartme.foxycart.com/cart" method="post" acceptCharset="utf-8">
-                                <input type="hidden" name="name" value={`${game} deck ${deck}`} />
-                                <input type="hidden" name="price" value="1.99" />
-                                <input type="hidden" name="code" value={`${game}${deck}`} />
-                                <input type="submit" value={`Add ${game}, deck ${deck}`} className="submit" />
-                              </form>  */}
+                              <a href={hashedRef(game, deck)}>Add {`${game} deck ${deck} $1.99`}</a>
+                              {/*<a href={`https://thwartme.foxycart.com/cart?name=${game}${deck}&price=1.99&code=${game}${deck}`}>Add {`${game} deck ${deck} $1.99`}</a>*/}
                             </li>
                           );
                         } else if(deck > 0 && user.decks.find(testDeck => testDeck.code === `${game}${deck}`)) {
