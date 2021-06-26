@@ -27,8 +27,8 @@ const Foxy = () => {
 
   useEffect(() => {
     axios.defaults.headers.post['X-CSRF-Token'] = cookies.CSRF_token;
-    console.log('csrf token ', cookies.CSRF_token)
-    console.log('token in useEffect ', cookies.token)
+    //console.log('csrf token ', cookies.CSRF_token)
+    //console.log('token in useEffect ', cookies.token)
     if(cookies.token) {
       axios.post('/user/token', { token: cookies.token }, headers)
         .then(response => {
@@ -96,10 +96,12 @@ const Foxy = () => {
   };
 
   const hashedRef = (game, deck) => {
-    const concatThis = `code${game}${deck}name${game}${deck}price1.99quantity1`;
+    const concatThis = `${game.replace(/\s/g, '')}${deck.toString()}name${game} deck ${deck}price1.99quantity1`;
     const hash = CryptoJS.HmacSHA256(concatThis, key);
     const hashInBase64 = CryptoJS.enc.Base64.stringify(hash);
-    return `https://thwartme.foxycart.com/cart?name||${hashInBase64}${game.replace(' ', '+')}${deck}`;
+    //console.log(`https://thwartme.foxycart.com/cart?code||${hashInBase64}${game.replace(/\s/g, '+')}+${deck}`)
+    return `https://thwartme.foxycart.com/cart?name||${hashInBase64}${game.replace(/\s/g, '+')}+deck+${deck}`;
+    
   };
 
   if(cookies.token) {
@@ -133,6 +135,7 @@ const Foxy = () => {
                         if(deck > 0 && user.decks.length > 0 && !user.decks.find(testDeck => testDeck.code === `${game}${deck}`)) {
                           return (
                             <li key={el}>
+                              {console.log(hashedRef(game, deck))}
                               <a href={hashedRef(game, deck)}>Add {`${game} deck ${deck} $1.99`}</a>
                               {/*<a href={`https://thwartme.foxycart.com/cart?name=${game}${deck}&price=1.99&code=${game}${deck}`}>Add {`${game} deck ${deck} $1.99`}</a>*/}
                             </li>
