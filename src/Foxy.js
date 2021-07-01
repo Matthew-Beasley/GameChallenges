@@ -9,27 +9,29 @@ import { userState, headerState, csrfState, keyState, tokenState } from './Recoi
 import { useCookies } from 'react-cookie';
 import  CryptoJS from 'crypto-js';
 
-/*var hash = CryptoJS.HmacSHA256("Message", "secret");
-  var hashInBase64 = CryptoJS.enc.Base64.stringify(hash);*/
-
 
 const Foxy = () => {
   const headers = useRecoilValue(headerState);
   const [key, setKey] = useRecoilState(keyState);
   const [csrf, setCsrf] = useRecoilState(csrfState);
   const [user, setUser] = useRecoilState(userState);
+  const [token, setToken] = useRecoilState(tokenState);
   const [cookies, setCookie, removeCookie] = useCookies(['token']);
   const [challenges, setChallenges] = useState([]);
   const [decks, setDecks] = useState({});
   const [freeDeck, setFreeDeck] = useState({});
   const history = useHistory();
 
+  useEffect(() => {
+    if(headers.authorization) {
+      setToken(cookies.token);
+    }
+  }, []);
 
   useEffect(() => {
     axios.defaults.headers.post['X-CSRF-Token'] = cookies.CSRF_token;
-    console.log('csrf token ', cookies.CSRF_token)
-    console.log('token in useEffect ', cookies.token)
     if(cookies.token) {
+      console.log('headers ', headers, 'token ', token, 'cookies.token ', cookies.token)
       axios.post('/user/token', { token: cookies.token }, headers)
         .then(response => {
           setUser(response.data[0]);
@@ -41,7 +43,7 @@ const Foxy = () => {
             });
         });
     }
-  }, []);
+  }, [token]);
 
   useEffect(() => {
     const sortedDecks = {};
@@ -96,10 +98,16 @@ const Foxy = () => {
   };
 
   const hashedRef = (game, deck) => {
-    const concatThis = `code${game}${deck}name${game}${deck}price1.99quantity1`;
-    const hash = CryptoJS.HmacSHA256(concatThis, key);
-    const hashInBase64 = CryptoJS.enc.Base64.stringify(hash);
-    return `https://thwartme.foxycart.com/cart?name||${hashInBase64}${game.replace(' ', '+')}${deck}`;
+    //code
+    const code = `${game.replace(/\s/g, '')}${deck.toString()}`;
+    const codeHex = CryptoJS.HmacSHA256(`${code}code${code}`, key).toString(CryptoJS.enc.Hex);
+    //name
+    const name = `${game} deck ${deck}`;
+    const parsedName = `${game} deck ${deck}`.replace(/\s/g, '+');
+    const nameHex = CryptoJS.HmacSHA256(`${code}name${name}`, key).toString(CryptoJS.enc.Hex);
+    //price
+    const priceHex = CryptoJS.HmacSHA256(`${code}price1.99`, key).toString(CryptoJS.enc.Hex);
+    return `https://thwartme.foxycart.com/cart?code=${code}||${codeHex}&name=${parsedName}||${nameHex}&price=1.99||${priceHex}`;
   };
 
   if(cookies.token) {
@@ -134,7 +142,6 @@ const Foxy = () => {
                           return (
                             <li key={el}>
                               <a href={hashedRef(game, deck)}>Add {`${game} deck ${deck} $1.99`}</a>
-                              {/*<a href={`https://thwartme.foxycart.com/cart?name=${game}${deck}&price=1.99&code=${game}${deck}`}>Add {`${game} deck ${deck} $1.99`}</a>*/}
                             </li>
                           );
                         } else if(deck > 0 && user.decks.find(testDeck => testDeck.code === `${game}${deck}`)) {

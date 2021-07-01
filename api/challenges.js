@@ -30,7 +30,7 @@ challengeRouter.post('/list', checkCache, async (req, res, next) => {
     const data = await getChallenges(req.body);
     console.log('SERVED UP BY MONGO');
     redisClient.set(JSON.stringify(req.body), JSON.stringify({games: data}));
-    redisClient.expire(JSON.stringify(req.body), 1000);
+    redisClient.expire(JSON.stringify(req.body), 1200);
     res.status(201).send({games: data});
   } catch (error) {
     next(error);
