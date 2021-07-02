@@ -30,6 +30,7 @@ const Foxy = () => {
   useEffect(() => {
     axios.defaults.headers.post['X-CSRF-Token'] = cookies.CSRF_token;
     if(cookies.token) {
+      console.log('headers ', headers, 'token ', token, 'cookies.token ', cookies.token)
       axios.post('/user/token', { token: cookies.token }, headers)
         .then(response => {
           setUser(response.data[0]);
