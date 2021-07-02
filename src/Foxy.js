@@ -150,7 +150,7 @@ const Foxy = () => {
                         } else if(user.decks.length === 0) {
                           return (
                             <li key={el}>
-                              <div onClick={(ev) => addFreeDeck(ev)}>{`Play this deck free! ${game} deck ${deck}`}</div>
+                              <div className="playforfree" onClick={(ev) => addFreeDeck(ev)}>{`Play this deck free! ${game} deck ${deck}`}</div>
                             </li>
                           );
                         } 
