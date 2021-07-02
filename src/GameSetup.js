@@ -89,6 +89,7 @@ const GameSetup = () => {
 
   const getDecks = async () => {
     const games = [];
+    console.log(user.decks)
     if (user.decks) {
       for (let i = 0; i < user.decks.length; i++) {
         let query = {
