@@ -126,7 +126,7 @@ const Foxy = () => {
           <h3 className="heading">Buy some of these</h3>
           <ul className="gamelist decklist">
             {!!decks && Object.entries(decks).map(([game, deckList]) => {
-              if(deckList.includes('0') && deckList.length > 1 || !deckList.includes('0')) {
+              if(deckList.includes(0) && deckList.length > 1 || !deckList.includes(0)) {
                 return (
                   <li key={game} >
                     <div className="gamename-img-container">
