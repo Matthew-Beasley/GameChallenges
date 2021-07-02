@@ -1,14 +1,17 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { playersState, challengesState, csrfState, headerState, userState } from './RecoilState';
+import { playersState, challengesState, csrfState, headerState, tokenState, userState } from './RecoilState';
 import { useHistory } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
 const GameSetup = () => {
   const history = useHistory();
   const headers = useRecoilValue(headerState);
   const [players, setPlayers] = useRecoilState(playersState);
   const [challenges, setChallenges] = useRecoilState(challengesState);
+  const [token, setToken] = useRecoilState(tokenState);
+  const [cookies, setCookie, removeCookie] = useCookies(['token']);
   const [user, setUser] = useRecoilState(userState);
   const [csrf, setCsrf] = useRecoilState(csrfState);
   const [displayGames, setDisplayGames] = useState([]);
@@ -88,23 +91,23 @@ const GameSetup = () => {
   };
 
   const getDecks = async () => {
-    const games = [];
-    console.log(user.decks)
+    const decks = [];
+    console.log('user ', user.email)
     if (user.decks) {
       for (let i = 0; i < user.decks.length; i++) {
         let query = {
-          Game: user.decks[i].game,
-          DeckNumber: user.decks[i].deck
+          DeckName: user.decks[i].name
         };
-        const response = await axios.post('/challenge/games', query, headers);
-        games.push(...response.data.games);
+        const response = await axios.post('/challenge/decks', query, headers);
+        decks.push(...response.data.games);
       }
     }
-    return games;
+    return decks;
   };
 
   const parseChallneges = async () => {
     const tmpChallenges = await getDecks();
+    console.log('tmpChallenges ', tmpChallenges)
     const parsed = new Set();
     for (let i = 0; i < tmpChallenges.length; i++) {
       if (PCChk === true && tmpChallenges[i].PC === true) {
@@ -154,12 +157,20 @@ const GameSetup = () => {
   };
 
   useEffect(() => {
-    axios.defaults.headers.post['X-CSRF-Token'] = csrf;
-  }, [user]);
+    console.log('useEffect fired')
+    axios.defaults.headers.post['X-CSRF-Token'] = cookies.CSRF_token;
+    if(!user.email) {
+      axios.post('/user/token', { token: cookies.token }, headers)
+        .then(response => {
+          console.log('response', response.data[0])
+          setUser(response.data[0]);
+        });
+    }
+  }, []);
 
   useEffect(() => {
     parseChallneges();
-  }, [PCChk, XboxChk, PlaystationChk, SwitchChk, MobileChk, splitScreen, kidFriendly, online, timeLimit]);
+  }, [user, PCChk, XboxChk, PlaystationChk, SwitchChk, MobileChk, splitScreen, kidFriendly, online, timeLimit]);
 
   useEffect(() => {
     getDisplayGames();

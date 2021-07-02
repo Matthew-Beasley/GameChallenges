@@ -14,10 +14,6 @@ const validSignature = (headers, payload) => {
 };
 
 const validRequest = (request, body) => {
- /* if (!validSignature(request.headers, body)) {
-    console.log(('validSignature is False!'));
-    return false;
-  }*/
   if (request.method !== 'POST' || 
     request.headers['foxy-store-domain'] !== 'thwartme.foxycart.com' || 
     request.headers['foxy-store-id'] !== '98241') {

@@ -13,9 +13,9 @@ const challengesSchema = new Schema({
   Online: { type: Boolean },
   TimeLimit: { type: String },
   Attempts: { type: Number },
-  Games: { type: String },
+  Game: { type: String },
   Challenge: { type: String, required: true, unique: true },
-  Deck: { type: Number}
+  Deck: { type: String}
 });
 
 const Challenge = Mongoose.model('Challenge', challengesSchema);

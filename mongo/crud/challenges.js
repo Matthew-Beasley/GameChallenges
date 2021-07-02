@@ -31,8 +31,19 @@ const getGameNames = async () => {
   }
 };
 
+const getDecks = async (deckName) => {
+  try {
+    const decks = await Challenge.find({ Deck: deckName});
+    console.log(deck)
+    return decks;
+  } catch (error) {
+    return error;
+  }
+}
+
 module.exports = {
   createChallenge,
   getChallenges,
-  getGameNames
+  getGameNames,
+  getDecks
 };

@@ -4,7 +4,8 @@ const redisClient = require('redis').createClient(process.env.REDIS_URL);
 const {
   createChallenge,
   getChallenges,
-  getGameNames
+  getGameNames,
+  getDecks
 } = require('../mongo/crud/challenges');
 const { isLoggedIn, isAdmin } = require('../mongo/auth');
 const Challenge = require('../mongo/models/challengesModel');
@@ -45,5 +46,15 @@ challengeRouter.get('/gamenames', async (req, res, next) => {
     next(error);
   }
 });
+
+challengeRouter.post('/decks', async (req, res, next) => {
+  console.log(req.body)
+  try {
+    const decks = await getDecks(req.body.name)
+    return decks;
+  } catch (error) {
+    next(error);
+  }
+})
 
 module.exports = challengeRouter;
