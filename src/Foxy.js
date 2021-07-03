@@ -75,6 +75,7 @@ const Foxy = () => {
     const date = new Date();
     const time = `${date.getFullYear()}-${(date.getMonth() + 1)}-${date.getDate()}T${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
     if(user.decks.length === 0) {
+      //`Play this deck free! ${game} deck ${deck}
       const deckName = event.target.innerText.replace('Play this deck free! ', '');
       const deckCode = deckName.replace(' deck ', '');
       const deck = {
@@ -97,7 +98,7 @@ const Foxy = () => {
 
   const hashedRef = (game, deck) => {
     //code
-    const code = `${game.replace(/\s/g, '')}${deck.toString()}`;
+    const code = `${game}${deck.toString()}`;
     const codeHex = CryptoJS.HmacSHA256(`${code}code${code}`, key).toString(CryptoJS.enc.Hex);
     //name
     const name = `${game} deck ${deck}`;
@@ -136,13 +137,13 @@ const Foxy = () => {
                     <ul className="decks decklist">
                       {deckList.map((deck, el) => {
                         {/* deck list is a list of deck numbers */}
-                        if(deck > 0 && user.decks.length > 0 && !user.decks.find(testDeck => testDeck.code === `${game}${deck}`)) {
+                        if(deck !== '0' && user.decks.length !== 0 && !user.decks.find(testDeck => testDeck.code === `${game}${deck}`)) {
                           return (
                             <li key={el}>
                               <a href={hashedRef(game, deck)}>Add {`${game} deck ${deck} $1.99`}</a>
                             </li>
                           );
-                        } else if(deck > 0 && user.decks.find(testDeck => testDeck.code === `${game}${deck}`)) {
+                        } else if(deck !== '0' && user.decks.find(testDeck => testDeck.code === `${game}${deck}`)) {
                           return (
                             <li key={el}><Link to="/gamepage">{`${game} deck ${deck} Play This Deck`}</Link></li>
                           );
