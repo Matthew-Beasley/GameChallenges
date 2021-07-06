@@ -127,7 +127,7 @@ const Foxy = () => {
           <h3 className="heading">Buy some of these</h3>
           <ul className="gamelist decklist">
             {!!decks && Object.entries(decks).map(([game, deckList]) => {
-              if(deckList.includes('0') && deckList.length > 1 || !deckList.includes('0')) {
+              if(deckList.includes(0) && deckList.length > 1 || !deckList.includes(0)) {
                 return (
                   <li key={game} >
                     <div className="gamename-img-container">
@@ -137,13 +137,13 @@ const Foxy = () => {
                     <ul className="decks decklist">
                       {deckList.map((deck, el) => {
                         {/* deck list is a list of deck numbers */}
-                        if(deck !== '0' && user.decks.length !== 0 && !user.decks.find(testDeck => testDeck.code === `${game}${deck}`)) {
+                        if(deck !== 0 && user.decks.length !== 0 && !user.decks.find(testDeck => testDeck.code === `${game}${deck}`)) {
                           return (
                             <li key={el}>
                               <a href={hashedRef(game, deck)}>Add {`${game} deck ${deck} $1.99`}</a>
                             </li>
                           );
-                        } else if(deck !== '0' && user.decks.find(testDeck => testDeck.code === `${game}${deck}`)) {
+                        } else if(deck !== 0 && user.decks.find(testDeck => testDeck.code === `${game}${deck}`)) {
                           return (
                             <li key={el}><Link to="/gamepage">{`${game} deck ${deck} Play This Deck`}</Link></li>
                           );
