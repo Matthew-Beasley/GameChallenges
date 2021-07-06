@@ -92,14 +92,14 @@ const GameSetup = () => {
 
   const getDecks = async () => {
     const decks = [];
-    console.log('user ', user.email)
     if (user.decks) {
       for (let i = 0; i < user.decks.length; i++) {
         let query = {
-          DeckName: user.decks[i].name
+          DeckName: user.decks[i].name,
+          DeckCode: user.decks[i].code
         };
         const response = await axios.post('/challenge/decks', query, headers);
-        decks.push(...response.data.games);
+        decks.push(...response.data);
       }
     }
     return decks;
@@ -107,7 +107,7 @@ const GameSetup = () => {
 
   const parseChallneges = async () => {
     const tmpChallenges = await getDecks();
-    console.log('tmpChallenges ', tmpChallenges)
+    //console.log('tmpChallenges ', tmpChallenges)
     const parsed = new Set();
     for (let i = 0; i < tmpChallenges.length; i++) {
       if (PCChk === true && tmpChallenges[i].PC === true) {
@@ -157,12 +157,10 @@ const GameSetup = () => {
   };
 
   useEffect(() => {
-    console.log('useEffect fired')
     axios.defaults.headers.post['X-CSRF-Token'] = cookies.CSRF_token;
     if(!user.email) {
       axios.post('/user/token', { token: cookies.token }, headers)
         .then(response => {
-          console.log('response', response.data[0])
           setUser(response.data[0]);
         });
     }

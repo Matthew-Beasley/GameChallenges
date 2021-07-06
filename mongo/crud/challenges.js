@@ -31,10 +31,11 @@ const getGameNames = async () => {
   }
 };
 
-const getDecks = async (deckName) => {
+const getDecks = async ({ DeckName, DeckCode }) => {
   try {
-    const decks = await Challenge.find({ Deck: deckName});
-    console.log(deck)
+    const name = DeckName.slice(0, DeckName.indexOf(' deck '));
+    const deck = DeckCode.replace(`${name}`, '');
+    const decks = await Challenge.find({ Game: name, Deck: deck });
     return decks;
   } catch (error) {
     return error;
