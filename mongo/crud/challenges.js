@@ -35,9 +35,7 @@ const getDecks = async ({ DeckName, DeckCode }) => {
   try {
     const name = DeckName.slice(0, DeckName.indexOf(' deck '));
     const deck = parseInt(DeckCode.replace(`${name}`, ''));
-    console.log('deck ', deck)
     const decks = await Challenge.find({ Game: name, Deck: deck }).exec();
-    console.log(decks)
     return decks;
   } catch (error) {
     return error;

@@ -24,8 +24,8 @@ const GameSetup = () => {
   const [splitScreen, setSplitScreen] = useState('');
   const [kidFriendly, setKidFriendly] = useState('');
   const [online, setOnline] = useState('');
-  const [timeLimit, setTimeLimit] = useState('');
-/*
+  const [timeLimit, setTimeLimit] = useState(0);
+  /*
   const lookForEnter = (ev) => {
     ev.key === 'Enter' ? addUserName : null;
   };
@@ -80,10 +80,11 @@ const GameSetup = () => {
       setKidFriendly(ev.target.value);
       return;
     case 'Online':
+      console.log('ev.target.value ', ev.target.value);
       setOnline(ev.target.value);
       return;
     case 'TimeLimit':
-      setTimeLimit(ev.target.value);
+      setTimeLimit(parseInt(ev.target.value.slice(0, ev.target.value.indexOf(' '))));
       return;
     default:
       return;
@@ -107,7 +108,6 @@ const GameSetup = () => {
 
   const parseChallneges = async () => {
     const tmpChallenges = await getDecks();
-    //console.log('tmpChallenges ', tmpChallenges)
     const parsed = new Set();
     for (let i = 0; i < tmpChallenges.length; i++) {
       if (PCChk === true && tmpChallenges[i].PC === true) {
@@ -125,22 +125,42 @@ const GameSetup = () => {
       if (MobileChk === true && tmpChallenges[i].Mobile === true) {
         !parsed.has(tmpChallenges[i].Game) ? parsed.add(tmpChallenges[i]) : null;
       }
-      if (splitScreen === 'true' && tmpChallenges[i].SplitScreen !== true) {
-        parsed.forEach(item => item.Game === tmpChallenges[i].Game ? parsed.delete(item) : item);
-      }
-      if (kidFriendly === 'true' && tmpChallenges[i].kidFriendly !== true) {
-        parsed.forEach(item => item.Game === tmpChallenges[i].Game ? parsed.delete(item) : item);
-      }
-      if (online === 'true' && tmpChallenges[i].Online !== true) {
-        parsed.forEach(item => item.Game === tmpChallenges[i].Game ? parsed.delete(item) : item);
-      }
-      if (parseInt(timeLimit) !== 'NaN' &&  parseInt(tmpChallenges[i].TimeLimit.slice(0, 2)) !== 'NaN') {
-        if (parseInt(timeLimit) <  parseInt(tmpChallenges[i].TimeLimit.slice(0, 2))) {
-          parsed.forEach(item => item.Game === tmpChallenges[i].Game ? parsed.delete(item) : item);
-        }
+      if (tmpChallenges[i].TimeLimit && [...parsed][i]) {
+        [...parsed][i]['TimeLimitInt'] = parseInt(tmpChallenges[i].TimeLimit.slice(0, tmpChallenges[i].TimeLimit.indexOf(' ')));
       }
     }
-    setChallenges([...parsed]);
+    let switched = [...parsed];
+    if (splitScreen === 'true') {
+      switched = switched.filter(challenge => challenge.SplitScreen !== false);
+    }
+    if (kidFriendly === 'true') {
+      switched = switched.filter(challenge => challenge.KidFriendly !== false);
+    }
+    if (online === 'true') {
+      switched = switched.filter(challenge => challenge.Online !== false);
+    }
+    if (online === 'false') {
+      switched = switched.filter(challenge => challenge.Online !== true);
+    }
+    switched = switched.filter(challenge => {
+      if (challenge.TimeLimitInt <= 5 && timeLimit <= 5) {
+        return challenge; 
+      }
+      if (challenge.TimeLimitInt <= 15 && timeLimit <= 15) {
+        return challenge;
+      } else if (timeLimit === 0 || timeLimit > 15) {
+        return challenge;
+      }
+    });
+    /*
+    <option value="">No Preference</option>
+          <option value="5">5 minutes or Less</option>
+          <option value="15">15 minutes or Less</option>
+          <option value="Infinity">Over 15 minutes</option>
+          */
+    //console.log([...parsed])
+    console.log(switched)
+    setChallenges(switched);
   };
 
   const getChallenges = (ev) => {
