@@ -27,7 +27,7 @@ const App = () => {
   return (
     <div id="app-container">
       <Route exact path="/" component={LandingPage} />
-      {!!token && <Route path="/gamepage" component={GameContainer} />}
+      <Route path="/gamepage" component={GameContainer} />
       <Route path="/contact" component={Contact} />
       <Route path="/about" component={About} />
       <Route path='/readmore' component={ReadMore} />

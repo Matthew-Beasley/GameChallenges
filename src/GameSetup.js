@@ -80,11 +80,10 @@ const GameSetup = () => {
       setKidFriendly(ev.target.value);
       return;
     case 'Online':
-      console.log('ev.target.value ', ev.target.value);
       setOnline(ev.target.value);
       return;
     case 'TimeLimit':
-      setTimeLimit(parseInt(ev.target.value.slice(0, ev.target.value.indexOf(' '))));
+      setTimeLimit(parseInt(ev.target.value));
       return;
     default:
       return;
@@ -143,22 +142,17 @@ const GameSetup = () => {
       switched = switched.filter(challenge => challenge.Online !== true);
     }
     switched = switched.filter(challenge => {
-      if (challenge.TimeLimitInt <= 5 && timeLimit <= 5) {
+      if (challenge.TimeLimitInt <= 5 && timeLimit === 5) {
+        console.log(challenge.TimeLimitInt, timeLimit)
         return challenge; 
-      }
-      if (challenge.TimeLimitInt <= 15 && timeLimit <= 15) {
+      } else if (challenge.TimeLimitInt <= 15 && timeLimit === 15) {
         return challenge;
-      } else if (timeLimit === 0 || timeLimit > 15) {
+      } else if (challenge.TimeLimitInt > 15 && timeLimit === 16) {
+        return challenge;
+      } else if (!timeLimit) {
         return challenge;
       }
     });
-    /*
-    <option value="">No Preference</option>
-          <option value="5">5 minutes or Less</option>
-          <option value="15">15 minutes or Less</option>
-          <option value="Infinity">Over 15 minutes</option>
-          */
-    //console.log([...parsed])
     console.log(switched)
     setChallenges(switched);
   };
@@ -296,7 +290,7 @@ const GameSetup = () => {
           <option value="">No Preference</option>
           <option value="5">5 minutes or Less</option>
           <option value="15">15 minutes or Less</option>
-          <option value="Infinity">Over 15 minutes</option>
+          <option value="16">Over 15 minutes</option>
         </select>
       </div>
       <div className="setup-control" id="multi-control">
