@@ -64,6 +64,10 @@
      margin-bottom: 1rem;
  }
 
+ .playforfree {
+     color: rgb(21, 121, 160)
+ }
+
  #creditsdiv {
     background-color: rgb(190, 205, 211);
     font-family: 'Arial Rounded MT Bold', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
