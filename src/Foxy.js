@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { cloneDeep } from 'lodash';
 import NavBar from './NavBar';
-import LandingPage from './LandingPage';
 import axios from 'axios';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { userState, headerState, csrfState, keyState, tokenState } from './RecoilState';
@@ -31,7 +30,6 @@ const Foxy = () => {
   useEffect(() => {
     axios.defaults.headers.post['X-CSRF-Token'] = cookies.CSRF_token;
     if(cookies.token) {
-      console.log('headers ', headers, 'token ', token, 'cookies.token ', cookies.token)
       axios.post('/user/token', { token: cookies.token }, headers)
         .then(response => {
           setUser(response.data[0]);
@@ -77,6 +75,7 @@ const Foxy = () => {
     const date = new Date();
     const time = `${date.getFullYear()}-${(date.getMonth() + 1)}-${date.getDate()}T${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
     if(user.decks.length === 0) {
+      //`Play this deck free! ${game} deck ${deck}
       const deckName = event.target.innerText.replace('Play this deck free! ', '');
       const deckCode = deckName.replace(' deck ', '');
       const deck = {
@@ -99,7 +98,7 @@ const Foxy = () => {
 
   const hashedRef = (game, deck) => {
     //code
-    const code = `${game.replace(/\s/g, '')}${deck.toString()}`;
+    const code = `${game}${deck.toString()}`;
     const codeHex = CryptoJS.HmacSHA256(`${code}code${code}`, key).toString(CryptoJS.enc.Hex);
     //name
     const name = `${game} deck ${deck}`;
@@ -138,20 +137,20 @@ const Foxy = () => {
                     <ul className="decks decklist">
                       {deckList.map((deck, el) => {
                         {/* deck list is a list of deck numbers */}
-                        if(deck > 0 && user.decks.length > 0 && !user.decks.find(testDeck => testDeck.code === `${game}${deck}`)) {
+                        if(deck !== 0 && user.decks.length !== 0 && !user.decks.find(testDeck => testDeck.code === `${game}${deck}`)) {
                           return (
                             <li key={el}>
                               <a href={hashedRef(game, deck)}>Add {`${game} deck ${deck} $1.99`}</a>
                             </li>
                           );
-                        } else if(deck > 0 && user.decks.find(testDeck => testDeck.code === `${game}${deck}`)) {
+                        } else if(deck !== 0 && user.decks.find(testDeck => testDeck.code === `${game}${deck}`)) {
                           return (
                             <li key={el}><Link to="/gamepage">{`${game} deck ${deck} Play This Deck`}</Link></li>
                           );
                         } else if(user.decks.length === 0) {
                           return (
                             <li key={el}>
-                              <div onClick={(ev) => addFreeDeck(ev)}>{`Play this deck free! ${game} deck ${deck}`}</div>
+                              <div className="playforfree" onClick={(ev) => addFreeDeck(ev)}>{`Play this deck free! ${game} deck ${deck}`}</div>
                             </li>
                           );
                         } 

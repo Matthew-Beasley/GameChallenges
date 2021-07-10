@@ -1,14 +1,17 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { playersState, challengesState, csrfState, headerState, userState } from './RecoilState';
+import { playersState, challengesState, csrfState, headerState, tokenState, userState } from './RecoilState';
 import { useHistory } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
 const GameSetup = () => {
   const history = useHistory();
   const headers = useRecoilValue(headerState);
   const [players, setPlayers] = useRecoilState(playersState);
   const [challenges, setChallenges] = useRecoilState(challengesState);
+  const [token, setToken] = useRecoilState(tokenState);
+  const [cookies, setCookie, removeCookie] = useCookies(['token']);
   const [user, setUser] = useRecoilState(userState);
   const [csrf, setCsrf] = useRecoilState(csrfState);
   const [displayGames, setDisplayGames] = useState([]);
@@ -21,8 +24,8 @@ const GameSetup = () => {
   const [splitScreen, setSplitScreen] = useState('');
   const [kidFriendly, setKidFriendly] = useState('');
   const [online, setOnline] = useState('');
-  const [timeLimit, setTimeLimit] = useState('');
-/*
+  const [timeLimit, setTimeLimit] = useState(0);
+  /*
   const lookForEnter = (ev) => {
     ev.key === 'Enter' ? addUserName : null;
   };
@@ -80,7 +83,7 @@ const GameSetup = () => {
       setOnline(ev.target.value);
       return;
     case 'TimeLimit':
-      setTimeLimit(ev.target.value);
+      setTimeLimit(parseInt(ev.target.value));
       return;
     default:
       return;
@@ -88,18 +91,18 @@ const GameSetup = () => {
   };
 
   const getDecks = async () => {
-    const games = [];
+    const decks = [];
     if (user.decks) {
       for (let i = 0; i < user.decks.length; i++) {
         let query = {
-          Game: user.decks[i].game,
-          DeckNumber: user.decks[i].deck
+          DeckName: user.decks[i].name,
+          DeckCode: user.decks[i].code
         };
-        const response = await axios.post('/challenge/games', query, headers);
-        games.push(...response.data.games);
+        const response = await axios.post('/challenge/decks', query, headers);
+        decks.push(...response.data);
       }
     }
-    return games;
+    return decks;
   };
 
   const parseChallneges = async () => {
@@ -121,22 +124,37 @@ const GameSetup = () => {
       if (MobileChk === true && tmpChallenges[i].Mobile === true) {
         !parsed.has(tmpChallenges[i].Game) ? parsed.add(tmpChallenges[i]) : null;
       }
-      if (splitScreen === 'true' && tmpChallenges[i].SplitScreen !== true) {
-        parsed.forEach(item => item.Game === tmpChallenges[i].Game ? parsed.delete(item) : item);
-      }
-      if (kidFriendly === 'true' && tmpChallenges[i].kidFriendly !== true) {
-        parsed.forEach(item => item.Game === tmpChallenges[i].Game ? parsed.delete(item) : item);
-      }
-      if (online === 'true' && tmpChallenges[i].Online !== true) {
-        parsed.forEach(item => item.Game === tmpChallenges[i].Game ? parsed.delete(item) : item);
-      }
-      if (parseInt(timeLimit) !== 'NaN' &&  parseInt(tmpChallenges[i].TimeLimit.slice(0, 2)) !== 'NaN') {
-        if (parseInt(timeLimit) <  parseInt(tmpChallenges[i].TimeLimit.slice(0, 2))) {
-          parsed.forEach(item => item.Game === tmpChallenges[i].Game ? parsed.delete(item) : item);
-        }
+      if (tmpChallenges[i].TimeLimit && [...parsed][i]) {
+        [...parsed][i]['TimeLimitInt'] = parseInt(tmpChallenges[i].TimeLimit.slice(0, tmpChallenges[i].TimeLimit.indexOf(' ')));
       }
     }
-    setChallenges([...parsed]);
+    let switched = [...parsed];
+    if (splitScreen === 'true') {
+      switched = switched.filter(challenge => challenge.SplitScreen !== false);
+    }
+    if (kidFriendly === 'true') {
+      switched = switched.filter(challenge => challenge.KidFriendly !== false);
+    }
+    if (online === 'true') {
+      switched = switched.filter(challenge => challenge.Online !== false);
+    }
+    if (online === 'false') {
+      switched = switched.filter(challenge => challenge.Online !== true);
+    }
+    switched = switched.filter(challenge => {
+      if (challenge.TimeLimitInt <= 5 && timeLimit === 5) {
+        console.log(challenge.TimeLimitInt, timeLimit)
+        return challenge; 
+      } else if (challenge.TimeLimitInt <= 15 && timeLimit === 15) {
+        return challenge;
+      } else if (challenge.TimeLimitInt > 15 && timeLimit === 16) {
+        return challenge;
+      } else if (!timeLimit) {
+        return challenge;
+      }
+    });
+    console.log(switched)
+    setChallenges(switched);
   };
 
   const getChallenges = (ev) => {
@@ -153,12 +171,18 @@ const GameSetup = () => {
   };
 
   useEffect(() => {
-    axios.defaults.headers.post['X-CSRF-Token'] = csrf;
-  }, [user]);
+    axios.defaults.headers.post['X-CSRF-Token'] = cookies.CSRF_token;
+    if(!user.email) {
+      axios.post('/user/token', { token: cookies.token }, headers)
+        .then(response => {
+          setUser(response.data[0]);
+        });
+    }
+  }, []);
 
   useEffect(() => {
     parseChallneges();
-  }, [PCChk, XboxChk, PlaystationChk, SwitchChk, MobileChk, splitScreen, kidFriendly, online, timeLimit]);
+  }, [user, PCChk, XboxChk, PlaystationChk, SwitchChk, MobileChk, splitScreen, kidFriendly, online, timeLimit]);
 
   useEffect(() => {
     getDisplayGames();
@@ -266,7 +290,7 @@ const GameSetup = () => {
           <option value="">No Preference</option>
           <option value="5">5 minutes or Less</option>
           <option value="15">15 minutes or Less</option>
-          <option value="Infinity">Over 15 minutes</option>
+          <option value="16">Over 15 minutes</option>
         </select>
       </div>
       <div className="setup-control" id="multi-control">

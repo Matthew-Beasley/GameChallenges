@@ -8,7 +8,7 @@ import NavBar from './NavBar';
 const ChallengeDisplay = () => {
   const [challenges, setChallenges] = useRecoilState(challengesState);
 
-  var settings = {
+  const settings = {
     dots: false,
     infinite: true,
     speed: 500,

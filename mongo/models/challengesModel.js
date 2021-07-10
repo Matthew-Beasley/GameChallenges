@@ -7,7 +7,7 @@ const challengesSchema = new Schema({
   PS: { type: Boolean },
   Switch: { type: Boolean },
   Mobile: { type: Boolean },
-  Players: { type: Number },
+  Players: { type: String},
   SplitScreen: { type: Boolean },
   KidFriendly: { type: Boolean },
   Online: { type: Boolean },
