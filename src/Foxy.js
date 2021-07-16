@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { cloneDeep } from 'lodash';
 import NavBar from './NavBar';
 import axios from 'axios';
@@ -20,10 +20,19 @@ const Foxy = () => {
   const [decks, setDecks] = useState({});
   const [freeDeck, setFreeDeck] = useState({});
   const history = useHistory();
+  const location = useLocation();
 
   useEffect(() => {
     if(headers.authorization) {
       setToken(cookies.token);
+    }
+    if(!cookies.token) {
+      const path = location.pathname;
+      const code = path.slice(path.indexOf('code=', path.indexOf('&')));
+      const userMail = path.slice(path.indexOf('email=', path.indexOf('&xfactor')));
+      if(localStorage.getItem('verification') === code) {
+        createNewUser(email)
+      }
     }
   }, []);
 

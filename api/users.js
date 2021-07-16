@@ -55,7 +55,7 @@ userRouter.post('/updatedecks', isLoggedIn, async (req, res, next) => {
 });
 
 userRouter.post('/sendmail', async (req, res, next) => {
-  const { email, guid } = req.body;
+  const { email, creds } = req.body;
   const client = new SESClient({ region: 'us-west-2' });
   const params = {
     Destination: {
@@ -71,7 +71,7 @@ userRouter.post('/sendmail', async (req, res, next) => {
                   <body>
                     <h4>Please do not reply to this email, it is not monitored</h4>
                     <h4>Click link below to verify email</h4>
-                    <a href="https://thwartme.com/user/sendmail?code=${guid}&email=${email}>
+                    <a href="https://thwartme.com/user/sendmail?code=${creds}>
                       Confirm Email to creat thwartme account
                     </a>
                   </body>

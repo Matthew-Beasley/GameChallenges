@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useImperativeHandle } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
 import { userState, passwordState, headerState, csrfState, tokenState } from './RecoilState';
 import { useCookies } from 'react-cookie';
 import { v4 as uuidv4 } from 'uuid';
+import jwt from 'jwt-simple';
 
 
 const CreateUser = () => {
@@ -46,8 +47,11 @@ const CreateUser = () => {
     const usr = (await axios.get(`/user?email=${email}`)).data;
     if (!usr.email) {
       const guid = uuidv4();
-      await axios.post('/user/sendmail', { email: email, guid: guid }, headers);
+      const creds = jwt.encode({ password, email, guid  }, 'df803681-ba97-4894-a2c3-2c8a378fde78');
+      localStorage.setItem('verification', guid)
+      await axios.post('/user/sendmail', { email, creds }, headers);
       //need to wait for verification from email before creating user
+      /*
       await axios.post('/user', { password, email });
       await login();
     } else {
@@ -57,6 +61,8 @@ const CreateUser = () => {
     setPassword('');
     setEmail('');
     history.push('/shopping');
+    */
+    }
   };
 
   return (
