@@ -90,8 +90,8 @@ userRouter.post('/sendmail', async (req, res, next) => {
   };
   const command = new CloneReceiptRuleSetCommand(params);
   try {
-    const data = await client.send(command);
-    res.status(200).json(data);
+   // const data = await client.send(command);
+   // res.status(200).json(data);
   } catch (error) {
     next(error);
   }

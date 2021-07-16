@@ -2,17 +2,17 @@ import React, { useState, useEffect, useImperativeHandle } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
-import { userState, passwordState, headerState, csrfState, tokenState } from './RecoilState';
+import { userState, passwordState, headerState, csrfState, tokenState, emailKeyState } from './RecoilState';
 import { useCookies } from 'react-cookie';
 import { v4 as uuidv4 } from 'uuid';
-import jwt from 'jwt-simple';
-
+import CryptoJS from 'crypto-js';
 
 const CreateUser = () => {
   const headers = useRecoilValue(headerState);
   const [password, setPassword] = useState('');
   const [token, setToken] = useRecoilState(tokenState);
   const [csrf, setCsrf] = useRecoilState(csrfState);
+  const [emailKey, setEmailKey] = useRecoilState(emailKeyState);
   const [email, setEmail] = useState('');
   const history = useHistory();
   const [cookies, setCookie] = useCookies(['token']);
@@ -30,12 +30,6 @@ const CreateUser = () => {
     }
   }, [token]);
 
-  const URLizeEmail = (mail) => {
-    mail = mail.replace(/\./gi, '%2E');
-    mail = mail.replace(/@/gi, '%40');
-    return mail;
-  };
-
   const login = async () => {
     const creds = (await axios.get('/auth', { headers: { email: email, password: password }})).data;
     setCookie('token', creds, { path: '/', maxAge: 43200 });
@@ -46,11 +40,8 @@ const CreateUser = () => {
     event.preventDefault();
     const usr = (await axios.get(`/user?email=${email}`)).data;
     if (!usr.email) {
-      const guid = uuidv4();
-      const creds = jwt.encode({ password, email, guid  }, 'df803681-ba97-4894-a2c3-2c8a378fde78');
-      localStorage.setItem('verification', guid)
-      await axios.post('/user/sendmail', { email, creds }, headers);
-      //need to wait for verification from email before creating user
+      const creds = CryptoJS.HmacSHA256(JSON.stringify({ password, email, time: Date.now()}), emailKey).toString(CryptoJS.enc.Hex);
+      await axios.post('/user/sendmail', { creds }, headers);
       /*
       await axios.post('/user', { password, email });
       await login();
