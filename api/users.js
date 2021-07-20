@@ -1,5 +1,6 @@
 const express = require('express');
 const userRouter = express.Router();
+const CryptoJS = require('crypto-js');
 const {
   createUser,
   getUserByEmail,
@@ -11,7 +12,9 @@ const {
   isLoggedIn, 
   isAdmin
 } = require('../mongo/auth');
-const { SESClient, CloneReceiptRuleSetCommand } = require('@aws-sdk/client-ses');
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
 
 userRouter.get('/', async (req, res, next) => {
   try {
@@ -54,47 +57,14 @@ userRouter.post('/updatedecks', isLoggedIn, async (req, res, next) => {
   }
 });
 
-userRouter.post('/sendmail', async (req, res, next) => {
-  const { email, creds } = req.body;
-  const client = new SESClient({ region: 'us-west-2' });
-  const params = {
-    Destination: {
-      ToAddresses: [ email ],
-    },
-    Message: {
-      // required 
-      Body: {
-        // required 
-        Html: {
-          Charset: 'UTF-8',
-          Data: `<html>
-                  <body>
-                    <h4>Please do not reply to this email, it is not monitored</h4>
-                    <h4>Click link below to verify email</h4>
-                    <a href="https://thwartme.com/user/sendmail?code=${creds}>
-                      Confirm Email to creat thwartme account
-                    </a>
-                  </body>
-                </html>`,
-        }
-      },
-      Subject: {
-        Charset: 'UTF-8',
-        Data: 'Thwartme new account verification',
-      },
-    },
-    Source: 'conbecdevelopment@outlook.com', // SENDER_ADDRESS
-    ReplyToAddresses: [
-      // more items 
-    ],
-  };
-  const command = new CloneReceiptRuleSetCommand(params);
-  try {
-   // const data = await client.send(command);
-   // res.status(200).json(data);
-  } catch (error) {
-    next(error);
-  }
+userRouter.post('/mailgun', async (req, res, next) => {
+  const { password, email, time } = req.body;
+  console.log(password, email, time)
+  //const bytes  = CryptoJS.AES.decrypt(creds, process.env.EMAILKEY);
+  //var bytes = CryptoJS.HmacSHA256(creds, process.env.EMAILKEY);
+  //const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.hex));
+  //console.log('decrypted data ', decryptedData);
+  res.status(200).send('in mailgun route')
 });
 
 module.exports = userRouter;

@@ -5,7 +5,16 @@ import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
 import { userState, passwordState, headerState, csrfState, tokenState, emailKeyState } from './RecoilState';
 import { useCookies } from 'react-cookie';
 import { v4 as uuidv4 } from 'uuid';
-import CryptoJS from 'crypto-js';
+import crypto from 'browserify-cipher/browser';
+
+
+const StandbyForVerification = () => {
+  return (
+    <div>
+      <h3>Please check your email to verify your account</h3>
+    </div>
+  );
+};
 
 const CreateUser = () => {
   const headers = useRecoilValue(headerState);
@@ -19,7 +28,8 @@ const CreateUser = () => {
 
   useEffect(() => {
     axios.defaults.headers.post['X-CSRF-Token'] = csrf;
-  }, []);
+    console.log('axios defaults ', axios.defaults.headers)
+  }, [csrf]);
 
   useEffect(() => {
     const token = cookies.token;
@@ -39,20 +49,22 @@ const CreateUser = () => {
   const checkCredentials = async (event) => {
     event.preventDefault();
     const usr = (await axios.get(`/user?email=${email}`)).data;
+    console.log(headers)
     if (!usr.email) {
-      const creds = CryptoJS.HmacSHA256(JSON.stringify({ password, email, time: Date.now()}), emailKey).toString(CryptoJS.enc.Hex);
-      await axios.post('/user/sendmail', { creds }, headers);
+      await axios.post('/user/mailgun', { password, email, time: Date.now()});
+
       /*
       await axios.post('/user', { password, email });
       await login();
     } else {
       // throw error user exists (alert?)
       //await login({ email, password });
-    }
-    setPassword('');
-    setEmail('');
-    history.push('/shopping');
-    */
+    }*/
+      setPassword('');
+      setEmail('');
+      history.push('/verifyuser');
+    } else {
+      history.push('/shopping');
     }
   };
 
@@ -73,3 +85,6 @@ const CreateUser = () => {
 };
 
 export default CreateUser;
+export {
+  StandbyForVerification
+};
