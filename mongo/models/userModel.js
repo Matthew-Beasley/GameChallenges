@@ -5,7 +5,6 @@ const Schema = Mongoose.Schema;
 const userSchema = new Schema({
   email: { type: String, unique: true, required: true },
   password: { type: String, required: true },
-  notify: { type: Boolean }, 
   platforms: [ String ],
   transactions: [ Schema.Types.Mixed ],
   decks: [ Schema.Types.Mixed ]

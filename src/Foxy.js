@@ -26,14 +26,6 @@ const Foxy = () => {
     if(headers.authorization) {
       setToken(cookies.token);
     }
-    if(!cookies.token) {
-      const path = location.pathname;
-     // const code = path.slice(path.indexOf('code=', path.indexOf('&')));
-     // const userMail = path.slice(path.indexOf('email=', path.indexOf('&xfactor')));
-     // if(localStorage.getItem('verification') === code) {
-     //   createNewUser(email);
-     // }
-    }
   }, []);
 
   useEffect(() => {

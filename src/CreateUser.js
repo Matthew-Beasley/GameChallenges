@@ -28,7 +28,6 @@ const CreateUser = () => {
 
   useEffect(() => {
     axios.defaults.headers.post['X-CSRF-Token'] = csrf;
-    console.log('axios defaults ', axios.defaults.headers)
   }, [csrf]);
 
   useEffect(() => {
@@ -49,17 +48,8 @@ const CreateUser = () => {
   const checkCredentials = async (event) => {
     event.preventDefault();
     const usr = (await axios.get(`/user?email=${email}`)).data;
-    console.log(headers)
     if (!usr.email) {
-      await axios.post('/user/mailgun', { password, email, time: Date.now()});
-
-      /*
-      await axios.post('/user', { password, email });
-      await login();
-    } else {
-      // throw error user exists (alert?)
-      //await login({ email, password });
-    }*/
+      await axios.post('/user/mailgun', { password, email });
       setPassword('');
       setEmail('');
       history.push('/verifyuser');
