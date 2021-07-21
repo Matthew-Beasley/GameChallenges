@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { cloneDeep } from 'lodash';
 import NavBar from './NavBar';
 import axios from 'axios';
@@ -20,6 +20,7 @@ const Foxy = () => {
   const [decks, setDecks] = useState({});
   const [freeDeck, setFreeDeck] = useState({});
   const history = useHistory();
+  const location = useLocation();
 
   useEffect(() => {
     if(headers.authorization) {

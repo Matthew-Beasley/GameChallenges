@@ -5,7 +5,6 @@ import { useCookies } from 'react-cookie';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { tokenState, csrfState, headerState } from './RecoilState';
 import LandingPage from './LandingPage';
-import CreateUser from './CreateUser';
 import Login from './Login';
 import GameContainer from './GameContainer';
 import Contact from './Contact';
@@ -13,6 +12,8 @@ import About from './About';
 import Foxy from './Foxy';
 import ReadMore from './ReadMore';
 import Credits from './Credits';
+import CreateUser, { StandbyForVerification } from './CreateUser';
+
 
 const App = () => {
   const [cookies, setCookie] = useCookies(['token']);
@@ -35,6 +36,7 @@ const App = () => {
       <Route path="/createuser" component={CreateUser} />
       <Route path='/shopping' component={Foxy} />
       <Route path='/credits' component={Credits} />
+      <Route path='/verifyuser' component={StandbyForVerification} />
     </div>
   );
 };
