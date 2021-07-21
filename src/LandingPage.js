@@ -1,17 +1,59 @@
 import React, { useEffect, useState } from 'react';
-import { Route, Link, useHistory } from 'react-router-dom';
+import { Route, Link, useHistory, useLocation } from 'react-router-dom';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import Login from './Login';
+import { userState, passwordState, headerState, csrfState, tokenState, emailKeyState } from './RecoilState';
+import { useCookies } from 'react-cookie';
+import CryptoJS from 'crypto-js';
+import axios from 'axios';
 import NavBar from './NavBar';
 
 
 const LandingPage = () => {
+  const headers = useRecoilValue(headerState);
+  const [token, setToken] = useRecoilState(tokenState);
+  const [csrf, setCsrf] = useRecoilState(csrfState);
   const history = useHistory();
+  const [cookies, setCookie] = useCookies(['token']);
+  const [emailKey, setEmailKey] = useRecoilState(emailKeyState);
+
+
+  const login = async (email, password) => {
+    console.log(email, password)
+    const creds = (await axios.get('/auth', { headers: { email, password }})).data;
+    setCookie('token', creds, { path: '/', maxAge: 43200 });
+    setToken(creds);
+  };
+
+  const checkCredentials = async (email, password) => {
+    const usr = (await axios.get(`/user?email=${email}`)).data;
+    if (!usr.email) {
+      await axios.post('/user', { password, email });
+      login(email, password);
+    } else {
+      // throw error user exists (alert?)
+      //await login({ email, password });
+    }
+    history.push('/shopping');
+  };
+
+  useEffect(() => {
+    axios.defaults.headers.common['X-CSRF-Token'] = csrf;
+  }, [csrf]);
+
+  useEffect(() => { 
+    const currentURL = window.location.href;
+    const encryptedCreds = currentURL.slice(currentURL.indexOf('nonce=') + 6, currentURL.length);
+    if (currentURL.includes('nonce') && csrf !== '') {
+      const bytes  = CryptoJS.AES.decrypt(encryptedCreds, emailKey);
+      const decryptedCreds = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+      const { email, password } = decryptedCreds;
+      checkCredentials(email, password);
+    }
+  }, [csrf]);
 
   return (
     <div id="landingpage">
       <NavBar />
-     
       <div id="landingpage-wrapper">
         <div id="landingpage-image">
           <div id="signup" >

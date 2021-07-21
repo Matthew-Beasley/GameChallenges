@@ -1,24 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useImperativeHandle } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
-import { userState, passwordState, headerState, csrfState, tokenState } from './RecoilState';
+import { userState, passwordState, headerState, csrfState, tokenState, emailKeyState } from './RecoilState';
 import { useCookies } from 'react-cookie';
+import { v4 as uuidv4 } from 'uuid';
+import crypto from 'browserify-cipher/browser';
 
+
+const StandbyForVerification = () => {
+  return (
+    <div>
+      <h3>Please check your email to verify your account</h3>
+    </div>
+  );
+};
 
 const CreateUser = () => {
   const headers = useRecoilValue(headerState);
   const [password, setPassword] = useState('');
   const [token, setToken] = useRecoilState(tokenState);
   const [csrf, setCsrf] = useRecoilState(csrfState);
+  const [emailKey, setEmailKey] = useRecoilState(emailKeyState);
   const [email, setEmail] = useState('');
-  const [notify, setNotify] = useState(false);
   const history = useHistory();
   const [cookies, setCookie] = useCookies(['token']);
 
   useEffect(() => {
     axios.defaults.headers.post['X-CSRF-Token'] = csrf;
-  }, []);
+  }, [csrf]);
 
   useEffect(() => {
     const token = cookies.token;
@@ -28,20 +38,6 @@ const CreateUser = () => {
       });
     }
   }, [token]);
-
-  const toggleCheckbox = () => {
-    if (notify) {
-      setNotify(false);
-    } else {
-      setNotify(true);
-    }
-  };
-
-  const URLizeEmail = (mail) => {
-    mail = mail.replace(/\./gi, '%2E');
-    mail = mail.replace(/@/gi, '%40');
-    return mail;
-  };
 
   const login = async () => {
     const creds = (await axios.get('/auth', { headers: { email: email, password: password }})).data;
@@ -53,16 +49,13 @@ const CreateUser = () => {
     event.preventDefault();
     const usr = (await axios.get(`/user?email=${email}`)).data;
     if (!usr.email) {
-      await axios.post('/user', { password, email, notify });
-      await login();
+      await axios.post('/user/mailgun', { password, email });
+      setPassword('');
+      setEmail('');
+      history.push('/verifyuser');
     } else {
-      // throw error user exists (alert?)
-      //await login({ email, password });
+      history.push('/shopping');
     }
-    setNotify(false);
-    setPassword('');
-    setEmail('');
-    history.push('/shopping');
   };
 
   return (
@@ -74,10 +67,6 @@ const CreateUser = () => {
           </div>
           <input className="create-input" type="email" placeholder="email" value={email} onChange={(ev) => setEmail(ev.target.value)} />
           <input className="create-input" type="password" placeholder="Password" value={password} onChange={(ev) => setPassword(ev.target.value)} />
-          <div id="create-email">
-            <input id="create-checkbox" type="checkbox" value={notify} onChange={() => toggleCheckbox()}></input>
-            <p id="check-text">Do you want game news in your inbox?</p>
-          </div>
           <input id="submit" type="submit" value="Submit" />
         </form>
       </div>
@@ -86,3 +75,6 @@ const CreateUser = () => {
 };
 
 export default CreateUser;
+export {
+  StandbyForVerification
+};

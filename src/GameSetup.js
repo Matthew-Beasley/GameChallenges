@@ -143,7 +143,6 @@ const GameSetup = () => {
     }
     switched = switched.filter(challenge => {
       if (challenge.TimeLimitInt <= 5 && timeLimit === 5) {
-        console.log(challenge.TimeLimitInt, timeLimit)
         return challenge; 
       } else if (challenge.TimeLimitInt <= 15 && timeLimit === 15) {
         return challenge;
@@ -153,7 +152,6 @@ const GameSetup = () => {
         return challenge;
       }
     });
-    console.log(switched)
     setChallenges(switched);
   };
 

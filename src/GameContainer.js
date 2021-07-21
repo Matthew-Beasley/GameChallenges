@@ -12,7 +12,6 @@ const GameContainer = () => {
   const history = useHistory();
 
   useEffect(() => {
-    console.log('user email ', user.email)
     if (!user.email) {
       history.push('/');
     }
