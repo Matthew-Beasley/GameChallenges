@@ -1,5 +1,5 @@
 const { isValidObjectId } = require('mongoose');
-const Mongoose = require('../client');
+const { Mongoose } = require('../client');
 const Schema = Mongoose.Schema;
 
 const userSchema = new Schema({
