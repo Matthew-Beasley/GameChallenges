@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { Link, useHistory, useLocation } from 'react-router-dom';
-import { cloneDeep } from 'lodash';
+import { cloneDeep, set } from 'lodash';
 import NavBar from './NavBar';
 import axios from 'axios';
 import { useRecoilState, useRecoilValue } from 'recoil';
@@ -21,6 +21,7 @@ const Foxy = () => {
   const [freeDeck, setFreeDeck] = useState({});
   const history = useHistory();
   const location = useLocation();
+
 
   useEffect(() => {
     if(headers.authorization) {
@@ -110,10 +111,16 @@ const Foxy = () => {
     return `https://thwartme.foxycart.com/cart?code=${code}||${codeHex}&name=${parsedName}||${nameHex}&price=1.99||${priceHex}`;
   };
 
+  const showApiToken = async () => {
+    const apiToken = await axios.get('/foxy/apitoken');
+    console.log('api token is: ', apiToken)
+  }
+
   if(cookies.token) {
     return (
       <div id="foxy">
         <NavBar />
+        <div><button onClick={() => showApiToken()}>get api token</button></div>
         <div className="shoppinglist" id="owned-decks">
           <h3 className="heading">Decks I own</h3>
           <ul className="decklist decks">

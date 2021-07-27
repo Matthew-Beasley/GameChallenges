@@ -57,30 +57,33 @@ foxyRouter.post('/', async (req, res, next) => {
   }
 });
 
-foxyRouter.get('/apitoken', checkCache, async (req, res, next) => {
+foxyRouter.get('/apitoken', async (req, res, next) => {
   //build token query
   const buf = Buffer.from(`${process.env.client_id}:${process.env.client_secret}`); 
+  console.log(buf.toString('base64'))
   const encryptedHeader = `Basic ${buf.toString('base64')}`;
-  console.log(encryptedHeader)
   const options = {
     headers: { 
-      'Content-Type': 'application/json',
-      'Authorization': `basic_auth ${encryptedHeader}` }
+      'Authorization': encryptedHeader,
+      'FOXY-API-VERSION': '1',
+      'Content-Type': 'application/hal+json',
+
+    }
   };
+  let accessToken = null;
   try {
   //get access token
-    const accessToken = await axios.post('https://api.foxycart.com/token', 
-      { grant_type: 'refresh_token', refresh_token: 'skwuCRHXvNh2GSy4WUugKa9eqC6YwmrLczfF6kAZ' }, 
+    accessToken = await axios.post('https://api.foxycart.com/token', 
+      { grant_type: 'refresh_token', refresh_token: process.env.refresh_token }, 
       options);
-    console.log(accessToken);
+    console.log('accessToken ', accessToken);
     res.status(200).send({ token: accessToken });
   } catch (error) {
+    res.send(error)
     next(error);
   }
   //put token in redis
   //res.status(200).send({ token: accessToken });
-
-  //respond with token
 });
 /*
 challengeRouter.post('/list', checkCache, async (req, res, next) => {
