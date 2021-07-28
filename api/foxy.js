@@ -58,7 +58,8 @@ foxyRouter.post('/', async (req, res, next) => {
 });
 
 foxyRouter.get('/datafeed', (req, res, next) => {
-  console.log(req.body);
+  console.log('datafeed req.headers ', req.headers)
+  console.log('datafeed req.body ', req.body);
   res.send('foxy');
 });
 
