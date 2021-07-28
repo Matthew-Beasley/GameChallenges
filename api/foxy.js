@@ -57,6 +57,10 @@ foxyRouter.post('/', async (req, res, next) => {
   }
 });
 
+foxyRouter.post('/datafeed', (req, res, next) => {
+  console.log(req.body);
+});
+
 foxyRouter.get('/apitoken', checkCache, async (req, res, next) => {
   const encryptedHeader = `Basic ${Buffer.from(`${process.env.client_id}:${process.env.client_secret}`).toString('base64')}`;
   const headers = {
