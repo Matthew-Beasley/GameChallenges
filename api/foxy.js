@@ -59,10 +59,11 @@ foxyRouter.post('/', async (req, res, next) => {
 
 foxyRouter.post('/datafeed', (req, res, next) => {
   console.log(req.body);
+  res.send('foxy');
 });
 
 foxyRouter.get('/apitoken', checkCache, async (req, res, next) => {
-  const encryptedHeader = `Basic ${Buffer.from(`${process.env.client_id}:${process.env.client_secret}`).toString('base64')}`;
+  const encryptedHeader = `Basic ${Buffer.from(`${process.env.foxy_client_id}:${process.env.foxy_client_secret}`).toString('base64')}`;
   const headers = {
     headers: { 
       'Authorization': encryptedHeader,
@@ -71,7 +72,7 @@ foxyRouter.get('/apitoken', checkCache, async (req, res, next) => {
   };
   const params = new URLSearchParams();
   params.append('grant_type', 'refresh_token')
-  params.append('refresh_token', process.env.refresh_token);
+  params.append('refresh_token', process.env.foxy_refresh_token);
   try {
     const accessToken = await axios.post(' https://api.foxycart.com/token', params, headers);
     console.log('FOXY ACCESS TOKEN SERVED UP BY foxycart.com/token');
