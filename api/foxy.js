@@ -11,7 +11,7 @@ const foxyEncryptionKey = process.env.FOXY_ENCRYPTION_KEY;
 const axios = require('axios');
 const foxyStoreId = process.env.FOXY_STORE_ID;
 const foxyStoreDomain = process.env.FOXY_STORE_DOMAIN;
-// Need API keys here
+const https = require('http');
 
 
 const validSignature = (headers, payload) => {
@@ -29,13 +29,13 @@ const validRequest = (request, body) => {
 };
 
 const checkCache = (req, res, next) => {
-  redisClient.get(JSON.stringify(req.body), (err, data) => {
+  redisClient.get('foxy_accesstoken', (err, data) => {
     if (err) {
       console.log(err);
       res.status(500).send(err);
     }
     else if (data) {
-      console.log('SERVED UP BY REDIS');
+      console.log('FOXY ACCESS TOKEN SERVED UP BY REDIS');
       res.send(JSON.parse(data));
     }
     else {
@@ -57,45 +57,27 @@ foxyRouter.post('/', async (req, res, next) => {
   }
 });
 
-foxyRouter.get('/apitoken', async (req, res, next) => {
-  //build token query
-  const buf = Buffer.from(`${process.env.client_id}:${process.env.client_secret}`); 
-  console.log(buf.toString('base64'))
-  const encryptedHeader = `Basic ${buf.toString('base64')}`;
-  const options = {
+foxyRouter.get('/apitoken', checkCache, async (req, res, next) => {
+  const encryptedHeader = `Basic ${Buffer.from(`${process.env.client_id}:${process.env.client_secret}`).toString('base64')}`;
+  const headers = {
     headers: { 
       'Authorization': encryptedHeader,
       'FOXY-API-VERSION': '1',
-      'Content-Type': 'application/hal+json',
-
     }
   };
-  let accessToken = null;
+  const params = new URLSearchParams();
+  params.append('grant_type', 'refresh_token')
+  params.append('refresh_token', process.env.refresh_token);
   try {
-  //get access token
-    accessToken = await axios.post('https://api.foxycart.com/token', 
-      { grant_type: 'refresh_token', refresh_token: process.env.refresh_token }, 
-      options);
-    console.log('accessToken ', accessToken);
-    res.status(200).send({ token: accessToken });
+    const accessToken = await axios.post(' https://api.foxycart.com/token', params, headers);
+    console.log('FOXY ACCESS TOKEN SERVED UP BY foxycart.com/token');
+    redisClient.set('foxy_accesstoken', JSON.stringify(accessToken.data));
+    redisClient.expire('foxy_accesstoken', 7100);
+    res.status(200).send({ token: accessToken.data });
   } catch (error) {
-    res.send(error)
-    next(error);
-  }
-  //put token in redis
-  //res.status(200).send({ token: accessToken });
-});
-/*
-challengeRouter.post('/list', checkCache, async (req, res, next) => {
-  try {
-    const data = await getChallenges(req.body);
-    console.log('SERVED UP BY MONGO');
-    redisClient.set(JSON.stringify(req.body), JSON.stringify({games: data}));
-    redisClient.expire(JSON.stringify(req.body), 1200);
-    res.status(201).send({games: data});
-  } catch (error) {
+    console.log(error.response.data);
     next(error);
   }
 });
-*/
+
 module.exports = foxyRouter;

@@ -86,7 +86,7 @@ Enjoy the game!`;
   };
   smtpTransport.sendMail(mailOptions, (error, response) => {
     if (error) {
-      next(error)
+      next(error);
     } else {
       res.status(200).send(response);
     }
