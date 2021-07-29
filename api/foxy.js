@@ -63,6 +63,11 @@ foxyRouter.get('/datafeed', (req, res, next) => {
   res.send('foxy');
 });
 
+foxyRouter.get('/sso', (req, res, next) => {
+  console.log('req.headers in sso ', req.headers);
+  res.send('in sso');
+});
+
 foxyRouter.get('/apitoken', checkCache, async (req, res, next) => {
   const encryptedHeader = `Basic ${Buffer.from(`${process.env.foxy_client_id}:${process.env.foxy_client_secret}`).toString('base64')}`;
   const headers = {
