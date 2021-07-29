@@ -58,9 +58,19 @@ foxyRouter.post('/', async (req, res, next) => {
 });
 
 foxyRouter.get('/datafeed', (req, res, next) => {
-  console.log('datafeed req.headers ', req.headers)
-  console.log('datafeed req.body ', req.body);
-  res.send('foxy');
+  console.log('req.query in sso ', req.query);
+  console.log('req.headers ', req.headers);
+  console.log('req ', req)
+  const html = `
+  <html>
+    <head>
+      <meta http-equiv="Refresh" content="20; URL=https://thwartme.foxycart.com/checkout?fcsid=${req.query.fcsid}">
+    </head>
+    <div>
+      <h3>timestamp=${req.query.timestamp} fcsid=${req.query.fcsid}</h3>
+    </div>
+  </html>`
+  res.send(html);
 });
 
 foxyRouter.get('/sso', (req, res, next) => {
