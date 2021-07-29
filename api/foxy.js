@@ -65,6 +65,8 @@ foxyRouter.get('/datafeed', (req, res, next) => {
 
 foxyRouter.get('/sso', (req, res, next) => {
   console.log('req.query in sso ', req.query);
+  console.log('req.headers ', req.headers);
+  console.log('req ', req)
   const html = `
   <html>
     <head>
