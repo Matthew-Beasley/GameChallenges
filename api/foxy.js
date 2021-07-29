@@ -67,8 +67,11 @@ foxyRouter.get('/sso', (req, res, next) => {
   console.log('req.query in sso ', req.query);
   const html = `
   <html>
+    <head>
+      <meta http-equiv="Refresh" content="20; URL=https://thwartme.foxycart.com/checkout?fcsid=${req.query.fcsid}">
+    </head>
     <div>
-      <script>window.location.href = "https://thwartme.foxycart.com?${req.query.fcsid}";</script>
+      <h3>timestamp=${req.query.timestamp} fcsid=${req.query.fcsid}</h3>
     </div>
   </html>`
   res.send(html);
