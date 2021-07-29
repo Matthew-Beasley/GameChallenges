@@ -66,12 +66,14 @@ foxyRouter.get('/datafeed', (req, res, next) => {
 foxyRouter.get('/sso', (req, res, next) => {
   console.log('req.query in sso ', req.query);
   const html = `
-  <head>
-    <meta http-equiv="Refresh" content="0; URL=https://thwartme.foxycart.com/checkout?fcsid=${req.query.fcsid}">
-  </head>
-  <div>
-    <h3>${req.query.timestamp} ${req.query.fcsid}</h3>
-  </div>`
+  <html>
+    <head>
+      <meta http-equiv="Refresh" content="0; URL=https://thwartme.foxycart.com/checkout?fcsid=${req.query.fcsid}">
+    </head>
+    <div>
+      <h3>timestamp=${req.query.timestamp} fcsid=${req.query.fcsid}</h3>
+    </div>
+  </html>`
   res.send(html);
 });
 
