@@ -64,8 +64,8 @@ foxyRouter.get('/datafeed', (req, res, next) => {
 });
 
 foxyRouter.get('/sso', (req, res, next) => {
-  console.log('req.headers in sso ', req.headers);
-  res.send('in sso', req.headers, req.body);
+  console.log('req in sso ', req);
+  res.send('in sso', req);
 });
 
 foxyRouter.get('/apitoken', checkCache, async (req, res, next) => {
