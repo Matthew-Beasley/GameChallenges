@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { Link, useHistory, useLocation } from 'react-router-dom';
-import { cloneDeep } from 'lodash';
+import { cloneDeep, set } from 'lodash';
 import NavBar from './NavBar';
 import axios from 'axios';
 import { useRecoilState, useRecoilValue } from 'recoil';
@@ -109,6 +109,7 @@ const Foxy = () => {
     const priceHex = CryptoJS.HmacSHA256(`${code}price1.99`, key).toString(CryptoJS.enc.Hex);
     return `https://thwartme.foxycart.com/cart?code=${code}||${codeHex}&name=${parsedName}||${nameHex}&price=1.99||${priceHex}`;
   };
+
 
   if(cookies.token) {
     return (
