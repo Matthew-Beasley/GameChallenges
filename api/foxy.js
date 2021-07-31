@@ -11,7 +11,6 @@ const foxyEncryptionKey = process.env.FOXY_ENCRYPTION_KEY;
 const axios = require('axios');
 const foxyStoreId = process.env.FOXY_STORE_ID;
 const foxyStoreDomain = process.env.FOXY_STORE_DOMAIN;
-const https = require('http');
 
 
 const validSignature = (headers, payload) => {
@@ -28,50 +27,48 @@ const validRequest = (request, body) => {
   return true;
 };
 
-const checkCache = () => {
-  redisClient.get('foxy_accesstoken', (err, data) => {
+const checkCache = (req, res, next) => {
+  redisClient.get('foxyaccesstoken', (err, data) => {
     if (err) {
       console.log(err);
-      return null;
+      res.status(500).send(err);
     }
     else if (data) {
-      console.log('data in checkCache: ', data)
-      return JSON.parse(data);
-    } else {
-      console.log('no data in checkCache')
-      return null;
+      console.log('FOXY ACCESS TOKEN SERVED UP BY REDIS');
+      //console.log('data in checkCache', data)
+      res.send(data);
     }
+    else {
+      next();
+    } 
   });
 };
 
-const getRefreshToken = async () => {
-  let token = checkCache();
-  if (token) {
-    console.log('token in getRefreshToken from checkCache: ', token)
-    return token;
-  } else {
-    const encryptedHeader = `Basic ${Buffer.from(`${process.env.foxy_client_id}:${process.env.foxy_client_secret}`).toString('base64')}`;
-    console.log('encryptedHeader in getRefreshToken: ', encryptedHeader)
-    const headers = {
-      headers: { 
-        'Authorization': encryptedHeader,
-        'FOXY-API-VERSION': '1',
-      }
-    };
-    const params = new URLSearchParams();
-    params.append('grant_type', 'refresh_token');
-    params.append('refresh_token', process.env.foxy_refresh_token);
-    try {
-      const accessToken = (await axios.post('https://api.foxycart.com/token', params, headers)).data.access_token;
-      //console.log('FOXY ACCESS TOKEN SERVED UP BY foxycart.com/token');
-      //redisClient.set('foxy_accesstoken', JSON.stringify(accessToken.data));
-      //redisClient.expire('foxy_accesstoken', 7100);
-      return accessToken;
-    } catch (error) {
-      console.log(error);
+foxyRouter.get('/apitoken', checkCache, async (req, res, next) => {
+  console.log(`${process.env.foxy_client_id}:${process.env.foxy_client_secret}`);
+  const encryptedHeader = `Basic ${Buffer.from(`${process.env.foxy_client_id}:${process.env.foxy_client_secret}`).toString('base64')}`;
+  const headers = {
+    headers: { 
+      'Authorization': encryptedHeader,
+      'FOXY-API-VERSION': '1',
     }
+  };
+  //console.log('encryptedHeader: ', encryptedHeader)
+  const params = new URLSearchParams();
+  params.append('grant_type', 'refresh_token');
+  params.append('refresh_token', process.env.foxy_refresh_token);
+  try {
+    //console.log('')
+    const accessToken = await axios.post('https://api.foxycart.com/token', params, headers);
+    console.log('FOXY ACCESS TOKEN SERVED UP BY foxycart.com/token');
+    redisClient.set('foxyaccesstoken', JSON.stringify(accessToken.data.access_token));
+    redisClient.expire('foxyaccesstoken', 7100);
+    res.status(200).send({ token: accessToken.data.access_token });
+  } catch (error) {
+    console.log(error.response.data);
+    next(error);
   }
-};
+});
 
 foxyRouter.post('/', async (req, res, next) => {
   try {
@@ -119,23 +116,27 @@ foxyRouter.get('/sso', (req, res, next) => {
 });
 
 foxyRouter.post('/createcustomer', async (req, res, next) => {
-  const { email, password, first_name, last_name } = req.body;
-  const token = await getRefreshToken();
-  console.log('token in createuser route: ', token)
+  const { email, password, first_name, last_name, token } = req.body;
+  console.log('token in createcustomer before setting it to auth header: ', token);
   const headers = {
     headers: { 
-      'Authorization': token,
+      'Authorization': `bearer ${token}`,
       'FOXY-API-VERSION': '1',
     }
   };
   // get store number and urls for api calls (call home)
-  const homeData = (await axios.get('https://api.foxycart.com', headers)).data;
+  try {
+    const homeData = (await axios.get('https://api.foxycart.com', headers)).data;
+    console.log('homedata in createuser route: ', homeData);
+  } catch (error) {
+    console.log(error.response.data)
+  }
   // post user email (password?) and any other data wanted store userid returned
-  const customerData = (await axios.post(`${homeData._links['fx:store']}`,
-    { email, password, first_name, last_name }, headers)).data;
-  console.log('customerData in createcusomer route: ', customerData)
+  //const customerData = (await axios.post(`${homeData._links['fx:store']}/customers`,
+  //  { email, password, first_name, last_name }, headers)).data;
+  //console.log('customerData in createcusomer route: ', customerData)
   // set mongo customer id
-  res.send(customerData)
+  res.send('bogus return');//(customerData)
 });
 
 module.exports = foxyRouter;

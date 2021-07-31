@@ -24,9 +24,13 @@ const LandingPage = () => {
   };
 
   const createFoxyCustomer = async (user) => {
+    // refresh token
+    const token = (await axios.get('/foxy/apitoken')).data;
+    console.log('refresh token: ', token)
     //post to foxy createuser route with user data 
     const {email, password, first_name, last_name } = user;
-    const customer = (await axios.post('foxy/createcustomer', { email, password, first_name, last_name }, headers)).data;
+    console.log('headers in creatFoxyCustomer: ', headers)
+    const customer = (await axios.post('foxy/createcustomer', { email, password, first_name, last_name, token }, headers)).data;
     console.log('customer in createFoxyCustomer: ', customer)
     return customer;
   };
