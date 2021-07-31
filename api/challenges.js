@@ -1,6 +1,8 @@
 const express = require('express');
+if(process.env.ENV)
+require('dotenv').config();
 const challengeRouter = express.Router();
-const redisClient = require('redis').createClient(process.env.REDIS_URL);
+const { redisClient } = require('../mongo/client');
 const {
   createChallenge,
   getChallenges,

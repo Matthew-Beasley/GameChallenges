@@ -15,7 +15,8 @@ const {
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
-const mailgun = require('mailgun-js')({apiKey: process.env.MAILGUN_APIKEY, domain: 'thwartme.com'});
+const nodemailer = require('nodemailer');
+const mg = require('nodemailer-mailgun-transport');
 
 userRouter.get('/', async (req, res, next) => {
   try {
@@ -59,29 +60,37 @@ userRouter.post('/updatedecks', isLoggedIn, async (req, res, next) => {
 });
 
 userRouter.post('/mailgun', async (req, res, next) => {
-  const { password, email } = req.body;
-  const encrypted = CryptoJS.AES.encrypt(JSON.stringify({ password, email }), process.env.EMAILKEY);
+  const { password, email, first_name, last_name } = req.body;
+  const encrypted = CryptoJS.AES.encrypt(JSON.stringify({ password, email, first_name, last_name }), process.env.EMAILKEY);
   let url = '';
   process.env.NODE_ENV !== 'test' ? url = `https://thwartme.com?nonce=${encrypted}` : url = `http://localhost:3000?nonce=${encrypted}`;
-
-  const data = {
-    from: 'Thwartme.com <game-team@thwartme.com>',
-    to: email,
-    subject: 'Verify new thwartme account',
-    text: `Click the link below to verify your thwartme account.
+  const mailgunAuth = {
+    auth: {
+      api_key: process.env.MAILGUN_APIKEY,
+      domain: 'thwartme.com'
+    }
+  };
+  const smtpTransport = nodemailer.createTransport(mg(mailgunAuth));
+  const textToSend = `Click the link below to verify your thwartme account.
 
 ${url}
            
 Your email will never be shared and this is the only email you will ever recieve from thwartme!
            
-Enjoy the game!`
+Enjoy the game!`;
+  const mailOptions = {
+    from: 'Thwartme.com <game-team@thwartme.com>',
+    to: email,
+    subject: 'Verify new thwartme account',
+    text: textToSend
   };
-
-  mailgun.messages().send(data, (error, body) => {
-    console.log(body);
+  smtpTransport.sendMail(mailOptions, (error, response) => {
+    if (error) {
+      next(error);
+    } else {
+      res.status(200).send(response);
+    }
   });
-
-  res.status(200).send('Sent verification email');
 });
 
 module.exports = userRouter;

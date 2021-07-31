@@ -1,4 +1,4 @@
-const Mongoose = require('../client');
+const { Mongoose } = require('../client');
 const Schema = Mongoose.Schema;
 
 const challengesSchema = new Schema({
