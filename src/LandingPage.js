@@ -18,28 +18,27 @@ const LandingPage = () => {
 
 
   const login = async (email, password) => {
-    console.log(email, password)
     const creds = (await axios.get('/auth', { headers: { email, password }})).data;
     setCookie('token', creds, { path: '/', maxAge: 43200 });
     setToken(creds);
   };
 
   const createFoxyCustomer = async (user) => {
-    // get refresh token
-    const refreshToken = (await axios.get('/foxy/apitoken')).data;
-    console.log('refresh token: ', refreshToken)
-    //post email and token to 
-    
-    // post api call
-
-    //send foxy customer id to mongo
+    //post to foxy createuser route with user data 
+    const {email, password, first_name, last_name } = user;
+    const customer = (await axios.post('foxy/createcustomer', { email, password, first_name, last_name }, headers)).data;
+    console.log('customer in createFoxyCustomer: ', customer)
+    return customer;
   };
 
   const checkCredentials = async (email, password, first_name, last_name) => {
     const usr = (await axios.get(`/user?email=${email}`)).data;
     if (!usr.email) {
       await axios.post('/user', { password, email, first_name, last_name });
-      createFoxyCustomer(usr)
+      const customer = createFoxyCustomer(usr);
+      if (!customer) {
+        throw new Error('foxy customer not created');
+      }
       login(email, password);
     } else {
       // throw error user exists (alert?)
