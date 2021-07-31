@@ -24,10 +24,22 @@ const LandingPage = () => {
     setToken(creds);
   };
 
-  const checkCredentials = async (email, password) => {
+  const createFoxyCustomer = async (user) => {
+    // get refresh token
+    const refreshToken = (await axios.get('/foxy/apitoken')).data;
+    console.log('refresh token: ', refreshToken)
+    //post email and token to 
+    
+    // post api call
+
+    //send foxy customer id to mongo
+  };
+
+  const checkCredentials = async (email, password, first_name, last_name) => {
     const usr = (await axios.get(`/user?email=${email}`)).data;
     if (!usr.email) {
-      await axios.post('/user', { password, email });
+      await axios.post('/user', { password, email, first_name, last_name });
+      createFoxyCustomer(usr)
       login(email, password);
     } else {
       // throw error user exists (alert?)
@@ -46,8 +58,8 @@ const LandingPage = () => {
     if (currentURL.includes('nonce') && csrf !== '') {
       const bytes  = CryptoJS.AES.decrypt(encryptedCreds, emailKey);
       const decryptedCreds = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-      const { email, password } = decryptedCreds;
-      checkCredentials(email, password);
+      const { email, password, first_name, last_name } = decryptedCreds;
+      checkCredentials(email, password, first_name, last_name);
     }
   }, [csrf]);
 

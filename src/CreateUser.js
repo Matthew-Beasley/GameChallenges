@@ -23,6 +23,8 @@ const CreateUser = () => {
   const [csrf, setCsrf] = useRecoilState(csrfState);
   const [emailKey, setEmailKey] = useRecoilState(emailKeyState);
   const [email, setEmail] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const history = useHistory();
   const [cookies, setCookie] = useCookies(['token']);
 
@@ -43,7 +45,7 @@ const CreateUser = () => {
     event.preventDefault();
     const usr = (await axios.get(`/user?email=${email}`)).data;
     if (!usr.email) {
-      await axios.post('/user/mailgun', { password, email });
+      await axios.post('/user/mailgun', { password, email, first_name: firstName, last_name: lastName });
       setPassword('');
       setEmail('');
       history.push('/verifyuser');
@@ -59,6 +61,8 @@ const CreateUser = () => {
           <div id="createuser-text">
             <p>To create an account enter user name and password</p>
           </div>
+          <input className="create-input" type="text" placeholder="First Name" value={firstName} onChange={(ev) => setFirstName(ev.target.value)} />
+          <input className="create-input" type="text" placeholder="Last Name" value={lastName} onChange={(ev) => setLastName(ev.target.value)} />
           <input className="create-input" type="email" placeholder="email" value={email} onChange={(ev) => setEmail(ev.target.value)} />
           <input className="create-input" type="password" placeholder="Password" value={password} onChange={(ev) => setPassword(ev.target.value)} />
           <input id="submit" type="submit" value="Submit" />

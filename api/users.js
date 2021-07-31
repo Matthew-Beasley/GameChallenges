@@ -60,8 +60,8 @@ userRouter.post('/updatedecks', isLoggedIn, async (req, res, next) => {
 });
 
 userRouter.post('/mailgun', async (req, res, next) => {
-  const { password, email } = req.body;
-  const encrypted = CryptoJS.AES.encrypt(JSON.stringify({ password, email }), process.env.EMAILKEY);
+  const { password, email, first_name, last_name } = req.body;
+  const encrypted = CryptoJS.AES.encrypt(JSON.stringify({ password, email, first_name, last_name }), process.env.EMAILKEY);
   let url = '';
   process.env.NODE_ENV !== 'test' ? url = `https://thwartme.com?nonce=${encrypted}` : url = `http://localhost:3000?nonce=${encrypted}`;
   const mailgunAuth = {

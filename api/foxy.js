@@ -60,7 +60,7 @@ foxyRouter.post('/', async (req, res, next) => {
 foxyRouter.get('/datafeed', (req, res, next) => {
   console.log('req.query in sso ', req.query);
   console.log('req.headers ', req.headers);
-  console.log('req ', req)
+  console.log('req ', req);
   const html = `
   <html>
     <head>
@@ -69,14 +69,14 @@ foxyRouter.get('/datafeed', (req, res, next) => {
     <div>
       <h3>timestamp=${req.query.timestamp} fcsid=${req.query.fcsid}</h3>
     </div>
-  </html>`
+  </html>`;
   res.send(html);
 });
 
 foxyRouter.get('/sso', (req, res, next) => {
   console.log('req.query in sso ', req.query);
   console.log('req.headers ', req.headers);
-  console.log('req ', req)
+  console.log('req ', req);
   const html = `
   <html>
     <head>
@@ -85,11 +85,12 @@ foxyRouter.get('/sso', (req, res, next) => {
     <div>
       <h3>timestamp=${req.query.timestamp} fcsid=${req.query.fcsid}</h3>
     </div>
-  </html>`
+  </html>`;
   res.send(html);
 });
 
 foxyRouter.get('/apitoken', checkCache, async (req, res, next) => {
+  console.log(`${process.env.foxy_client_id}:${process.env.foxy_client_secret}`)
   const encryptedHeader = `Basic ${Buffer.from(`${process.env.foxy_client_id}:${process.env.foxy_client_secret}`).toString('base64')}`;
   const headers = {
     headers: { 
@@ -97,11 +98,12 @@ foxyRouter.get('/apitoken', checkCache, async (req, res, next) => {
       'FOXY-API-VERSION': '1',
     }
   };
+  //console.log('encryptedHeader: ', encryptedHeader)
   const params = new URLSearchParams();
-  params.append('grant_type', 'refresh_token')
+  params.append('grant_type', 'refresh_token');
   params.append('refresh_token', process.env.foxy_refresh_token);
   try {
-    const accessToken = await axios.post(' https://api.foxycart.com/token', params, headers);
+    const accessToken = await axios.post('https://api.foxycart.com/token', params, headers);
     console.log('FOXY ACCESS TOKEN SERVED UP BY foxycart.com/token');
     redisClient.set('foxy_accesstoken', JSON.stringify(accessToken.data));
     redisClient.expire('foxy_accesstoken', 7100);
@@ -110,6 +112,23 @@ foxyRouter.get('/apitoken', checkCache, async (req, res, next) => {
     console.log(error.response.data);
     next(error);
   }
+});
+
+foxyRouter.post('/createuser', async (req, res, next) => {
+  const { email, password, first_name, last_name, token } = req.body;
+  const headers = {
+    headers: { 
+      'Authorization': token,
+      'FOXY-API-VERSION': '1',
+    }
+  };
+  // get store number and urls for api calls (call home)
+  const homeData = (await axios.get('https://api.foxycart.com', headers)).data;
+  // post user email (password?) and any other data wanted store userid returned
+  const customerData = (await axios.post(`${homeData._links['fx:store']}`,
+    { email, password, first_name, last_name }, headers)).data;
+
+  // set mongo customer id
 });
 
 module.exports = foxyRouter;
