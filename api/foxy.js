@@ -44,8 +44,7 @@ const checkCache = (req, res, next) => {
   });
 };
 
-foxyRouter.get('/apitoken', checkCache, async (req, res, next) => {
-  console.log(`${process.env.foxy_client_id}:${process.env.foxy_client_secret}`);
+foxyRouter.get('/apitoken', /*checkCache, leanve this for testing till restart flush all is implemented*/ async (req, res, next) => {
   const encryptedHeader = `Basic ${Buffer.from(`${process.env.foxy_client_id}:${process.env.foxy_client_secret}`).toString('base64')}`;
   const headers = {
     headers: { 
@@ -63,7 +62,7 @@ foxyRouter.get('/apitoken', checkCache, async (req, res, next) => {
     console.log('FOXY ACCESS TOKEN SERVED UP BY foxycart.com/token');
     redisClient.set('foxyaccesstoken', JSON.stringify(accessToken.data.access_token));
     redisClient.expire('foxyaccesstoken', 7100);
-    res.status(200).send({ token: accessToken.data.access_token });
+    res.status(200).send(JSON.stringify(accessToken.data.access_token));
   } catch (error) {
     console.log(error.response.data);
     next(error);
@@ -117,26 +116,23 @@ foxyRouter.get('/sso', (req, res, next) => {
 
 foxyRouter.post('/createcustomer', async (req, res, next) => {
   const { email, password, first_name, last_name, token } = req.body;
-  console.log('token in createcustomer before setting it to auth header: ', token);
   const headers = {
     headers: { 
       'Authorization': `bearer ${token}`,
       'FOXY-API-VERSION': '1',
     }
-  };
-  // get store number and urls for api calls (call home)
+  }; 
   try {
     const homeData = (await axios.get('https://api.foxycart.com', headers)).data;
-    console.log('homedata in createuser route: ', homeData);
+    let customerData = (await axios.post(`${homeData._links['fx:store'].href}/customers`,
+      { email, password, first_name, last_name }, headers)).data;
+    console.log('customerData in createcusomer route: ', customerData);
+    const customerId = customerData.message.split(' ')[1];
+    res.send(customerId);
   } catch (error) {
-    console.log(error.response.data)
+    console.log(error)
+    next();
   }
-  // post user email (password?) and any other data wanted store userid returned
-  //const customerData = (await axios.post(`${homeData._links['fx:store']}/customers`,
-  //  { email, password, first_name, last_name }, headers)).data;
-  //console.log('customerData in createcusomer route: ', customerData)
-  // set mongo customer id
-  res.send('bogus return');//(customerData)
 });
 
 module.exports = foxyRouter;
