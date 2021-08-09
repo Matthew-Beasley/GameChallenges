@@ -115,9 +115,9 @@ foxyRouter.get('/datafeed', (req, res, next) => {
 foxyRouter.get('/sso', (req, res, next) => {
   try {
     const URL = createURL(req.query.fcsid, 31862687);
-    console.log('req.query in sso ', req.query);
-    console.log('req.headers ', req.headers);
-    console.log('req ', req);
+    console.log('req.query in sso: ', req.query);
+    console.log('req.headers: ', req.headers);
+    console.log('req.body: ', req.body);
     const html = `
     <html>
       <head>
