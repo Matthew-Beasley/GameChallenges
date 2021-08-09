@@ -11,7 +11,20 @@ const foxyEncryptionKey = process.env.FOXY_ENCRYPTION_KEY;
 const axios = require('axios');
 const foxyStoreId = process.env.FOXY_STORE_ID;
 const foxyStoreDomain = process.env.FOXY_STORE_DOMAIN;
+const validator = require('validator');
 
+
+const createURL = (fcsid, customerId) => {
+  // Need to figure out how to get the customer id here
+  const timeStamp = (Date.now() + 600000);
+  let stringToSign = `${customerId}|${timeStamp}|${process.env.FOXY_SECRET}`;
+  let token = crypto.createHash('sha1').update('' + stringToSign).digest('hex');
+  let uri = `https://thwartme.foxycart.com/checkout?fc_customer_id=${customerId}&timestamp=${timeStamp}&fc_auth_token=${token}`;
+  if (fcsid && validator.isAlphanumeric(fcsid)) {
+    uri += `&fcsid=${fcsid}`;
+  }
+  return uri;
+};
 
 const validSignature = (headers, payload) => {
   const referenceSignature = crypto.createHmac('sha256', foxyEncryptionKey).update(JSON.stringify(payload)).digest('hex');
@@ -44,7 +57,7 @@ const checkCache = (req, res, next) => {
   });
 };
 
-foxyRouter.get('/apitoken', /*checkCache, leanve this for testing till restart flush all is implemented*/ async (req, res, next) => {
+foxyRouter.get('/apitoken', checkCache, async (req, res, next) => {
   const encryptedHeader = `Basic ${Buffer.from(`${process.env.foxy_client_id}:${process.env.foxy_client_secret}`).toString('base64')}`;
   const headers = {
     headers: { 
@@ -83,13 +96,14 @@ foxyRouter.post('/', async (req, res, next) => {
 });
 
 foxyRouter.get('/datafeed', (req, res, next) => {
-  console.log('req.query in sso ', req.query);
+  console.log('req.query in datafeed ', req.query);
   console.log('req.headers ', req.headers);
   console.log('req ', req);
+  //const URL = createURL(/*customerId*/req.query.fcsid);
   const html = `
   <html>
     <head>
-      <meta http-equiv="Refresh" content="20; URL=https://thwartme.foxycart.com/checkout?fcsid=${req.query.fcsid}">
+      <meta http-equiv="Refresh" content="10; URL=https://thwartme.foxycart.com/checkout?fcsid=${req.query.fcsid}">
     </head>
     <div>
       <h3>timestamp=${req.query.timestamp} fcsid=${req.query.fcsid}</h3>
@@ -99,19 +113,21 @@ foxyRouter.get('/datafeed', (req, res, next) => {
 });
 
 foxyRouter.get('/sso', (req, res, next) => {
-  console.log('req.query in sso ', req.query);
-  console.log('req.headers ', req.headers);
-  console.log('req ', req);
-  const html = `
-  <html>
-    <head>
-      <meta http-equiv="Refresh" content="20; URL=https://thwartme.foxycart.com/checkout?fcsid=${req.query.fcsid}">
-    </head>
-    <div>
-      <h3>timestamp=${req.query.timestamp} fcsid=${req.query.fcsid}</h3>
-    </div>
-  </html>`;
-  res.send(html);
+  try {
+    const URL = createURL(req.query.fcsid, 31862687);
+    console.log('req.query in sso ', req.query);
+    console.log('req.headers ', req.headers);
+    console.log('req ', req);
+    const html = `
+    <html>
+      <head>
+        <meta http-equiv="Refresh" content="20; URL=${URL}>
+      </head>
+    </html>`;
+    res.send(html);
+  } catch (error) {
+    next();
+  }
 });
 
 foxyRouter.post('/createcustomer', async (req, res, next) => {
@@ -130,7 +146,7 @@ foxyRouter.post('/createcustomer', async (req, res, next) => {
     const customerId = customerData.message.split(' ')[1];
     res.send(customerId);
   } catch (error) {
-    console.log(error)
+    console.log(error);
     next();
   }
 });
