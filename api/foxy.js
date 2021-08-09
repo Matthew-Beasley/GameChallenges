@@ -119,19 +119,18 @@ foxyRouter.get('/sso', async (req, res, next) => {
     console.log('req.headers in sso: ', req.headers);
     console.log('req.body in sso: ', req.body);
     console.log('URL in sso redirect: ' , URL);
-    const html = await axios.get(URL)
-    /*const html = `
+    const html = `
     <html>
       <head>
-        <meta http-equiv="Refresh" content="5; URL=${URL}>
+        <meta http-equiv="refresh" content="5; URL=${URL}" />
       </head>
       <body>
         <div>
           <h3>Redirect URL ${URL}</h3>
         </div>
       </body>
-    </html>`;*/
-    res.send(URL);
+    </html>`;
+    res.send(html);
   } catch (error) {
     next();
   }
