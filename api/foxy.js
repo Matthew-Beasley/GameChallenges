@@ -94,24 +94,7 @@ foxyRouter.post('/', async (req, res, next) => {
     next(err);
   }
 });
-/*
-foxyRouter.get('/datafeed', (req, res, next) => {
-  console.log('req.query in datafeed ', req.query);
-  console.log('req.headers ', req.headers);
-  console.log('req ', req);
-  const URL = createURL(req.query.fcsid, 31862687);
-  const html = `
-  <html>
-    <head>
-      <meta http-equiv="Refresh" content="10; URL=${URL}">
-    </head>
-    <div>
-      <h3>timestamp=${req.query.timestamp} fcsid=${req.query.fcsid}</h3>
-    </div>
-  </html>`;
-  res.send(html);
-});
-*/
+
 foxyRouter.get('/sso', async (req, res, next) => {
   try {
     const URL = createURL(req.query.fcsid, 31862687);
@@ -122,13 +105,8 @@ foxyRouter.get('/sso', async (req, res, next) => {
     const html = `
     <html>
       <head>
-        <meta http-equiv="refresh" content="5; URL=${URL}" />
+        <meta http-equiv="refresh" content="0; URL=${URL}" />
       </head>
-      <body>
-        <div>
-          <h3>Redirect URL ${URL}</h3>
-        </div>
-      </body>
     </html>`;
     res.send(html);
   } catch (error) {
