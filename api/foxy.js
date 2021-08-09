@@ -121,8 +121,9 @@ foxyRouter.get('/sso', (req, res, next) => {
     const html = `
     <html>
       <head>
-        <meta http-equiv="Refresh" content="20; URL=${URL}>
+        <meta http-equiv="Refresh" content="5; URL=${URL}>
       </head>
+      <h3>Redirect URL ${URL}</h3>
     </html>`;
     res.send(html);
   } catch (error) {
