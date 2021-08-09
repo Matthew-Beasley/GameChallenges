@@ -99,11 +99,11 @@ foxyRouter.get('/datafeed', (req, res, next) => {
   console.log('req.query in datafeed ', req.query);
   console.log('req.headers ', req.headers);
   console.log('req ', req);
-  //const URL = createURL(/*customerId*/req.query.fcsid);
+  const URL = createURL(req.query.fcsid, 31862687);
   const html = `
   <html>
     <head>
-      <meta http-equiv="Refresh" content="10; URL=https://thwartme.foxycart.com/checkout?fcsid=${req.query.fcsid}">
+      <meta http-equiv="Refresh" content="10; URL=${URL}">
     </head>
     <div>
       <h3>timestamp=${req.query.timestamp} fcsid=${req.query.fcsid}</h3>
