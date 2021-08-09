@@ -119,7 +119,7 @@ foxyRouter.get('/sso', async (req, res, next) => {
     console.log('req.headers in sso: ', req.headers);
     console.log('req.body in sso: ', req.body);
     console.log('URL in sso redirect: ' , URL);
-    const jtml = await axios.get(URL)
+    const html = await axios.get(URL)
     /*const html = `
     <html>
       <head>
@@ -131,7 +131,7 @@ foxyRouter.get('/sso', async (req, res, next) => {
         </div>
       </body>
     </html>`;*/
-    res.send(html);
+    res.send(URL);
   } catch (error) {
     next();
   }
