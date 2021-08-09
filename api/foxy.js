@@ -112,14 +112,15 @@ foxyRouter.get('/datafeed', (req, res, next) => {
   res.send(html);
 });
 */
-foxyRouter.get('/sso', (req, res, next) => {
+foxyRouter.get('/sso', async (req, res, next) => {
   try {
     const URL = createURL(req.query.fcsid, 31862687);
     console.log('req.query in sso: ', req.query);
     console.log('req.headers in sso: ', req.headers);
     console.log('req.body in sso: ', req.body);
-    console.log('URL in sso redirect: ' , URL)
-    const html = `
+    console.log('URL in sso redirect: ' , URL);
+    const jtml = await axios.get(URL)
+    /*const html = `
     <html>
       <head>
         <meta http-equiv="Refresh" content="5; URL=${URL}>
@@ -129,7 +130,7 @@ foxyRouter.get('/sso', (req, res, next) => {
           <h3>Redirect URL ${URL}</h3>
         </div>
       </body>
-    </html>`;
+    </html>`;*/
     res.send(html);
   } catch (error) {
     next();
