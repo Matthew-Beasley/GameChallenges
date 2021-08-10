@@ -107,7 +107,7 @@ const Foxy = () => {
     //price
     const priceHex = CryptoJS.HmacSHA256(`${code}price1.99`, key).toString(CryptoJS.enc.Hex);
 
-    return `https://thwartme.foxycart.com/cart?code=${code}||${codeHex}&name=${parsedName}||${nameHex}&price=1.99||${priceHex}&fcsid=185`;
+    return `https://thwartme.foxycart.com/cart?code=${code}||${codeHex}&name=${parsedName}||${nameHex}&price=1.99||${priceHex}&fcsid=88a83jpkvr7fsauneqmf4ct0c4`;
   };
 
 
