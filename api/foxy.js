@@ -97,7 +97,7 @@ foxyRouter.post('/', async (req, res, next) => {
 
 foxyRouter.get('/sso', async (req, res, next) => {
   try {
-    const URL = createURL(req.query.fcsid, 31862687);
+    const URL = createURL(req.query.fcsid, 31166031);
     console.log('req.query in sso: ', req.query);
     console.log('req.headers in sso: ', req.headers);
     console.log('req.body in sso: ', req.body);

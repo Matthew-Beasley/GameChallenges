@@ -58,7 +58,6 @@ const Foxy = () => {
     setDecks(sortedDecks);
   },[challenges, user]);
 
-
   useEffect(() => {
     // beef this check up
     if('code' in freeDeck) {
@@ -107,7 +106,8 @@ const Foxy = () => {
     const nameHex = CryptoJS.HmacSHA256(`${code}name${name}`, key).toString(CryptoJS.enc.Hex);
     //price
     const priceHex = CryptoJS.HmacSHA256(`${code}price1.99`, key).toString(CryptoJS.enc.Hex);
-    return `https://thwartme.foxycart.com/cart?code=${code}||${codeHex}&name=${parsedName}||${nameHex}&price=1.99||${priceHex}`;
+
+    return `https://thwartme.foxycart.com/cart?code=${code}||${codeHex}&name=${parsedName}||${nameHex}&price=1.99||${priceHex}&fcsid=185`;
   };
 
 
