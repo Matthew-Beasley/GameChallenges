@@ -97,11 +97,19 @@ foxyRouter.post('/', async (req, res, next) => {
 
 foxyRouter.get('/sso', async (req, res, next) => {
   try {
-    const URL = createURL(req.query.fcsid, 31166031);
-    console.log('req.query in sso: ', req.query);
-    console.log('req.headers in sso: ', req.headers);
-    console.log('req.body in sso: ', req.body);
-    console.log('URL in sso redirect: ' , URL);
+    const { fcsid } = req.query;
+    let foxyCustomer = '';
+    redisClient.get(fcsid, (err, data) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send(err);
+      } else if (data) {
+        foxyCustomer = data;
+      }
+      else {
+        next();
+      }})
+    const URL = createURL(fcsid, foxyCustomer);
     const html = `
     <html>
       <head>
@@ -111,8 +119,7 @@ foxyRouter.get('/sso', async (req, res, next) => {
     res.send(html);
   } catch (error) {
     next();
-  }
-});
+  }});
 
 foxyRouter.post('/createcustomer', async (req, res, next) => {
   const { email, password, first_name, last_name, token } = req.body;

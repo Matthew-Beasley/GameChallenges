@@ -12,7 +12,6 @@ import  CryptoJS from 'crypto-js';
 const Foxy = () => {
   const headers = useRecoilValue(headerState);
   const [key, setKey] = useRecoilState(keyState);
-  const [csrf, setCsrf] = useRecoilState(csrfState);
   const [user, setUser] = useRecoilState(userState);
   const [token, setToken] = useRecoilState(tokenState);
   const [cookies, setCookie, removeCookie] = useCookies(['token', 'fcsid']);
@@ -20,17 +19,15 @@ const Foxy = () => {
   const [decks, setDecks] = useState({});
   const [freeDeck, setFreeDeck] = useState({});
   const history = useHistory();
-  const location = useLocation();
-  const [fcsidTrigger, setFcsidTrigger] = useState(0);
 
   useEffect(() => {
+    axios.defaults.headers.post['X-CSRF-Token'] = cookies.CSRF_token;
     if(headers.authorization) {
       setToken(cookies.token);
     }
   }, []);
 
   useEffect(() => {
-    axios.defaults.headers.post['X-CSRF-Token'] = cookies.CSRF_token;
     if(cookies.token) {
       axios.post('/user/token', { token: cookies.token }, headers)
         .then(response => {
@@ -72,7 +69,6 @@ const Foxy = () => {
   }, [freeDeck]);
 
   useEffect(() => {
-    console.log('fcsid', cookies.fcsid)
     axios.post('/foxy/redis', { key: cookies.fcsid, value: user.foxy_id }, headers);
   }, []);
 
