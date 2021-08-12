@@ -135,4 +135,13 @@ foxyRouter.post('/createcustomer', async (req, res, next) => {
   }
 });
 
+foxyRouter.post('/redis', async (req, res, next) => {
+  const { key, value } = req.body;
+  try {
+    redisClient.set(key, value);
+  } catch (error) {
+    next();
+  }
+});
+
 module.exports = foxyRouter;

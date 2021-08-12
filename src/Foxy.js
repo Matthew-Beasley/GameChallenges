@@ -15,12 +15,13 @@ const Foxy = () => {
   const [csrf, setCsrf] = useRecoilState(csrfState);
   const [user, setUser] = useRecoilState(userState);
   const [token, setToken] = useRecoilState(tokenState);
-  const [cookies, setCookie, removeCookie] = useCookies(['token']);
+  const [cookies, setCookie, removeCookie] = useCookies(['token', 'fcsid']);
   const [challenges, setChallenges] = useState([]);
   const [decks, setDecks] = useState({});
   const [freeDeck, setFreeDeck] = useState({});
   const history = useHistory();
   const location = useLocation();
+  const [fcsidTrigger, setFcsidTrigger] = useState(0);
 
   useEffect(() => {
     if(headers.authorization) {
@@ -71,9 +72,9 @@ const Foxy = () => {
   }, [freeDeck]);
 
   useEffect(() => {
-    const form = document.querySelector('fc-cart-form');
-    console.log(form)
-  })
+    console.log('fcsid', cookies.fcsid)
+    axios.post('/foxy/redis', { key: cookies.fcsid, value: user.foxy_id }, headers);
+  }, []);
 
   const addFreeDeck = async (event) => {
     // put get date method in recoil state;
@@ -146,7 +147,7 @@ const Foxy = () => {
                         {/* deck list is a list of deck numbers */}
                         if(deck !== 0 && user.decks.length !== 0 && !user.decks.find(testDeck => testDeck.code === `${game}${deck}`)) {
                           return (
-                            <li key={el}>
+                            <li key={el} >
                               <a href={hashedRef(game, deck)}>Add {`${game} deck ${deck} $1.99`}</a>
                             </li>
                           );
