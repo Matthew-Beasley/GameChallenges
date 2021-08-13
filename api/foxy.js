@@ -148,6 +148,7 @@ foxyRouter.post('/redis', async (req, res, next) => {
   console.log('key value to set in redis for fcsid: ', key, value)
   try {
     redisClient.set(key, value); 
+    res.status(201).send('success');
   } catch (error) {
     next();
   }
