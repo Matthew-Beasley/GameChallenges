@@ -22,9 +22,7 @@ const Foxy = () => {
 
   useEffect(() => {
     axios.defaults.headers.post['X-CSRF-Token'] = cookies.CSRF_token;
-    if(headers.authorization) {
-      setToken(cookies.token);
-    }
+    setToken(cookies.token);
   }, []);
 
   useEffect(() => {
