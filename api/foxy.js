@@ -65,12 +65,10 @@ foxyRouter.get('/apitoken', checkCache, async (req, res, next) => {
       'FOXY-API-VERSION': '1',
     }
   };
-  //console.log('encryptedHeader: ', encryptedHeader)
   const params = new URLSearchParams();
   params.append('grant_type', 'refresh_token');
   params.append('refresh_token', process.env.foxy_refresh_token);
   try {
-    //console.log('')
     const accessToken = await axios.post('https://api.foxycart.com/token', params, headers);
     console.log('FOXY ACCESS TOKEN SERVED UP BY foxycart.com/token');
     redisClient.set('foxyaccesstoken', JSON.stringify(accessToken.data.access_token));
@@ -110,7 +108,7 @@ foxyRouter.get('/sso', async (req, res, next) => {
       else {
         next();
       }});
-    console.log('focyCustomer in sso from redis: ', foxyCustomer)
+    console.log('focyCustomer id in sso from redis: ', foxyCustomer)
     const URL = createURL(fcsid, foxyCustomer);
     const html = `
     <html>
@@ -149,7 +147,7 @@ foxyRouter.post('/redis', async (req, res, next) => {
   const { key, value } = req.body;
   console.log('key value to set in redis for fcsid: ', key, value)
   try {
-    redisClient.set(key, value);
+    redisClient.set(key, value); 
   } catch (error) {
     next();
   }
