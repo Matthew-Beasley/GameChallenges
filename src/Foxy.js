@@ -14,6 +14,7 @@ const Foxy = () => {
   const [key, setKey] = useRecoilState(keyState);
   const [user, setUser] = useRecoilState(userState);
   const [token, setToken] = useRecoilState(tokenState);
+  const [csrf, setCsrf] = useRecoilState(csrfState);
   const [cookies, setCookie, removeCookie] = useCookies(['token', 'fcsid']);
   const [challenges, setChallenges] = useState([]);
   const [decks, setDecks] = useState({});
@@ -21,9 +22,9 @@ const Foxy = () => {
   const history = useHistory();
 
   useEffect(() => {
-    axios.defaults.headers.post['X-CSRF-Token'] = cookies.CSRF_token
-      .then(() => setToken(cookies.token));
-  }, []);
+    axios.defaults.headers.post['X-CSRF-Token'] = csrf;
+    setToken(cookies.token);
+  }, [csrf]);
 
   useEffect(() => {
     if(cookies.token) {

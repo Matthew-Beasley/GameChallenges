@@ -96,7 +96,7 @@ foxyRouter.post('/', async (req, res, next) => {
 foxyRouter.get('/sso', async (req, res, next) => {
   try {
     const { fcsid } = req.query;
-    console.log('fcsid from foxy in sso endpoint: ', fcsid)
+    console.log('fcsid from foxy in sso endpoint: ', fcsid);
     let foxyCustomer = '';
     redisClient.get(fcsid, (err, data) => {
       if (err) {
@@ -108,7 +108,7 @@ foxyRouter.get('/sso', async (req, res, next) => {
       else {
         next();
       }});
-    console.log('focyCustomer id in sso from redis: ', foxyCustomer)
+    console.log('focyCustomer id in sso from redis: ', foxyCustomer);
     const URL = createURL(fcsid, foxyCustomer);
     const html = `
     <html>
@@ -116,7 +116,7 @@ foxyRouter.get('/sso', async (req, res, next) => {
         <meta http-equiv="refresh" content="0; URL=${URL}" />
       </head>
     </html>`;
-    console.log('redirect html in sso: ', html)
+    console.log('redirect html in sso: ', html);
     res.send(html);
   } catch (error) {
     next();
@@ -145,10 +145,14 @@ foxyRouter.post('/createcustomer', async (req, res, next) => {
 
 foxyRouter.post('/redis', async (req, res, next) => {
   const { key, value } = req.body;
-  console.log('key value to set in redis for fcsid: ', key, value)
+  console.log('key value to set in redis for fcsid: ', key, value);
   try {
-    redisClient.set(key, value); 
-    res.status(201).send('success');
+    if (!!key && !! value) {
+      redisClient.set(key, value); 
+      res.status(201).send('success');
+    } else {
+      res.send('Wrong number of args in set redis, no data written');
+    }
   } catch (error) {
     next();
   }
