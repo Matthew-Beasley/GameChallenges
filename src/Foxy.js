@@ -21,8 +21,8 @@ const Foxy = () => {
   const history = useHistory();
 
   useEffect(() => {
-    axios.defaults.headers.post['X-CSRF-Token'] = cookies.CSRF_token;
-    setToken(cookies.token);
+    axios.defaults.headers.post['X-CSRF-Token'] = cookies.CSRF_token
+      .then(() => setToken(cookies.token));
   }, []);
 
   useEffect(() => {
@@ -67,7 +67,7 @@ const Foxy = () => {
   }, [freeDeck]);
 
   useEffect(() => {
-    console.log('fcsid in useEffect: ', cookies.fcsid)
+    console.log('fcsid in useEffect: ', cookies.fcsid);
     axios.post('/foxy/redis', { key: cookies.fcsid, value: user.foxy_id }, headers);
   }, [token]);
 
