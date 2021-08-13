@@ -24,7 +24,7 @@ const Foxy = () => {
   useEffect(() => {
     axios.defaults.headers.post['X-CSRF-Token'] = csrf;
     setToken(cookies.token);
-  }, [csrf]);
+  }, []);
 
   useEffect(() => {
     if(cookies.token) {
@@ -70,7 +70,7 @@ const Foxy = () => {
   useEffect(() => {
     console.log('fcsid in useEffect: ', cookies.fcsid);
     axios.post('/foxy/redis', { key: cookies.fcsid, value: user.foxy_id }, headers);
-  }, [token]);
+  }, []);
 
   const addFreeDeck = async (event) => {
     // put get date method in recoil state;
