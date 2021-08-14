@@ -7,6 +7,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { userState, headerState, csrfState, keyState, tokenState } from './RecoilState';
 import { useCookies } from 'react-cookie';
 import  CryptoJS from 'crypto-js';
+import Cookies from 'js-cookies';
 
 
 const Foxy = () => {
@@ -68,7 +69,8 @@ const Foxy = () => {
   }, [freeDeck]);
 
   useEffect(() => {
-    console.log('fcsid in useEffect: ', cookies.fcsid);
+    const fcsidCookie = Cookies.getItem('fcsid')
+    console.log('fcsid in useEffect: ', fcsidCookie);//cookies.fcsid);
     axios.post('/foxy/redis', { key: cookies.fcsid, value: user.foxy_id }, headers);
   }, []);
 
