@@ -69,8 +69,8 @@ const Foxy = () => {
   }, [freeDeck]);
 
   useEffect(() => {
-    const fcsidCookie = Cookies.getItem('fcsid')
-    console.log('fcsid in useEffect: ', fcsidCookie);//cookies.fcsid);
+    const fcsidCookie = Cookies.getItem('token')
+    console.log('token in useEffect: ', fcsidCookie);//cookies.fcsid);
     axios.post('/foxy/redis', { key: cookies.fcsid, value: user.foxy_id }, headers);
   }, []);
 
