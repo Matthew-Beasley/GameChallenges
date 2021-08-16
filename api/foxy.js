@@ -144,11 +144,12 @@ foxyRouter.post('/createcustomer', async (req, res, next) => {
 });
 
 foxyRouter.post('/redis', async (req, res, next) => {
-  const { key, value } = req.body;
-  console.log('key value to set in redis for fcsid: ', key, value);
+  const fcsid = req.cookies['fcsid'];
+  const { customer } = req.body;
+  console.log('cookie value to set in redis for fcsid: ', fcsid, customer);
   try {
-    if (!!key && !! value) {
-      redisClient.set(key, value); 
+    if (!!fcsid && !! customer) {
+      redisClient.set(fcsid, customer); 
       res.status(201).send('success');
     } else {
       res.send('Wrong number of args in set redis, no data written');

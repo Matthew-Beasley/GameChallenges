@@ -7,7 +7,6 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { userState, headerState, csrfState, keyState, tokenState } from './RecoilState';
 import { useCookies } from 'react-cookie';
 import  CryptoJS from 'crypto-js';
-import Cookies from 'js-cookies';
 
 
 const Foxy = () => {
@@ -22,15 +21,19 @@ const Foxy = () => {
   const [freeDeck, setFreeDeck] = useState({});
   const history = useHistory();
 
-  useEffect(() => {
-    axios.defaults.headers.post['X-CSRF-Token'] = csrf;
-    setToken(cookies.token);
-  }, []);
 
   useEffect(() => {
-    if(cookies.token) {
+    setCsrf(cookies.CSRF_token);
+  }, [])
+
+  useEffect(() => {
+    axios.defaults.headers.post['X-CSRF-Token'] = csrf;
+    console.log('csrf in useEffect: ', csrf)
+    if(cookies.token && csrf) {
+      console.log('in if statement ', cookies.token)
       axios.post('/user/token', { token: cookies.token }, headers)
         .then(response => {
+          console.log('user in useEffect ', response.data[0])
           setUser(response.data[0]);
         })
         .then(() => {
@@ -40,7 +43,12 @@ const Foxy = () => {
             });
         });
     }
-  }, [token]);
+  }, [csrf]);
+
+  useEffect(() => {
+    console.log('foxy_id in useEffect ', user.foxy_id)
+    axios.post('/foxy/redis', { customer: user.foxy_id }, headers);
+  }, [user]);
 
   useEffect(() => {
     const sortedDecks = {};
@@ -67,12 +75,6 @@ const Foxy = () => {
       setUser(tmpUser);
     }
   }, [freeDeck]);
-
-  useEffect(() => {
-    const fcsidCookie = Cookies.getItem('fcsid')
-    console.log('fcsid in useEffect: ', fcsidCookie);//cookies.fcsid);
-    axios.post('/foxy/redis', { key: cookies.fcsid, value: user.foxy_id }, headers);
-  }, []);
 
   const addFreeDeck = async (event) => {
     // put get date method in recoil state;
