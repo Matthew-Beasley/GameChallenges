@@ -93,11 +93,11 @@ foxyRouter.post('/', async (req, res, next) => {
   }
 });
 
-foxyRouter.get('/sso', async (req, res, next) => {
+foxyRouter.get('/sso', (req, res, next) => {
   try {
     const { fcsid } = req.query;
     let foxyCustomer = '';
-    console.log('fcsid in just before redis client: ', fcsid)
+    console.log('fcsid in sso just before redis client: ', fcsid)
     redisClient.get(fcsid, (err, data) => {
       if (err) {
         console.log(err);
@@ -141,6 +141,7 @@ foxyRouter.post('/createcustomer', async (req, res, next) => {
 });
 
 foxyRouter.post('/redis', async (req, res, next) => {
+  console.log('cookies in foxy/redis: ', req.cookies)
   const fcsid = req.cookies['fcsid'];
   const { customer } = req.body;
   console.log('cookie value to set in redis for fcsid: ', fcsid, customer);
