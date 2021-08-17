@@ -111,9 +111,9 @@ foxyRouter.get('/sso', (req, res, next) => {
   }
 });
 
-foxyRouter.get('/checkout', (req, res, next) => {
+foxyRouter.get('/checkout', async (req, res, next) => {
   try {
-    const foxyCustomer = jwt.decode(req.cookie['token'], process.env.JWT).foxy_id; // decode token cookie
+    const foxyCustomer = jwt.decode(req.cookies['token'], process.env.JWT).foxy_id; // decode token cookie
     const { fcsid } = req.query;
     console.log('fcsid and foxyCustomer in checkout just before createUrl: ', fcsid, foxyCustomer)
     const URL = createURL(fcsid, foxyCustomer);
@@ -125,10 +125,12 @@ foxyRouter.get('/checkout', (req, res, next) => {
       </head>
     </html>`;
     console.log('redirect html in sso: ', html);
-    res.send(html);
+    res.status(200).send(html);
   } catch (error) {
-    next();
-  }});
+    console.log(error.response.data);
+    next(error);
+  }
+});
 
 foxyRouter.post('/createcustomer', async (req, res, next) => {
   const { email, password, first_name, last_name, token } = req.body;
