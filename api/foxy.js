@@ -12,6 +12,7 @@ const axios = require('axios');
 const foxyStoreId = process.env.FOXY_STORE_ID;
 const foxyStoreDomain = process.env.FOXY_STORE_DOMAIN;
 const validator = require('validator');
+const jwt = require('jwt-simple');
 
 
 const createURL = (fcsid, customerId) => {
@@ -94,19 +95,28 @@ foxyRouter.post('/', async (req, res, next) => {
 });
 
 foxyRouter.get('/sso', (req, res, next) => {
+  console.log('DOMIAIN in sso (bounce): ', process.env.DOMAIN)
+  console.log('fcsid in sso (bounce): ', req.query.fcsid)
   try {
+    const bouncedScript = `
+    <html>
+      <head>
+        <meta http-equiv="refresh" content="0; URL=${process.env.DOMAIN}/checkout?fcsid=${req.query.fcsid}" />
+      </head>
+    </html>`
+    res.send(bouncedScript);
+  } catch (err) {
+    next();
+  }
+});
+
+foxyRouter.get('/checkout', (req, res, next) => {
+  try {
+    const foxyCustomer = jwt.decode(req.cookie['token'], process.env.JWT).foxy_id; // decode token cookie
     const { fcsid } = req.query;
-    let foxyCustomer = '';
-    console.log('fcsid in sso just before redis client: ', fcsid)
-    redisClient.get(fcsid, (err, data) => {
-      if (err) {
-        console.log(err);
-        res.status(500).send(err);
-      } else if (data) {
-        foxyCustomer = data;
-        console.log('foxyCustomer in redis client: ', foxyCustomer)
-      }});  
+    console.log('fcsid and foxyCustomer in checkout just before createUrl: ', fcsid, foxyCustomer)
     const URL = createURL(fcsid, foxyCustomer);
+    console.log('URL in checkout')
     const html = `
     <html>
       <head>
@@ -136,23 +146,6 @@ foxyRouter.post('/createcustomer', async (req, res, next) => {
     res.send(customerId);
   } catch (error) {
     console.log(error);
-    next();
-  }
-});
-
-foxyRouter.post('/redis', async (req, res, next) => {
-  console.log('cookies in foxy/redis: ', req.cookies)
-  const fcsid = req.cookies['fcsid'];
-  const { customer } = req.body;
-  console.log('cookie value to set in redis for fcsid: ', fcsid, customer);
-  try {
-    if (fcsid && customer) {
-      redisClient.set(fcsid, customer); 
-      res.status(201).send('success');
-    } else {
-      res.send('Wrong number of args in set redis, no data written');
-    }
-  } catch (error) {
     next();
   }
 });

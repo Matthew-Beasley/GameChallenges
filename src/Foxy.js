@@ -46,11 +46,6 @@ const Foxy = () => {
   }, [csrf]);
 
   useEffect(() => {
-    console.log('foxy_id in useEffect ', user.foxy_id)
-    axios.post('/foxy/redis', { customer: user.foxy_id }, headers);
-  }, [user]);
-
-  useEffect(() => {
     const sortedDecks = {};
     for(let i = 0; i < challenges.length; i++) {
       if(challenges[i].Game in sortedDecks) {
