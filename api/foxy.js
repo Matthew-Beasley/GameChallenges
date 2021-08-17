@@ -101,7 +101,7 @@ foxyRouter.get('/sso', (req, res, next) => {
     const bouncedScript = `
     <html>
       <head>
-        <meta http-equiv="refresh" content="0; URL=${process.env.DOMAIN}/#/foxy/checkout?fcsid=${req.query.fcsid}" />
+        <meta http-equiv="refresh" content="0; URL=${process.env.DOMAIN}/foxy/checkout?fcsid=${req.query.fcsid}" />
       </head>
       <body><h3>in sso</h3></body>
     </html>`
