@@ -13,7 +13,6 @@ const Foxy = () => {
   const headers = useRecoilValue(headerState);
   const [key, setKey] = useRecoilState(keyState);
   const [user, setUser] = useRecoilState(userState);
-  const [token, setToken] = useRecoilState(tokenState);
   const [csrf, setCsrf] = useRecoilState(csrfState);
   const [cookies, setCookie, removeCookie] = useCookies(['token', 'fcsid']);
   const [challenges, setChallenges] = useState([]);
@@ -72,11 +71,9 @@ const Foxy = () => {
   }, [freeDeck]);
 
   const addFreeDeck = async (event) => {
-    // put get date method in recoil state;
     const date = new Date();
     const time = `${date.getFullYear()}-${(date.getMonth() + 1)}-${date.getDate()}T${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
     if(user.decks.length === 0) {
-      //`Play this deck free! ${game} deck ${deck}
       const deckName = event.target.innerText.replace('Play this deck free! ', '');
       const deckCode = deckName.replace(' deck ', '');
       const deck = {

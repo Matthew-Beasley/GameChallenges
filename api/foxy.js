@@ -5,18 +5,14 @@ const express = require('express');
 const { redisClient } = require('../mongo/client');
 const foxyRouter = express.Router();
 const crypto = require('crypto');
-const { request } = require('http');
 const { addTransaction } = require('../mongo/crud/users');
 const foxyEncryptionKey = process.env.FOXY_ENCRYPTION_KEY;
 const axios = require('axios');
-const foxyStoreId = process.env.FOXY_STORE_ID;
-const foxyStoreDomain = process.env.FOXY_STORE_DOMAIN;
 const validator = require('validator');
 const jwt = require('jwt-simple');
 
 
 const createURL = (fcsid, customerId) => {
-  // Need to figure out how to get the customer id here
   const timeStamp = (Date.now() + 600000);
   let stringToSign = `${customerId}|${timeStamp}|${process.env.FOXY_SECRET}`;
   let token = crypto.createHash('sha1').update('' + stringToSign).digest('hex');
@@ -49,7 +45,6 @@ const checkCache = (req, res, next) => {
     }
     else if (data) {
       console.log('FOXY ACCESS TOKEN SERVED UP BY REDIS');
-      //console.log('data in checkCache', data)
       res.send(data);
     }
     else {
@@ -95,15 +90,12 @@ foxyRouter.post('/', async (req, res, next) => {
 });
 
 foxyRouter.get('/sso', (req, res, next) => {
-  console.log('DOMIAIN in sso (bounce): ', process.env.DOMAIN)
-  console.log('fcsid in sso (bounce): ', req.query.fcsid)
   try {
     const bouncedScript = `
     <html>
       <head>
-        <meta http-equiv="refresh" content="0; URL=${process.env.DOMAIN}/foxy/checkout?fcsid=${req.query.fcsid}" />
+        <meta http-equiv="refresh" content="0; URL=${process.env.DOMAIN}/foxy/checkout?sid=${req.query.fcsid}" />
       </head>
-      <body><h3>in sso</h3></body>
     </html>`
     res.send(bouncedScript);
   } catch (err) {
@@ -113,18 +105,15 @@ foxyRouter.get('/sso', (req, res, next) => {
 
 foxyRouter.get('/checkout', async (req, res, next) => {
   try {
-    const foxyCustomer = jwt.decode(req.cookies['token'], process.env.JWT).foxy_id; // decode token cookie
-    const { fcsid } = req.query;
-    console.log('fcsid and foxyCustomer in checkout just before createUrl: ', fcsid, foxyCustomer)
-    const URL = createURL(fcsid, foxyCustomer);
-    console.log('URL in checkout')
+    const foxyCustomer = jwt.decode(req.cookies['token'], process.env.JWT).foxy_id;
+    const { sid } = req.query;
+    const URL = createURL(sid, foxyCustomer);
     const html = `
     <html>
       <head>
         <meta http-equiv="refresh" content="0; URL=${URL}" />
       </head>
     </html>`;
-    console.log('redirect html in sso: ', html);
     res.status(200).send(html);
   } catch (error) {
     console.log(error.response.data);
@@ -144,7 +133,6 @@ foxyRouter.post('/createcustomer', async (req, res, next) => {
     const homeData = (await axios.get('https://api.foxycart.com', headers)).data;
     let customerData = (await axios.post(`${homeData._links['fx:store'].href}/customers`,
       { email, password, first_name, last_name }, headers)).data;
-    console.log('customerData in createcusomer route: ', customerData);
     const customerId = customerData.message.split(' ')[1];
     res.send(customerId);
   } catch (error) {

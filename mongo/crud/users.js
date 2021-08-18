@@ -1,10 +1,5 @@
 const User = require('../models/userModel');
-const {
-  findUserFromToken,
-  authenticate,
-  compare,
-  hash
-} = require('../auth');
+const { hash } = require('../auth');
 
 const createUser = async (record) => {
   const { password } = record;

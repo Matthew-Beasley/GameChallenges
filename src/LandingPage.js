@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Route, Link, useHistory, useLocation } from 'react-router-dom';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { userState, passwordState, headerState, csrfState, tokenState, emailKeyState } from './RecoilState';
+import { useHistory } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+import { csrfState, tokenState, emailKeyState } from './RecoilState';
 import { useCookies } from 'react-cookie';
 import CryptoJS from 'crypto-js';
 import axios from 'axios';
@@ -9,7 +9,6 @@ import NavBar from './NavBar';
 
 
 const LandingPage = () => {
-  const headers = useRecoilValue(headerState);
   const [token, setToken] = useRecoilState(tokenState);
   const [csrf, setCsrf] = useRecoilState(csrfState);
   const history = useHistory();
@@ -61,7 +60,6 @@ const LandingPage = () => {
     const currentURL = window.location.href;
     const encryptedCreds = currentURL.slice(currentURL.indexOf('nonce=') + 6, currentURL.length);
     if (currentURL.includes('nonce') && csrf !== '') {
-      console.log('nonce is ', encryptedCreds)
       const bytes  = CryptoJS.AES.decrypt(encryptedCreds, emailKey);
       const decryptedCreds = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
       checkCredentials(decryptedCreds);
