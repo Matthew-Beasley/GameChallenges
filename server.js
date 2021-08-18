@@ -52,7 +52,7 @@ app.use('/dist', express.static(path.join(__dirname, 'dist')));
 app.use('/user', csrfProtection, userRouter);
 app.use('/challenge', isLoggedIn, csrfProtection, challengeRouter);
 app.use('/auth', csrfProtection, authRouter);
-app.use('/foxy', foxyRouter);
+app.use('/foxy', csrfProtection, foxyRouter);
 
 app.get('/', csrfProtection, (req, res, next) => {
   try {

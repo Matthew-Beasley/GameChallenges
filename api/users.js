@@ -4,13 +4,11 @@ const CryptoJS = require('crypto-js');
 const {
   createUser,
   getUserByEmail,
-  getUsers,
   updateDecks
 } = require('../mongo/crud/users');
 const {
   findUserFromToken,
-  isLoggedIn, 
-  isAdmin
+  isLoggedIn
 } = require('../mongo/auth');
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();

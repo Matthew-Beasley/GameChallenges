@@ -41,7 +41,7 @@ const compare = ({ plain, hashed }) => {
 const authenticate = async ({ email, password }) => {
   const users = await User.find({ email: email });
   await compare({ plain: password, hashed: users[0].password });
-  return jwt.encode({ email: users[0].email }, process.env.JWT);
+  return jwt.encode({ email: users[0].email, foxy_id: users[0].foxy_id }, process.env.JWT);
 };
 
 const isLoggedIn = (req, res, next) => {

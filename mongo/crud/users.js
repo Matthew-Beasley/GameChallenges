@@ -1,13 +1,7 @@
 const User = require('../models/userModel');
-const {
-  findUserFromToken,
-  authenticate,
-  compare,
-  hash
-} = require('../auth');
+const { hash } = require('../auth');
 
 const createUser = async (record) => {
-  let returnVal = '';
   const { password } = record;
   const pwd = await hash(password);
   record.password = pwd;
@@ -68,5 +62,6 @@ module.exports = {
   getUserByEmail,
   addTransaction,
   getUsers,
-  updateDecks
+  updateDecks,
+
 };

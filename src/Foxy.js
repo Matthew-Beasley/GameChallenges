@@ -12,27 +12,27 @@ import  CryptoJS from 'crypto-js';
 const Foxy = () => {
   const headers = useRecoilValue(headerState);
   const [key, setKey] = useRecoilState(keyState);
-  const [csrf, setCsrf] = useRecoilState(csrfState);
   const [user, setUser] = useRecoilState(userState);
-  const [token, setToken] = useRecoilState(tokenState);
-  const [cookies, setCookie, removeCookie] = useCookies(['token']);
+  const [csrf, setCsrf] = useRecoilState(csrfState);
+  const [cookies, setCookie, removeCookie] = useCookies(['token', 'fcsid']);
   const [challenges, setChallenges] = useState([]);
   const [decks, setDecks] = useState({});
   const [freeDeck, setFreeDeck] = useState({});
   const history = useHistory();
-  const location = useLocation();
+
 
   useEffect(() => {
-    if(headers.authorization) {
-      setToken(cookies.token);
-    }
+    setCsrf(cookies.CSRF_token);
   }, []);
 
   useEffect(() => {
-    axios.defaults.headers.post['X-CSRF-Token'] = cookies.CSRF_token;
-    if(cookies.token) {
+    axios.defaults.headers.post['X-CSRF-Token'] = csrf;
+    console.log('csrf in useEffect: ', csrf)
+    if(cookies.token && csrf) {
+      console.log('in if statement ', cookies.token)
       axios.post('/user/token', { token: cookies.token }, headers)
         .then(response => {
+          console.log('user in useEffect ', response.data[0])
           setUser(response.data[0]);
         })
         .then(() => {
@@ -42,7 +42,7 @@ const Foxy = () => {
             });
         });
     }
-  }, [token]);
+  }, [csrf]);
 
   useEffect(() => {
     const sortedDecks = {};
@@ -58,7 +58,6 @@ const Foxy = () => {
     setDecks(sortedDecks);
   },[challenges, user]);
 
-
   useEffect(() => {
     // beef this check up
     if('code' in freeDeck) {
@@ -72,11 +71,9 @@ const Foxy = () => {
   }, [freeDeck]);
 
   const addFreeDeck = async (event) => {
-    // put get date method in recoil state;
     const date = new Date();
     const time = `${date.getFullYear()}-${(date.getMonth() + 1)}-${date.getDate()}T${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
     if(user.decks.length === 0) {
-      //`Play this deck free! ${game} deck ${deck}
       const deckName = event.target.innerText.replace('Play this deck free! ', '');
       const deckCode = deckName.replace(' deck ', '');
       const deck = {
@@ -107,7 +104,8 @@ const Foxy = () => {
     const nameHex = CryptoJS.HmacSHA256(`${code}name${name}`, key).toString(CryptoJS.enc.Hex);
     //price
     const priceHex = CryptoJS.HmacSHA256(`${code}price1.99`, key).toString(CryptoJS.enc.Hex);
-    return `https://thwartme.foxycart.com/cart?code=${code}||${codeHex}&name=${parsedName}||${nameHex}&price=1.99||${priceHex}`;
+
+    return `https://thwartme.foxycart.com/cart?code=${code}||${codeHex}&name=${parsedName}||${nameHex}&price=1.99||${priceHex} `;
   };
 
 
@@ -141,7 +139,7 @@ const Foxy = () => {
                         {/* deck list is a list of deck numbers */}
                         if(deck !== 0 && user.decks.length !== 0 && !user.decks.find(testDeck => testDeck.code === `${game}${deck}`)) {
                           return (
-                            <li key={el}>
+                            <li key={el} >
                               <a href={hashedRef(game, deck)}>Add {`${game} deck ${deck} $1.99`}</a>
                             </li>
                           );

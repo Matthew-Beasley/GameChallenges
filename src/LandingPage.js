@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Route, Link, useHistory, useLocation } from 'react-router-dom';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { userState, passwordState, headerState, csrfState, tokenState, emailKeyState } from './RecoilState';
+import { useHistory } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+import { csrfState, tokenState, emailKeyState } from './RecoilState';
 import { useCookies } from 'react-cookie';
 import CryptoJS from 'crypto-js';
 import axios from 'axios';
@@ -9,50 +9,51 @@ import NavBar from './NavBar';
 
 
 const LandingPage = () => {
-  const headers = useRecoilValue(headerState);
   const [token, setToken] = useRecoilState(tokenState);
   const [csrf, setCsrf] = useRecoilState(csrfState);
   const history = useHistory();
   const [cookies, setCookie] = useCookies(['token']);
   const [emailKey, setEmailKey] = useRecoilState(emailKeyState);
+  const [headerSet, setHeaderSet] = useState(false);
 
 
   const login = async (email, password) => {
     const creds = (await axios.get('/auth', { headers: { email, password }})).data;
     setCookie('token', creds, { path: '/', maxAge: 43200 });
     setToken(creds);
+    history.push('/shopping');
   };
 
   const createFoxyCustomer = async (user) => {
-    // refresh token
     const token = (await axios.get('/foxy/apitoken')).data;
-    console.log('refresh token: ', token)
-    //post to foxy createuser route with user data 
     const {email, password, first_name, last_name } = user;
-    console.log('headers in creatFoxyCustomer: ', headers)
-    const customer = (await axios.post('foxy/createcustomer', { email, password, first_name, last_name, token }, headers)).data;
-    console.log('customer in createFoxyCustomer: ', customer)
-    return customer;
+    const authorization = { 
+      'FOXY-API-VERSION': '1', 
+      'Authorization': token
+    };
+    const customerId = (await axios.post('foxy/createcustomer', { email, password, first_name, last_name, token }, authorization)).data;
+    return customerId;
   };
 
-  const checkCredentials = async (email, password, first_name, last_name) => {
+  const checkCredentials = async ({ email, password, first_name, last_name }) => {
     const usr = (await axios.get(`/user?email=${email}`)).data;
     if (!usr.email) {
-      await axios.post('/user', { password, email, first_name, last_name });
-      const customer = createFoxyCustomer(usr);
-      if (!customer) {
+      const foxy_id = await createFoxyCustomer({ email, password, first_name, last_name });
+      console.log('foxy_id in checkCredentials ', foxy_id)
+      if (!foxy_id) {
         throw new Error('foxy customer not created');
       }
+      await axios.post('/user', { password, email, first_name, last_name, foxy_id });
       login(email, password);
     } else {
       // throw error user exists (alert?)
-      //await login({ email, password });
+      // await login({ email, password });
     }
-    history.push('/shopping');
   };
 
   useEffect(() => {
     axios.defaults.headers.common['X-CSRF-Token'] = csrf;
+    setHeaderSet(true);
   }, [csrf]);
 
   useEffect(() => { 
@@ -61,8 +62,7 @@ const LandingPage = () => {
     if (currentURL.includes('nonce') && csrf !== '') {
       const bytes  = CryptoJS.AES.decrypt(encryptedCreds, emailKey);
       const decryptedCreds = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-      const { email, password, first_name, last_name } = decryptedCreds;
-      checkCredentials(email, password, first_name, last_name);
+      checkCredentials(decryptedCreds);
     }
   }, [csrf]);
 
