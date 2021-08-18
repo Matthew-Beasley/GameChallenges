@@ -60,6 +60,7 @@ const CreateUser = () => {
         <form onSubmit={(ev) => checkCredentials(ev)}>
           <div id="createuser-text">
             <p>To create an account enter user name and password</p>
+            <p>Be sure to use a a valid email as it will be used in billing and order fullfilment</p>
           </div>
           <input className="create-input" type="text" placeholder="First Name" value={firstName} onChange={(ev) => setFirstName(ev.target.value)} />
           <input className="create-input" type="text" placeholder="Last Name" value={lastName} onChange={(ev) => setLastName(ev.target.value)} />
