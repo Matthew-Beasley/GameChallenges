@@ -1,0 +1,23 @@
+#about-container {
+  background-color: rgb(190, 205, 211);
+  min-height: fit-content;
+}
+
+#about-plate {
+  background-color: white;
+  width: 80%;
+  height: fit-content;
+  margin: 5rem 10% 5rem 10%;
+  padding: 4rem;
+  border-radius: 2rem;
+  font-size: 1.5rem;
+  z-index: 1;
+}
+
+#about-character {
+  z-index: 2;
+  margin-top: -4rem;
+  margin-left: 10%;
+  height: 14rem;
+  width: 10rem;
+}
