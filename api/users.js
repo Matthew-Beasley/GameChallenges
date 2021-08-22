@@ -57,7 +57,7 @@ userRouter.post('/updatedecks', isLoggedIn, async (req, res, next) => {
   }
 });
 
-userRouter.post('/mailgun', async (req, res, next) => {
+userRouter.post('/mailgun', (req, res, next) => {
   const { password, email, first_name, last_name } = req.body;
   const encrypted = CryptoJS.AES.encrypt(JSON.stringify({ password, email, first_name, last_name }), process.env.EMAILKEY);
   let url = '';
@@ -89,6 +89,37 @@ Enjoy the game!`;
       res.status(200).send(response);
     }
   });
+});
+
+userRouter.post('/contactus', (req, res, next) => {
+  const { email , message } = req.body;
+  const mailgunAuth = {
+    auth: {
+      api_key: process.env.MAILGUN_APIKEY,
+      domain: 'thwartme.com'
+    }
+  };
+  const smtpTransport = nodemailer.createTransport(mg(mailgunAuth));
+  const mailOptions = {
+    from: 'Thwartme.com <contactus@thwartme.com>',
+    to: 'conbecdevelopment@outlook.com',
+    subject: 'Contact Us',
+    text: `From: ${email}
+      ${message}`
+  };
+  try {
+    smtpTransport.sendMail(mailOptions, (error, response) => {
+      if (error) {
+        console.log('error in contactus', error)
+        next(error);
+      } else {
+        res.status(200).send(response);
+      }
+    });
+  } catch (error) {
+    console.log('error in contactus', error)
+    next(error);
+  }
 });
 
 module.exports = userRouter;

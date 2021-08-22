@@ -1,0 +1,35 @@
+#contactpage {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(190, 205, 211);
+  height: 120vh;
+  z-index: 0;
+}
+
+#contact-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  margin: 5rem 10% 5rem 10%;
+  background-color: rgb(235, 159, 207);
+  color: white;
+}
+
+#contact-email {
+  margin: 2rem;
+  width: 15rem;
+  height: 1.5rem;
+}
+
+#contact-text {
+  width: 80%;
+  height: 25rem;
+  margin-bottom: 4rem;
+}
+
+#contact-submit {
+  margin-bottom: 6rem;
+  width: 5rem;
+  height: 2rem;
+}
