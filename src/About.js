@@ -12,8 +12,8 @@ const About = () => {
         <div id="about-definition">
           <h3>thwart</h3>
           <h1>/THwôrt/</h1>
+          <h2>verb</h2>
           <ol>
-            <lh>verb</lh>
             <li>prevent (someone) from accomplishing something. "He never did anything to thwart his father"</li>
           </ol>
         </div>
