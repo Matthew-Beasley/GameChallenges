@@ -12,8 +12,13 @@
   align-items: center;
   width: 80%;
   margin: 5rem 10% 5rem 10%;
-  background-color: rgb(235, 159, 207);
+  background-color: rgb(54, 51, 51);
   color: white;
+  border-radius: 2rem;
+}
+
+#contact-form > h3 {
+  margin-top: 3rem;
 }
 
 #contact-email {
