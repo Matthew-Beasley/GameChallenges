@@ -40,7 +40,7 @@ const NavBar = () => {
         </div>
       }
       {!!user.email && 
-        <div className="logout-text" onClick={() => logout()}>
+        <div className="logout-text nav-links" onClick={() => logout()}>
           Logout
         </div>
       }
