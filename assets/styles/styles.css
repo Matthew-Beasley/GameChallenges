@@ -125,10 +125,12 @@
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: flex-start;
+    min-height: fit-content;
     width: 100%;
     margin-top: 0rem;
     padding-top: 1rem;
     padding-bottom: 1rem;
+    z-index: 0;
   }
 
   .nav-links {
