@@ -36,7 +36,6 @@ const ChallengeDisplay = () => {
         </div>
       </div>
       <div id="mobilechallenges-nav">
-        <NavBar />
         <div id="mobilechallenge-container">
           <div id="challenge-cards">
             <Slider {...settings}>

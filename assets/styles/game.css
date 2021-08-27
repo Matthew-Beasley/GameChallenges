@@ -272,7 +272,7 @@
 }
 
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 700px) {
 
 
   #game-container {
@@ -327,9 +327,43 @@
     margin-top: 2.1rem;
     margin-right: 1rem
   }
+
+
+
+  .platform-checkgroup {
+    max-width: 15rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    margin-right: 0;
+    margin-left: 1rem;
+  }
+
+  .platform-checkgroup > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    max-width: 1rem;
+  }
+  
+  .platform-checkgroup label {
+    margin: 0rem .5rem 0rem .5rem;
+  }
+  
+  .platform-checkgroup input {
+    margin: 0;
+  }
+  
+  #mobile-spacer {
+    /*width: 17.6rem;*/
+  }
+
+
+
   
   #platform-groups {
-    display: none;
+   /* display: none;*/
   }
 
   #phone-platformselect {
@@ -378,6 +412,7 @@
   /* ===== Challenge Container Styles ===== */
 
   #challenge-container {
+    max-height: 0;
     display: none;
   }
 
@@ -404,6 +439,15 @@
   #challenge-cards {
     color: black;
     background-color: white;
-    margin: 5rem 0rem 0rem 3rem;
+    margin: 5rem 
+    0rem 0rem 3rem;
+  }
+
+  #mobilechallenges-nav {
+    display: none;
+  }
+
+  #player-container {
+    display: none;
   }
 }

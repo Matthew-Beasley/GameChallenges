@@ -250,16 +250,6 @@ const GameSetup = () => {
           </div>
         </div>
       </div>
-      <div className="setup-control" id="phone-platformselect">
-        <label>Platforms</label>
-        <select multiple onChange={ev => selectPlatform(ev.target.value)}>
-          <option value="PC">PC</option>
-          <option value="Xbox">Xbox</option>
-          <option value="PS">Playstation</option>
-          <option value="Switch">Switch</option>
-          <option value="Mobile">Mobile</option>
-        </select>
-      </div>
       <div className="setup-control" id="splitscreen">
         <label>Split screen</label>
         <select id="SplitScreen" onChange={ev => setControlVal(ev)}>
