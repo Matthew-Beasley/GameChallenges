@@ -40,7 +40,7 @@ const LandingPage = () => {
     if (!usr.email) {
       const foxy_id = await createFoxyCustomer({ email, password, first_name, last_name });
       if (!foxy_id) {
-        throw new Error('foxy customer not created');
+        //throw new Error('foxy customer not created');
       }
       await axios.post('/user', { password, email, first_name, last_name, foxy_id });
       login(email, password);
