@@ -39,7 +39,6 @@ const LandingPage = () => {
     const usr = (await axios.get(`/user?email=${email}`)).data;
     if (!usr.email) {
       const foxy_id = await createFoxyCustomer({ email, password, first_name, last_name });
-      console.log('foxy_id in checkCredentials ', foxy_id)
       if (!foxy_id) {
         throw new Error('foxy customer not created');
       }

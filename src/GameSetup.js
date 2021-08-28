@@ -71,6 +71,30 @@ const GameSetup = () => {
     }
   };
 
+  const multiSelectPlatform = (ev) => {
+    for (let i = 0; i < ev.target.length; i++) {
+      switch (ev.target[i].text) {
+      case 'PC':
+        setPCChk(ev.target[i].selected);
+        return;
+      case 'Xbox':
+        setXboxChk(ev.target[i].selected);
+        return;
+      case 'PS':
+        setPlaystationChk(ev.target[i].selected);
+        return;
+      case 'Switch':
+        setSwitchChk(ev.target[i].selected);
+        return;
+      case 'Mobile':
+        setMobileChk(ev.target[i].selected);
+        return;
+      default:
+        return;
+      }
+    }
+  };
+
   const setControlVal = (ev) => {
     switch (ev.target.id) {
     case 'SplitScreen':
@@ -249,6 +273,16 @@ const GameSetup = () => {
             <div id="mobile-spacer"></div>
           </div>
         </div>
+      </div>
+      <div className="setup-control" id="phone-platformselect">
+        <label>Platforms</label>
+        <select multiple onChange={ev => multiSelectPlatform(ev)}>
+          <option value="PC">PC</option>
+          <option value="Xbox">Xbox</option>
+          <option value="PS">Playstation</option>
+          <option value="Switch">Switch</option>
+          <option value="Mobile">Mobile</option>
+        </select>
       </div>
       <div className="setup-control" id="splitscreen">
         <label>Split screen</label>

@@ -110,14 +110,12 @@ userRouter.post('/contactus', (req, res, next) => {
   try {
     smtpTransport.sendMail(mailOptions, (error, response) => {
       if (error) {
-        console.log('error in contactus', error)
         next(error);
       } else {
         res.status(200).send(response);
       }
     });
   } catch (error) {
-    console.log('error in contactus', error)
     next(error);
   }
 });
