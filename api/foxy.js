@@ -96,7 +96,7 @@ foxyRouter.get('/sso', (req, res, next) => {
       <head>
         <meta http-equiv="refresh" content="0; URL=${process.env.DOMAIN}/foxy/checkout?sid=${req.query.fcsid}" />
       </head>
-    </html>`
+    </html>`;
     res.send(bouncedScript);
   } catch (err) {
     next();
@@ -116,8 +116,7 @@ foxyRouter.get('/checkout', async (req, res, next) => {
     </html>`;
     res.status(200).send(html);
   } catch (error) {
-    console.log(error.response.data);
-    next(error);
+    next(error.message);
   }
 });
 
@@ -136,7 +135,6 @@ foxyRouter.post('/createcustomer', async (req, res, next) => {
     const customerId = customerData.message.split(' ')[1];
     res.send(customerId);
   } catch (error) {
-    console.log(error);
     next();
   }
 });

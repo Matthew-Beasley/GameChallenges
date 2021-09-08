@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import { csrfState, tokenState, emailKeyState } from './RecoilState';
+import { csrfState, tokenState, emailKeyState } from './RecoilState';;
 import { useCookies } from 'react-cookie';
 import CryptoJS from 'crypto-js';
 import axios from 'axios';
 import NavBar from './NavBar';
-
 
 const LandingPage = () => {
   const [token, setToken] = useRecoilState(tokenState);
@@ -14,8 +13,7 @@ const LandingPage = () => {
   const history = useHistory();
   const [cookies, setCookie] = useCookies(['token']);
   const [emailKey, setEmailKey] = useRecoilState(emailKeyState);
-  const [headerSet, setHeaderSet] = useState(false);
-
+  const [decryptedCreds, setDecryptedCreds] = useState('');
 
   const login = async (email, password) => {
     const creds = (await axios.get('/auth', { headers: { email, password }})).data;
@@ -31,18 +29,46 @@ const LandingPage = () => {
       'FOXY-API-VERSION': '1', 
       'Authorization': token
     };
-    const customerId = (await axios.post('foxy/createcustomer', { email, password, first_name, last_name, token }, authorization)).data;
+    let customerId;
+    try {
+      customerId = (await axios.post('/foxy/createcustomer', { email, password, first_name, last_name, token }, authorization)).data;
+      console.log('customerId in createFoxyUser: ', customerId);
+    } catch (error) {
+      console.log('error in createFoxyCustomer: ', error.message);
+    }
+    
     return customerId;
   };
 
   const checkCredentials = async ({ email, password, first_name, last_name }) => {
     const usr = (await axios.get(`/user?email=${email}`)).data;
     if (!usr.email) {
-      const foxy_id = await createFoxyCustomer({ email, password, first_name, last_name });
-      if (!foxy_id) {
+      let foxy_id = await createFoxyCustomer({ email, password, first_name, last_name });
+      console.log('foxyid in checkCredentials: ', foxy_id);
+      /*if (foxy_id._embedded['fx:errors'][1] === 'This email address is already in use by an existing customer of this store.') {
+        console.log('foxy customer email already in use');
+        return;
         //throw new Error('foxy customer not created');
-      }
-      await axios.post('/user', { password, email, first_name, last_name, foxy_id });
+      }*/
+      const res = await axios.post('/user', { password, email, first_name, last_name, foxy_id });
+      //login(email, password);
+    } else {
+      // throw error user exists (alert?)
+      // await login({ email, password });
+    }
+  };
+
+  const createCredentials = async ({ email, password, first_name, last_name }) => {
+    const usr = (await axios.get(`/user?email=${email}`)).data;
+    if (!usr.email) {
+      let foxy_id = await createFoxyCustomer({ email, password, first_name, last_name });
+      console.log('foxyid in checkCredentials: ', foxy_id);
+      /*if (foxy_id._embedded['fx:errors'][1] === 'This email address is already in use by an existing customer of this store.') {
+        console.log('foxy customer email already in use');
+        return;
+        //throw new Error('foxy customer not created');
+      }*/
+      const res = await axios.post('/user', { password, email, first_name, last_name, foxy_id });
       login(email, password);
     } else {
       // throw error user exists (alert?)
@@ -52,13 +78,14 @@ const LandingPage = () => {
 
   useEffect(() => {
     axios.defaults.headers.common['X-CSRF-Token'] = csrf;
-    setHeaderSet(true);
   }, [csrf]);
 
   useEffect(() => { 
     const currentURL = window.location.href;
-    const encryptedCreds = currentURL.slice(currentURL.indexOf('nonce=') + 6, currentURL.length);
+    //const windowLocation = window.location.href.toString();
+    //window.location.href = windowLocation.slice(0, window.location.href.indexOf('/'));
     if (currentURL.includes('nonce') && csrf !== '') {
+      const encryptedCreds = currentURL.slice(currentURL.indexOf('nonce=') + 6, currentURL.length);
       const bytes  = CryptoJS.AES.decrypt(encryptedCreds, emailKey);
       const decryptedCreds = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
       checkCredentials(decryptedCreds);

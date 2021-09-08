@@ -45,6 +45,8 @@ const Login = () => {
   };
 
   const logout = () => {
+    //const windowLocation = window.location.href.toString();
+    //window.location.href = windowLocation.slice(0, window.location.href.indexOf('/'));
     removeCookie('token');
     setToken('');
     setUser({});

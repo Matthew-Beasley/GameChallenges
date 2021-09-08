@@ -5,7 +5,10 @@ import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
 import { userState, passwordState, headerState, csrfState, tokenState, emailKeyState } from './RecoilState';
 import { useCookies } from 'react-cookie';
 import { v4 as uuidv4 } from 'uuid';
+import NavBar from './NavBar';
 import crypto from 'browserify-cipher/browser';
+import Modal from 'react-modal';
+Modal.setAppElement('#root');
 
 
 const StandbyForVerification = () => {
@@ -27,35 +30,52 @@ const CreateUser = () => {
   const [lastName, setLastName] = useState('');
   const history = useHistory();
   const [cookies, setCookie] = useCookies(['token']);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     axios.defaults.headers.post['X-CSRF-Token'] = csrf;
   }, [csrf]);
 
-  useEffect(() => {
+ /* useEffect(() => {
     const token = cookies.token;
     if (token) {
       axios.post('/user/token', { token: token }, headers).then(response => {
-        setEmail(response.data[0]);
+        setEmailKey(response.data[0]);
       });
     }
-  }, [token]);
+  }, [token]);*/
+
+  function toggleModal() {
+    setIsOpen(!isOpen);
+  }
 
   const checkCredentials = async (event) => {
     event.preventDefault();
     const usr = (await axios.get(`/user?email=${email}`)).data;
+    console.log('usr in create user: ', usr)
     if (!usr.email) {
       await axios.post('/user/mailgun', { password, email, first_name: firstName, last_name: lastName });
       setPassword('');
       setEmail('');
       history.push('/verifyuser');
     } else {
-      history.push('/shopping');
+      toggleModal();
     }
   };
 
   return (
     <div id="createuser-container">
+      <NavBar />
+      <Modal
+        isOpen={isOpen}
+        onRequestClose={toggleModal}
+        contentLabel="My dialog"
+        className="mymodal"
+        overlayClassName="myoverlay"
+        closeTimeoutMS={500}
+      >
+        <div>My modal dialog.</div>
+      </Modal>
       <div id="create-column">
         <form onSubmit={(ev) => checkCredentials(ev)}>
           <div id="createuser-text">
