@@ -32,7 +32,6 @@ const LandingPage = () => {
     let customerId;
     try {
       customerId = (await axios.post('/foxy/createcustomer', { email, password, first_name, last_name, token }, authorization)).data;
-      console.log('customerId in createFoxyUser: ', customerId);
     } catch (error) {
       console.log('error in createFoxyCustomer: ', error.message);
     }
@@ -44,7 +43,6 @@ const LandingPage = () => {
     const usr = (await axios.get(`/user?email=${email}`)).data;
     if (!usr.email) {
       let foxy_id = await createFoxyCustomer({ email, password, first_name, last_name });
-      console.log('foxyid in checkCredentials: ', foxy_id);
       /*if (foxy_id._embedded['fx:errors'][1] === 'This email address is already in use by an existing customer of this store.') {
         console.log('foxy customer email already in use');
         return;
@@ -62,7 +60,6 @@ const LandingPage = () => {
     const usr = (await axios.get(`/user?email=${email}`)).data;
     if (!usr.email) {
       let foxy_id = await createFoxyCustomer({ email, password, first_name, last_name });
-      console.log('foxyid in checkCredentials: ', foxy_id);
       /*if (foxy_id._embedded['fx:errors'][1] === 'This email address is already in use by an existing customer of this store.') {
         console.log('foxy customer email already in use');
         return;

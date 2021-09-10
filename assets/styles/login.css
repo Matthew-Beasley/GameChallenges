@@ -1,0 +1,30 @@
+#login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 100vh;
+  min-width: 100vw;
+  background-color: rgb(190, 205, 211);
+  margin-top: 0rem;
+}
+
+#login-inputs > input {
+  margin-left: 3rem;
+  width: 30%;
+  height: 2.25rem;
+}
+
+#login-inputs > button {
+  margin-left: 2rem;
+}
+
+#login-container > img {
+  height: 8rem;
+  width: 10rem;
+  margin-top: 3rem;
+  margin-left: 25%;
+}
+
+#login-container #navbar {
+  margin-top: 0rem;
+}

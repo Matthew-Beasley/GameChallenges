@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { tokenState, csrfState, headerState, userState } from './RecoilState';
+import NavBar from './NavBar';
 
 
 const Login = () => {
@@ -45,8 +46,6 @@ const Login = () => {
   };
 
   const logout = () => {
-    //const windowLocation = window.location.href.toString();
-    //window.location.href = windowLocation.slice(0, window.location.href.indexOf('/'));
     removeCookie('token');
     setToken('');
     setUser({});
@@ -55,12 +54,15 @@ const Login = () => {
 
   return (
     <div id="login-container" >
-      {!!token && <div id="welcome-user">Welcome {user.email}</div>}
-      <input id="user-name" type="text" placeholder="Email" value={email} onChange={(ev) => setEmail(ev.target.value)} />
-      <input id="password" type="password" placeholder="Password" value={password} onChange={(ev) => setPassword(ev.target.value)} />
-      {!token && <button className="login-submit" onClick={() => login()}>Login</button>}
-      {!!token && <button className="login-submit" onClick={() => logout()}>Log Out</button>}
-      <Link to="/createuser">Create an account</Link>
+      <img src="../assets/images/right-3.png" />
+      <NavBar />
+      <div id="login-inputs">
+        {!!token && <div id="welcome-user">Welcome {user.email}</div>}
+        <input id="user-name" type="text" placeholder="Email" value={email} onChange={(ev) => setEmail(ev.target.value)} />
+        <input id="password" type="password" placeholder="Password" value={password} onChange={(ev) => setPassword(ev.target.value)} />
+        {!token && <button className="login-submit" onClick={() => login()}>Login</button>}
+        {!!token && <button className="login-submit" onClick={() => logout()}>Log Out</button>}
+      </div>
     </div>
   );
 };

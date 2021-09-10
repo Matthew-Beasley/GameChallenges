@@ -71,7 +71,6 @@ foxyRouter.get('/apitoken', checkCache, async (req, res, next) => {
     redisClient.expire('foxyaccesstoken', 7100);
     res.status(200).send(JSON.stringify(accessToken.data.access_token));
   } catch (error) {
-    console.log(error.response.data);
     next(error);
   }
 });
