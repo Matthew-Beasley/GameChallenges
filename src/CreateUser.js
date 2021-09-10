@@ -91,7 +91,7 @@ const CreateUser = () => {
         contentLabel="Modal"
       >
         <h2 ref={(_subtitle) => (subtitle = _subtitle)}>User already exists</h2>
-        <div>There is already a user with this email. Either go to sign in to sign in to yoiur account, or create a user with a different email.</div>
+        <div>There is already a user with this email. Either go to sign in to sign in to your account, or create a user with a different email.</div>
         <button onClick={closeModal}>close</button>
       </Modal>
       <div id="create-column">
