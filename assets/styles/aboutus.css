@@ -1,6 +1,8 @@
 #about-container {
   background-color: rgb(190, 205, 211);
-  height: fit-content;
+  min-height: fit-content;
+  display: flex;
+  flex-direction: column;
 }
 
 #about-plate {

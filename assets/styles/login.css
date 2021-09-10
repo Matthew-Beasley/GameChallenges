@@ -28,3 +28,25 @@
 #login-container #navbar {
   margin-top: 0rem;
 }
+
+@media only screen and (max-width: 700px) {
+  #login-inputs {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    min-height: fit-content;
+    min-width: 100%;
+  }
+
+  #login-inputs input {
+    width: 50%;
+    margin: 1rem 10% 1rem 10%;
+  }
+
+  #login-inputs button {
+    width: 50%;
+    height: 3rem;
+    margin: 1rem 10% 1rem 10%;
+  }
+}
