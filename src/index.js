@@ -15,6 +15,7 @@ import '../assets/styles/contactus.css';
 import '../assets/styles/game.css';
 import '../assets/styles/login.css';
 import '../assets/styles/createUser.css';
+import '../assets/styles/nav.css';
 
 const root = document.querySelector('#root');
 
