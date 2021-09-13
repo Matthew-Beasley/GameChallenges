@@ -123,7 +123,6 @@ const LandingPage = () => {
           </p>
           <button onClick={() => history.push('/readmore')}>Read More</button>
         </div>
-        
       </div>
     </div>
   );
