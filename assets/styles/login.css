@@ -1,3 +1,4 @@
+
 #login-container {
   display: flex;
   flex-direction: column;
@@ -8,6 +9,15 @@
   margin-top: 0rem;
 }
 
+#login-container > a {
+  color: white;
+  text-decoration: none;
+}
+
+#welcome-user {
+  width: fit-content;
+}
+
 #login-inputs > input {
   margin-left: 3rem;
   width: 30%;
@@ -15,6 +25,7 @@
 }
 
 #login-inputs > button {
+  background-color: darkgray;
   margin-left: 2rem;
 }
 
@@ -30,6 +41,7 @@
 }
 
 @media only screen and (max-width: 700px) {
+  
   #login-inputs {
     display: flex;
     flex-direction: column;

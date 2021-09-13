@@ -1,0 +1,64 @@
+#createuser-container {
+  display: flex;
+  flex-direction: row;
+  width: 100vwpx;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  font-family: 'Arial Rounded MT Bold', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  background-color: rgb(190, 205, 211);
+  color: black;
+}
+
+#create-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.create-input {
+  width: 98%;
+  margin-top: 1rem;
+  border-radius: 15px;
+  height: 2rem;
+}
+
+#submit {
+  margin-top: 4rem;
+  width: 8rem;
+  height: 2rem;
+  background-color: black;
+  color: white; 
+}
+
+#create-email {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+#create-checkbox {
+  width: 2rem;
+  height: 2rem;
+  margin: 1rem;
+}
+
+#check-text {
+  font-size: 1.16rem;
+  margin-top: 1.5rem;
+}
+
+@media only screen and (max-width: 700px) {
+  #create-column form {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    padding: 0rem 2rem 1rem 2rem;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    font-family: 'Arial Rounded MT Bold', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: rgb(190, 205, 211);
+    color: black;
+  }
+}
