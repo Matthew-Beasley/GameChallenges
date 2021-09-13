@@ -2,7 +2,8 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    height: 100vh;
+    min-height: 100vh;
+    height: fit-content;
     width: 100vw;
     background-color: rgb(190, 205, 211);
     font-family: 'Arial Rounded MT Bold', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -15,8 +16,38 @@
       display: none;
     }
 
-    #landingpage-image img {
-      
+    #landingpage-phone {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #landingpage-phone > img {
+      width: 10rem;
+      height: 8rem;
+    }
+
+    .phone-bubble {
+      background-color: white;
+      margin: 1rem;
+      border-radius: 18px;  
+      display:flex;
+      flex-direction: column;
+      align-items: center;  
+      width: fit-content;  
+      height: fit-content;
+      padding: 1rem;
+    }
+
+    .top-bubble > div{
+      height: fit-content;
+      margin: 1rem;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
+    #thwartme-header {
+      font-size: 1.5rem;
     }
   }
 
@@ -123,6 +154,10 @@
   }
 
   @media only screen and (min-width: 1300px) {
+
+    #landingpage-phone {
+      display: none;
+    }
   
     #landingpage-wrapper {
       display: flex;
@@ -192,108 +227,7 @@
     width: 22rem;
     height: fit-content;
     margin-left: 300px;
-    margin-top: 0rem;
-    position: absolute;
-  }
-  
-    #bubble {
-      width: fit-content;
-      height: fit-content;
-      z-index: 2;
-      position: absolute;
-    }
-  
-    #signup img {
-      width: 260px;;
-    }
-  
-    #signup-text {
-      z-index: 3;
-      font-size: 2rem;
-      height: 130px;
-      width: 400px;
-      margin-left: 40px;
-      margin-top: 15px;
-      position: absolute;
-      cursor: pointer;
-    }
-  
-    #signup-text > div {
-      margin-top: 1.2rem;
-    }
-  }
-  
-  @media only screen and (min-width: 1301px) {
-  
-    #landingpage-wrapper {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      height: calc(100vh - 8rem);
-      z-index: 0;
-      position: relative;
-    }
-  
-    #landingpage-image {
-      width: fit-content;
-      position: relative;
-      z-index: 1;
-    }
-    
-    #landingpage-image img {
-      width: 1300px;
-    }
-    
-    #landingpage-text {
-      z-index: 2;
-      font-size: 1.1rem;
-      width: 23rem;
-      height: fit-content;
-      margin-left: 700px;
-      margin-top: -7rem;
-      margin-bottom: 6rem;
-      position: absolute;
-    }
-    
-    #thwartme-header {
-      font-size: 2.6rem;
-      font-weight: bolder;
-      margin-bottom: 1.5rem;
-    }
-    
-    .landingpage-header {
-      font-size: 1.2rem;
-      font-weight: bolder;
-      margin-bottom: 1.1rem;
-      line-height: 120%;
-    }
-  
-    #landingpage-text > div {
-      margin-top: .5rem;
-    }
-    
-    #landingpage-text > button {
-      margin-top: 20px;
-      margin-left: 50px;
-      border-radius: 8px;
-      border-width: 0;
-      background-color: gray;
-      color: white;
-      cursor: pointer;
-    }
-    
-    #landingpage-text li:not(:last-child) {
-      margin-bottom: .75rem;
-      line-height: 120%;
-    }
-    
-    #signup {
-    z-index: 2;
-    font-size: 1.1rem;
-    width: 22rem;
-    height: fit-content;
-    margin-left: 300px;
-    margin-top: 0rem;
+    margin-top: -5rem;
     position: absolute;
   }
   
@@ -325,6 +259,10 @@
   }
   
   @media only screen and (min-width: 1400px) {
+
+    #landingpage-phone {
+      display: none;
+    }
     
     #landingpage-wrapper {
       display: flex;
@@ -426,6 +364,10 @@
   }
   
   @media only screen and (min-width: 1500px) {
+
+    #landingpage-phone {
+      display: none;
+    }
   
     #landingpage-wrapper {
       display: flex;
@@ -527,6 +469,10 @@
   }
   
   @media only screen and (min-width: 1600px) {
+
+    #landingpage-phone {
+      display: none;
+    }
   
     #landingpage-wrapper {
       display: flex;
@@ -628,6 +574,10 @@
   }
   
   @media only screen and (min-width: 1900px) {
+
+    #landingpage-phone {
+      display: none;
+    }
   
     #landingpage-wrapper {
       display: flex;
@@ -730,6 +680,10 @@
   
   @media only screen and (min-width: 2500px) {
   
+    #landingpage-phone {
+      display: none;
+    }
+
     #landingpage-wrapper {
       display: flex;
       flex-direction: column;
