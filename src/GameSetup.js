@@ -336,7 +336,7 @@ const GameSetup = () => {
         </select>
       </div>
       <div id="lets-play">
-        <button onClick={() => history.push('./challenges')}>LETS PLAY!</button>
+        <button onClick={() => history.push('/challenges')}>LETS PLAY!</button>
       </div>
     </div>
   );
