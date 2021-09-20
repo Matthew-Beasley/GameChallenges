@@ -182,9 +182,15 @@ const GameSetup = () => {
   const getChallenges = (ev) => {
     const tempChallenges = [...challenges];
     for (let i = 0; i < tempChallenges.length; i++) {
-      if (tempChallenges[i].Game === ev.target.id) {
+      //console.log('target ', ev.target.value)
+      if (tempChallenges[i].Game === ev.target.id || tempChallenges[i].Game === ev.target.value) {
         const tempGame = {...tempChallenges[i]};
-        tempGame.show = ev.target.checked;
+        if ('checked' in ev.target) {
+          tempGame.show = ev.target.checked;
+        } else if (ev.target.value, tempChallenges[i].Game) { //refactor this
+          tempGame.show = true;
+        }
+        tempGame.show = true;
         tempChallenges.splice(i, 1);
         tempChallenges.splice(i, 0, tempGame);
       }

@@ -29,6 +29,10 @@
     display: none;
   }
 
+  #outer-challenges-display > #navbar {
+    display: none;
+  } 
+
 
   /* ===== GameSetup Styles ===== */
 
@@ -348,7 +352,7 @@
 */
   #gamesetup-container {
     font-family: 'Arial Rounded MT Bold', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    min-width: 700px;
+    min-width: 400px;  /*=== this adusts the width of setup ===*/
     min-height: fit-content;
   }
 
