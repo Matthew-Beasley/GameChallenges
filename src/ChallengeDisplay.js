@@ -3,6 +3,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import Slider from 'react-slick';
 import { challengesState } from './RecoilState';
 import NavBar from './NavBar';
+import Players from './Players';
 
 
 const ChallengeDisplay = () => {
@@ -44,7 +45,8 @@ const ChallengeDisplay = () => {
           </Slider>
         </div>
       </div>
-      <div id="mobilechallenge-container">
+      <div className="mobilechallenge-container">
+        <Players />
         <div id="mobilechallenge-cards">
           <Slider {...settings}>
             {challenges.map((item, idx) => {
@@ -60,6 +62,9 @@ const ChallengeDisplay = () => {
           </Slider>
         </div>
       </div>
+     {/*} <div className="mobilechallenge-players">
+        <Players />
+          </div>*/}
     </div>
   );
 };

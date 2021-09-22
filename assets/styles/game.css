@@ -186,7 +186,11 @@
 
   /* ===== Challenge Container Styles ===== */
 
-  #mobilechallenge-container {
+  .mobilechallenge-container {
+    display: none;
+  }
+
+  .mobilechallenge-players {
     display: none;
   }
 
@@ -473,6 +477,14 @@
   }
   */
 
+  #layer-container {
+    height: 15rem;
+  }
+
+  .mobilechallenge-players {
+    height: 15rem;
+  }
+
   #mobilechallenge-container {
     width: 400px;
     height: 10rem;
@@ -508,6 +520,8 @@
   }
 
   #player-container {
-    display: none;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
   }
 }
