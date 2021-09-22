@@ -12,6 +12,10 @@ import '../assets/styles/landingpage.css';
 import '../assets/styles/products.css';
 import '../assets/styles/aboutus.css';
 import '../assets/styles/contactus.css';
+import '../assets/styles/game.css';
+import '../assets/styles/login.css';
+import '../assets/styles/createUser.css';
+import '../assets/styles/nav.css';
 
 const root = document.querySelector('#root');
 

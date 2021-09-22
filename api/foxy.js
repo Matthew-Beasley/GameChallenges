@@ -71,7 +71,6 @@ foxyRouter.get('/apitoken', checkCache, async (req, res, next) => {
     redisClient.expire('foxyaccesstoken', 7100);
     res.status(200).send(JSON.stringify(accessToken.data.access_token));
   } catch (error) {
-    console.log(error.response.data);
     next(error);
   }
 });
@@ -96,7 +95,7 @@ foxyRouter.get('/sso', (req, res, next) => {
       <head>
         <meta http-equiv="refresh" content="0; URL=${process.env.DOMAIN}/foxy/checkout?sid=${req.query.fcsid}" />
       </head>
-    </html>`
+    </html>`;
     res.send(bouncedScript);
   } catch (err) {
     next();
@@ -116,8 +115,7 @@ foxyRouter.get('/checkout', async (req, res, next) => {
     </html>`;
     res.status(200).send(html);
   } catch (error) {
-    console.log(error.response.data);
-    next(error);
+    next(error.message);
   }
 });
 
@@ -136,7 +134,6 @@ foxyRouter.post('/createcustomer', async (req, res, next) => {
     const customerId = customerData.message.split(' ')[1];
     res.send(customerId);
   } catch (error) {
-    console.log(error);
     next();
   }
 });

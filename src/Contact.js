@@ -20,8 +20,7 @@ const Contact = () => {
 
   const sendEmail = async (ev) => {
     ev.preventDefault();
-    const response = await axios.post('/user/contactus', { email, message });
-    console.log('sendmail response: ', response)
+    await axios.post('/user/contactus', { email, message });
     // do error handling here
     history.push('/');
   };

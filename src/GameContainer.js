@@ -25,6 +25,9 @@ const GameContainer = () => {
         <ChallengeDisplay />
         <Players />
       </div>
+      <div id="phone-gamecomponents">
+        <GameSetup />
+      </div>
     </div>
   );
 };

@@ -7,6 +7,7 @@ import { tokenState, csrfState, headerState } from './RecoilState';
 import LandingPage from './LandingPage';
 import Login from './Login';
 import GameContainer from './GameContainer';
+import ChallengeDisplay from './ChallengeDisplay';
 import Contact from './Contact';
 import About from './About';
 import Foxy from './Foxy';
@@ -29,6 +30,7 @@ const App = () => {
     <div id="app-container">
       <Route exact path="/" component={LandingPage} />
       <Route path="/gamepage" component={GameContainer} />
+      <Route path="/challenges" component={ChallengeDisplay} />
       <Route path="/contact" component={Contact} />
       <Route path="/about" component={About} />
       <Route path='/readmore' component={ReadMore} />
