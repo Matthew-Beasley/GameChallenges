@@ -4,6 +4,21 @@ import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { tokenState, csrfState, headerState, userState } from './RecoilState';
+import NavBar from './NavBar';
+
+import Modal from 'react-modal';
+
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+};
+Modal.setAppElement('#root');
 
 
 const Login = () => {
@@ -15,6 +30,26 @@ const Login = () => {
   const headers = useRecoilValue(headerState);
   const [cookies, setCookie, removeCookie] = useCookies(['token']);
   const history = useHistory();
+  let subtitle;
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    subtitle.style.color = '#f00';
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  useEffect(() => {
+    axios.defaults.headers.post['X-CSRF-Token'] = csrf;
+  }, [csrf]);
 
   useEffect(() => {
     axios.defaults.headers.common['X-CSRF-Token'] = csrf;
@@ -36,7 +71,7 @@ const Login = () => {
     try {
       creds = (await axios.get('/auth', { headers: { email: email, password: password }})).data;
     } catch (err) {
-      const placeholder = err;
+      openModal();
     }
     setCookie('token', creds, { path: '/', maxAge: 43200 });
     setEmail('');
@@ -53,12 +88,26 @@ const Login = () => {
 
   return (
     <div id="login-container" >
-      {!!token && <div id="welcome-user">Welcome {user.email}</div>}
-      <input id="user-name" type="text" placeholder="Email" value={email} onChange={(ev) => setEmail(ev.target.value)} />
-      <input id="password" type="password" placeholder="Password" value={password} onChange={(ev) => setPassword(ev.target.value)} />
-      {!token && <button className="login-submit" onClick={() => login()}>Login</button>}
-      {!!token && <button className="login-submit" onClick={() => logout()}>Log Out</button>}
-      <Link to="/createuser">Create an account</Link>
+      <Modal
+        isOpen={modalIsOpen}
+        onAfterOpen={afterOpenModal}
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="Modal"
+      >
+        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Login failed</h2>
+        <div>Check your user name and password</div>
+        <button onClick={closeModal}>close</button>
+      </Modal>
+      <img src="../assets/images/right-3.png" />
+      <NavBar />
+      <div id="login-inputs">
+        {!!token && <div id="welcome-user">Welcome {user.email}</div>}
+        <input id="user-name" type="text" placeholder="Email" value={email} onChange={(ev) => setEmail(ev.target.value)} />
+        <input id="password" type="password" placeholder="Password" value={password} onChange={(ev) => setPassword(ev.target.value)} />
+        {!token && <button className="login-submit" onClick={() => login()}>Login</button>}
+        {!!token && <button className="login-submit" onClick={() => logout()}>Log Out</button>}
+      </div>
     </div>
   );
 };

@@ -7,7 +7,6 @@ const About = () => {
       <NavBar />
       <div id="about-plate">
         <img id="about-character" src="../assets/images/Characters-08.png" />
-        <h2>Challenge your friends to ridiculous stunts in games you already have!</h2>
         <h3>About Us</h3>
         <div id="about-definition">
           <h3>thwart</h3>

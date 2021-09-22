@@ -1,12 +1,23 @@
 import React, { useState, useEffect, useImperativeHandle } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { userState, passwordState, headerState, csrfState, tokenState, emailKeyState } from './RecoilState';
 import { useCookies } from 'react-cookie';
-import { v4 as uuidv4 } from 'uuid';
-import crypto from 'browserify-cipher/browser';
+import NavBar from './NavBar';
+import Modal from 'react-modal';
 
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+};
+Modal.setAppElement('#root');
 
 const StandbyForVerification = () => {
   return (
@@ -27,6 +38,21 @@ const CreateUser = () => {
   const [lastName, setLastName] = useState('');
   const history = useHistory();
   const [cookies, setCookie] = useCookies(['token']);
+  let subtitle;
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    subtitle.style.color = '#f00';
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
 
   useEffect(() => {
     axios.defaults.headers.post['X-CSRF-Token'] = csrf;
@@ -43,20 +69,33 @@ const CreateUser = () => {
 
   const checkCredentials = async (event) => {
     event.preventDefault();
-    const usr = (await axios.get(`/user?email=${email}`)).data;
+    const usr = (await axios.get(`/user?email=${email}`)).data[0];
+    console.log('usr in checkCredentials: ', usr)
     if (!usr.email) {
       await axios.post('/user/mailgun', { password, email, first_name: firstName, last_name: lastName });
       setPassword('');
       setEmail('');
       history.push('/verifyuser');
-    } else {
-      history.push('/shopping');
+    } else if (usr.email) {
+      openModal();
     }
   };
 
   return (
     <div id="createuser-container">
+      <Modal
+        isOpen={modalIsOpen}
+        onAfterOpen={afterOpenModal}
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="Modal"
+      >
+        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>User already exists</h2>
+        <div>There is already a user with this email. Either go to sign in to sign in to your account, or create a user with a different email.</div>
+        <button onClick={closeModal}>close</button>
+      </Modal>
       <div id="create-column">
+        <NavBar />
         <form onSubmit={(ev) => checkCredentials(ev)}>
           <div id="createuser-text">
             <p>To create an account enter user name and password</p>

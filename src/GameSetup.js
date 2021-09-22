@@ -71,6 +71,30 @@ const GameSetup = () => {
     }
   };
 
+  const multiSelectPlatform = (ev) => {
+    for (let i = 0; i < ev.target.length; i++) {
+      switch (ev.target[i].text) {
+      case 'PC':
+        setPCChk(ev.target[i].selected);
+        return;
+      case 'Xbox':
+        setXboxChk(ev.target[i].selected);
+        return;
+      case 'PS':
+        setPlaystationChk(ev.target[i].selected);
+        return;
+      case 'Switch':
+        setSwitchChk(ev.target[i].selected);
+        return;
+      case 'Mobile':
+        setMobileChk(ev.target[i].selected);
+        return;
+      default:
+        return;
+      }
+    }
+  };
+
   const setControlVal = (ev) => {
     switch (ev.target.id) {
     case 'SplitScreen':
@@ -158,9 +182,15 @@ const GameSetup = () => {
   const getChallenges = (ev) => {
     const tempChallenges = [...challenges];
     for (let i = 0; i < tempChallenges.length; i++) {
-      if (tempChallenges[i].Game === ev.target.id) {
+      //console.log('target ', ev.target.value)
+      if (tempChallenges[i].Game === ev.target.id || tempChallenges[i].Game === ev.target.value) {
         const tempGame = {...tempChallenges[i]};
-        tempGame.show = ev.target.checked;
+        if ('checked' in ev.target) {
+          tempGame.show = ev.target.checked;
+        } else if (ev.target.value, tempChallenges[i].Game) { //refactor this
+          tempGame.show = true;
+        }
+        tempGame.show = true;
         tempChallenges.splice(i, 1);
         tempChallenges.splice(i, 0, tempGame);
       }
@@ -252,7 +282,7 @@ const GameSetup = () => {
       </div>
       <div className="setup-control" id="phone-platformselect">
         <label>Platforms</label>
-        <select multiple onChange={ev => selectPlatform(ev.target.value)}>
+        <select multiple onChange={ev => multiSelectPlatform(ev)}>
           <option value="PC">PC</option>
           <option value="Xbox">Xbox</option>
           <option value="PS">Playstation</option>
@@ -312,7 +342,7 @@ const GameSetup = () => {
         </select>
       </div>
       <div id="lets-play">
-        <button onClick={() => history.push('./challenges')}>LETS PLAY!</button>
+        <button onClick={() => history.push('/challenges')}>LETS PLAY!</button>
       </div>
     </div>
   );

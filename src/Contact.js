@@ -20,8 +20,7 @@ const Contact = () => {
 
   const sendEmail = async (ev) => {
     ev.preventDefault();
-    const response = await axios.post('/user/contactus', { email, message });
-    console.log('sendmail response: ', response)
+    await axios.post('/user/contactus', { email, message });
     // do error handling here
     history.push('/');
   };
@@ -30,6 +29,7 @@ const Contact = () => {
     <div id="contactpage">
       <NavBar />
       <form id="contact-form" onSubmit={(ev) => sendEmail(ev)}>
+        <h3>Have a comment, need some help? Let us know!</h3>
         <input type="email" id="contact-email" placeholder="email@example.com" onChange={(ev) => setEmail(ev.target.value)} />
         <textarea type="text" id="contact-text" placeholder="message" onChange={(ev) => setMessage(ev.target.value)} />
         <input type="submit" id="contact-submit" value="Submit" />

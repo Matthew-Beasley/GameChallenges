@@ -1,0 +1,64 @@
+
+#login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 100vh;
+  min-width: 100vw;
+  background-color: rgb(190, 205, 211);
+  margin-top: 0rem;
+}
+
+#login-container > a {
+  color: white;
+  text-decoration: none;
+}
+
+#welcome-user {
+  width: fit-content;
+}
+
+#login-inputs > input {
+  margin-left: 3rem;
+  width: 30%;
+  height: 2.25rem;
+}
+
+#login-inputs > button {
+  background-color: darkgray;
+  margin-left: 2rem;
+}
+
+#login-container > img {
+  height: 8rem;
+  width: 10rem;
+  margin-top: 3rem;
+  margin-left: 25%;
+}
+
+#login-container #navbar {
+  margin-top: 0rem;
+}
+
+@media only screen and (max-width: 700px) {
+  
+  #login-inputs {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    min-height: fit-content;
+    min-width: 100%;
+  }
+
+  #login-inputs input {
+    width: 50%;
+    margin: 1rem 10% 1rem 10%;
+  }
+
+  #login-inputs button {
+    width: 50%;
+    height: 3rem;
+    margin: 1rem 10% 1rem 10%;
+  }
+}

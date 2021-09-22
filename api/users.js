@@ -61,7 +61,13 @@ userRouter.post('/mailgun', (req, res, next) => {
   const { password, email, first_name, last_name } = req.body;
   const encrypted = CryptoJS.AES.encrypt(JSON.stringify({ password, email, first_name, last_name }), process.env.EMAILKEY);
   let url = '';
-  process.env.NODE_ENV !== 'test' ? url = `https://thwartme.com?nonce=${encrypted}` : url = `http://localhost:3000?nonce=${encrypted}`;
+  if (process.env.NODE_ENV === 'test') {
+    url = `http://localhost:3000?nonce=${encrypted}`;
+  } else if (process.env.NODE_ENV === 'staging') {
+    url = `https://fathomless-escarpment-51259.herokuapp.com?nonce=${encrypted}`;
+  } else if (process.env.NODE_ENV === 'production') {
+    url = `https://thwartme.com?nonce=${encrypted}`;
+  }
   const mailgunAuth = {
     auth: {
       api_key: process.env.MAILGUN_APIKEY,
@@ -110,14 +116,12 @@ userRouter.post('/contactus', (req, res, next) => {
   try {
     smtpTransport.sendMail(mailOptions, (error, response) => {
       if (error) {
-        console.log('error in contactus', error)
         next(error);
       } else {
         res.status(200).send(response);
       }
     });
   } catch (error) {
-    console.log('error in contactus', error)
     next(error);
   }
 });
