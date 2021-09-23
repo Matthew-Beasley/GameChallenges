@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useImperativeHandle } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { userState, passwordState, headerState, csrfState, tokenState, emailKeyState } from './RecoilState';
@@ -98,7 +98,7 @@ const CreateUser = () => {
         <NavBar />
         <form onSubmit={(ev) => checkCredentials(ev)}>
           <div id="createuser-text">
-            <p>To create an account enter user name and password</p>
+            <p>To create an account enter email and password</p>
             <p>Be sure to use a a valid email as it will be used in billing and order fullfilment</p>
           </div>
           <input className="create-input" type="text" placeholder="First Name" value={firstName} onChange={(ev) => setFirstName(ev.target.value)} />
@@ -106,6 +106,7 @@ const CreateUser = () => {
           <input className="create-input" type="email" placeholder="email" value={email} onChange={(ev) => setEmail(ev.target.value)} />
           <input className="create-input" type="password" placeholder="Password" value={password} onChange={(ev) => setPassword(ev.target.value)} />
           <input id="submit" type="submit" value="Submit" />
+          <Link to="terms">Terms of Use</Link>
         </form>
       </div>
     </div>
