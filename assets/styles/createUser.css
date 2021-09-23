@@ -24,6 +24,7 @@
 
 #submit {
   margin-top: 4rem;
+  margin-bottom: 3rem;
   width: 8rem;
   height: 2rem;
   background-color: black;
@@ -47,6 +48,10 @@
   margin-top: 1.5rem;
 }
 
+#create-column > form > a {
+  margin: 5rem 35% 3rem 40%; /* top margin not working */
+}
+
 @media only screen and (max-width: 700px) {
   #create-column form {
     display: flex;
@@ -60,5 +65,9 @@
     font-family: 'Arial Rounded MT Bold', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     background-color: rgb(190, 205, 211);
     color: black;
+  }
+
+  #create-column > form > a {
+    margin: 0 0 0 0;
   }
 }
