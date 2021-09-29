@@ -22,10 +22,13 @@ const GameContainer = () => {
       <NavBar />
       <div id='main-gamecomponents'>
         <GameSetup />
-        <ChallengeDisplay />
-        <Players />
+        <div id="sub-gamecomponents">
+          <Players />
+          <ChallengeDisplay />
+        </div>
       </div>
       <div id="phone-gamecomponents">
+        <Players />
         <GameSetup />
       </div>
     </div>

@@ -209,6 +209,12 @@
     height: 10rem;
   }
 
+  #sub-gamecomponents {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+  }
+
   #challenge-cards {
     width: 23rem;
     height: 10.5rem;
@@ -324,11 +330,7 @@
   }
   
   
-  
-  
-  
-
-
+ 
 
 
   /* ===== GameSetup Styles ===== */
@@ -459,8 +461,8 @@
 
 
   #outer-challenges-display {
-    min-width: 400px;
-    min-height: 50rem;
+    min-width: 100vw;
+    min-height: 100vh;
     margin: 0;
     background-color: rgb(190, 205, 211);
   }
@@ -468,60 +470,70 @@
   #challenge-container {
     display: none;
   }
-/*
+
   #mobilechallenge-container {
-    width: 400px;
-    height: 10rem;
+    width: 100%;
+    min-height: 100%;
     background-color: white;
     border: solid black 5px;
   }
-  */
+  
 
-  #layer-container {
-    height: 15rem;
+  .player {
+    height: 3rem;
+    width: 5rem;
+    margin: 1rem;
+    background-color: burlywood;
+    color: black;
+  }
+
+  #player-container {
+    height: fit-content;
+  }
+
+  #player-list{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100%;
+    height: fit-content;
+  }
+
+  #mobilechallenge-container {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    max-width: 100%;
+    min-height: 100%;
   }
 
   .mobilechallenge-players {
     height: 15rem;
   }
 
-  #mobilechallenge-container {
-    width: 400px;
-    height: 10rem;
+  #mobilechallenge-cards {
+    align-self: center;
     background-color: white;
-    border: solid black 5px;
-  }
-
-  #challenge-cards {
-    width: 400px;
+    max-width: 90%;
     height: 10.5rem;
-    margin-left: 15px;
-    margin-right: 15px;
-  }
-  
-  #challenge-cards > div {
-    color: black;
-    width: 100%;
-    height: 10rem;
-    padding: .5rem 1rem 0rem 1rem;
-    font-family: 'Arial Rounded MT Bold', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 1rem;
+    margin: 1rem 5% 1rem 5%;
   }
 
   .slick-slider {
-    width: 5rem;
+    width: 100%;
+    align-self: center;
     height: fit-content;
   }
 
-  #challenge-cards {
-    width: 375px;
-    color: black;
-    background-color: white;
+  .slick-list {
+    width: 90%;
+    margin: .5rem;
   }
 
   #player-container {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
+    align-items: center;
   }
 }
