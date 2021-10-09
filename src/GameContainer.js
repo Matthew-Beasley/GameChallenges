@@ -28,7 +28,6 @@ const GameContainer = () => {
         </div>
       </div>
       <div id="phone-gamecomponents">
-        <Players />
         <GameSetup />
       </div>
     </div>
