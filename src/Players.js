@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { useRecoilState } from 'recoil';
 import {playersState} from './RecoilState'; 
 
+
 const Player = ({player}) => {
   let itsMyTurn = '';
   player.MyTurn ? itsMyTurn = 'myturn' : itsMyTurn = '';
+  console.log(player.Background)
   return ( 
-    <div className={`player ${itsMyTurn}`}>
+    <div className={`player ${itsMyTurn} ${player.Background}`} >
       <div>{player.Name}</div>
       <div>{player.Score}</div>
     </div>
@@ -55,7 +57,6 @@ const Players = () => {
   
   return (
     <div id="player-container">
-      <h2>in players</h2>
       <div id="player-list">
         {console.log('players list: ', players)}
         {players.map((player, idx) => {
@@ -64,10 +65,10 @@ const Players = () => {
           );
         })} 
       </div>
-      <div id="player-buttons">
+      {!!players.length && <div id="player-buttons">
         <button className="score-button" onClick={() => addPoint()}>Succeeded!</button>
-        <button className="score-button" onClick={() => failed()}>Sorry :(</button>
-      </div>
+        <button className="score-button" onClick={() => failed()}>Sorry, failed</button>
+      </div>}
     </div>
 
   );
