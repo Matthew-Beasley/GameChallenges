@@ -4,6 +4,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { playersState, challengesState, csrfState, headerState, tokenState, userState } from './RecoilState';
 import { useHistory } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
+import Players from './Players';
 
 const GameSetup = () => {
   const history = useHistory();
@@ -34,7 +35,8 @@ const GameSetup = () => {
     if( !playerName) {
       alert('Oops! Player name can\'t be empty');
     } else {
-      const contestant = { Name: playerName, MyTurn: false, Score: 0 };
+      //choose a character
+      const contestant = { Name: playerName, MyTurn: false, Score: 0, Background: `character${Math.floor(Math.floor(Math.random() * (8 - 1 + 1)) + 1)}`} ;
       players.length ? contestant.MyTurn = false : contestant.MyTurn = true;
       setPlayers([...players, contestant]);
       setPlayerName('');
@@ -218,6 +220,7 @@ const GameSetup = () => {
 
   return (
     <div id="gamesetup-container">
+      <Players />
       <div className="setup-control" id="players">
         <label>Players</label>
         <div id="text-bttn-combo">

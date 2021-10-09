@@ -62,9 +62,6 @@ const ChallengeDisplay = () => {
           </Slider>
         </div>
       </div>
-     {/*} <div className="mobilechallenge-players">
-        <Players />
-          </div>*/}
     </div>
   );
 };
