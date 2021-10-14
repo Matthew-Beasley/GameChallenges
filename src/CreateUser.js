@@ -72,7 +72,8 @@ const CreateUser = () => {
     const usr = (await axios.get(`/user?email=${email}`)).data[0];
     console.log('usr in checkCredentials: ', usr)
     if (!usr.email) {
-      await axios.post('/user/mailgun', { password, email, first_name: firstName, last_name: lastName });
+      const emailResponse = await axios.post('/user/mailgun', { password, email, first_name: firstName, last_name: lastName });
+      console.log('email response: ', emailResponse)
       setPassword('');
       setEmail('');
       history.push('/verifyuser');
