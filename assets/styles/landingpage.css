@@ -11,7 +11,7 @@
     z-index: 0;
   }
 
-  @media only screen and (max-width: 770px) {
+  @media only screen and (max-width: 999px) {
     #landingpage-wrapper {
       display: none;
     }
@@ -153,7 +153,7 @@
     }
   }
 
-  @media only screen and (min-width: 1300px) {
+  @media only screen and (min-width: 1000px) {
 
     #landingpage-phone {
       display: none;

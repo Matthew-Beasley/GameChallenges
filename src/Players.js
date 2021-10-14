@@ -6,7 +6,6 @@ import {playersState} from './RecoilState';
 const Player = ({player}) => {
   let itsMyTurn = '';
   player.MyTurn ? itsMyTurn = 'myturn' : itsMyTurn = '';
-  console.log(player.Background)
   return ( 
     <div className={`player ${itsMyTurn} ${player.Background}`} >
       <div>{player.Name}</div>
