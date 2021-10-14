@@ -85,6 +85,7 @@ const LandingPage = () => {
       const encryptedCreds = currentURL.slice(currentURL.indexOf('nonce=') + 6, currentURL.length);
       const bytes  = CryptoJS.AES.decrypt(encryptedCreds, emailKey);
       const decryptedCreds = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+      console.log('creds in useeffect: ', decryptedCreds)
       checkCredentials(decryptedCreds);
     }
   }, [csrf]);
