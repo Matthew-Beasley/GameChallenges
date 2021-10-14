@@ -58,7 +58,6 @@ userRouter.post('/updatedecks', isLoggedIn, async (req, res, next) => {
 });
 
 userRouter.post('/mailgun', (req, res, next) => {
-  console.log('body in mailgun api: ', req.body)
   const { password, email, first_name, last_name } = req.body;
   const encrypted = CryptoJS.AES.encrypt(JSON.stringify({ password, email, first_name, last_name }), process.env.EMAILKEY);
   let url = '';
