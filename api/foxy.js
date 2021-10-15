@@ -129,12 +129,9 @@ foxyRouter.post('/createcustomer', async (req, res, next) => {
   }; 
   try {
     const homeData = (await axios.get('https://api.foxycart.com', headers)).data;
-    console.log("homeData in api: ", homeData)
     let customerData = (await axios.post(`${homeData._links['fx:store'].href}/customers`,
       { email, password, first_name, last_name }, headers)).data;
-    console.log('customerData in api: ', customerData)
     const customerId = customerData.message.split(' ')[1];
-    console.log('customerId in api: ', customerId)
     res.send(customerId);
   } catch (error) {
     console.log('error message in foxy/createcustomer: ', error.message)

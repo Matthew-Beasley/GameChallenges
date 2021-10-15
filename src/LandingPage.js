@@ -31,13 +31,10 @@ const LandingPage = () => {
     };
     let customerId;
     try {
-      console.log('user in createFoxyCustomer: ', user)
       customerId = (await axios.post('/foxy/createcustomer', { email, password, first_name, last_name, token }, authorization)).data;
-      console.log('customerId in createFoxyCustomer: ', customerId)
     } catch (error) {
       console.log('error in createFoxyCustomer: ', error.message);
     }
-    
     return customerId;
   };
 
@@ -51,6 +48,7 @@ const LandingPage = () => {
         //throw new Error('foxy customer not created');
       }*/
       const res = await axios.post('/user', { password, email, first_name, last_name, foxy_id });
+      console.log('response from post to /user: ', res)
       //login(email, password);
     } else {
       // throw error user exists (alert?)
