@@ -31,7 +31,9 @@ const LandingPage = () => {
     };
     let customerId;
     try {
+      console.log('user in createFoxyCustomer: ', user)
       customerId = (await axios.post('/foxy/createcustomer', { email, password, first_name, last_name, token }, authorization)).data;
+      console.log('customerId in createFoxyCustomer: ', customerId)
     } catch (error) {
       console.log('error in createFoxyCustomer: ', error.message);
     }
