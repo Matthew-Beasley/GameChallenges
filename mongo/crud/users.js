@@ -8,6 +8,7 @@ const createUser = async (record) => {
   const user = new User(record);
   user.save(err => {
     if (err) {
+      console.log('+++++++++++++error in mongo method: ', err)
       return err;
     } else {
       return 'success';

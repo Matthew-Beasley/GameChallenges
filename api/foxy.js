@@ -134,6 +134,7 @@ foxyRouter.post('/createcustomer', async (req, res, next) => {
     const customerId = customerData.message.split(' ')[1];
     res.send(customerId);
   } catch (error) {
+    console.log('error message in foxy/createcustomer: ', error.message)
     next();
   }
 });
