@@ -6,6 +6,19 @@ import { useCookies } from 'react-cookie';
 import CryptoJS from 'crypto-js';
 import axios from 'axios';
 import NavBar from './NavBar';
+import Modal from 'react-modal';
+
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+};
+Modal.setAppElement('#root');
 
 const LandingPage = () => {
   const [token, setToken] = useRecoilState(tokenState);
@@ -14,6 +27,22 @@ const LandingPage = () => {
   const [cookies, setCookie] = useCookies(['token']);
   const [emailKey, setEmailKey] = useRecoilState(emailKeyState);
   const [decryptedCreds, setDecryptedCreds] = useState('');
+
+  let subtitle;
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    subtitle.style.color = '#f00';
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
 
   const login = async (email, password) => {
     const creds = (await axios.get('/auth', { headers: { email, password }})).data;
@@ -33,7 +62,8 @@ const LandingPage = () => {
     try {
       customerId = (await axios.post('/foxy/createcustomer', { email, password, first_name, last_name, token }, authorization)).data;
     } catch (error) {
-      console.log('error in createFoxyCustomer: ', error.message);
+      console.log('error in createFoxyCustomer: ', error);
+      return 'user exists in foxy';
     }
     return customerId;
   };
@@ -41,35 +71,19 @@ const LandingPage = () => {
   const checkCredentials = async ({ email, password, first_name, last_name }) => {
     const usr = (await axios.get(`/user?email=${email}`)).data;
     if (!usr.email) {
-      let foxy_id = await createFoxyCustomer({ email, password, first_name, last_name });
-      /*if (foxy_id._embedded['fx:errors'][1] === 'This email address is already in use by an existing customer of this store.') {
-        console.log('foxy customer email already in use');
+      if (email && password && first_name && last_name) {
+        let foxy_id = await createFoxyCustomer({ email, password, first_name, last_name });
+        if (foxy_id === 'Request failed with status code 409') {
+          openModal();
+          return;
+        }
+        await axios.post('/user', { password, email, first_name, last_name, foxy_id });
+      } else {
+        alert('Missing data in creating user. Try creating the user again.');
         return;
-        //throw new Error('foxy customer not created');
-      }*/
-      const res = await axios.post('/user', { password, email, first_name, last_name, foxy_id });
-      console.log('response from post to /user: ', res)
-      //login(email, password);
+      }
     } else {
-      // throw error user exists (alert?)
-      // await login({ email, password });
-    }
-  };
-
-  const createCredentials = async ({ email, password, first_name, last_name }) => {
-    const usr = (await axios.get(`/user?email=${email}`)).data;
-    if (!usr.email) {
-      let foxy_id = await createFoxyCustomer({ email, password, first_name, last_name });
-      /*if (foxy_id._embedded['fx:errors'][1] === 'This email address is already in use by an existing customer of this store.') {
-        console.log('foxy customer email already in use');
-        return;
-        //throw new Error('foxy customer not created');
-      }*/
-      const res = await axios.post('/user', { password, email, first_name, last_name, foxy_id });
       login(email, password);
-    } else {
-      // throw error user exists (alert?)
-      // await login({ email, password });
     }
   };
 
@@ -79,19 +93,27 @@ const LandingPage = () => {
 
   useEffect(() => { 
     const currentURL = window.location.href;
-    //const windowLocation = window.location.href.toString();
-    //window.location.href = windowLocation.slice(0, window.location.href.indexOf('/'));
     if (currentURL.includes('nonce') && csrf !== '') {
       const encryptedCreds = currentURL.slice(currentURL.indexOf('nonce=') + 6, currentURL.length);
       const bytes  = CryptoJS.AES.decrypt(encryptedCreds, emailKey);
       const decryptedCreds = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-      console.log('creds in useeffect: ', decryptedCreds)
       checkCredentials(decryptedCreds);
     }
   }, [csrf]);
 
   return (
     <div>
+      <Modal
+        isOpen={modalIsOpen}
+        onAfterOpen={afterOpenModal}
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="Modal"
+      >
+        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Data error on server</h2>
+        <div>This is most likely a duplicate user. Try just signing in with this email, or try a different email or use the contact us link for help.</div>
+        <button onClick={closeModal}>close</button>
+      </Modal>
       <div id="landingpage">
         <NavBar />
         <div id="landingpage-wrapper">

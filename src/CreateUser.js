@@ -71,10 +71,14 @@ const CreateUser = () => {
     event.preventDefault();
     const usr = (await axios.get(`/user?email=${email}`)).data[0];
     if (!usr) {
-      await axios.post('/user/mailgun', { password, email, first_name: firstName, last_name: lastName });
-      setPassword('');
-      setEmail('');
-      history.push('/verifyuser');
+      if (password && email && firstName && lastName) {
+        await axios.post('/user/mailgun', { password, email, first_name: firstName, last_name: lastName });
+        setPassword('');
+        setEmail('');
+        history.push('/verifyuser');
+      } else {
+        alert('All data fields must be filled out');
+      }
     } else if (usr.email) {
       openModal();
     }
