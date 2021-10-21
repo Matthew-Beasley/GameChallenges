@@ -90,6 +90,7 @@ foxyRouter.post('/', async (req, res, next) => {
 
 foxyRouter.get('/sso', (req, res, next) => {
   try {
+    console.log('req in /sso: ', req.query)
     const bouncedScript = `
     <html>
       <head>
@@ -113,6 +114,7 @@ foxyRouter.get('/checkout', async (req, res, next) => {
         <meta http-equiv="refresh" content="0; URL=${URL}" />
       </head>
     </html>`;
+    console.log('html in /checkout: ', html)
     res.status(200).send(html);
   } catch (error) {
     next(error.message);
