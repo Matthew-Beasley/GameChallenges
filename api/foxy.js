@@ -104,6 +104,7 @@ foxyRouter.get('/sso', (req, res, next) => {
 });
 
 foxyRouter.get('/checkout', async (req, res, next) => {
+  console.log('----------------- in checkout api ------------------- ')
   try {
     const foxyCustomer = jwt.decode(req.cookies['token'], process.env.JWT).foxy_id;
     const { sid } = req.query;
