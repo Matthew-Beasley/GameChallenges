@@ -178,6 +178,7 @@ const GameSetup = () => {
         return challenge;
       }
     });
+    console.log('challenges: ', switched)
     setChallenges(switched);
   };
 
@@ -210,6 +211,7 @@ const GameSetup = () => {
   }, []);
 
   useEffect(() => {
+    console.log('in useeffect before parseChallenges')
     parseChallneges();
   }, [user, PCChk, XboxChk, PlaystationChk, SwitchChk, MobileChk, splitScreen, kidFriendly, online, timeLimit]);
 
