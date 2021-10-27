@@ -90,7 +90,6 @@ foxyRouter.post('/', async (req, res, next) => {
 
 foxyRouter.get('/sso', (req, res, next) => {
   try {
-    console.log('req in /sso: ', req.query)
     const bouncedScript = `
     <html>
       <head>
@@ -106,8 +105,6 @@ foxyRouter.get('/sso', (req, res, next) => {
 foxyRouter.get('/checkout', async (req, res, next) => {
   try {
     const foxyCustomer = jwt.decode(req.cookies['token'], process.env.JWT).foxy_id;
-    const user = jwt.decode(req.cookies['token'], process.env.JWT)
-    console.log('----------- user in /checkout: -------------', user)
     const { sid } = req.query;
     const URL = createURL(sid, foxyCustomer);
     const html = `
@@ -116,7 +113,6 @@ foxyRouter.get('/checkout', async (req, res, next) => {
         <meta http-equiv="refresh" content="0; URL=${URL}" />
       </head>
     </html>`;
-    console.log('html in /checkout: ', html)
     res.status(200).send(html);
   } catch (error) {
     next(error.message);
@@ -138,7 +134,7 @@ foxyRouter.post('/createcustomer', async (req, res, next) => {
     const customerId = customerData.message.split(' ')[1];
     res.send(customerId);
   } catch (error) {
-    res.send(error.message);
+    next();
   }
 });
 
