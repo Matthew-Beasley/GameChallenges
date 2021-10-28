@@ -118,6 +118,7 @@ const GameSetup = () => {
 
   const getDecks = async () => {
     const decks = [];
+    console.log('user in getDecks: ', user)
     if (user.decks) {
       for (let i = 0; i < user.decks.length; i++) {
         let query = {
@@ -125,6 +126,7 @@ const GameSetup = () => {
           DeckCode: user.decks[i].code
         };
         const response = await axios.post('/challenge/decks', query, headers);
+        console.log('response from mongo/redis in getDecks');
         decks.push(...response.data);
       }
     }
