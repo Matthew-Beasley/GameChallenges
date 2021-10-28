@@ -7,6 +7,7 @@ const userRouter = require('./api/users');
 const challengeRouter = require('./api/challenges');
 const authRouter = require('./api/auth');
 const foxyRouter = require('./api/foxy');
+const webhook = require('./api/webhook');
 const { findUserFromToken, isLoggedIn, isAdmin } = require('./mongo/auth');
 
 
@@ -53,6 +54,7 @@ app.use('/user', csrfProtection, userRouter);
 app.use('/challenge', isLoggedIn, csrfProtection, challengeRouter);
 app.use('/auth', csrfProtection, authRouter);
 app.use('/foxy', csrfProtection, foxyRouter);
+app.use('/webhook', webhook);
 
 app.get('/', csrfProtection, (req, res, next) => {
   try {
