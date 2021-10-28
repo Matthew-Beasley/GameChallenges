@@ -11,13 +11,14 @@ const axios = require('axios');
 const validator = require('validator');
 const jwt = require('jwt-simple');
 
-const validSignature = (headers, payload) => {
+const validSignature = (headers) => {
   const referenceSignature = crypto.createHmac('sha256', foxyEncryptionKey).update(JSON.stringify(payload)).digest('hex');
   return headers['foxy-webhook-signature'] === referenceSignature;
 };
   
-const validRequest = (request, body) => {
-  if (request.method !== 'POST' || 
+const validRequest = (request) => {
+  if (!validSignature(request.headers) || 
+      request.method !== 'POST' || 
       request.headers['foxy-store-domain'] !== 'thwartme.foxycart.com' || 
       request.headers['foxy-store-id'] !== '98241') {
     return false;
@@ -26,9 +27,8 @@ const validRequest = (request, body) => {
 };
 
 webhook.post('/', async (req, res, next) => {
-  console.log('------------ message in webhook --------------', req.body);
   try {
-    if (validRequest(req, req.body)) {
+    if (validRequest(req) {
       addTransaction(req.body);
       res.status(200).json({ text: 'Success' });
     } else {
