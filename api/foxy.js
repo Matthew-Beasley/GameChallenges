@@ -76,8 +76,8 @@ foxyRouter.get('/apitoken', checkCache, async (req, res, next) => {
 });
 
 foxyRouter.post('/', async (req, res, next) => {
+  console.log('------------ message in webhook --------------', req.body)
   try {
-    console.log('------------ message in webhook --------------', req.body)
     if (validRequest(req, req.body)) {
       addTransaction(req.body);
       res.status(200).json({ text: 'Success' });
