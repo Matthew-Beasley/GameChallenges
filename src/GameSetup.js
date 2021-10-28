@@ -178,13 +178,13 @@ const GameSetup = () => {
         return challenge;
       }
     });
+    console.log('challenges: ', switched)
     setChallenges(switched);
   };
 
   const getChallenges = (ev) => {
     const tempChallenges = [...challenges];
     for (let i = 0; i < tempChallenges.length; i++) {
-      //console.log('target ', ev.target.value)
       if (tempChallenges[i].Game === ev.target.id || tempChallenges[i].Game === ev.target.value) {
         const tempGame = {...tempChallenges[i]};
         if ('checked' in ev.target) {

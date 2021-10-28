@@ -23,20 +23,6 @@ const createURL = (fcsid, customerId) => {
   return uri;
 };
 
-const validSignature = (headers, payload) => {
-  const referenceSignature = crypto.createHmac('sha256', foxyEncryptionKey).update(JSON.stringify(payload)).digest('hex');
-  return headers['foxy-webhook-signature'] === referenceSignature;
-};
-
-const validRequest = (request, body) => {
-  if (request.method !== 'POST' || 
-    request.headers['foxy-store-domain'] !== 'thwartme.foxycart.com' || 
-    request.headers['foxy-store-id'] !== '98241') {
-    return false;
-  }
-  return true;
-};
-
 const checkCache = (req, res, next) => {
   redisClient.get('foxyaccesstoken', (err, data) => {
     if (err) {
@@ -72,19 +58,6 @@ foxyRouter.get('/apitoken', checkCache, async (req, res, next) => {
     res.status(200).send(JSON.stringify(accessToken.data.access_token));
   } catch (error) {
     next(error);
-  }
-});
-
-foxyRouter.post('/', async (req, res, next) => {
-  try {
-    if (validRequest(req, req.body)) {
-      addTransaction(req.body);
-      res.status(200).json({ text: 'Success' });
-    } else {
-      res.status(403).json({ text: 'Not Authorized' });
-    }
-  } catch (err) {
-    next(err);
   }
 });
 
@@ -134,7 +107,6 @@ foxyRouter.post('/createcustomer', async (req, res, next) => {
     const customerId = customerData.message.split(' ')[1];
     res.send(customerId);
   } catch (error) {
-    console.log('error message in foxy/createcustomer: ', error.message)
     next();
   }
 });

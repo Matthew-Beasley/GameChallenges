@@ -14,7 +14,6 @@ const ChallengeDisplay = () => {
   }, []);
 
   useEffect(() => {
-    //console.log('challenges in use effec: ', challenges);
   }, [challenges]); 
 
   const settings = {

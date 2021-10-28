@@ -585,9 +585,9 @@
   }
 
   #challenge-cards {
-    width: 28rem;
-    height: 10.5rem;
-    margin-top: 5rem;
+    width: 20rem;
+    height: 13rem;
+    margin-top: 8rem;
   }
 
   #challenge-cards > div {
@@ -812,17 +812,19 @@
   }
 
   #player-submit-btn {
-    width: 2rem;
-    height: 2rem;
-    margin-top: 3.2rem;
+    margin-top: 2.5rem;
     border: none;
     border-radius: 6px;
-    font-size: 26px;
+    font-size: 16px;
     line-height: 40%;
   }
 
   #phone-platformselect {
     display: none;
+  }
+
+  #platform-groups {
+    margin-right: 0rem;
   }
 
   .platform-checkgroup {
@@ -832,7 +834,7 @@
     flex-wrap: nowrap;
     justify-content: space-between;
     margin-right: 0;
-    margin-left: 10rem;
+    margin-left: 2rem;
   }
 
   .platform-checkgroup label {
@@ -927,9 +929,9 @@
   }
 
   #challenge-cards {
-    width: 32rem;
+    width: 28rem;
     height: 10.5rem;
-    margin-top: 5rem;
+    margin-top: 8rem;
   }
 
   #challenge-cards > div {
@@ -1699,7 +1701,8 @@
     background-color: white;
     max-width: 90%;
     height: 10.5rem;
-    margin: 1rem 5% 1rem 5%;
+    margin: 1rem 10% 1rem 10%;
+    padding: .5rem;
   }
 
   .slick-slider {

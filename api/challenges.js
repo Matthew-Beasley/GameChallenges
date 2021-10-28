@@ -1,6 +1,6 @@
 const express = require('express');
 if(process.env.ENV)
-require('dotenv').config();
+{require('dotenv').config();}
 const challengeRouter = express.Router();
 const { redisClient } = require('../mongo/client');
 const {
@@ -56,6 +56,6 @@ challengeRouter.post('/decks', async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-})
+});
 
 module.exports = challengeRouter;

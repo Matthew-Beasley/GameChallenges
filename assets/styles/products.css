@@ -65,7 +65,8 @@
  }
 
  .playforfree {
-     color: rgb(21, 121, 160)
+     color: rgb(21, 121, 160);
+     cursor: pointer;
  }
 
  #creditsdiv {
