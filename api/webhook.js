@@ -18,7 +18,7 @@ const validSignature = (headers) => {
 };
   
 const validRequest = (request) => {
-  validSignature(request.header)
+  validSignature(request.headers)
   if (request.method !== 'POST' || 
       request.headers['foxy-store-domain'] !== 'thwartme.foxycart.com' || 
       request.headers['foxy-store-id'] !== '98241') {
