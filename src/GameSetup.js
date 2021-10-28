@@ -126,7 +126,7 @@ const GameSetup = () => {
           DeckCode: user.decks[i].code
         };
         const response = await axios.post('/challenge/decks', query, headers);
-        console.log('response from mongo/redis in getDecks');
+        console.log('response from mongo/redis in getDecks', response);
         decks.push(...response.data);
       }
     }
