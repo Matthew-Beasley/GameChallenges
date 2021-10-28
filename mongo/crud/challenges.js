@@ -36,6 +36,7 @@ const getDecks = async ({ DeckName, DeckCode }) => {
     const name = DeckName.slice(0, DeckName.indexOf(' deck '));
     const deck = parseInt(DeckCode.replace(`${name}`, ''));
     const decks = await Challenge.find({ Game: name, Deck: deck }).exec();
+    console.log('-------------- decks from mongo in crud -------------------', decks)
     return decks;
   } catch (error) {
     return error;
