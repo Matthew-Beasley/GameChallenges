@@ -18,7 +18,7 @@ const validSignature = (headers) => {
 };
   
 const validRequest = (request) => {
-  validSignature(request.headers)
+  //validSignature(request.headers)
   if (request.method !== 'POST' || 
       request.headers['foxy-store-domain'] !== 'thwartme.foxycart.com' || 
       request.headers['foxy-store-id'] !== '98241') {
@@ -36,6 +36,7 @@ webhook.post('/', async (req, res, next) => {
       res.status(403).json({ text: 'Not Authorized' });
     }
   } catch (err) {
+    console.log('error in webhook: ', error.message)
     next(err);
   }
 });
