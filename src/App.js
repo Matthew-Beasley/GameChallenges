@@ -11,7 +11,6 @@ import ChallengeDisplay from './ChallengeDisplay';
 import Contact from './Contact';
 import About from './About';
 import Foxy from './Foxy';
-import ReadMore from './ReadMore';
 import Credits from './Credits';
 import CreateUser, { StandbyForVerification } from './CreateUser';
 import Terms from './Terms';
@@ -34,7 +33,6 @@ const App = () => {
       <Route path="/challenges" component={ChallengeDisplay} />
       <Route path="/contact" component={Contact} />
       <Route path="/about" component={About} />
-      <Route path='/readmore' component={ReadMore} />
       <Route path="/login" component={Login} />
       <Route path="/createuser" component={CreateUser} />
       <Route path='/shopping' component={Foxy} />

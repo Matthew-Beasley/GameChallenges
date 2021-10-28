@@ -57,7 +57,6 @@ const Players = () => {
   return (
     <div id="player-container">
       <div id="player-list">
-        {console.log('players list: ', players)}
         {players.map((player, idx) => {
           return (
             <Player player={player} key={idx} />

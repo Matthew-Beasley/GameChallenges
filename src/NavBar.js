@@ -18,7 +18,8 @@ const NavBar = () => {
     removeCookie('token');
     setToken('');
     setUser({});
-    history.push('/');
+    //history.push('/');
+    window.location.href = window.location.href.split('?')[0];
   };
 
   useEffect(() => {
