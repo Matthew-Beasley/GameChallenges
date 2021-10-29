@@ -13,14 +13,13 @@ const jwt = require('jwt-simple');
 
 const validSignature = (headers, payload) => {
   const referenceSignature = crypto.createHmac('sha256', foxyEncryptionKey).update(JSON.stringify(payload)).digest('hex');
-  console.log('----------- referenceSignature, foxy-webhook-signature ----------- ', referenceSignature, headers['foxy-webhook-signature'])
   return headers['foxy-webhook-signature'] === referenceSignature;
 };
   
 const validRequest = (request) => {
-  console.log('----------- request.body -----------', request.body)
   validSignature(request.headers, request.body)
-  if (request.method !== 'POST' || 
+  if (!validSignature(request.headers, request.body) ||
+      request.method !== 'POST' || 
       request.headers['foxy-store-domain'] !== 'thwartme.foxycart.com' || 
       request.headers['foxy-store-id'] !== '98241') {
     return false;
