@@ -16,8 +16,10 @@ const validSignature = (headers, payload) => {
   return headers['foxy-webhook-signature'] === referenceSignature;
 };
   
-const validRequest = (request, body) => {
-  if (request.method !== 'POST' || 
+const validRequest = (request) => {
+  validSignature(request.headers, request.body)
+  if (!validSignature(request.headers, request.body) ||
+      request.method !== 'POST' || 
       request.headers['foxy-store-domain'] !== 'thwartme.foxycart.com' || 
       request.headers['foxy-store-id'] !== '98241') {
     return false;
@@ -26,15 +28,15 @@ const validRequest = (request, body) => {
 };
 
 webhook.post('/', async (req, res, next) => {
-  console.log('------------ message in webhook --------------', req.body);
   try {
-    if (validRequest(req, req.body)) {
+    if (validRequest(req)) {
       addTransaction(req.body);
       res.status(200).json({ text: 'Success' });
     } else {
       res.status(403).json({ text: 'Not Authorized' });
     }
   } catch (err) {
+    console.log('error in webhook: ', err.message)
     next(err);
   }
 });
