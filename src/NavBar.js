@@ -32,7 +32,7 @@ const NavBar = () => {
         <Link to="/" >Thwart Me</Link>
         <Link to="/about" >About Us</Link>
         <Link to="/contact">Contact Us</Link>
-        <Link to="/shopping">Get Decks</Link>
+        {!!user.email && <Link to="/shopping">Get Decks</Link>}
       </div>
       {!user.email &&
         <div className="nav-links">
