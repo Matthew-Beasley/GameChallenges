@@ -11,14 +11,15 @@ const axios = require('axios');
 const validator = require('validator');
 const jwt = require('jwt-simple');
 
-const validSignature = (headers) => {
+const validSignature = (headers, payload) => {
   const referenceSignature = crypto.createHmac('sha256', foxyEncryptionKey).update(JSON.stringify(payload)).digest('hex');
   console.log('----------- referenceSignature, foxy-webhook-signature ----------- ', referenceSignature, headers['foxy-webhook-signature'])
   return headers['foxy-webhook-signature'] === referenceSignature;
 };
   
 const validRequest = (request) => {
-  //validSignature(request.headers)
+  console.log('----------- request.body -----------', request.body)
+  validSignature(request.headers, request.body)
   if (request.method !== 'POST' || 
       request.headers['foxy-store-domain'] !== 'thwartme.foxycart.com' || 
       request.headers['foxy-store-id'] !== '98241') {
@@ -36,7 +37,7 @@ webhook.post('/', async (req, res, next) => {
       res.status(403).json({ text: 'Not Authorized' });
     }
   } catch (err) {
-    console.log('error in webhook: ', error.message)
+    console.log('error in webhook: ', err.message)
     next(err);
   }
 });
