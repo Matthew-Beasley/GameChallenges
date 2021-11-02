@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import { csrfState, tokenState, emailKeyState } from './RecoilState';
+import { csrfState, tokenState, emailKeyState, userState } from './RecoilState';
 import { useCookies } from 'react-cookie';
 import CryptoJS from 'crypto-js';
 import axios from 'axios';
@@ -22,6 +22,7 @@ Modal.setAppElement('#root');
 
 const LandingPage = () => {
   const [token, setToken] = useRecoilState(tokenState);
+  const [recoilUserr, setRecoilUser] = useRecoilState(userState);
   const [csrf, setCsrf] = useRecoilState(csrfState);
   const history = useHistory();
   const [cookies, setCookie] = useCookies(['token']);
@@ -83,6 +84,7 @@ const LandingPage = () => {
         return;
       }
     } else {
+      setRecoilUser(usr);
       login(email, password);
     }
   };
