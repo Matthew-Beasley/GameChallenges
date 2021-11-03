@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
-import { csrfState, tokenState, emailKeyState, userState } from './RecoilState';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { csrfState, tokenState, emailKeyState, userState , headerState } from './RecoilState';
 import { useCookies } from 'react-cookie';
 import CryptoJS from 'crypto-js';
 import axios from 'axios';
@@ -28,6 +28,7 @@ const LandingPage = () => {
   const [cookies, setCookie] = useCookies(['token']);
   const [emailKey, setEmailKey] = useRecoilState(emailKeyState);
   const [decryptedCreds, setDecryptedCreds] = useState('');
+  const headers = useRecoilValue(headerState);
 
   let subtitle;
   const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -91,6 +92,7 @@ const LandingPage = () => {
 
   useEffect(() => {
     axios.defaults.headers.common['X-CSRF-Token'] = csrf;
+    axios.defaults.headers.post['X-CSRF-Token'] = csrf;
   }, [csrf]);
 
   useEffect(() => { 
@@ -100,6 +102,14 @@ const LandingPage = () => {
       const bytes  = CryptoJS.AES.decrypt(encryptedCreds, emailKey);
       const decryptedCreds = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
       checkCredentials(decryptedCreds);
+    } else {
+      const token = cookies.token;
+      if (token) {
+        axios.post('/user/token', { token: token }, headers).then(response => {
+          setRecoilUser(response.data[0]);
+         // history.push('/shopping');
+        });
+      }
     }
   }, [csrf]);
 
