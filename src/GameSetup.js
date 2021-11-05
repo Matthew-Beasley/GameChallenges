@@ -178,8 +178,7 @@ const GameSetup = () => {
         return challenge;
       }
     });
-    console.log('challenges: ', switched)
-    setChallenges(switched);
+    setChallenges([...switched]);
   };
 
   const getChallenges = (ev) => {
@@ -189,13 +188,12 @@ const GameSetup = () => {
         const tempGame = {...tempChallenges[i]};
         if ('checked' in ev.target) {
           tempGame.show = ev.target.checked;
-        } else if (ev.target.value, tempChallenges[i].Game) { //refactor this
-          tempGame.show = true;
+          tempChallenges.splice(i, 1);
+          tempChallenges.splice(i, 0, tempGame);
+        } else {
+          tempGame.show = false;
         }
-        tempGame.show = true;
-        tempChallenges.splice(i, 1);
-        tempChallenges.splice(i, 0, tempGame);
-      }
+      } 
     }
     setChallenges([...tempChallenges]);
   };
