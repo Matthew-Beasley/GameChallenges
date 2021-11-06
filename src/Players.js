@@ -7,7 +7,7 @@ const Player = ({player}) => {
   let itsMyTurn = '';
   player.MyTurn ? itsMyTurn = 'myturn' : itsMyTurn = '';
   return ( 
-    <div>
+    <div id="player-container">
       <div>{player.Name}</div>
       <div>{player.Score}</div>
       <div className={`player ${itsMyTurn} ${player.Background}`} >

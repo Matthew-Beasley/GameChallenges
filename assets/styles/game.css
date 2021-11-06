@@ -12,9 +12,14 @@
 
 #player-container > img {
   margin-top: 4rem;
+  margin-left: 4rem;
   width: 50rem;
   height: 10rem;
   z-index: 2;
+}
+
+#player-container {
+  font-size: large;
 }
 
 #player-list {
