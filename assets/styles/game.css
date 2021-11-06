@@ -10,7 +10,68 @@
   /*min-height: 1080px;*/
 }
 
+#player-container > img {
+  margin-top: 4rem;
+  width: 50rem;
+  height: 10rem;
+  z-index: 2;
+}
 
+#player-list {
+  z-index: 1;
+}
+
+#player > div {
+  z-index: 3;
+}
+
+.character1 {
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-image: url("../images/Characters-1.png");
+}
+
+.character2 {
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-image: url("../images/Characters-2.png");
+}
+
+.character3 {
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-image: url("../images/Characters-3.png");
+}
+
+.character4 {
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-image: url("../images/Characters-4.png");
+}
+
+.character5 {
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-image: url("../images/Characters-5.png");
+}
+
+.character6 {
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-image: url("../images/Characters-1.png");
+}
+
+.character7 {
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-image: url("../images/Characters-7.png");
+}
+
+.character8 {
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-image: url("../images/Characters-8.png");
+}
 
 
 
@@ -196,7 +257,7 @@
 
   /* ===== Challenge Container Styles ===== */
 
-  .mobilechallenge-container {
+  .mobile5 {
     display: none;
   }
 
@@ -216,10 +277,10 @@
     flex-direction: row;
     justify-content: center;
     background-image: url('../images/cartoon-monitor.png');
-    background-size: 70rem 40rem;
+    background-size: 70rem 35rem;
     background-repeat: no-repeat;
     width: 70rem;
-    height: 40rem;
+    height: 35rem;
   }
 
   #sub-gamecomponents {
@@ -267,6 +328,8 @@
 
   /* ===== Players Styles ===== */
 
+
+
   #gamesetup-container #player-container {
     display: none;
   }
@@ -283,57 +346,9 @@
     flex-direction: row;
     flex-wrap: wrap;
     width: 60rem;
-    height: 12rem;
-    margin: -3rem 2rem 2rem 2rem;
+    height: 8rem;
+    margin: -3rem 2rem -2rem 6rem;
     align-items: center;
-  }
-
-  .character1 {
-    background-repeat: no-repeat;
-    background-size: auto;
-    background-image: url("../images/Characters-1.png");
-  }
-
-  .character2 {
-    background-repeat: no-repeat;
-    background-size: auto;
-    background-image: url("../images/Characters-2.png");
-  }
-
-  .character3 {
-    background-repeat: no-repeat;
-    background-size: auto;
-    background-image: url("../images/Characters-3.png");
-  }
-
-  .character4 {
-    background-repeat: no-repeat;
-    background-size: auto;
-    background-image: url("../images/Characters-4.png");
-  }
-
-  .character5 {
-    background-repeat: no-repeat;
-    background-size: auto;
-    background-image: url("../images/Characters-5.png");
-  }
-
-  .character6 {
-    background-repeat: no-repeat;
-    background-size: auto;
-    background-image: url("../images/Characters-1.png");
-  }
-
-  .character7 {
-    background-repeat: no-repeat;
-    background-size: auto;
-    background-image: url("../images/Characters-7.png");
-  }
-
-  .character8 {
-    background-repeat: no-repeat;
-    background-size: auto;
-    background-image: url("../images/Characters-8.png");
   }
 
   .player {
@@ -356,7 +371,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    margin: 1rem 2rem 2rem 5rem;
+    margin: 1rem 2rem 1rem 4rem;
     height: 4rem;
     width: 32rem;
     font-size: 2rem;
@@ -572,10 +587,10 @@
     flex-direction: row;
     justify-content: center;
     background-image: url('../images/cartoon-monitor.png');
-    background-size: 40rem 30rem;
+    background-size: 40rem 35rem;
     background-repeat: no-repeat;
     width: 40rem;
-    height: 30rem;
+    height: 35rem;
   }
 
   #sub-gamecomponents {
@@ -630,7 +645,7 @@
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
-    height: 10rem;
+    height: 12rem;
   }
 
   #player-list {
@@ -639,56 +654,8 @@
     flex-wrap: wrap;
     width: 60rem;
     height: 10rem;
-    margin: -3rem 2rem 2rem 2rem;
+    margin: -3rem 2rem -2rem 6rem;
     align-items: center;
-  }
-
-  .character1 {
-    background-repeat: no-repeat;
-    background-size: auto;
-    background-image: url("../images/Characters-1.png");
-  }
-
-  .character2 {
-    background-repeat: no-repeat;
-    background-size: auto;
-    background-image: url("../images/Characters-2.png");
-  }
-
-  .character3 {
-    background-repeat: no-repeat;
-    background-size: auto;
-    background-image: url("../images/Characters-3.png");
-  }
-
-  .character4 {
-    background-repeat: no-repeat;
-    background-size: auto;
-    background-image: url("../images/Characters-4.png");
-  }
-
-  .character5 {
-    background-repeat: no-repeat;
-    background-size: auto;
-    background-image: url("../images/Characters-5.png");
-  }
-
-  .character6 {
-    background-repeat: no-repeat;
-    background-size: auto;
-    background-image: url("../images/Characters-1.png");
-  }
-
-  .character7 {
-    background-repeat: no-repeat;
-    background-size: auto;
-    background-image: url("../images/Characters-7.png");
-  }
-
-  .character8 {
-    background-repeat: no-repeat;
-    background-size: auto;
-    background-image: url("../images/Characters-8.png");
   }
 
   .player {
@@ -710,7 +677,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    margin: 0rem 0rem 2rem 5rem
+    margin: 1rem 2rem 1rem 4rem;
   }
 }
 
@@ -919,7 +886,7 @@
     background-size: 50rem 30rem;
     background-repeat: no-repeat;
     width: 50rem;
-    height: 30rem;
+    height: 25rem;
   }
 
   #sub-gamecomponents {
@@ -975,7 +942,7 @@
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
-    height: 10rem;
+    height: fit-content;
   }
 
   #player-list {
@@ -984,56 +951,8 @@
     flex-wrap: wrap;
     width: 60rem;
     height: 10rem;
-    margin: -3rem 2rem 2rem 2rem;
+    margin: -3rem 2rem -5rem 6rem;
     align-items: center;
-  }
-
-  .character1 {
-    background-repeat: no-repeat;
-    background-size: auto;
-    background-image: url("../images/Characters-1.png");
-  }
-
-  .character2 {
-    background-repeat: no-repeat;
-    background-size: auto;
-    background-image: url("../images/Characters-2.png");
-  }
-
-  .character3 {
-    background-repeat: no-repeat;
-    background-size: auto;
-    background-image: url("../images/Characters-3.png");
-  }
-
-  .character4 {
-    background-repeat: no-repeat;
-    background-size: auto;
-    background-image: url("../images/Characters-4.png");
-  }
-
-  .character5 {
-    background-repeat: no-repeat;
-    background-size: auto;
-    background-image: url("../images/Characters-5.png");
-  }
-
-  .character6 {
-    background-repeat: no-repeat;
-    background-size: auto;
-    background-image: url("../images/Characters-1.png");
-  }
-
-  .character7 {
-    background-repeat: no-repeat;
-    background-size: auto;
-    background-image: url("../images/Characters-7.png");
-  }
-
-  .character8 {
-    background-repeat: no-repeat;
-    background-size: auto;
-    background-image: url("../images/Characters-8.png");
   }
 
   .player {
@@ -1055,7 +974,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    margin: 0rem 0rem 2rem 5rem
+    margin: 1rem 2rem 1rem 4rem;
   }
 }
 
@@ -1266,10 +1185,10 @@
     flex-direction: row;
     justify-content: center;
     background-image: url('../images/cartoon-monitor.png');
-    background-size: 70rem 40rem;
+    background-size: 70rem 35rem;
     background-repeat: no-repeat;
     width: 70rem;
-    height: 40rem;
+    height: 35rem;
   }
 
   #sub-gamecomponents {
@@ -1325,7 +1244,7 @@
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
-    height: 10rem;
+    height: fit-content;
   }
 
   #player-list {
@@ -1334,56 +1253,8 @@
     flex-wrap: wrap;
     width: 60rem;
     height: 10rem;
-    margin: -3rem 2rem 2rem 2rem;
+    margin: -3rem 2rem -2rem 6rem;
     align-items: center;
-  }
-
-  .character1 {
-    background-repeat: no-repeat;
-    background-size: auto;
-    background-image: url("../images/Characters-1.png");
-  }
-
-  .character2 {
-    background-repeat: no-repeat;
-    background-size: auto;
-    background-image: url("../images/Characters-2.png");
-  }
-
-  .character3 {
-    background-repeat: no-repeat;
-    background-size: auto;
-    background-image: url("../images/Characters-3.png");
-  }
-
-  .character4 {
-    background-repeat: no-repeat;
-    background-size: auto;
-    background-image: url("../images/Characters-4.png");
-  }
-
-  .character5 {
-    background-repeat: no-repeat;
-    background-size: auto;
-    background-image: url("../images/Characters-5.png");
-  }
-
-  .character6 {
-    background-repeat: no-repeat;
-    background-size: auto;
-    background-image: url("../images/Characters-1.png");
-  }
-
-  .character7 {
-    background-repeat: no-repeat;
-    background-size: auto;
-    background-image: url("../images/Characters-7.png");
-  }
-
-  .character8 {
-    background-repeat: no-repeat;
-    background-size: auto;
-    background-image: url("../images/Characters-8.png");
   }
 
   .player {
@@ -1406,7 +1277,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    margin: 1rem 2rem 2rem 5rem;
+    margin: 1rem 2rem 1rem 4rem;
     height: 4rem;
     width: 32rem;
     font-size: 2rem;
@@ -1640,46 +1511,6 @@
     /*background-repeat: no-repeat;*/
   }
 
-  .character1 {
-    background-size: auto;
-    background-image: url("../images/Characters-1.png");
-  }
-
-  .character2 {
-    background-size: auto;
-    background-image: url("../images/Characters-2.png");
-  }
-
-  .character3 {
-    background-size: auto;
-    background-image: url("../images/Characters-3.png");
-  }
-
-  .character4 {
-    background-size: auto;
-    background-image: url("../images/Characters-4.png");
-  }
-
-  .character5 {
-    background-size: auto;
-    background-image: url("../images/Characters-5.png");
-  }
-
-  .character6 {
-    background-size: auto;
-    background-image: url("../images/Characters-1.png");
-  }
-
-  .character7 {
-    background-size: auto;
-    background-image: url("../images/Characters-7.png");
-  }
-
-  .character8 {
-    background-size: auto;
-    background-image: url("../images/Characters-8.png");
-  }
-
   #player-container {
     height: fit-content;
   }
@@ -1721,6 +1552,7 @@
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: center;
+    height: fit-content;
   }
 }
 
