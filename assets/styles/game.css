@@ -10,14 +10,6 @@
   /*min-height: 1080px;*/
 }
 
-#player-container > img {
-  margin-top: 4rem;
-  margin-left: 4rem;
-  width: 50rem;
-  height: 10rem;
-  z-index: 2;
-}
-
 #player-container {
   font-size: large;
 }
@@ -344,6 +336,18 @@
     height: 12rem;
   }
 
+  #counter-image {
+    margin-top: 4rem;
+    margin-left: 4rem;
+    width: 50rem;
+    height: 10rem;
+    z-index: 2;
+  }
+  
+  #phone-counter-image {
+    display: none;
+  }
+
   #player-list {
     display: flex;
     flex-direction: row;
@@ -644,6 +648,18 @@
     display: none;
   }
 
+  #counter-image {
+    margin-top: 4rem;
+    margin-left: 4rem;
+    width: 50rem;
+    height: 10rem;
+    z-index: 2;
+  }
+  
+  #phone-counter-image {
+    display: none;
+  }
+
   #player-container {
     display: flex;
     flex-direction: column;
@@ -938,6 +954,18 @@
   /* ===== Players Styles ===== */
 
   #gamesetup-container #player-container {
+    display: none;
+  }
+
+  #counter-image {
+    margin-top: 4rem;
+    margin-left: 4rem;
+    width: 50rem;
+    height: 10rem;
+    z-index: 2;
+  }
+  
+  #phone-counter-image {
     display: none;
   }
 
@@ -1251,6 +1279,18 @@
     display: none;
   }
 
+  #counter-image {
+    margin-top: 4rem;
+    margin-left: 4rem;
+    width: 50rem;
+    height: 10rem;
+    z-index: 2;
+  }
+  
+  #phone-counter-image {
+    display: none;
+  }
+
   #player-container {
     display: flex;
     flex-direction: column;
@@ -1484,6 +1524,16 @@
     display: none;
   }
 
+  #counter-image {
+    display: none;
+  }
+  
+  #phone-counter-image {
+    width: 400px;
+    height: 84px;
+    z-index: 2;
+  }
+
   #mobilechallenge-container {
     width: 100%;
     min-height: 100%;
@@ -1496,16 +1546,17 @@
     flex-direction: row;
     flex-wrap: nowrap;
     width: 100%;
-    height: fit-content;
+    height: 7rem;
+    align-items: flex-end;
   }
 
   .player {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    height: 9rem;
-    width: 8rem;
-    margin: 1rem;
+    height: 4rem;
+    width: 4rem;
+    margin-left: 1rem;
     color: black;
     background-repeat: no-repeat;
   }
@@ -1514,12 +1565,32 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    height: 12rem;
+    height: 6rem;
     width: 3rem;
-    margin: 1rem;
+    margin-left: 1rem;
     color: black;
     /*background-repeat: no-repeat;*/
   }
+
+
+
+  #player-buttons {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin: 1rem 2rem 1rem 4rem;
+    height: 4rem;
+    width: 32rem;
+    font-size: 2rem;
+  }
+
+  #player-buttons > button {
+    margin-left: 1rem;
+    width: 13rem;
+    border: 3px solid black;
+  }
+
+
 
   #player-container {
     height: fit-content;
