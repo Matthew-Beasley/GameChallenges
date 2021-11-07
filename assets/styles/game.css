@@ -80,6 +80,8 @@
 
 
 
+
+
 @media only screen and (min-width: 1501px) {
   /* ===== Main Game Component Styles ===== */
 
@@ -190,7 +192,7 @@
   }
 
   #platform-groups {
-    margin-left: 8rem;
+    margin-left: 0rem;
   }
 
   .platform-checkgroup {
@@ -200,15 +202,11 @@
     flex-wrap: nowrap;
     justify-content: space-between;
     margin-right: 0;
-    margin-left: 12rem;
+    margin-left: 4rem;
   }
 
   .platform-checkgroup label {
     margin: 0rem .5rem 0rem .5rem;
-  }
-
-  .platform-checkgroup {
-    margin: 0;
   }
 
   #mobile-spacer {
@@ -806,7 +804,7 @@
     flex-wrap: nowrap;
     justify-content: space-between;
     margin-right: 0;
-    margin-left: 2rem;
+    margin-left: 10rem;
   }
 
   .platform-checkgroup label {
@@ -980,6 +978,15 @@
     flex-direction: row;
     flex-wrap: nowrap;
     margin: 1rem 2rem 1rem 4rem;
+    height: 4rem;
+    width: 32rem;
+    font-size: 2rem;
+  }
+
+  #player-buttons > button {
+    margin-left: 2rem;
+    width: 13rem;
+    border: 3px solid black;
   }
 }
 
@@ -988,7 +995,7 @@
 
 
 
-@media only screen and (min-width: 1800px) {
+@media only screen and (min-width: 1700px) {
   /* ===== Main Game Component Styles ===== */
 
   #main-gamecomponents {
@@ -1046,8 +1053,7 @@
     height: 3rem;
     margin-top: 2rem;
     border: none;
-    background-color: 
-  rgb(54, 51, 51);
+    background-color: rgb(54, 51, 51);
     color: white;
     border-radius: 8px;
   }
@@ -1258,7 +1264,7 @@
     flex-wrap: wrap;
     width: 60rem;
     height: 10rem;
-    margin: -3rem 2rem -2rem 6rem;
+    margin: -3rem 2rem -5rem 6rem;
     align-items: center;
   }
 
@@ -1268,7 +1274,6 @@
     margin: 1rem;
     padding-top: 6rem;
     color: black;
-    font-size: 2rem;
   }
 
   .myturn {
