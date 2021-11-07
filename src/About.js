@@ -6,7 +6,7 @@ const About = () => {
     <div id="about-container">
       <NavBar />
       <div id="about-plate">
-        <img id="about-character" src="../assets/images/Characters-08.png" />
+        <img id="about-character" src="../assets/images/Characters-8.png" />
         <h3>About Us</h3>
         <div id="about-definition">
           <h3>thwart</h3>

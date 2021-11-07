@@ -7,9 +7,11 @@ const Player = ({player}) => {
   let itsMyTurn = '';
   player.MyTurn ? itsMyTurn = 'myturn' : itsMyTurn = '';
   return ( 
-    <div className={`player ${itsMyTurn} ${player.Background}`} >
+    <div id="player-container">
       <div>{player.Name}</div>
       <div>{player.Score}</div>
+      <div className={`player ${itsMyTurn} ${player.Background}`} >
+      </div>
     </div>
   );
 };
@@ -63,6 +65,8 @@ const Players = () => {
           );
         })} 
       </div>
+      <img id="counter-image" src="../assets/images/kitchencounter.png" />
+      <img id="phone-counter-image" src="../assets/images/phonekitchencounter.png" />
       {!!players.length && <div id="player-buttons">
         <button className="score-button" onClick={() => addPoint()}>Succeeded!</button>
         <button className="score-button" onClick={() => failed()}>Sorry, failed</button>

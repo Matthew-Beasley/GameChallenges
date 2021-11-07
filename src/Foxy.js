@@ -101,8 +101,10 @@ const Foxy = () => {
     const nameHex = CryptoJS.HmacSHA256(`${code}name${name}`, key).toString(CryptoJS.enc.Hex);
     //price
     const priceHex = CryptoJS.HmacSHA256(`${code}price1.99`, key).toString(CryptoJS.enc.Hex);
+    //quantity_max
+    const quantityHex = CryptoJS.HmacSHA256(`${code}quantity_max1`, key).toString(CryptoJS.enc.Hex);
 
-    return `https://thwartme.foxycart.com/cart?code=${code}||${codeHex}&name=${parsedName}||${nameHex}&price=1.99||${priceHex} `;
+    return `https://thwartme.foxycart.com/cart?code=${code}||${codeHex}&name=${parsedName}||${nameHex}&price=1.99||${priceHex}&quantity_max=1||${quantityHex}`;
   };
 
 
