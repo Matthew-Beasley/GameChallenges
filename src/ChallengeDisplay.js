@@ -14,7 +14,7 @@ const ChallengeDisplay = () => {
   }, []);
 
   useEffect(() => {
-    //console.log('challenges in challengDisplay changed', challenges)
+    console.log('challenges in challengDisplay changed', challenges)
   }, [challenges]); 
 
   const settings = {

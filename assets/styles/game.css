@@ -1572,8 +1572,6 @@
     /*background-repeat: no-repeat;*/
   }
 
-
-
   #player-buttons {
     display: flex;
     flex-direction: row;
@@ -1589,8 +1587,6 @@
     width: 13rem;
     border: 3px solid black;
   }
-
-
 
   #player-container {
     height: fit-content;
@@ -1610,6 +1606,7 @@
 
   #mobilechallenge-cards {
     align-self: center;
+    color: black;
     background-color: white;
     max-width: 90%;
     height: 10.5rem;

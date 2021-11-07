@@ -186,8 +186,12 @@ const GameSetup = () => {
     for (let i = 0; i < tempChallenges.length; i++) {
       if (tempChallenges[i].Game === ev.target.id || tempChallenges[i].Game === ev.target.value) {
         const tempGame = {...tempChallenges[i]};
-        if ('checked' in ev.target) {
+        if ('checked' in ev.target ) {
           tempGame.show = ev.target.checked;
+          tempChallenges.splice(i, 1);
+          tempChallenges.splice(i, 0, tempGame);
+        } else if (tempChallenges[i].Game === ev.target.value) {
+          tempGame.show = true;
           tempChallenges.splice(i, 1);
           tempChallenges.splice(i, 0, tempGame);
         } else {
