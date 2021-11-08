@@ -155,7 +155,7 @@ const LandingPage = () => {
           You’ll find new ways to love your games all over again, as you attempt crazy 
           challenges that have nothing to do with how the game was meant to be played.  
           Whether it’s an unconventional race or a treasure hunt, you’ll laugh your 
-          way through an epic fail or<br/> ultimate victory.
+          way through<br/> an epic fail or<br/> ultimate victory.
             </p>
           </div>
         </div>
