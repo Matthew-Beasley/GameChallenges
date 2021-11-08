@@ -7,7 +7,7 @@ const Rules = () => {
       <NavBar />
       <div id="about-plate">
         <img id="about-character" src="../assets/images/Characters-3.png" />
-        <h3>AHow to Play</h3>
+        <h1>How to Play</h1>
         
         <p>Welcome to Thwart Me!</p> 
         <p>We have some basic rules (more “guidelines,” really) to help you get started, but this game is designed to provide you with ample opportunities for “house rules.”</p>
