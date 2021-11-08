@@ -30,6 +30,7 @@ const NavBar = () => {
     <div id="navbar">
       <div className="nav-links">
         <Link to="/" >Thwart Me</Link>
+        <Link to="/rules" >How to Play</Link>
         <Link to="/about" >About Us</Link>
         <Link to="/contact">Contact Us</Link>
         {!!user.email && <Link to="/shopping">Get Decks</Link>}

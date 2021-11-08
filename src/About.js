@@ -18,9 +18,7 @@ const About = () => {
         </div>
         <p>We love gaming - we love our old games – we miss our old games.  But let’s face it.  We’ve played them out and they’ve lost their shine.</p>
         <p>So we found a way to bring them back.  We pulled them up and got creative. It’s a simple enough idea, really.  Just create challenges that have nothing to do with the original campaign.</p>
-        <p>But we took it to the next level.  We’ve created challenges – lots of challenges – for lots of games.  And there’s more coming all the time. 
-          You can even join in the fun and contribute your own!  If we use your challenge, you’ll get a free pack – the one that your challenge appears in.  That way you can see how your friends measure up to your challenge!
-          Your first pack is free.  It will contain 10 challenges for the game of your choice.  Each challenge will take anywhere from 5 – 20 minutes to complete, so it’s enough for an evening 
+        <p>Your first pack is free.  It will contain 10 challenges for the game of your choice.  Each challenge will take anywhere from 5 – 20 minutes to complete, so it’s enough for an evening of fun.  After that, it’s just $1.99 for each pack.  Choose from over 20 different games now, with even more to be added soon.
         </p>
       </div>
     </div>
