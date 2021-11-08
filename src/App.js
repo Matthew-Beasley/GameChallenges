@@ -14,6 +14,7 @@ import Foxy from './Foxy';
 import Credits from './Credits';
 import CreateUser, { StandbyForVerification } from './CreateUser';
 import Terms from './Terms';
+import Rules from './Rules';
 
 
 const App = () => {
@@ -39,6 +40,7 @@ const App = () => {
       <Route path='/credits' component={Credits} />
       <Route path='/verifyuser' component={StandbyForVerification} />
       <Route path='/terms' component={Terms} />
+      <Route path='/rules' component={Rules} />
     </div>
   );
 };
