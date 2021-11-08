@@ -398,7 +398,7 @@
 
 
 
-@media only screen and (min-width: 1000px) {
+@media only screen and (min-width: 901px) {
 
   #main-gamecomponents {
     display: flex;
@@ -651,7 +651,7 @@
   #counter-image {
     margin-top: 4rem;
     margin-left: 4rem;
-    width: 50rem;
+    width: 35rem;
     height: 10rem;
     z-index: 2;
   }
@@ -664,7 +664,7 @@
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
-    height: 12rem;
+    height: fit-content;
   }
 
   #player-list {
@@ -673,7 +673,7 @@
     flex-wrap: wrap;
     width: 60rem;
     height: 10rem;
-    margin: -3rem 2rem -2rem 6rem;
+    margin: -3rem 2rem -5rem 6rem;
     align-items: center;
   }
 
@@ -697,6 +697,15 @@
     flex-direction: row;
     flex-wrap: nowrap;
     margin: 1rem 2rem 1rem 4rem;
+    height: 4rem;
+    width: 32rem;
+    font-size: 2rem;
+  }
+
+  #player-buttons > button {
+    margin-left: 2rem;
+    width: 13rem;
+    border: 3px solid black;
   }
 }
 
@@ -1346,7 +1355,7 @@
 
 
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 900px) {
 
   /* ===== GameSetup Styles ===== */
 
@@ -1633,8 +1642,3 @@
     height: fit-content;
   }
 }
-
-
-
-
-
