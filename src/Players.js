@@ -58,6 +58,10 @@ const Players = () => {
   
   return (
     <div id="player-container">
+      {!!players.length && <div id="player-buttons">
+        <button className="score-button" onClick={() => addPoint()}>Succeeded!</button>
+        <button className="score-button" onClick={() => failed()}>Sorry, failed</button>
+      </div>}
       <div id="player-list">
         {players.map((player, idx) => {
           return (
@@ -65,12 +69,7 @@ const Players = () => {
           );
         })} 
       </div>
-      <img id="counter-image" src="../assets/images/kitchencounter.png" />
-      <img id="phone-counter-image" src="../assets/images/phonekitchencounter.png" />
-      {!!players.length && <div id="player-buttons">
-        <button className="score-button" onClick={() => addPoint()}>Succeeded!</button>
-        <button className="score-button" onClick={() => failed()}>Sorry, failed</button>
-      </div>}
+      <div id="phone-playerline" ></div>
     </div>
 
   );
