@@ -34,6 +34,7 @@ const NavBar = () => {
         <Link to="/about" >About Us</Link>
         <Link to="/contact">Contact Us</Link>
         {!!user.email && <Link to="/shopping">Get Decks</Link>}
+        {!!user.email && <Link to="/gamepage">Play the Game</Link>}
       </div>
       {!user.email &&
         <div className="nav-links">

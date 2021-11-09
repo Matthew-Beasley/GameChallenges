@@ -26,6 +26,7 @@ const GameSetup = () => {
   const [kidFriendly, setKidFriendly] = useState('');
   const [online, setOnline] = useState('');
   const [timeLimit, setTimeLimit] = useState(0);
+  const [usedCharacters, setUsedCharacters] = useState([]);
   /*
   const lookForEnter = (ev) => {
     ev.key === 'Enter' ? addUserName : null;
@@ -36,9 +37,19 @@ const GameSetup = () => {
       alert('Oops! Player name can\'t be empty');
     } else {
       //choose a character
-      const contestant = { Name: playerName, MyTurn: false, Score: 0, Background: `character${Math.floor(Math.floor(Math.random() * (8 - 1 + 1)) + 1)}`} ;
-      players.length ? contestant.MyTurn = false : contestant.MyTurn = true;
-      setPlayers([...players, contestant]);
+      if (players.length >= 6) {
+        alert('Oops! Only 8 players can play at a time!');
+      } else {
+        let character = `character${Math.floor(Math.floor(Math.random() * (8 - 1 + 1)) + 1)}`;
+        while (usedCharacters.includes(character)) {
+          character = `character${Math.floor(Math.floor(Math.random() * (8 - 1 + 1)) + 1)}`;
+        }
+        setUsedCharacters([...usedCharacters, character]);
+        console.log(usedCharacters)
+        const contestant = { Name: playerName, MyTurn: false, Score: 0, Background: character} ;
+        players.length ? contestant.MyTurn = false : contestant.MyTurn = true;
+        setPlayers([...players, contestant]);
+      }
       setPlayerName('');
     }
   };
