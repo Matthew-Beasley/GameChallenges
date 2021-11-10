@@ -11,6 +11,8 @@ const GameContainer = () => {
   const [user, setUser] = useRecoilState(userState);
   const history = useHistory();
 
+  console.log('test change')
+
   useEffect(() => {
     if (!user.email) {
       history.push('/');
