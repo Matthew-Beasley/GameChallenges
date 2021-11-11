@@ -16,6 +16,8 @@
 
 #challenge-container {
   z-index: 2;
+  background-image: url('../images/chalkboard.png');
+  font-family: fantasy;
 }
 
 #challenge-cards {
@@ -293,7 +295,6 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    background-image: url('../images/cartoon-monitor.png');
     background-size: 70rem 35rem;
     background-repeat: no-repeat;
     width: 70rem;
@@ -317,13 +318,11 @@
     width: 100%;
     height: 15rem;
     padding: .5rem 1rem 0rem 1rem;
-    font-family: 'Arial Rounded MT Bold', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 1.5rem;
     margin: 0;
   }
 
   .challenge-title {
-    font-family: 'Arial Rounded MT Bold', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: bold;
     font-size: 1.5rem;
     min-width: 100%;
@@ -615,7 +614,6 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    background-image: url('../images/cartoon-monitor.png');
     background-size: 40rem 35rem;
     background-repeat: no-repeat;
     width: 40rem;
@@ -639,13 +637,11 @@
     width: 100%;
     height: 10rem;
     padding: .5rem 1rem 0rem 1rem;
-    font-family: 'Arial Rounded MT Bold', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 1rem;
     margin: 0;
   }
 
   .challenge-title {
-    font-family: 'Arial Rounded MT Bold', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: bold;
     font-size: 1.5rem;
     min-width: 100%;
@@ -932,7 +928,6 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    background-image: url('../images/cartoon-monitor.png');
     background-size: 50rem 30rem;
     background-repeat: no-repeat;
     width: 50rem;
@@ -956,13 +951,11 @@
     width: 100%;
     height: 10rem;
     padding: .5rem 1rem 0rem 1rem;
-    font-family: 'Arial Rounded MT Bold', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 1rem;
     margin: 0;
   }
 
   .challenge-title {
-    font-family: 'Arial Rounded MT Bold', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: bold;
     font-size: 1.5rem;
     min-width: 100%;
@@ -1254,7 +1247,6 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    background-image: url('../images/cartoon-monitor.png');
     background-size: 70rem 35rem;
     background-repeat: no-repeat;
     width: 70rem;
@@ -1278,13 +1270,11 @@
     width: 100%;
     height: 15rem;
     padding: .5rem 1rem 0rem 1rem;
-    font-family: 'Arial Rounded MT Bold', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 1.5rem;
     margin: 0;
   }
 
   .challenge-title {
-    font-family: 'Arial Rounded MT Bold', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: bold;
     font-size: 1.5rem;
     min-width: 100%;
