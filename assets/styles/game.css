@@ -18,6 +18,8 @@
   z-index: 2;
   background-image: url('../images/chalkboard.png');
   font-family: fantasy;
+  display: flex;
+  flex-direction: column;
 }
 
 #challenge-cards {
@@ -93,6 +95,12 @@
   display: none;
 }
 
+#kitchencounter {
+  height: 20rem;
+  width: 77rem;
+  margin-top: 3rem;
+  margin-left: -25rem;
+}
 
 
 
@@ -375,7 +383,7 @@
     flex-wrap: wrap;
     width: 60rem;
     height: 8rem;
-    margin: 0rem 2rem -2rem 6rem;
+    margin: 0rem 2rem -.5rem 6rem;
     align-items: center;
   }
 
@@ -691,7 +699,7 @@
     flex-wrap: wrap;
     width: 60rem;
     height: 10rem;
-    margin: 0rem 2rem -5rem 6rem;
+    margin: 0rem 2rem -3.5rem 6rem;
     align-items: center;
   }
 
@@ -1006,7 +1014,7 @@
     flex-wrap: wrap;
     width: 60rem;
     height: 10rem;
-    margin: 0rem 2rem -5rem 6rem;
+    margin: 0rem 2rem -3.5rem 6rem;
     align-items: center;
   }
 
@@ -1293,6 +1301,13 @@
     text-align: center;
   }
 
+  #kitchencounter {
+    height: 30rem;
+    width: 90rem;
+    margin-top: 5rem;
+    margin-left: -25rem;
+  }
+
 
   /* ===== Players Styles ===== */
 
@@ -1325,7 +1340,7 @@
     flex-wrap: wrap;
     width: 60rem;
     height: 10rem;
-    margin: 0rem 2rem -5rem 6rem;
+    margin: 0rem 2rem -3.5rem 6rem;
     align-items: center;
   }
 

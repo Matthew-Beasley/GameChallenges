@@ -43,7 +43,9 @@ const ChallengeDisplay = () => {
                 );}
             })}
           </Slider>
+          <img id="kitchencounter" src="../assets/images/kitchencounter.png" />
         </div>
+        
       </div>
       <div className="mobilechallenge-container">
         <Players />
