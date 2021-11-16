@@ -36,7 +36,7 @@
 }
 
 #player-buttons {
-  z-index: -1;
+  z-index: 1;
 }
 
 #player > div {
@@ -76,7 +76,7 @@
 .character6 {
   background-repeat: no-repeat;
   background-size: auto;
-  background-image: url("../images/Characters-1.png");
+  background-image: url("../images/Characters-6.png");
 }
 
 .character7 {
@@ -622,10 +622,10 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    background-size: 40rem 35rem;
+    background-size: 40rem 24rem;
     background-repeat: no-repeat;
     width: 40rem;
-    height: 35rem;
+    height: 24rem;
   }
 
   #sub-gamecomponents {
@@ -667,6 +667,14 @@
     min-width: 100%;
     text-align: center;
   }
+
+  #kitchencounter {
+    height: 20rem;
+    width: 60rem;
+    margin-top: 4 rem;
+    margin-left: -21rem;
+  }
+
 
   /* ===== Players Styles ===== */
 
@@ -936,10 +944,10 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    background-size: 50rem 30rem;
+    background-size: 50rem 24rem;
     background-repeat: no-repeat;
     width: 50rem;
-    height: 25rem;
+    height: 24rem;
   }
 
   #sub-gamecomponents {
@@ -980,6 +988,13 @@
     margin-top: 1rem;
     min-width: 100%;
     text-align: center;
+  }
+
+  #kitchencounter {
+    height: 26rem;
+    width: 77rem;
+    margin-top: 2rem;
+    margin-left: -25rem;
   }
 
 
@@ -1384,6 +1399,10 @@
 
 @media only screen and (max-width: 900px) {
 
+  #navbar {
+    margin-bottom: 2rem;
+  }
+
   /* ===== GameSetup Styles ===== */
 
   .setup-control {
@@ -1543,6 +1562,7 @@
     background-image: none;
     background-color: rgb(243, 16, 16);
     margin-top: 3rem;
+    margin-bottom: 1rem;
   }
 
 
@@ -1577,12 +1597,21 @@
     border: solid black 5px;
   }
 
+  #player-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    height: fit-content;
+  }
+
   #player-list{
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    width: 100%;
+    width: 95%;
     height: 7rem;
+    margin-left: 2.5%;
     align-items: flex-end;
   }
 
@@ -1590,9 +1619,9 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    height: 4rem;
+    height: 3.5rem;
     width: 4rem;
-    margin-left: 1rem;
+    margin-left: .5rem;
     color: black;
     background-repeat: no-repeat;
   }
@@ -1602,7 +1631,7 @@
     flex-direction: column;
     justify-content: flex-end;
     height: 6rem;
-    width: 3rem;
+    width: 4rem;
     margin-left: 1rem;
     color: black;
     /*background-repeat: no-repeat;*/
@@ -1621,6 +1650,7 @@
   #player-buttons > button {
     margin-left: 1rem;
     width: 13rem;
+    margin-bottom: 1rem;
     border: 3px solid black;
   }
 
@@ -1663,13 +1693,5 @@
   .slick-list {
     width: 90%;
     margin: .5rem;
-  }
-
-  #player-container {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-items: center;
-    height: fit-content;
   }
 }

@@ -13,10 +13,6 @@ const ChallengeDisplay = () => {
     setChallenges([...challenges]);
   }, []);
 
-  useEffect(() => {
-    console.log('challenges in challengDisplay changed', challenges)
-  }, [challenges]); 
-
   const settings = {
     dots: false,
     infinite: true,
@@ -44,8 +40,7 @@ const ChallengeDisplay = () => {
             })}
           </Slider>
           <img id="kitchencounter" src="../assets/images/kitchencounter.png" />
-        </div>
-        
+        </div> 
       </div>
       <div className="mobilechallenge-container">
         <Players />
