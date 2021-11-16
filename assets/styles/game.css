@@ -1571,30 +1571,13 @@
 
   #outer-challenges-display {
     min-width: 100vw;
-    min-height: 100vh;
+    min-height: 130vh;
     margin: 0;
     background-color: rgb(190, 205, 211);
   }
 
   #challenge-container {
     display: none;
-  }
-
-  #counter-image {
-    display: none;
-  }
-  
-  #phone-counter-image {
-    width: 400px;
-    height: 84px;
-    z-index: 2;
-  }
-
-  #mobilechallenge-container {
-    width: 100%;
-    min-height: 100%;
-    background-color: white;
-    border: solid black 5px;
   }
 
   #player-container {
@@ -1662,12 +1645,21 @@
     background-color:rgb(57, 63, 65);
   }
 
-  #mobilechallenge-container {
-    display: flex;
-    flex-direction: column;
-    justify-items: center;
-    max-width: 100%;
-    min-height: 100%;
+  #mobilebackground {
+    font-family: fantasy;
+    background-image: url('../images/chalkboard.png');
+    background-size: 100% 15rem;
+    background-repeat: no-repeat;
+    margin: 1rem;
+    padding-top: 2rem;
+    color: white;
+  }
+
+  #kitchencounter {
+    width: 31rem;
+    height: 12rem;
+    margin-left: -5rem;
+    margin-top: 9rem;
   }
 
   .mobilechallenge-players {
@@ -1676,10 +1668,8 @@
 
   #mobilechallenge-cards {
     align-self: center;
-    color: black;
-    background-color: white;
-    max-width: 90%;
-    height: 10.5rem;
+    max-width: 95%;
+    height: 15rem;
     margin: 1rem 10% 1rem 10%;
     padding: .5rem;
   }
