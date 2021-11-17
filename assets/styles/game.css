@@ -5,9 +5,7 @@
   flex-direction: column;
   min-height: fit-content;
   background-color: rgb(190, 205, 211);
-  background-repeat: no-repeat;
   background-size: auto;
-  /*min-height: 1080px;*/
 }
 
 #outer-challenges-display {
@@ -419,8 +417,8 @@
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    width: 100%;
-    min-height: 100vh;
+    width: 1024px;
+    height: 120vh;
   }
 
   #phone-gamecomponents {
