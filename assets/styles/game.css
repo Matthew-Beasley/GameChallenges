@@ -522,7 +522,7 @@
   #player-submit-btn {
     width: 2rem;
     height: 2rem;
-    margin-top: 3.2rem;
+    margin-top: 3rem;
     border: none;
     border-radius: 6px;
     font-size: 26px;
@@ -841,7 +841,7 @@
   }
 
   #player-submit-btn {
-    margin-top: 2.5rem;
+    margin-top: 2.9rem;
     border: none;
     border-radius: 6px;
     font-size: 16px;
@@ -1167,7 +1167,7 @@
   #player-submit-btn {
     width: 2rem;
     height: 2rem;
-    margin-top: 3.2rem;
+    margin-top: 3rem;
     border: none;
     border-radius: 6px;
     font-size: 26px;
@@ -1327,18 +1327,6 @@
   /* ===== Players Styles ===== */
 
   #gamesetup-container #player-container {
-    display: none;
-  }
-
-  #counter-image {
-    margin-top: 4rem;
-    margin-left: 4rem;
-    width: 50rem;
-    height: 10rem;
-    z-index: 2;
-  }
-  
-  #phone-counter-image {
     display: none;
   }
 
@@ -1658,8 +1646,8 @@
   #kitchencounter {
     width: 31rem;
     height: 12rem;
-    margin-left: -5rem;
-    margin-top: 9rem;
+    margin-left: -1.5rem;
+    margin-top: -3rem;
   }
 
   .mobilechallenge-players {
@@ -1669,7 +1657,7 @@
   #mobilechallenge-cards {
     align-self: center;
     max-width: 95%;
-    height: 15rem;
+    height: 12rem;
     margin: 1rem 10% 1rem 10%;
     padding: .5rem;
   }

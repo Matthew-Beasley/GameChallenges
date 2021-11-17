@@ -58,8 +58,8 @@ const ChallengeDisplay = () => {
                   );}
               })}
             </Slider>
-            <img id="kitchencounter" src="../assets/images/kitchencounter.png" />
           </div>
+          <img id="kitchencounter" src="../assets/images/kitchencounter.png" />
         </div>
       </div>
     </div>
