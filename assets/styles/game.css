@@ -36,7 +36,7 @@
 }
 
 #player-buttons {
-  z-index: 1;
+  z-index: -1;
 }
 
 #player > div {
@@ -76,7 +76,7 @@
 .character6 {
   background-repeat: no-repeat;
   background-size: auto;
-  background-image: url("../images/Characters-6.png");
+  background-image: url("../images/Characters-1.png");
 }
 
 .character7 {
@@ -106,301 +106,239 @@
 
 
 
-@media only screen and (min-width: 1501px) {
-  /* ===== Main Game Component Styles ===== */
 
-  #main-gamecomponents {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    width: 100%;
-    min-height: 100vh;
-  }
 
-  #phone-gamecomponents {
-    display: none;
-  }
+ 
 
-  .phone-display {
-    display: none;
-  }
 
-  #outer-challenges-display > #navbar {
-    display: none;
-  } 
 
+
+
+
+@media only screen and (max-width: 900px) {
 
   /* ===== GameSetup Styles ===== */
-
-  *:focus {
-    outline: none;
-  }
-
-  #gamesetup-container {
-    font-family: 'Arial Rounded MT Bold', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 1.16rem;
-    min-width: 32rem;
-    height: 45rem;
-    margin-left: 10%;
-  }
 
   .setup-control {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between;
-    width: 28rem;
+    width: 24rem;
   } 
-
+  
   #gamesetup-container label {
     color: black;
-    margin-top: 2rem;
-    font-size: 1.8rem;
+    margin-top: 1rem;
+    font-size: 1.16rem;
   }
-
+  
   #gamesetup-container select {
-    font-size: 2rem;
-    width: 24rem;
-    height: 3rem;
-    margin-top: 2rem;
+    font-size: 1rem;
+    width: 14rem;
+    height: 2rem;
+    margin-top: 1rem;
     border: none;
     background-color: 
-  rgb(54, 51, 51);
+   rgb(54, 51, 51);
     color: white;
     border-radius: 8px;
   }
-
+  
   #gamesetup-container button {
     background-image: linear-gradient(rgb(40, 226, 214), rgb(57, 63, 65));
     color: white;
-    height: 2.9rem;
-    width: 2.9rem;
     font-size: 1.16rem;
   }
+  
+  /* ===== GameSetup Styles ===== */
 
-  #players > label {
-    margin-top: 3rem;
+  *:focus {
+    outline: none;
   }
 
-  #text-bttn-combo {
+  .desktop-display {
+    display: none;
+  }
+
+  #platform-groups {
+    display: none;
+  }
+
+  #platform-checkgroup {
+    display: none;
+  }
+  /*
+  #game-container {
+    max-width: 100vw;
+    min-height: fit-content;
+  }
+*/
+  #gamesetup-container {
+    font-family: 'Arial Rounded MT Bold', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    min-width: 400px;  /*=== this adusts the width of setup ===*/
+    min-height: fit-content;
+  }
+
+  #gamesetup-container #player-buttons{
+    display: none;
+  }
+
+  #gamesetup-container label {
+    color: black;
+    margin-left: 1rem;
+    margin-top: 2rem;
+  }
+
+  #gamesetup-container select {
+    width: 10rem;
+    height: 2rem;
+    margin: 2rem 2rem 0rem 0rem;
+  }
+
+  #gamesetup-container input {
+    width: 10rem;
+    height: 2rem;
+    margin: 2rem 1rem 0rem 0rem;
+  }
+
+  #main-gamecomponents {
+    display: none;
+  }
+
+  #phone-gamecomponents {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .setup-control {
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: right;
+    justify-content: space-between;
   }
 
   #text-bttn-combo > input {
     background-color: rgb(54, 51, 51);
     color: white;
-    border-radius: 8px;
-    width: 16.5rem;
-    height: 3rem;
-    font-size: 2rem;
-    margin-top: 3rem;
-    margin-bottom: 1rem;
-    margin-right: 0
+    width: 9rem;
+    margin-top: 2rem;
+    height: 1.5rem;
   }
-
+  
   #player-submit-btn {
-    width: 2rem;
-    height: 2rem;
-    margin-top: 3.2rem;
-    border: none;
-    border-radius: 6px;
-    font-size: 26px;
-    line-height: 40%;
-  }
-
-  #phone-platformselect {
-    display: none;
+    margin-top: 2.1rem;
+    margin-right: 1rem
   }
 
   #platform-groups {
-    margin-left: 0rem;
-  }
-
-  .platform-checkgroup {
-    max-width: 20rem;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    margin-right: 0;
-    margin-left: 4rem;
-  }
-
-  .platform-checkgroup label {
-    margin: 0rem .5rem 0rem .5rem;
-  }
-
-  #mobile-spacer {
-    width: 17.6rem;
-  }
-
-  #phone-gameselect {
     display: none;
   }
 
-  #multi-control {
+  #phone-platformselect {
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
+  }
+
+  #phone-platformselect select {
+    background-color: rgb(54, 51, 51);
     color: white;
   }
-
-  #multi-control > #scroller {
-    margin-top: 2rem;
-    height: 10rem;
-    overflow-y: auto;
-    overflow-x: hidden;
+  
+  #multi-control {
+    display: none;
+  }
+  
+  #phone-gameselect {
+    display: flex;
+  }
+  
+  #phone-gameselect > select {
+    background-color: rgb(54, 51, 51);
     color: white;
-    border-radius: 8px;
-    background-color: rgb(54, 51, 51);
-  }
-
-  #multi-list {
-    width: 21rem;
-    list-style: none;
-    padding: 0;
-  }
-
-  .multi-list-item {
-    font-size: 1.7rem;
-    background-color: rgb(54, 51, 51);
-    height: 1.75rem;
-    padding-top: 5px;
-  }
-
-  .multi-list-input {
-    border: solid white 5px;
-    margin: .25rem 1rem .25rem 1rem;
-    background-color: rgb(54, 51, 51);
+    width: 16rem;
   }
 
   #lets-play {
-    display: none;
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 400px;
+  }
+
+  #lets-play > button {
+    /*margin: 5rem 0rem 0rem 6.75rem;*/
+    height: 4rem;
+    width: 12rem;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+    background-image: none;
+    background-color: rgb(243, 16, 16);
+    margin-top: 3rem;
   }
 
 
   /* ===== Challenge Container Styles ===== */
-/*
-  .mobile5 {
-    display: none;
-  }
-*/
-  .mobilechallenge-players {
-    display: none;
-  }
 
-  /* this is a wrapper around challenge-conainer */
+
   #outer-challenges-display {
-    min-width: 40rem;
-    min-height: fit-content;
-    margin: 2.5rem 2rem 0rem 2rem;
+    min-width: 100vw;
+    min-height: 100vh;
+    margin: 0;
+    background-color: rgb(190, 205, 211);
   }
 
   #challenge-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    background-size: 70rem 35rem;
-    background-repeat: no-repeat;
-    width: 70rem;
-    height: 35rem;
-  }
-
-  #sub-gamecomponents {
-    display: flex;
-    flex-direction: column;
-    justify-items: center;
-  }
-
-  #challenge-cards {
-    width: 40rem;
-    height: 20rem;
-    margin-top: 10rem;
-  }
-
-  #challenge-cards > div {
-    color: white;
-    width: 100%;
-    height: 15rem;
-    padding: .5rem 1rem 0rem 1rem;
-    font-size: 1.5rem;
-    margin: 0;
-  }
-
-  .challenge-title {
-    font-weight: bold;
-    font-size: 1.5rem;
-    min-width: 100%;
-    text-align: center;
-    margin-bottom: 1rem;
-  }
-
-  .challenge-rules {
-    min-width: 100%;
-    text-align: center;
-  }
-
-  .challenge-time {
-    margin-top: 1rem;
-    min-width: 100%;
-    text-align: center;
-  }
-
-
-  /* ===== Players Styles ===== */
-
-
-
-  #gamesetup-container #player-container {
     display: none;
-  }
-
-  #player-container {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    height: 12rem;
   }
 
   #counter-image {
-    margin-top: 4rem;
-    margin-left: 4rem;
-    width: 50rem;
-    height: 10rem;
-    z-index: 2;
+    display: none;
   }
   
   #phone-counter-image {
-    display: none;
+    width: 400px;
+    height: 84px;
+    z-index: 2;
   }
 
-  #player-list {
+  #mobilechallenge-container {
+    width: 100%;
+    min-height: 100%;
+    background-color: white;
+    border: solid black 5px;
+  }
+
+  #player-list{
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
-    width: 60rem;
-    height: 8rem;
-    margin: 0rem 2rem -.5rem 6rem;
-    align-items: center;
+    flex-wrap: nowrap;
+    width: 100%;
+    height: 7rem;
+    align-items: flex-end;
   }
 
   .player {
-    height: 8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 4rem;
     width: 4rem;
-    margin: 1rem;
-    padding-top: 6rem;
+    margin-left: 1rem;
     color: black;
-    font-size: 2rem;
+    background-repeat: no-repeat;
   }
 
   .myturn {
-    height: 25rem;
-    width: 4rem;
-    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 6rem;
+    width: 3rem;
+    margin-left: 1rem;
     color: black;
+    /*background-repeat: no-repeat;*/
   }
 
   #player-buttons {
@@ -414,12 +352,62 @@
   }
 
   #player-buttons > button {
-    margin-left: 2rem;
+    margin-left: 1rem;
     width: 13rem;
     border: 3px solid black;
   }
+
+  #phone-playerline {
+    display: flex;
+    z-index: 4;
+    width: 100%;
+    height: 10px;
+    background-color:rgb(57, 63, 65);
+  }
+
+  #mobilechallenge-container {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    max-width: 100%;
+    min-height: 100%;
+  }
+
+  .mobilechallenge-players {
+    height: 15rem;
+  }
+
+  #mobilechallenge-cards {
+    align-self: center;
+    color: black;
+    background-color: white;
+    max-width: 90%;
+    height: 10.5rem;
+    margin: 1rem 10% 1rem 10%;
+    padding: .5rem;
+  }
+
+  .slick-slider {
+    width: 100%;
+    align-self: center;
+    height: fit-content;
+  }
+
+  .slick-list {
+    width: 90%;
+    margin: .5rem;
+  }
+
+  #player-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    height: fit-content;
+  }
 }
-  
+
+
 
 
 
@@ -622,10 +610,10 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    background-size: 40rem 24rem;
+    background-size: 35rem 25rem;
     background-repeat: no-repeat;
-    width: 40rem;
-    height: 24rem;
+    width: 35rem;
+    height: 25rem;
   }
 
   #sub-gamecomponents {
@@ -668,26 +656,10 @@
     text-align: center;
   }
 
-  #kitchencounter {
-    height: 20rem;
-    width: 60rem;
-    margin-top: 4 rem;
-    margin-left: -21rem;
-  }
-
-
   /* ===== Players Styles ===== */
 
   #gamesetup-container #player-container {
     display: none;
-  }
-
-  #counter-image {
-    margin-top: 4rem;
-    margin-left: 4rem;
-    width: 35rem;
-    height: 10rem;
-    z-index: 2;
   }
   
   #phone-counter-image {
@@ -741,7 +713,17 @@
     width: 13rem;
     border: 3px solid black;
   }
+
+  #kitchencounter {
+    height: 18rem;
+    width: 55rem;
+    margin-top: 4rem;
+    margin-left: -19rem;
+  }
 }
+
+
+
 
 
 
@@ -841,7 +823,7 @@
   }
 
   #player-submit-btn {
-    margin-top: 2.9rem;
+    margin-top: 2.8rem;
     border: none;
     border-radius: 6px;
     font-size: 16px;
@@ -944,10 +926,10 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    background-size: 50rem 24rem;
+    background-size: 50rem 25rem;
     background-repeat: no-repeat;
     width: 50rem;
-    height: 24rem;
+    height: 25rem;
   }
 
   #sub-gamecomponents {
@@ -988,13 +970,6 @@
     margin-top: 1rem;
     min-width: 100%;
     text-align: center;
-  }
-
-  #kitchencounter {
-    height: 26rem;
-    width: 77rem;
-    margin-top: 2rem;
-    margin-left: -25rem;
   }
 
 
@@ -1063,7 +1038,340 @@
     width: 13rem;
     border: 3px solid black;
   }
+
+  #kitchencounter {
+    height: 20rem;
+    width: 77rem;
+    margin-top: 4rem;
+    margin-left: -25rem;
+  }
 }
+
+
+
+
+
+
+
+
+
+
+@media only screen and (min-width: 1501px) {
+  /* ===== Main Game Component Styles ===== */
+
+  #main-gamecomponents {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100%;
+    min-height: 100vh;
+  }
+
+  #phone-gamecomponents {
+    display: none;
+  }
+
+  .phone-display {
+    display: none;
+  }
+
+  #outer-challenges-display > #navbar {
+    display: none;
+  } 
+
+
+  /* ===== GameSetup Styles ===== */
+
+  *:focus {
+    outline: none;
+  }
+
+  #gamesetup-container {
+    font-family: 'Arial Rounded MT Bold', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1.16rem;
+    min-width: 32rem;
+    height: 45rem;
+    margin-left: 10%;
+  }
+
+  .setup-control {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    width: 28rem;
+  } 
+
+  #gamesetup-container label {
+    color: black;
+    margin-top: 2rem;
+    font-size: 1.8rem;
+  }
+
+  #gamesetup-container select {
+    font-size: 2rem;
+    width: 24rem;
+    height: 3rem;
+    margin-top: 2rem;
+    border: none;
+    background-color: 
+  rgb(54, 51, 51);
+    color: white;
+    border-radius: 8px;
+  }
+
+  #gamesetup-container button {
+    background-image: linear-gradient(rgb(40, 226, 214), rgb(57, 63, 65));
+    color: white;
+    height: 2.9rem;
+    width: 2.9rem;
+    font-size: 1.16rem;
+  }
+
+  #players > label {
+    margin-top: 3rem;
+  }
+
+  #text-bttn-combo {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: right;
+  }
+
+  #text-bttn-combo > input {
+    background-color: rgb(54, 51, 51);
+    color: white;
+    border-radius: 8px;
+    width: 16.5rem;
+    height: 3rem;
+    font-size: 2rem;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    margin-right: 0
+  }
+
+  #player-submit-btn {
+    width: 1rem;
+    height: 1rem;
+    margin-top: 3.2rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 26px;
+    line-height: 40%;
+  }
+
+  #phone-platformselect {
+    display: none;
+  }
+
+  #platform-groups {
+    margin-left: 0rem;
+  }
+
+  .platform-checkgroup {
+    max-width: 20rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    margin-right: 0;
+    margin-left: 4rem;
+  }
+
+  .platform-checkgroup label {
+    margin: 0rem .5rem 0rem .5rem;
+  }
+
+  #mobile-spacer {
+    width: 17.6rem;
+  }
+
+  #phone-gameselect {
+    display: none;
+  }
+
+  #multi-control {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    color: white;
+  }
+
+  #multi-control > #scroller {
+    margin-top: 2rem;
+    height: 10rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+    color: white;
+    border-radius: 8px;
+    background-color: rgb(54, 51, 51);
+  }
+
+  #multi-list {
+    width: 21rem;
+    list-style: none;
+    padding: 0;
+  }
+
+  .multi-list-item {
+    font-size: 1.7rem;
+    background-color: rgb(54, 51, 51);
+    height: 1.75rem;
+    padding-top: 5px;
+  }
+
+  .multi-list-input {
+    border: solid white 5px;
+    margin: .25rem 1rem .25rem 1rem;
+    background-color: rgb(54, 51, 51);
+  }
+
+  #lets-play {
+    display: none;
+  }
+
+
+  /* ===== Challenge Container Styles ===== */
+/*
+  .mobile5 {
+    display: none;
+  }
+*/
+  .mobilechallenge-players {
+    display: none;
+  }
+
+  /* this is a wrapper around challenge-conainer */
+  #outer-challenges-display {
+    min-width: 40rem;
+    min-height: fit-content;
+    margin: 2.5rem 2rem 0rem 2rem;
+  }
+
+  #challenge-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-size: 70rem 35rem;
+    background-repeat: no-repeat;
+    width: 70rem;
+    height: 35rem;
+  }
+
+  #sub-gamecomponents {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+  }
+
+  #challenge-cards {
+    width: 40rem;
+    height: 20rem;
+    margin-top: 10rem;
+  }
+
+  #challenge-cards > div {
+    color: white;
+    width: 100%;
+    height: 15rem;
+    padding: .5rem 1rem 0rem 1rem;
+    font-size: 1.5rem;
+    margin: 0;
+  }
+
+  .challenge-title {
+    font-weight: bold;
+    font-size: 1.5rem;
+    min-width: 100%;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .challenge-rules {
+    min-width: 100%;
+    text-align: center;
+  }
+
+  .challenge-time {
+    margin-top: 1rem;
+    min-width: 100%;
+    text-align: center;
+  }
+
+
+  /* ===== Players Styles ===== */
+
+
+
+  #gamesetup-container #player-container {
+    display: none;
+  }
+
+  #player-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    height: 12rem;
+  }
+
+  #player-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 60rem;
+    height: 8rem;
+    margin: 0rem 2rem -.5rem 6rem;
+    align-items: center;
+  }
+
+  .player {
+    height: 8rem;
+    width: 4rem;
+    margin: 1rem;
+    padding-top: 6rem;
+    color: black;
+    font-size: 2rem;
+  }
+
+  .myturn {
+    height: 25rem;
+    width: 4rem;
+    margin: 1rem;
+    color: black;
+  }
+
+  #player-buttons {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin: 1rem 2rem 1rem 4rem;
+    height: 4rem;
+    width: 32rem;
+    font-size: 2rem;
+  }
+
+  #player-buttons > button {
+    margin-left: 2rem;
+    width: 13rem;
+    border: 3px solid black;
+  }
+
+  #kitchencounter {
+    height: 20rem;
+    width: 77rem;
+    margin-top: 3rem;
+    margin-left: -25rem;
+  }
+}
+  
+
+
+
+
+
+
+
 
 
 
@@ -1167,7 +1475,7 @@
   #player-submit-btn {
     width: 2rem;
     height: 2rem;
-    margin-top: 3rem;
+    margin-top: 3.2rem;
     border: none;
     border-radius: 6px;
     font-size: 26px;
@@ -1330,6 +1638,18 @@
     display: none;
   }
 
+  #counter-image {
+    margin-top: 4rem;
+    margin-left: 4rem;
+    width: 50rem;
+    height: 10rem;
+    z-index: 2;
+  }
+  
+  #phone-counter-image {
+    display: none;
+  }
+
   #player-container {
     display: flex;
     flex-direction: column;
@@ -1376,300 +1696,5 @@
     margin-left: 2rem;
     width: 13rem;
     border: 3px solid black;
-  }
-}
-  
-
-
-
-
-
-
-@media only screen and (max-width: 900px) {
-
-  #navbar {
-    margin-bottom: 2rem;
-  }
-
-  /* ===== GameSetup Styles ===== */
-
-  .setup-control {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    width: 24rem;
-  } 
-  
-  #gamesetup-container label {
-    color: black;
-    margin-top: 1rem;
-    font-size: 1.16rem;
-  }
-  
-  #gamesetup-container select {
-    font-size: 1rem;
-    width: 14rem;
-    height: 2rem;
-    margin-top: 1rem;
-    border: none;
-    background-color: 
-   rgb(54, 51, 51);
-    color: white;
-    border-radius: 8px;
-  }
-  
-  #gamesetup-container button {
-    background-image: linear-gradient(rgb(40, 226, 214), rgb(57, 63, 65));
-    color: white;
-    font-size: 1.16rem;
-  }
-  
-  /* ===== GameSetup Styles ===== */
-
-  *:focus {
-    outline: none;
-  }
-
-  .desktop-display {
-    display: none;
-  }
-
-  #platform-groups {
-    display: none;
-  }
-
-  #platform-checkgroup {
-    display: none;
-  }
-  /*
-  #game-container {
-    max-width: 100vw;
-    min-height: fit-content;
-  }
-*/
-  #gamesetup-container {
-    font-family: 'Arial Rounded MT Bold', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    min-width: 400px;  /*=== this adusts the width of setup ===*/
-    min-height: fit-content;
-  }
-
-  #gamesetup-container #player-buttons{
-    display: none;
-  }
-
-  #gamesetup-container label {
-    color: black;
-    margin-left: 1rem;
-    margin-top: 2rem;
-  }
-
-  #gamesetup-container select {
-    width: 10rem;
-    height: 2rem;
-    margin: 2rem 2rem 0rem 0rem;
-  }
-
-  #gamesetup-container input {
-    width: 10rem;
-    height: 2rem;
-    margin: 2rem 1rem 0rem 0rem;
-  }
-
-  #main-gamecomponents {
-    display: none;
-  }
-
-  #phone-gamecomponents {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .setup-control {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
-  #text-bttn-combo > input {
-    background-color: rgb(54, 51, 51);
-    color: white;
-    width: 9rem;
-    margin-top: 2rem;
-    height: 1.5rem;
-  }
-  
-  #player-submit-btn {
-    margin-top: 2.1rem;
-    margin-right: 1rem
-  }
-
-  #platform-groups {
-    display: none;
-  }
-
-  #phone-platformselect {
-    display: flex;
-  }
-
-  #phone-platformselect select {
-    background-color: rgb(54, 51, 51);
-    color: white;
-  }
-  
-  #multi-control {
-    display: none;
-  }
-  
-  #phone-gameselect {
-    display: flex;
-  }
-  
-  #phone-gameselect > select {
-    background-color: rgb(54, 51, 51);
-    color: white;
-    width: 16rem;
-  }
-
-  #lets-play {
-    display:flex;
-    flex-direction: row;
-    justify-content: center;
-    width: 400px;
-  }
-
-  #lets-play > button {
-    /*margin: 5rem 0rem 0rem 6.75rem;*/
-    height: 4rem;
-    width: 12rem;
-    border: none;
-    border-radius: 30px;
-    color: white;
-    font-size: 25px;
-    font-weight: bold;
-    background-image: none;
-    background-color: rgb(243, 16, 16);
-    margin-top: 3rem;
-    margin-bottom: 1rem;
-  }
-
-
-  /* ===== Challenge Container Styles ===== */
-
-
-  #outer-challenges-display {
-    min-width: 100vw;
-    min-height: 130vh;
-    margin: 0;
-    background-color: rgb(190, 205, 211);
-  }
-
-  #challenge-container {
-    display: none;
-  }
-
-  #player-container {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-items: center;
-    height: fit-content;
-  }
-
-  #player-list{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    width: 95%;
-    height: 7rem;
-    margin-left: 2.5%;
-    align-items: flex-end;
-  }
-
-  .player {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    height: 3.5rem;
-    width: 4rem;
-    margin-left: .5rem;
-    color: black;
-    background-repeat: no-repeat;
-  }
-
-  .myturn {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    height: 6rem;
-    width: 4rem;
-    margin-left: 1rem;
-    color: black;
-    /*background-repeat: no-repeat;*/
-  }
-
-  #player-buttons {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    margin: 1rem 2rem 1rem 4rem;
-    height: 4rem;
-    width: 32rem;
-    font-size: 2rem;
-  }
-
-  #player-buttons > button {
-    margin-left: 1rem;
-    width: 13rem;
-    margin-bottom: 1rem;
-    border: 3px solid black;
-  }
-
-  #phone-playerline {
-    display: flex;
-    z-index: 4;
-    width: 100%;
-    height: 10px;
-    background-color:rgb(57, 63, 65);
-  }
-
-  #mobilebackground {
-    font-family: fantasy;
-    background-image: url('../images/chalkboard.png');
-    background-size: 100% 15rem;
-    background-repeat: no-repeat;
-    margin: 1rem;
-    padding-top: 2rem;
-    color: white;
-  }
-
-  #kitchencounter {
-    width: 31rem;
-    height: 12rem;
-    margin-left: -1.5rem;
-    margin-top: -3rem;
-  }
-
-  .mobilechallenge-players {
-    height: 15rem;
-  }
-
-  #mobilechallenge-cards {
-    align-self: center;
-    max-width: 95%;
-    height: 12rem;
-    margin: 1rem 10% 1rem 10%;
-    padding: .5rem;
-  }
-
-  .slick-slider {
-    width: 100%;
-    align-self: center;
-    height: fit-content;
-  }
-
-  .slick-list {
-    width: 90%;
-    margin: .5rem;
   }
 }
