@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:webpack": "webpack",
+    "build": "webpack",
     "start:webpack": "webpack --watch --mode=development",
     "start:server": "nodemon server.js -- --ignore dist/ --ignore src/",
     "start:devenv": "nodemon server.js -- --ignore dist/ --ignore src/ & npm run start:webpack"

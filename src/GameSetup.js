@@ -38,7 +38,7 @@ const GameSetup = () => {
     } else {
       //choose a character
       if (players.length >= 6) {
-        alert('Oops! Only 6 players can play at a time!');
+        alert('Oops! Only 8 players can play at a time!');
       } else {
         let character = `character${Math.floor(Math.floor(Math.random() * (8 - 1 + 1)) + 1)}`;
         while (usedCharacters.includes(character)) {
@@ -85,23 +85,25 @@ const GameSetup = () => {
   };
 
   const multiSelectPlatform = (ev) => {
+    console.log('event in multiselect: ', ev)
     for (let i = 0; i < ev.target.length; i++) {
+      console.log('text in switch: ', ev.target[i].text)
       switch (ev.target[i].text) {
       case 'PC':
         setPCChk(ev.target[i].selected);
-        return;
+        break;
       case 'Xbox':
         setXboxChk(ev.target[i].selected);
-        return;
+        break;
       case 'PS':
         setPlaystationChk(ev.target[i].selected);
-        return;
+        break;
       case 'Switch':
         setSwitchChk(ev.target[i].selected);
-        return;
+        break;
       case 'Mobile':
         setMobileChk(ev.target[i].selected);
-        return;
+        break;
       default:
         return;
       }
