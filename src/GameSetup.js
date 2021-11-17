@@ -85,23 +85,25 @@ const GameSetup = () => {
   };
 
   const multiSelectPlatform = (ev) => {
+    console.log('event in multiselect: ', ev)
     for (let i = 0; i < ev.target.length; i++) {
+      console.log('text in switch: ', ev.target[i].text)
       switch (ev.target[i].text) {
       case 'PC':
         setPCChk(ev.target[i].selected);
-        return;
+        break;
       case 'Xbox':
         setXboxChk(ev.target[i].selected);
-        return;
+        break;
       case 'PS':
         setPlaystationChk(ev.target[i].selected);
-        return;
+        break;
       case 'Switch':
         setSwitchChk(ev.target[i].selected);
-        return;
+        break;
       case 'Mobile':
         setMobileChk(ev.target[i].selected);
-        return;
+        break;
       default:
         return;
       }
