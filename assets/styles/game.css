@@ -1,4 +1,8 @@
 /* ===== GameContainer Styles ===== */
+@font-face {
+  font-family: "Inkfree";
+  src: url("../fonts/Inkfree.ttf") format("truetype")
+}
 
 #game-container {
   display: flex;
@@ -15,7 +19,7 @@
 #challenge-container {
   z-index: 2;
   background-image: url('../images/chalkboard.png');
-  font-family: Comic Sans MS, cursive;
+  font-family: Inkfree;
   display: flex;
   flex-direction: column;
 }
