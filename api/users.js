@@ -75,18 +75,15 @@ userRouter.post('/mailgun', (req, res, next) => {
     }
   };
   const smtpTransport = nodemailer.createTransport(mg(mailgunAuth));
-  const textToSend = `Click the link below to verify your thwartme account.
-
-${url}
-           
-Your email will never be shared and this is the only email you will ever recieve from thwartme!
-           
-Enjoy the game!`;
+  const htmlToSend = `<p>Click the link below to verify your thwartme account.</p>
+<a href="${url}">Click here to verify your Thwartme account</a>           
+<p>Your email will never be shared and this is the only email you will ever recieve from thwartme!</p>          
+<p>Enjoy the game!</p>`;
   const mailOptions = {
     from: 'Thwartme.com <game-team@thwartme.com>',
     to: email,
     subject: 'Verify new thwartme account',
-    text: textToSend
+    html: htmlToSend
   };
   smtpTransport.sendMail(mailOptions, (error, response) => {
     if (error) {
