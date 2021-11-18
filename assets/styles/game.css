@@ -652,6 +652,12 @@
     text-align: center;
   }
 
+  .challenge-attempts {
+    margin-top: 1rem;
+    min-width: 100%;
+    text-align: center;
+  }
+
   /* ===== Players Styles ===== */
 
   #gamesetup-container #player-container {
@@ -963,6 +969,12 @@
   }
 
   .challenge-time {
+    margin-top: 1rem;
+    min-width: 100%;
+    text-align: center;
+  }
+
+  .challenge-attempts {
     margin-top: 1rem;
     min-width: 100%;
     text-align: center;
@@ -1295,6 +1307,12 @@
     text-align: center;
   }
 
+  .challenge-attempts {
+    margin-top: 1rem;
+    min-width: 100%;
+    text-align: center;
+  }
+
 
   /* ===== Players Styles ===== */
 
@@ -1615,6 +1633,12 @@
   }
 
   .challenge-time {
+    margin-top: 1rem;
+    min-width: 100%;
+    text-align: center;
+  }
+
+  .challenge-attempts {
     margin-top: 1rem;
     min-width: 100%;
     text-align: center;
