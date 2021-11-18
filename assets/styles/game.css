@@ -1686,6 +1686,7 @@
     height: 4rem;
     width: 32rem;
     font-size: 2rem;
+    z-index: 2;
   }
 
   #player-buttons > button {
