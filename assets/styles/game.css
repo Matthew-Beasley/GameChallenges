@@ -1048,7 +1048,7 @@
   }
 
   #kitchencounter {
-    height: 20rem;
+    height: 28rem;
     width: 77rem;
     margin-top: 4rem;
     margin-left: -25rem;
@@ -1097,9 +1097,9 @@
   #gamesetup-container {
     font-family: 'Arial Rounded MT Bold', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 1.16rem;
-    min-width: 32rem;
-    height: 45rem;
-    margin-left: 10%;
+    min-width: 26rem;
+    height: 37.87rem;
+    margin-left: 5%;
   }
 
   .setup-control {
@@ -1107,20 +1107,20 @@
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between;
-    width: 28rem;
+    width: 24rem;
   } 
 
   #gamesetup-container label {
     color: black;
-    margin-top: 2rem;
-    font-size: 1.8rem;
+    margin-top: 1rem;
+    font-size: 1.16rem;
   }
 
   #gamesetup-container select {
-    font-size: 2rem;
-    width: 24rem;
-    height: 3rem;
-    margin-top: 2rem;
+    font-size: 1rem;
+    width: 14rem;
+    height: 2rem;
+    margin-top: 1rem;
     border: none;
     background-color: 
   rgb(54, 51, 51);
@@ -1131,8 +1131,6 @@
   #gamesetup-container button {
     background-image: linear-gradient(rgb(40, 226, 214), rgb(57, 63, 65));
     color: white;
-    height: 2.9rem;
-    width: 2.9rem;
     font-size: 1.16rem;
   }
 
@@ -1151,21 +1149,19 @@
     background-color: rgb(54, 51, 51);
     color: white;
     border-radius: 8px;
-    width: 16.5rem;
-    height: 3rem;
-    font-size: 2rem;
+    width: 11.75rem;
+    height: 2rem;
+    font-size: 1.16rem;
     margin-top: 3rem;
     margin-bottom: 1rem;
     margin-right: 0
   }
 
   #player-submit-btn {
-    width: 1rem;
-    height: 1rem;
-    margin-top: 3.2rem;
+    margin-top: 2.8rem;
     border: none;
     border-radius: 6px;
-    font-size: 26px;
+    font-size: 16px;
     line-height: 40%;
   }
 
@@ -1174,21 +1170,25 @@
   }
 
   #platform-groups {
-    margin-left: 0rem;
+    margin-right: 0rem;
   }
 
   .platform-checkgroup {
-    max-width: 20rem;
+    max-width: 14rem;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between;
     margin-right: 0;
-    margin-left: 4rem;
+    margin-left: 10rem;
   }
 
   .platform-checkgroup label {
     margin: 0rem .5rem 0rem .5rem;
+  }
+
+  .platform-checkgroup input {
+    margin: 0;
   }
 
   #mobile-spacer {
@@ -1207,7 +1207,7 @@
   }
 
   #multi-control > #scroller {
-    margin-top: 2rem;
+    margin-top: 1rem;
     height: 10rem;
     overflow-y: auto;
     overflow-x: hidden;
@@ -1217,15 +1217,15 @@
   }
 
   #multi-list {
-    width: 21rem;
+    width: 14rem;
     list-style: none;
     padding: 0;
   }
 
   .multi-list-item {
-    font-size: 1.7rem;
+    font-size: 1rem;
     background-color: rgb(54, 51, 51);
-    height: 1.75rem;
+    height: 1.25rem;
     padding-top: 5px;
   }
 
@@ -1241,11 +1241,11 @@
 
 
   /* ===== Challenge Container Styles ===== */
-/*
-  .mobile5 {
+
+  .mobilechallenge-container {
     display: none;
   }
-*/
+
   .mobilechallenge-players {
     display: none;
   }
@@ -1261,10 +1261,10 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    background-size: 70rem 35rem;
+    background-size: 50rem 30rem;
     background-repeat: no-repeat;
-    width: 70rem;
-    height: 35rem;
+    width: 50rem;
+    height: 30rem;
   }
 
   #sub-gamecomponents {
@@ -1274,17 +1274,17 @@
   }
 
   #challenge-cards {
-    width: 40rem;
-    height: 20rem;
-    margin-top: 10rem;
+    width: 28rem;
+    height: 10.5rem;
+    margin-top: 8rem;
   }
 
   #challenge-cards > div {
     color: white;
     width: 100%;
-    height: 15rem;
+    height: 10rem;
     padding: .5rem 1rem 0rem 1rem;
-    font-size: 1.5rem;
+    font-size: 1rem;
     margin: 0;
   }
 
@@ -1316,9 +1316,19 @@
 
   /* ===== Players Styles ===== */
 
-
-
   #gamesetup-container #player-container {
+    display: none;
+  }
+
+  #counter-image {
+    margin-top: 4rem;
+    margin-left: 4rem;
+    width: 50rem;
+    height: 10rem;
+    z-index: 2;
+  }
+  
+  #phone-counter-image {
     display: none;
   }
 
@@ -1326,7 +1336,7 @@
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
-    height: 12rem;
+    height: fit-content;
   }
 
   #player-list {
@@ -1334,8 +1344,8 @@
     flex-direction: row;
     flex-wrap: wrap;
     width: 60rem;
-    height: 8rem;
-    margin: 0rem 2rem -.5rem 6rem;
+    height: 10rem;
+    margin: 0rem 2rem -3.5rem 6rem;
     align-items: center;
   }
 
@@ -1345,11 +1355,10 @@
     margin: 1rem;
     padding-top: 6rem;
     color: black;
-    font-size: 2rem;
   }
 
   .myturn {
-    height: 25rem;
+    height: 12rem;
     width: 4rem;
     margin: 1rem;
     color: black;
@@ -1372,12 +1381,13 @@
   }
 
   #kitchencounter {
-    height: 20rem;
-    width: 77rem;
-    margin-top: 3rem;
+    height: 28rem;
+    width: 75rem;
+    margin-top: 8rem;
     margin-left: -25rem;
   }
 }
+
   
 
 
@@ -1637,12 +1647,7 @@
     min-width: 100%;
     text-align: center;
   }
-
-  .challenge-attempts {
-    margin-top: 1rem;
-    min-width: 100%;
-    text-align: center;
-  }
+  
 
   #kitchencounter {
     height: 30rem;
