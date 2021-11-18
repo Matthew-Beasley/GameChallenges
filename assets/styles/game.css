@@ -15,7 +15,7 @@
 #challenge-container {
   z-index: 2;
   background-image: url('../images/chalkboard.png');
-  font-family: Comic Sans MS, Textile, Cursive;
+  font-family: Lucida Console, Monaco, Monospace;
   display: flex;
   flex-direction: column;
 }
