@@ -367,7 +367,6 @@
   }
 
   #mobilebackground {
-    font-family: fantasy;
     background-image: url('../images/chalkboard.png');
     background-size: 100% 15rem;
     background-repeat: no-repeat;
@@ -633,7 +632,7 @@
     width: 100%;
     height: 10rem;
     padding: .5rem 1rem 0rem 1rem;
-    font-size: 1rem;
+    font-size: 1.5rem;
     margin: 0;
   }
 
@@ -955,7 +954,7 @@
     width: 100%;
     height: 10rem;
     padding: .5rem 1rem 0rem 1rem;
-    font-size: 1rem;
+    font-size: 1.5rem;
     margin: 0;
   }
 
@@ -1288,7 +1287,7 @@
     width: 100%;
     height: 10rem;
     padding: .5rem 1rem 0rem 1rem;
-    font-size: 1rem;
+    font-size: 1.5rem;
     margin: 0;
   }
 
