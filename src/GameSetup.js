@@ -70,7 +70,7 @@ const GameSetup = () => {
     case 'Xbox':
       setXboxChk(ev.target.checked);
       return;
-    case 'PS':
+    case 'Playstation':
       setPlaystationChk(ev.target.checked);
       return;
     case 'Switch':
@@ -160,7 +160,7 @@ const GameSetup = () => {
       if (XboxChk === true && tmpChallenges[i].Xbox === true) {
         !parsed.has(tmpChallenges[i].Game) ? parsed.add(tmpChallenges[i]) : null;
       }
-      if (PlaystationChk === true && tmpChallenges[i].Playstation === true) {
+      if (PlaystationChk === true && tmpChallenges[i].PS === true) {
         !parsed.has(tmpChallenges[i].Game) ? parsed.add(tmpChallenges[i]) : null;
       }
       if (SwitchChk === true && tmpChallenges[i].Switch === true) {
