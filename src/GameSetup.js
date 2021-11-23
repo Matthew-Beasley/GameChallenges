@@ -88,26 +88,26 @@ const GameSetup = () => {
     console.log('event in multiselect: ', ev.target)
     for (let i = 0; i < ev.target.length; i++) {
       //console.log(ev.target.length)
-      console.log('text in for loop before switch ', ev.target[i].text)
+      //console.log('text in for loop before switch ', ev.target[i].text)
       switch (ev.target[i].text) {
       case 'PC':
-        console.log('val in pc: ', ev.target[i].selected)
+        //console.log('val in pc: ', ev.target[i].selected)
         setPCChk(ev.target[i].selected);
         break;
       case 'Xbox':
-        console.log('val in xbox: ', ev.target[i].selected)
+        //console.log('val in xbox: ', ev.target[i].selected)
         setXboxChk(ev.target[i].selected);
         break;
       case 'Playstation':
-        console.log('val in ps: ', ev.target[i].selected)
+        //console.log('val in ps: ', ev.target[i].selected)
         setPlaystationChk(ev.target[i].selected);
         break;
       case 'Switch':
-        console.log('val i switch: ', ev.target[i].selected)
+        //console.log('val i switch: ', ev.target[i].selected)
         setSwitchChk(ev.target[i].selected);
         break;
       case 'Mobile':
-        console.log('val in mobile: ', ev.target[i].selected)
+        //console.log('val in mobile: ', ev.target[i].selected)
         setMobileChk(ev.target[i].selected);
         break;
       default:
@@ -154,6 +154,7 @@ const GameSetup = () => {
     const tmpChallenges = await getDecks();
     const parsed = new Set();
     for (let i = 0; i < tmpChallenges.length; i++) {
+      console.log('game in parseChallenges: ', tmpChallenges[i])
       if (PCChk === true && tmpChallenges[i].PC === true) {
         !parsed.has(tmpChallenges[i].Game) ? parsed.add(tmpChallenges[i]) : null;
       }
@@ -279,7 +280,7 @@ const GameSetup = () => {
             <input 
               type="checkbox" 
               checked={PlaystationChk}
-              onChange={(ev) => selectPlatform('PS', ev)}
+              onChange={(ev) => selectPlatform('Playstation', ev)}
             />
             <label>Playstation</label>
           </div>
