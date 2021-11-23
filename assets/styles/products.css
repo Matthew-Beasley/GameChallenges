@@ -38,7 +38,7 @@
   justify-content: space-between;
   flex-wrap: wrap;
   margin: 1rem 0rem 1rem 8rem;
-  max-height: 100vh;
+  min-height: fit-content;
   width: 60rem;
  }
 
@@ -112,6 +112,10 @@
     min-height: fit-content;
   }
 
+  .shoppinglist {
+    min-height: fit-content;
+  }
+
   .icon {
     height: 30px;
     width: 30px;
@@ -133,7 +137,7 @@
     flex-wrap: nowrap;
     margin: 1rem 0rem 1rem 2rem;
     min-height: fit-content;
-    width: 100%
+    width: 95%
   }
 }
 
