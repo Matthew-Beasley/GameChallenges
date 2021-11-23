@@ -107,10 +107,24 @@
  }
 
 
- @media only screen and (max-width: 700px) {
+ @media only screen and (max-width: 900px) {
   #foxy {
     min-height: fit-content;
-    }
+  }
+
+  .icon {
+    height: 30px;
+    width: 30px;
+  }
+
+  .gamename {
+    font-size: 1.3rem;
+  }
+
+  .decks {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
 
   .gamelist {
     display: flex;
