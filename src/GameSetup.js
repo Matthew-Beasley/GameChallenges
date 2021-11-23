@@ -85,27 +85,33 @@ const GameSetup = () => {
   };
 
   const multiSelectPlatform = (ev) => {
-    console.log('event in multiselect: ', ev)
+    console.log('event in multiselect: ', ev.target)
     for (let i = 0; i < ev.target.length; i++) {
-      console.log('text in switch: ', ev.target[i].text)
+      //console.log(ev.target.length)
+      console.log('text in for loop before switch ', ev.target[i].text)
       switch (ev.target[i].text) {
       case 'PC':
+        console.log('val in pc: ', ev.target[i].selected)
         setPCChk(ev.target[i].selected);
         break;
       case 'Xbox':
+        console.log('val in xbox: ', ev.target[i].selected)
         setXboxChk(ev.target[i].selected);
         break;
-      case 'PS':
+      case 'Playstation':
+        console.log('val in ps: ', ev.target[i].selected)
         setPlaystationChk(ev.target[i].selected);
         break;
       case 'Switch':
+        console.log('val i switch: ', ev.target[i].selected)
         setSwitchChk(ev.target[i].selected);
         break;
       case 'Mobile':
+        console.log('val in mobile: ', ev.target[i].selected)
         setMobileChk(ev.target[i].selected);
         break;
       default:
-        return;
+        break;
       }
     }
   };
