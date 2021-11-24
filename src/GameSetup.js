@@ -38,7 +38,7 @@ const GameSetup = () => {
     } else {
       //choose a character
       if (players.length >= 6) {
-        alert('Oops! Only 8 players can play at a time!');
+        alert('Oops! Only 6 players can play at a time!');
       } else {
         let character = `character${Math.floor(Math.floor(Math.random() * (8 - 1 + 1)) + 1)}`;
         while (usedCharacters.includes(character)) {
