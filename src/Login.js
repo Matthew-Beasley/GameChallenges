@@ -107,6 +107,7 @@ const Login = () => {
         <input id="password" type="password" placeholder="Password" value={password} onChange={(ev) => setPassword(ev.target.value)} />
         {!token && <button className="login-submit" onClick={() => login()}>Login</button>}
         {!!token && <button className="login-submit" onClick={() => logout()}>Log Out</button>}
+        <Link to="terms">Terms of Use</Link>
       </div>
     </div>
   );
