@@ -5,6 +5,7 @@ import { playersState, challengesState, csrfState, headerState, tokenState, user
 import { useHistory } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import Players from './Players';
+import Select from 'react-select';
 
 const GameSetup = () => {
   const history = useHistory();
@@ -45,7 +46,7 @@ const GameSetup = () => {
           character = `character${Math.floor(Math.floor(Math.random() * (8 - 1 + 1)) + 1)}`;
         }
         setUsedCharacters([...usedCharacters, character]);
-        console.log(usedCharacters)
+        console.log(usedCharacters);
         const contestant = { Name: playerName, MyTurn: false, Score: 0, Background: character} ;
         players.length ? contestant.MyTurn = false : contestant.MyTurn = true;
         setPlayers([...players, contestant]);
@@ -85,7 +86,7 @@ const GameSetup = () => {
   };
 
   const multiSelectPlatform = (ev) => {
-    console.log('event in multiselect: ', ev.target)
+    console.log('event in multiselect: ', ev.target);
     for (let i = 0; i < ev.target.length; i++) {
       switch (ev.target[i].text) {
       case 'PC':
@@ -352,11 +353,29 @@ const GameSetup = () => {
       </div>
       <div className="setup-control" id="phone-gameselect">
         <label>Games</label>
+
+        <div id="scroller">
+          <div id="multi-list">
+            {displayGames.map((game, idx) => {
+              return (<div key={idx} className="multi-list-item">
+                <input className="multi-list-input" id={game} type="checkbox" onChange={ev => getChallenges(ev)}/>{game}
+              </div>);
+            })}
+          </div>
+        </div>
+
+        { /*
+
+          const options = [
+       { value: "The Crownlands" },
+
         <select multiple id="Game" onChange={ev => getChallenges(ev)}>
           {displayGames.map((game, idx) => {
             return (<option key={idx}>{game}</option>);
           })}
         </select>
+       */ }
+
       </div>
       <div id="lets-play">
         <button onClick={() => history.push('/challenges')}>LETS PLAY!</button>

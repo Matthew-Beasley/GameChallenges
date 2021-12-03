@@ -252,6 +252,55 @@
   #multi-control {
     display: none;
   }
+
+
+
+
+
+
+  #multi-control {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    color: white;
+  }
+
+  #multi-control > #scroller {
+    margin-top: 1rem;
+    height: 10rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+    color: white;
+    border-radius: 8px;
+    background-color: rgb(54, 51, 51);
+  }
+
+  #multi-list {
+    width: 14rem;
+    list-style: none;
+    padding: 0;
+  }
+
+  .multi-list-item {
+    font-size: 1rem;
+    background-color: rgb(54, 51, 51);
+    height: 1.25rem;
+    padding-top: 5px;
+  }
+
+  .multi-list-input {
+    border: solid white 5px;
+    margin: .25rem 1rem .25rem 1rem;
+    background-color: rgb(54, 51, 51);
+  }
+
+
+
+
+
+
+
+
   
   #phone-gameselect {
     display: flex;
