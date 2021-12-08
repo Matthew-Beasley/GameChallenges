@@ -64,9 +64,9 @@ userRouter.post('/mailgun', (req, res, next) => {
   if (process.env.NODE_ENV === 'test') {
     url = `http://localhost:3000?nonce=${encrypted}`;
   } else if (process.env.NODE_ENV === 'staging') {
-    url = `https://fathomless-escarpment-51259.herokuapp.com?nonce=${encrypted}`;
+    url = `http://fathomless-escarpment-51259.herokuapp.com?nonce=${encrypted}`;
   } else if (process.env.NODE_ENV === 'production') {
-    url = `https://thwartme.com?nonce=${encrypted}`;
+    url = `http://thwartme.com?nonce=${encrypted}`;
   }
   const mailgunAuth = {
     auth: {
