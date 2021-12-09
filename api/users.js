@@ -66,7 +66,7 @@ userRouter.post('/mailgun', (req, res, next) => {
   } else if (process.env.NODE_ENV === 'staging') {
     url = `http://fathomless-escarpment-51259.herokuapp.com?nonce=${encrypted}`;
   } else if (process.env.NODE_ENV === 'production') {
-    url = `http://thwartme.com?nonce=${encrypted}`;
+    url = `https://www.thwartme.com?nonce=${encrypted}`;
   }
   const mailgunAuth = {
     auth: {
