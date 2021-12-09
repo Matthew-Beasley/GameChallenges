@@ -139,7 +139,7 @@ const Foxy = () => {
                         if(deck !== 0 && user.decks.length !== 0 && !user.decks.find(testDeck => testDeck.code === `${game}${deck}`)) {
                           return (
                             <li key={el} >
-                              <a href={hashedRef(game, deck)}>Add {`deck ${deck} $1.99`}</a>
+                              <a href={hashedRef(game, deck)}>Buy {`deck ${deck} $1.99`}</a>
                             </li>
                           );
                         } else if(deck !== 0 && user.decks.find(testDeck => testDeck.code === `${game}${deck}`)) {
