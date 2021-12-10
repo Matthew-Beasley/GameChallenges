@@ -246,9 +246,10 @@ const GameSetup = () => {
             value={playerName}
             onChange={ev => setPlayerName(ev.target.value)} 
           />
-          <button id="player-submit-btn" /*onKeyPress={(ev) => lookForEnter(ev)}*/ onClick={() => addUserName()}>+</button>
+          <button id="player-submit-btn" /*onKeyPress={(ev) => lookForEnter(ev)}*/ onClick={() => addUserName()}>Add User</button>
         </div>
       </div>
+      <label id="desklabel">Choose<br/>your<br/>platform</label>
       <div id="platform-groups">
         <div className="platform-checkgroup">
           <div>
@@ -340,7 +341,7 @@ const GameSetup = () => {
         </select>
       </div>
       <div className="setup-control" id="multi-control">
-        <label>Games</label>
+        <label>Games<br/>available<br/>for your<br/>platform</label>
         <div id="scroller">
           <div id="multi-list">
             {displayGames.map((game, idx) => {
@@ -353,29 +354,11 @@ const GameSetup = () => {
       </div>
       <div className="setup-control" id="phone-gameselect">
         <label>Games</label>
-
-        <div id="scroller">
-          <div id="multi-list">
-            {displayGames.map((game, idx) => {
-              return (<div key={idx} className="multi-list-item">
-                <input className="multi-list-input" id={game} type="checkbox" onChange={ev => getChallenges(ev)}/>{game}
-              </div>);
-            })}
-          </div>
-        </div>
-
-        { /*
-
-          const options = [
-       { value: "The Crownlands" },
-
         <select multiple id="Game" onChange={ev => getChallenges(ev)}>
           {displayGames.map((game, idx) => {
             return (<option key={idx}>{game}</option>);
           })}
         </select>
-       */ }
-
       </div>
       <div id="lets-play">
         <button onClick={() => history.push('/challenges')}>LETS PLAY!</button>
