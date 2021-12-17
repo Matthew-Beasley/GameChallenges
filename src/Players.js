@@ -58,10 +58,7 @@ const Players = () => {
   
   return (
     <div id="player-container">
-      {!!players.length && <div id="player-buttons">
-        <button className="score-button" onClick={() => addPoint()}>Succeeded!</button>
-        <button className="score-button" onClick={() => failed()}>Sorry, failed</button>
-      </div>}
+
       <div id="player-list">
         {players.map((player, idx) => {
           return (
@@ -69,7 +66,11 @@ const Players = () => {
           );
         })} 
       </div>
-      <div id="phone-playerline" ></div>
+      {!!players.length && <div id="player-buttons">
+        <button className="score-button" onClick={() => addPoint()}>Add a Point!</button>
+        <button className="score-button" onClick={() => failed()}>Sorry, Next!</button>
+      </div>}
+      <div id="phone-playerline" />
     </div>
 
   );

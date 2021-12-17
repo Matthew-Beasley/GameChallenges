@@ -12,16 +12,24 @@
   background-size: auto;
 }
 
+.score-button {
+  margin-top: 3rem;
+  margin-bottom: -5rem;
+  height: 3rem;
+  z-index: 3;
+}
+
 #outer-challenges-display {
-  z-index: 1;
+  z-index: 0;
 }
 
 #challenge-container {
-  z-index: 2;
   background-image: url('../images/chalkboard.png');
   font-family: Inkfree;
   display: flex;
   flex-direction: column;
+  position: relative;
+  z-index: 1;
 }
 
 #challenge-cards {
@@ -30,7 +38,7 @@
 
 #player-container {
   font-size: large;
-  z-index: 0;
+  z-index: 2;
 }
 
 #player-list {
@@ -38,11 +46,7 @@
 }
 
 #player-buttons {
-  z-index: -1;
-}
-
-#player > div {
-  z-index: 0;
+  z-index: 3;
 }
 
 .character1 {
@@ -110,6 +114,19 @@
   margin-bottom: 1rem;
 }
 
+.setup-label {
+  margin: 1rem .5rem 1rem 0rem;
+  line-height: 120%;
+}
+
+#sub-gamecomponents {
+  z-index: 0;
+  position: relative;
+}
+
+
+
+
 
 
 
@@ -161,10 +178,6 @@
   }
 
   .desktop-display {
-    display: none;
-  }
-
-  #platform-groups {
     display: none;
   }
 
@@ -227,14 +240,14 @@
   #text-bttn-combo > input {
     background-color: rgb(54, 51, 51);
     color: white;
-    width: 9rem;
+    width: 10rem;
     margin-top: 2rem;
     height: 1.8rem;
   }
   
   #player-submit-btn {
     font-size: 1rem;
-    width: 6rem;
+    width: 8rem;
     height: 1.5rem;
     margin-top: 2.1rem;
     margin-right: 1rem;
@@ -349,11 +362,11 @@
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    margin: 1rem 2rem 1rem 4rem;
+    margin: 1rem 2rem -5rem 4rem;
     height: 4rem;
     width: 32rem;
     font-size: 2rem;
-    z-index: 2;
+    z-index: 1;
   }
 
   #player-buttons > button {
@@ -378,6 +391,7 @@
     margin: 1rem;
     padding-top: 2rem;
     color: white;
+    position: relative;
   }
 
   #kitchencounter {
@@ -507,7 +521,7 @@
     background-color: rgb(54, 51, 51);
     color: white;
     border-radius: 8px;
-    width: 7.75rem;
+    width: 10rem;
     height: 2rem;
     font-size: 1.16rem;
     margin-top: 3rem;
@@ -516,7 +530,7 @@
   }
 
   #player-submit-btn {
-    width: 6rem;
+    width: 8rem;
     height: 2rem;
     margin-top: 3rem;
     border: none;
@@ -716,10 +730,11 @@
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    margin: 1rem 2rem 1rem 4rem;
+    margin: 1rem 2rem -5rem 4rem;
     height: 4rem;
     width: 32rem;
     font-size: 2rem;
+    z-index: 1;
   }
 
   #player-buttons > button {
@@ -828,7 +843,7 @@
     background-color: rgb(54, 51, 51);
     color: white;
     border-radius: 8px;
-    width: 7.75rem;
+    width: 10rem;
     height: 2rem;
     font-size: 1.16rem;
     margin-top: 3rem;
@@ -837,7 +852,7 @@
   }
 
   #player-submit-btn {
-    width: 6rem;
+    width: 8rem;
     margin-top: 2.8rem;
     border: none;
     border-radius: 6px;
@@ -847,10 +862,6 @@
 
   #phone-platformselect {
     display: none;
-  }
-
-  #platform-groups {
-    margin-right: 0rem;
   }
 
   .platform-checkgroup {
@@ -1048,10 +1059,11 @@
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    margin: 1rem 2rem 1rem 4rem;
+    margin: 1rem 2rem -5rem 4rem;
     height: 4rem;
     width: 32rem;
     font-size: 2rem;
+    z-index: 1;
   }
 
   #player-buttons > button {
@@ -1162,7 +1174,7 @@
     background-color: rgb(54, 51, 51);
     color: white;
     border-radius: 8px;
-    width: 7.75rem;
+    width: 10rem;
     height: 2rem;
     font-size: 1.16rem;
     margin-top: 3rem;
@@ -1181,10 +1193,6 @@
 
   #phone-platformselect {
     display: none;
-  }
-
-  #platform-groups {
-    margin-right: 0rem;
   }
 
   .platform-checkgroup {
@@ -1382,10 +1390,11 @@
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    margin: 1rem 2rem 1rem 4rem;
+    margin: 1rem 2rem -5rem 4rem;
     height: 4rem;
     width: 32rem;
     font-size: 2rem;
+    z-index: 1;
   }
 
   #player-buttons > button {
@@ -1494,7 +1503,7 @@
     background-color: rgb(54, 51, 51);
     color: white;
     border-radius: 8px;
-    width: 10.5rem;
+    width: 10rem;
     height: 3rem;
     font-size: 2rem;
     margin-top: 3rem;
@@ -1510,7 +1519,7 @@
 
   #player-submit-btn {
     height: 3rem;
-    width: 9rem;
+    width: 8rem;
     margin-top: 2.8rem;
     border: none;
     border-radius: 6px;
@@ -1525,6 +1534,7 @@
 
   #platform-groups {
     margin-left: 8rem;
+    margin-top: -5.75rem;
   }
 
   .platform-checkgroup {
@@ -1724,11 +1734,11 @@
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    margin: 1rem 2rem 1rem 4rem;
+    margin: 1rem 2rem -5rem 4rem;
     height: 4rem;
     width: 32rem;
     font-size: 2rem;
-    z-index: 2;
+    z-index: 1;
   }
 
   #player-buttons > button {
