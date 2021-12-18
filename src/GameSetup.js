@@ -246,10 +246,10 @@ const GameSetup = () => {
             value={playerName}
             onChange={ev => setPlayerName(ev.target.value)} 
           />
-          <button id="player-submit-btn" /*onKeyPress={(ev) => lookForEnter(ev)}*/ onClick={() => addUserName()}>Add User</button>
+          <button id="player-submit-btn" /*onKeyPress={(ev) => lookForEnter(ev)}*/ onClick={() => addUserName()}>Add Player</button>
         </div>
       </div>
-      <label id="desklabel">Choose<br/>your<br/>platform</label>
+      <label id="desklabel" className="setup-label">Choose<br/>your<br/>platform</label>
       <div id="platform-groups">
         <div className="platform-checkgroup">
           <div>
@@ -308,7 +308,7 @@ const GameSetup = () => {
           <option value="Switch">Switch</option>
           <option value="Mobile">Mobile</option>
         </select>
-      </div>
+      </div>{/*
       <div className="setup-control" id="splitscreen">
         <label>Split screen</label>
         <select id="SplitScreen" onChange={ev => setControlVal(ev)}>
@@ -340,8 +340,9 @@ const GameSetup = () => {
           <option value="16">Over 15 minutes</option>
         </select>
       </div>
-      <div className="setup-control" id="multi-control">
-        <label>Games<br/>available<br/>for your<br/>platform</label>
+      */}
+      <div className="setup-control setup-label" id="multi-control">
+        <label className="setup-label">Games<br/>available<br/>for your<br/>platform</label>
         <div id="scroller">
           <div id="multi-list">
             {displayGames.map((game, idx) => {

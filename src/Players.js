@@ -16,7 +16,8 @@ const Player = ({player}) => {
   );
 };
 
-const Players = () => {
+
+const PlayerButtons = () => {
   const [players, setPlayers] = useRecoilState(playersState);
 
   const massageStateArray = (stateArray) => {
@@ -55,13 +56,25 @@ const Players = () => {
     const incrementedPlayers = nextPlayer(tmpPlayers);
     setPlayers([...incrementedPlayers]);
   };
+
+  return (
+    <div id="playerbutton-container">
+      {!!players.length && 
+      <div id="playerbuttons">
+        <button className="score-button" onClick={() => addPoint()}>Add a Point!</button>
+        <button className="score-button" onClick={() => failed()}>Sorry, Next!</button>
+      </div>}
+    </div>
+  );
+};
+
+
+const Players = () => {
+  const [players, setPlayers] = useRecoilState(playersState);
   
   return (
     <div id="player-container">
-      {!!players.length && <div id="player-buttons">
-        <button className="score-button" onClick={() => addPoint()}>Succeeded!</button>
-        <button className="score-button" onClick={() => failed()}>Sorry, failed</button>
-      </div>}
+
       <div id="player-list">
         {players.map((player, idx) => {
           return (
@@ -69,10 +82,13 @@ const Players = () => {
           );
         })} 
       </div>
-      <div id="phone-playerline" ></div>
+      <div id="phone-playerline" />
     </div>
 
   );
 };
 
 export default Players;
+export {
+  PlayerButtons
+};
