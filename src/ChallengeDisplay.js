@@ -45,6 +45,8 @@ const ChallengeDisplay = () => {
         </div> 
       </div>
       <div className="mobilechallenge-container">
+        <Players />
+        <PlayerButtons />
         <div id="mobilebackground">
           <div id="mobilechallenge-cards">
             <Slider {...settings}>

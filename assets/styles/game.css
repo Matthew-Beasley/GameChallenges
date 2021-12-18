@@ -41,15 +41,6 @@
   z-index: 0;
 }
 
-#playerbutton-container {
-  height: fit-content;
-  width: fit-content;
-  width: 26rem;
-  margin-left: 15rem;
-  margin-top: -23rem;
-  z-index: 4;
-}
-
 #playerbuttons {
   display: flex;
   flex-direction: row;
@@ -244,7 +235,7 @@
   #text-bttn-combo > input {
     background-color: rgb(54, 51, 51);
     color: white;
-    width: 10rem;
+    width: 8rem;
     margin-top: 2rem;
     height: 1.8rem;
   }
@@ -373,13 +364,6 @@
     position: relative;
   }
 
-  #kitchencounter {
-    width: 31rem;
-    height: 12rem;
-    margin-left: -25rem;
-    margin-top: -3rem;
-  }
-
   .mobilechallenge-players {
     height: 15rem;
   }
@@ -405,6 +389,13 @@
   .slick-list {
     width: 90%;
     margin: .5rem;
+  }
+
+  #kitchencounter {
+    height: 12rem;
+    width: 31rem;
+    margin-top: -5.5rem;
+    margin-left: -2rem;
   }
 }
 
