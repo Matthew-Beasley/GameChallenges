@@ -4,7 +4,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { userState } from './RecoilState';
 import GameSetup from './GameSetup';
 import ChallengeDisplay from './ChallengeDisplay';
-import Players from './Players';
+import Players, { PlayerButtons } from './Players';
 import NavBar from './NavBar';
 
 const GameContainer = () => {
@@ -25,6 +25,7 @@ const GameContainer = () => {
         <div id="sub-gamecomponents">
           <Players />
           <ChallengeDisplay />
+          <PlayerButtons />
         </div>
       </div>
       <div id="phone-gamecomponents">
