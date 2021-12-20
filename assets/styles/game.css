@@ -191,7 +191,7 @@
     min-height: fit-content;
   }
 
-  #gamesetup-container #player-buttons{
+  #gamesetup-container #playerbuttons{
     display: none;
   }
 
@@ -237,13 +237,13 @@
     color: white;
     width: 8rem;
     margin-top: 2rem;
-    height: 1.8rem;
+    height: 2rem;
   }
   
   #player-submit-btn {
     font-size: 1rem;
     width: 8rem;
-    height: 1.5rem;
+    height: 2rem;
     margin-top: 2.1rem;
     margin-right: 1rem;
     margin-left: -1rem;
@@ -313,7 +313,14 @@
     display: none;
   }
 
-  #player-list{
+  #playerbuttons {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+  }
+
+#player-list{
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -1317,7 +1324,7 @@
     width: fit-content;
     width: 26rem;
     margin-left: 15rem;
-    margin-top: -28rem;
+    margin-top: -23rem;
     z-index: 4;
   }
 
@@ -1326,23 +1333,6 @@
     width: 4rem;
     margin: 1rem;
     color: black;
-  }
-
-  #player-buttons {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    margin: 1rem 2rem -5rem 4rem;
-    height: 4rem;
-    width: 32rem;
-    font-size: 2rem;
-    z-index: 1;
-  }
-
-  #player-buttons > button {
-    margin-left: 2rem;
-    width: 13rem;
-    border: 3px solid black;
   }
 
   #kitchencounter {
