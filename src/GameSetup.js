@@ -5,6 +5,7 @@ import { playersState, challengesState, csrfState, headerState, tokenState, user
 import { useHistory } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import Players from './Players';
+import Loader from 'react-loader-spinner';
 import Select from 'react-select';
 
 const GameSetup = () => {
@@ -28,6 +29,7 @@ const GameSetup = () => {
   const [online, setOnline] = useState('');
   const [timeLimit, setTimeLimit] = useState(0);
   const [usedCharacters, setUsedCharacters] = useState([]);
+  const [spinnerLoading, setSpinnerLoading] = useState(false);
   /*
   const lookForEnter = (ev) => {
     ev.key === 'Enter' ? addUserName : null;
@@ -137,7 +139,11 @@ const GameSetup = () => {
           DeckName: user.decks[i].name,
           DeckCode: user.decks[i].code
         };
+        // set spinner active
+        setSpinnerLoading(true);
         const response = await axios.post('/challenge/decks', query, headers);
+        // set spinner inactive
+        setSpinnerLoading(false);
         decks.push(...response.data);
       }
     }
@@ -235,6 +241,13 @@ const GameSetup = () => {
 
   return (
     <div id="gamesetup-container">
+      <Loader
+        type="Puff"
+        color="#00BFFF"
+        height={100}
+        width={100}
+        visible={spinnerLoading}
+      />
       <Players />
       <div className="setup-control" id="players">
         <label>Players</label>
