@@ -232,21 +232,28 @@
     justify-content: space-between;
   }
 
+  #text-bttn-combo {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+
   #text-bttn-combo > input {
     background-color: rgb(54, 51, 51);
     color: white;
-    width: 8rem;
+    width: 9rem;
     margin-top: 2rem;
+    margin-left: 1rem;
     height: 2rem;
   }
   
   #player-submit-btn {
     font-size: 1rem;
-    width: 8rem;
+    width: 9rem;
     height: 2rem;
     margin-top: 2.1rem;
     margin-right: 1rem;
-    margin-left: -1rem;
+    margin-left: 1rem;
   }
 
   #platform-groups {
