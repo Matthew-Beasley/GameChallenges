@@ -242,8 +242,7 @@ const GameSetup = () => {
   return (
     <div id="gamesetup-container">
       <Loader
-        id="loader"
-        type="ThreeDots"
+        type="Puff"
         color="#00BFFF"
         height={1000}
         width={1000}
