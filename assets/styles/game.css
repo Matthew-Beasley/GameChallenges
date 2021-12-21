@@ -4,6 +4,10 @@
   src: url("../fonts/Inkfree.ttf") format("truetype")
 }
 
+#spinner {
+  z-index: 5;
+}
+
 #game-container {
   display: flex;
   flex-direction: column;
