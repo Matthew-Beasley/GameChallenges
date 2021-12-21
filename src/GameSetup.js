@@ -242,10 +242,11 @@ const GameSetup = () => {
   return (
     <div id="gamesetup-container">
       <Loader
-        type="Puff"
+        id="loader"
+        type="ThreeDots"
         color="#00BFFF"
-        height={100}
-        width={100}
+        height={1000}
+        width={1000}
         visible={spinnerLoading}
       />
       <Players />
