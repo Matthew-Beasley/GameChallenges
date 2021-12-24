@@ -4,10 +4,6 @@
   src: url("../fonts/Inkfree.ttf") format("truetype")
 }
 
-#spinner {
-  z-index: 5;
-}
-
 #game-container {
   display: flex;
   flex-direction: column;
@@ -1334,7 +1330,7 @@
     width: fit-content;
     width: 26rem;
     margin-left: 15rem;
-    margin-top: -23rem;
+    margin-top: -27rem;
     z-index: 4;
   }
 

@@ -5,7 +5,6 @@ import { useCookies } from 'react-cookie';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { tokenState, csrfState, headerState, userState } from './RecoilState';
 import NavBar from './NavBar';
-
 import Modal from 'react-modal';
 
 const customStyles = {
@@ -31,7 +30,7 @@ const Login = () => {
   const [cookies, setCookie, removeCookie] = useCookies(['token']);
   const history = useHistory();
   let subtitle;
-  const [modalIsOpen, setIsOpen] = React.useState(false);
+  const [modalIsOpen, setIsOpen] = useState(false);
 
 
   function openModal() {

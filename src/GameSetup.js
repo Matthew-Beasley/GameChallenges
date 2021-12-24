@@ -5,8 +5,20 @@ import { playersState, challengesState, csrfState, headerState, tokenState, user
 import { useHistory } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import Players from './Players';
-import Loader from 'react-loader-spinner';
-import Select from 'react-select';
+import Modal from 'react-modal';
+//import Select from 'react-select';
+
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+};
+Modal.setAppElement('#root');
 
 const GameSetup = () => {
   const history = useHistory();
@@ -29,7 +41,23 @@ const GameSetup = () => {
   const [online, setOnline] = useState('');
   const [timeLimit, setTimeLimit] = useState(0);
   const [usedCharacters, setUsedCharacters] = useState([]);
-  const [spinnerLoading, setSpinnerLoading] = useState(false);
+  let subtitle;
+  const [modalIsOpen, setIsOpen] = useState(false);
+
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    subtitle.style.color = '#f00';
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
   /*
   const lookForEnter = (ev) => {
     ev.key === 'Enter' ? addUserName : null;
@@ -140,10 +168,9 @@ const GameSetup = () => {
           DeckCode: user.decks[i].code
         };
         // set spinner active
-        setSpinnerLoading(true);
+        openModal();
         const response = await axios.post('/challenge/decks', query, headers);
-        // set spinner inactive
-        setSpinnerLoading(false);
+        closeModal();
         decks.push(...response.data);
       }
     }
@@ -241,14 +268,17 @@ const GameSetup = () => {
 
   return (
     <div id="gamesetup-container">
-      <Loader
-        id="spinner"
-        type="Puff"
-        color="#00BFFF"
-        height={500}
-        width={500}
-        visible={spinnerLoading}
-      />
+      <Modal
+        isOpen={modalIsOpen}
+        onAfterOpen={afterOpenModal}
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="Modal"
+      >
+        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Getting Games</h2>
+        <div>Be back in a sec!</div>
+        <button onClick={closeModal}>close</button>
+      </Modal>
       <Players />
       <div className="setup-control" id="players">
         <label>Players</label>
