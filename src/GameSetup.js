@@ -277,7 +277,6 @@ const GameSetup = () => {
       >
         <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Getting Games</h2>
         <div>Be back in a sec!</div>
-        <button onClick={closeModal}>close</button>
       </Modal>
       <Players />
       <div className="setup-control" id="players">
