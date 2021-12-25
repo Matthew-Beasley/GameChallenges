@@ -32,7 +32,6 @@ const ChallengeDisplay = () => {
               if (item.show) {
                 return (
                   <div className="challenge-text" key={idx}>
-                    {console.log(item)}
                     <div className="challenge-title">{item.Game}</div>
                     <div className="challenge-rules">{item.Challenge}</div>
                     {!!item.TimeLimit && <div className="challenge-time">{`Time Limit: ${item.TimeLimit}`}</div>}
