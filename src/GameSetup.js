@@ -257,6 +257,13 @@ const GameSetup = () => {
   }, []);
 
   useEffect(() => {
+    axios.post('/challenge/list', {}, headers)
+      .then(response => {
+        setChallenges(response.data.games);
+      });
+  }, []);
+
+  useEffect(() => {
     parseChallneges();
   }, [user, PCChk, XboxChk, PlaystationChk, SwitchChk, MobileChk, splitScreen, kidFriendly, online, timeLimit]);
 
