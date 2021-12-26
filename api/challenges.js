@@ -19,7 +19,6 @@ const checkChallengeCache = (req, res, next) => {
       res.status(500).send(err);
     }
     else if (data) {
-      console.log('SERVED UP BY REDIS');
       res.send(JSON.parse(data));
     }
     else {
@@ -31,7 +30,6 @@ const checkChallengeCache = (req, res, next) => {
 challengeRouter.post('/list', checkChallengeCache, async (req, res, next) => {
   try {
     const data = await getChallenges(req.body);
-    console.log('SERVED UP BY MONGO');
     redisClient.set(JSON.stringify(req.body), JSON.stringify({games: data}));
     redisClient.expire(JSON.stringify(req.body), 3600);
     res.status(201).send({games: data});
@@ -50,14 +48,12 @@ challengeRouter.get('/gamenames', async (req, res, next) => {
 });
 
 const checkDeckCache = (req, res, next) => {
-  console.log('body in checkCache: ', req.body)
-  redisClient.get(JSON.stringify(req.body.DeckName), (err, data) => {
+  redisClient.get(req.body.DeckName, (err, data) => {
     if (err) {
       console.log(err);
       res.status(500).send(err);
     }
     else if (data) {
-      console.log('SERVED UP BY REDIS');
       res.send(JSON.parse(data));
     }
     else {
@@ -69,10 +65,8 @@ const checkDeckCache = (req, res, next) => {
 challengeRouter.post('/decks', checkDeckCache, async (req, res, next) => {
   try {
     const decks = await getDecks(req.body);
-    console.log('decks returned form getDecks(): ', decks)
-    console.log('SERVED UP BY MONGO');
-    redisClient.set(JSON.stringify(req.body.DeckName), JSON.stringify(decks));
-    redisClient.expire(JSON.stringify(req.body.DeckName), 3600);
+    redisClient.set(req.body.DeckName, JSON.stringify(decks));
+    redisClient.expire(req.body.DeckName, 3600);
     res.status(200).send(decks);
   } catch (error) {
     next(error);

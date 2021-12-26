@@ -168,9 +168,7 @@ const GameSetup = () => {
           DeckCode: user.decks[i].code
         };
         // set spinner active
-        openModal();
         const response = await axios.post('/challenge/decks', query, headers);
-        closeModal();
         decks.push(...response.data);
       }
     }
