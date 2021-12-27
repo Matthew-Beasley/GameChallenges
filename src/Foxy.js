@@ -35,6 +35,7 @@ const Foxy = () => {
         .then(() => {
           axios.post('/challenge/list', {}, headers)
             .then(response => {
+              console.log('challenges in foxy useEffect: ', response.data.games)
               setChallenges(response.data.games);
             });
         });

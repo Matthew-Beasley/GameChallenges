@@ -20,7 +20,7 @@ const customStyles = {
 };
 Modal.setAppElement('#root');
 
-const GameSetup = () => {
+const GameSetup = () =>   {
   const history = useHistory();
   const headers = useRecoilValue(headerState);
   const [players, setPlayers] = useRecoilState(playersState);
@@ -175,6 +175,7 @@ const GameSetup = () => {
     return decks;
   };
 
+
   const parseChallneges = async () => {
     const tmpChallenges = await getDecks();
     const parsed = new Set();
@@ -254,13 +255,6 @@ const GameSetup = () => {
           setUser(response.data[0]);
         });
     }
-  }, []);
-
-  useEffect(() => {
-    axios.post('/challenge/list', {}, headers)
-      .then(response => {
-        setChallenges(response.data.games);
-      });
   }, []);
 
   useEffect(() => {
