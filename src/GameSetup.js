@@ -161,7 +161,7 @@ const GameSetup = () =>   {
 
   const getDecks = async () => {
     const decks = [];
-    if (user.decks) {
+    /*if (user.decks) {
       for (let i = 0; i < user.decks.length; i++) {
         let query = {
           DeckName: user.decks[i].name,
@@ -171,13 +171,32 @@ const GameSetup = () =>   {
         const response = await axios.post('/challenge/decks', query, headers);
         decks.push(...response.data);
       }
+    }*/
+    const challengeList = (await axios.post('/challenge/list', {}, headers)).data.games;
+    console.log('user decks length', user.decks.length)
+    let l = 1;
+    for (let i = 0; i < user.decks.length; i++) {
+      const userDeckNumber = user.decks[i].name.slice(user.decks[i].name.indexOf('deck') + 5);
+      const userGame = user.decks[i].name.slice(0, user.decks[i].name.indexOf('deck') - 1);
+      //console.log('challengeList length', challengeList.length)
+      for (let j = 0; j < challengeList.length; j++) {
+        if (/*challengeList[j].Deck === userDeckNumber &&*/ challengeList[j].Game === userGame) {
+          //console.log(l++)
+          l++;
+          //console.log('challenge in loop ', challengeList[j])
+          decks.push(challengeList[j]);
+        }
+      }
     }
+    console.log('l count ', l)
+    console.log('decks.length: ', decks.length)
     return decks;
   };
 
 
   const parseChallneges = async () => {
     const tmpChallenges = await getDecks();
+    console.log('tmpChallenges: ', tmpChallenges)
     const parsed = new Set();
     for (let i = 0; i < tmpChallenges.length; i++) {
       if (PCChk === true && tmpChallenges[i].PC === true) {
