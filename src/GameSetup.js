@@ -20,7 +20,7 @@ const customStyles = {
 };
 Modal.setAppElement('#root');
 
-const GameSetup = () => {
+const GameSetup = () =>   {
   const history = useHistory();
   const headers = useRecoilValue(headerState);
   const [players, setPlayers] = useRecoilState(playersState);
@@ -161,19 +161,20 @@ const GameSetup = () => {
 
   const getDecks = async () => {
     const decks = [];
-    if (user.decks) {
-      for (let i = 0; i < user.decks.length; i++) {
-        let query = {
-          DeckName: user.decks[i].name,
-          DeckCode: user.decks[i].code
-        };
-        // set spinner active
-        const response = await axios.post('/challenge/decks', query, headers);
-        decks.push(...response.data);
+    const challengeList = (await axios.post('/challenge/list', {}, headers)).data.games;
+    let l = 1;
+    for (let i = 0; i < user.decks.length; i++) {
+      const userDeckNumber = parseInt(user.decks[i].name.slice(user.decks[i].name.indexOf('deck') + 5));
+      const userGame = user.decks[i].name.slice(0, user.decks[i].name.indexOf('deck') - 1);
+      for (let j = 0; j < challengeList.length; j++) {
+        if (challengeList[j].Deck === userDeckNumber && challengeList[j].Game === userGame) {
+          decks.push(challengeList[j]);
+        }
       }
     }
     return decks;
   };
+
 
   const parseChallneges = async () => {
     const tmpChallenges = await getDecks();
@@ -254,13 +255,6 @@ const GameSetup = () => {
           setUser(response.data[0]);
         });
     }
-  }, []);
-
-  useEffect(() => {
-    axios.post('/challenge/list', {}, headers)
-      .then(response => {
-        setChallenges(response.data.games);
-      });
   }, []);
 
   useEffect(() => {
