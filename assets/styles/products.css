@@ -28,10 +28,6 @@
   margin: .5rem;
  }
 
- .mydecks {
-  margin-left: 8rem;
- }
-
  .gamelist {
   display: flex;
   flex-direction: column;
@@ -103,6 +99,10 @@
   .decks {
       font-size: 1.8rem;
       margin: 1.5rem;
+  }
+
+  .ownedlist {
+    margin-left: 8rem;
   }
  }
 

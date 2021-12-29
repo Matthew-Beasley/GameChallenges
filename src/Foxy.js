@@ -115,7 +115,7 @@ const Foxy = () => {
         <NavBar />
         <div className="shoppinglist" id="owned-decks">
           <h3 className="heading">Decks I own</h3>
-          <ul className="decklist decks">
+          <ul className="decklist decks ownedlist">
             {!!user.email && user.decks.map((item, ord) => {
               return (
                 <li key={ord}>
