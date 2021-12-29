@@ -9,11 +9,6 @@
   margin-top: 0rem;
 }
 
-#login-container > a {
-  color: white;
-  text-decoration: none;
-}
-
 #welcome-user {
   width: fit-content;
 }
@@ -27,6 +22,11 @@
 #login-inputs > button {
   background-color: darkgray;
   margin-left: 2rem;
+}
+
+#login-container > a {
+  margin-top: 5rem;
+  margin-left: 30rem;
 }
 
 #login-container > img {
