@@ -16,6 +16,15 @@
     margin-top: -8rem;
   }
 
+  #landingpage-image > hr {
+    border: 25px solid #8A5D4D;
+    margin: -5px 0px 0px 2rem;
+    z-index: 3;
+  }
+
+
+
+
   @media only screen and (max-width: 900px) {
     #landingpage-wrapper {
       display: none;

@@ -140,7 +140,7 @@ const LandingPage = () => {
               </div>
             </div>
             <img src="../assets/images/GameOn-full.png" />
-            {/*<div id="table"></div>*/}
+            <hr />
           </div>
         </div>
         <div id="landingpage-phone">
