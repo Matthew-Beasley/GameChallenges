@@ -140,7 +140,7 @@ const LandingPage = () => {
               </div>
             </div>
             <img src="../assets/images/GameOn-full.png" />
-            <hr />
+            <div className="lptable" />
           </div>
         </div>
         <div id="landingpage-phone">

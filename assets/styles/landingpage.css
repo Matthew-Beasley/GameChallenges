@@ -16,10 +16,12 @@
     margin-top: -8rem;
   }
 
-  #landingpage-image > hr {
-    border: 25px solid #8A5D4D;
+  .lptable {
+    width: 100%;
+    height: 35px;
+    border-radius: 17px;
+    background-image: linear-gradient(rgb(194, 136, 136), rgb(102, 43, 43));
     margin: -5px 0px 0px 1rem;
-    z-index: 3;
   }
 
 
