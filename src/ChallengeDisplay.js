@@ -36,6 +36,7 @@ const ChallengeDisplay = () => {
                     <div className="challenge-rules">{item.Challenge}</div>
                     {!!item.TimeLimit && <div className="challenge-time">{`Time Limit: ${item.TimeLimit}`}</div>}
                     {!!item.Attempts && <div className="challenge-attempts">{`Attempts: ${item.Attempts}`}</div>}
+                    <div className="challenge-rules">Suggested number of players {item.Players}</div>
                   </div>
                 );}
             })}
@@ -56,6 +57,7 @@ const ChallengeDisplay = () => {
                       <div className="challenge-title">{item.Game}</div>
                       <div className="challenge-rules">{item.Challenge}</div>
                       {!!item.TimeLimit && <div className="challenge-time">{`Time Limit: ${item.TimeLimit}`}</div>}
+                      <div className="challenge-rules">Number of players {item.Players}</div>
                     </div>
                   );}
               })}
