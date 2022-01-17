@@ -16,8 +16,6 @@ const About = () => {
         </div>
         <p>We love gaming - we love our old games – we miss our old games.  But let’s face it.  We’ve played them out and they’ve lost their shine.</p>
         <p>So we found a way to bring them back.  We pulled them up and got creative. It’s a simple enough idea, really.  Just create challenges that have nothing to do with the original campaign.</p>
-        <p>Your first deck is free.  It will contain 10 challenges for the game of your choice.  Each challenge will take anywhere from 5 – 20 minutes to complete, so it’s enough for an evening of fun.  After that, it’s just $1.99 for each deck.  Choose from over 20 different games now, with even more to be added soon.
-        </p>
         <h3>Road Map:</h3>
         <p>The current game is very much a beta version, so any bugs can be submitted in the contact us page.</p>
         <p>The next steps are:</p>
