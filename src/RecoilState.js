@@ -54,6 +54,11 @@ const emailKeyState = atom({
   default: 'd19d9021-53e9-4050-b406-07ab3dccd486'
 });
 
+const socketState = atom({
+  key: 'socketState',
+  default: undefined
+});
+
 const headerState = selector({
   key: 'headerState',
   get: ({get}) => {
@@ -77,5 +82,6 @@ export {
   challengesState,
   csrfState,
   keyState,
-  emailKeyState
+  emailKeyState,
+  socketState
 };

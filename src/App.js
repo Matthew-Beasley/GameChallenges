@@ -27,6 +27,7 @@ const App = () => {
     setCsrf(cookies.CSRF_token);
   }, []);
 
+
   return (
     <div id="app-container">
       <Route exact path="/" component={LandingPage} />

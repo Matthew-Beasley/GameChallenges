@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { playersState, challengesState, csrfState, headerState, tokenState, userState } from './RecoilState';
+import { playersState, challengesState, csrfState, headerState, tokenState, userState, socketState } from './RecoilState';
 import { useHistory } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import Players from './Players';
@@ -19,6 +19,7 @@ const customStyles = {
   },
 };
 Modal.setAppElement('#root');
+
 
 const GameSetup = () =>   {
   const history = useHistory();
@@ -43,6 +44,37 @@ const GameSetup = () =>   {
   const [usedCharacters, setUsedCharacters] = useState([]);
   let subtitle;
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [fired, setFired] = useState('');
+  const [socket, setSocket] = useRecoilState(socketState);
+
+
+
+
+  useEffect(() => {
+    if (!socket) {
+      setSocket(new WebSocket('ws://localhost:8080'));
+    }
+  },[]);
+  
+  useEffect(() => {
+    if (socket) {
+      socket.onopen = () => {
+      //socket.send('Test string from client')
+        console.log('Client Socket Opened!');
+      };
+  
+      socket.onmessage = (data) => {
+        console.log('Client recieved ' + data.data + 'from socket server');
+      };
+    }
+  }, [socket]);
+    
+  const fireSocket = () => {
+    socket.send('Hello from the client!');
+  };
+
+
+
 
 
   function openModal() {
@@ -267,6 +299,9 @@ const GameSetup = () =>   {
 
   return (
     <div id="gamesetup-container">
+      <div id="sockets">
+        <button onClick={() => fireSocket()}>Fire socket</button>
+      </div>
       <Modal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
