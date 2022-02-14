@@ -1,11 +1,19 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { playersState, challengesState, csrfState, headerState, tokenState, userState, socketState } from './RecoilState';
+import { playersState, 
+  challengesState, 
+  csrfState, 
+  headerState, 
+  tokenState, 
+  userState, 
+  socketState,
+  gameCodeState } from './RecoilState';
 import { useHistory } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import Players from './Players';
 import Modal from 'react-modal';
+import { v4 as uuidv4 } from 'uuid';
 //import Select from 'react-select';
 
 const customStyles = {
@@ -46,15 +54,14 @@ const GameSetup = () =>   {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [fired, setFired] = useState('');
   const [socket, setSocket] = useRecoilState(socketState);
+  const [gameCode, setGameCode] = useRecoilState(gameCodeState);
+  const [room, setRoom] = useState('');
 
 
 
-
-  useEffect(() => {
-    if (!socket) {
-      setSocket(new WebSocket('ws://localhost:8080'));
-    }
-  },[]);
+  const generateGameCode = () => {
+    setGameCode(uuidv4().substring(0, 6));
+  };
   
   useEffect(() => {
     if (socket) {
@@ -71,6 +78,22 @@ const GameSetup = () =>   {
     
   const fireSocket = () => {
     socket.send('Hello from the client!');
+  };
+
+  const connectSocket= ( )=> {
+    if (gameCode) {
+      setSocket(new WebSocket(`ws://localhost:8080?room=${gameCode}`));
+    } else if (room) {
+      setSocket(new WebSocket(`ws://localhost:8080?room=${room}`));
+    } else {
+      alert('Need to enter a room code.')
+    }
+  };
+
+  const closeSocket = () => {
+    setGameCode('');
+    socket.close();
+    setRoom('')
   };
 
 
@@ -300,8 +323,13 @@ const GameSetup = () =>   {
   return (
     <div id="gamesetup-container">
       <div id="sockets">
+        <button onClick={() => generateGameCode()}>Generate a room code</button>
+        <input type="text" onChange={(e) => setRoom(e.target.value)} />
+        <button onClick={() => connectSocket()}>Connect to Server</button>
         <button onClick={() => fireSocket()}>Fire socket</button>
+        <button onClick={() => closeSocket()}>Leave Game</button>
       </div>
+      <div id="room">{`Room Number is ${gameCode}`}</div>
       <Modal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}

@@ -59,6 +59,11 @@ const socketState = atom({
   default: undefined
 });
 
+const gameCodeState = atom({
+  key: 'gameCodeState',
+  default: ''
+});
+
 const headerState = selector({
   key: 'headerState',
   get: ({get}) => {
@@ -83,5 +88,6 @@ export {
   csrfState,
   keyState,
   emailKeyState,
-  socketState
+  socketState,
+  gameCodeState
 };
