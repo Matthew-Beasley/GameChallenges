@@ -8,12 +8,14 @@ import { playersState,
   tokenState, 
   userState, 
   socketState,
-  gameCodeState } from './RecoilState';
+  gameCodeState,
+  globalGameState } from './RecoilState';
 import { useHistory } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import Players from './Players';
 import Modal from 'react-modal';
 import { v4 as uuidv4 } from 'uuid';
+import _ from 'lodash';
 //import Select from 'react-select';
 
 const customStyles = {
@@ -55,6 +57,7 @@ const GameSetup = () =>   {
   const [fired, setFired] = useState('');
   const [socket, setSocket] = useRecoilState(socketState);
   const [gameCode, setGameCode] = useRecoilState(gameCodeState);
+  const [globalGame, setGlobalGame] = useRecoilState(globalGameState);
   const [room, setRoom] = useState('');
 
 
@@ -66,19 +69,18 @@ const GameSetup = () =>   {
   useEffect(() => {
     if (socket) {
       socket.onopen = () => {
-      //socket.send('Test string from client')
         console.log('Client Socket Opened!');
       };
   
-      socket.onmessage = (data) => {
-        console.log('Client recieved ' + data.data + 'from socket server');
+      socket.onmessage = (event) => {
+        //const string = new TextDecoder('utf-8').decode(event);
+        //console.log('message sent from other player', string);
+        console.log(event.data)
+        //setGlobalGame(event.data);
       };
     }
   }, [socket]);
-    
-  const fireSocket = () => {
-    socket.send('Hello from the client!');
-  };
+  
 
   const connectSocket= ( )=> {
     if (gameCode) {
@@ -86,17 +88,20 @@ const GameSetup = () =>   {
     } else if (room) {
       setSocket(new WebSocket(`ws://localhost:8080?room=${room}`));
     } else {
-      alert('Need to enter a room code.')
+      alert('Need to enter a room code.');
     }
+    setGlobalGame({players: []});
   };
 
   const closeSocket = () => {
     setGameCode('');
     socket.close();
-    setRoom('')
+    setRoom('');
   };
 
-
+  const fireSocket = () => {
+    socket.send('Hello from the client!');
+  };
 
 
 
@@ -118,8 +123,13 @@ const GameSetup = () =>   {
     ev.key === 'Enter' ? addUserName : null;
   };
 */
+
+
+
+
   const addUserName = () => {
-    if( !playerName) {
+    const tmpGlobal = _.cloneDeep(globalGame);
+    if (!playerName) {
       alert('Oops! Player name can\'t be empty');
     } else {
       //choose a character
@@ -131,14 +141,27 @@ const GameSetup = () =>   {
           character = `character${Math.floor(Math.floor(Math.random() * (8 - 1 + 1)) + 1)}`;
         }
         setUsedCharacters([...usedCharacters, character]);
-        console.log(usedCharacters);
         const contestant = { Name: playerName, MyTurn: false, Score: 0, Background: character} ;
         players.length ? contestant.MyTurn = false : contestant.MyTurn = true;
+        //const globalContestants = Object.entries(tmpGlobal.players);
+        /* for (let i = 0; i < globalContestants.length; i++) {
+          if (!players.includes(globalContestants[i])) {
+            setPlayers([...players, globalContestants[i]]);
+          } else {
+            setPlayers([...players, contestant]);
+          }
+        }*/
+        tmpGlobal.players = players;
+        //console.log(tmpGlobal.players, players)
+        socket.send('sent from addUserName');
         setPlayers([...players, contestant]);
       }
       setPlayerName('');
     }
   };
+
+
+
 
   const getDisplayGames = () => {
     const tmpGames = new Set();
@@ -194,7 +217,7 @@ const GameSetup = () =>   {
       }
     }
   };
-
+  /*
   const setControlVal = (ev) => {
     switch (ev.target.id) {
     case 'SplitScreen':
@@ -213,7 +236,7 @@ const GameSetup = () =>   {
       return;
     }
   };
-
+*/
   const getDecks = async () => {
     const decks = [];
     const challengeList = (await axios.post('/challenge/list', {}, headers)).data.games;

@@ -64,6 +64,11 @@ const gameCodeState = atom({
   default: ''
 });
 
+const globalGameState = atom ({
+  key: 'globalGameState',
+  default: {players: []}
+});
+
 const headerState = selector({
   key: 'headerState',
   get: ({get}) => {
@@ -89,5 +94,6 @@ export {
   keyState,
   emailKeyState,
   socketState,
-  gameCodeState
+  gameCodeState,
+  globalGameState
 };
