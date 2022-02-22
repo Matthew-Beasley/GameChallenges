@@ -75,7 +75,7 @@ const GameSetup = () =>   {
       socket.onmessage = (event) => {
         //const string = new TextDecoder('utf-8').decode(event);
         //console.log('message sent from other player', string);
-        console.log(event.data)
+        console.log(event.data);
         //setGlobalGame(event.data);
       };
     }
@@ -100,7 +100,7 @@ const GameSetup = () =>   {
   };
 
   const fireSocket = () => {
-    socket.send('Hello from the client!');
+    socket.send(JSON.stringify({test: 'success!'}));
   };
 
 
