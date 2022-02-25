@@ -6,10 +6,13 @@
   justify-content: space-between;
   background-color: rgb(54, 51, 51);
   min-width: 100%;
-  min-height: 3.5rem;
+  min-height: 2.4rem;
   margin-top: 0rem;
   color: white;
-  font-family: 'Arial Rounded MT Bold', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+#dropdown-basic-button {
+  background-color: rgb(54, 51, 51);
 }
 
 .logout-text {
@@ -30,24 +33,28 @@
   font-size: 1.4rem;
   color: white;
   text-decoration: none;
-  margin: 1rem 4rem 0rem 2rem;
+  margin: 0rem 4rem 0rem 2rem;
 }
 
 @media only screen and (max-width: 1112px) {
   .nav-links > a {
-    margin: 1rem 3rem 1rem 2rem
+    margin: 0rem 3rem 1rem 2rem
   }
 }
 
 @media only screen and (max-width: 1069px) {
   .nav-links > a {
-    margin: 1rem 2rem 1rem 1.5rem;
+    margin: 0rem 2rem 1rem 1.5rem;
   }
 }
 
 @media only screen and (max-width: 912px) {
   #navbar {
     min-height: 4.5rem;
+  }
+
+  #dropdown-basic-button {
+    width: 175px;
   }
 }
 
@@ -71,5 +78,9 @@
     align-items: center;
     min-height: fit-content;
     max-width: 100vw;
+  }
+
+  #dropdown-basic-button {
+    width: 175px;
   }
 }

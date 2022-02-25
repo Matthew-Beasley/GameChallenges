@@ -5,9 +5,8 @@
   width: 100vw;
   height: 100vh;
   justify-content: center;
-  font-family: 'Arial Rounded MT Bold', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  background-color: rgb(190, 205, 211);
-  color: black;
+  background-color: rgb(28, 9, 80);
+  color: aliceblue;
 }
 
 #create-column {
@@ -61,10 +60,9 @@
     padding: 0rem 2rem 1rem 2rem;
     width: 100vw;
     height: 100vh;
-    align-items: center;
-    font-family: 'Arial Rounded MT Bold', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    background-color: rgb(190, 205, 211);
-    color: black;
+    align-items: center; 
+    background-color: rgb(28, 9, 80);
+    color: aliceblue;
   }
 
   #create-column > form > a {

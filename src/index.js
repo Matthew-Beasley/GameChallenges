@@ -17,6 +17,7 @@ import '../assets/styles/login.css';
 import '../assets/styles/createUser.css';
 import '../assets/styles/nav.css';
 import '../assets/fonts/Inkfree.ttf';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const root = document.querySelector('#root');
 

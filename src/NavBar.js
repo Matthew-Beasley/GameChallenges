@@ -3,6 +3,7 @@ import { Route, Link, useHistory } from 'react-router-dom';
 import { useRecoilState, useRecoilValue} from 'recoil';
 import { useCookies } from 'react-cookie';
 import { tokenState, csrfState, headerState, userState } from './RecoilState';
+import { DropdownButton, Dropdown } from 'react-bootstrap';
 
 
 const NavBar = () => {
@@ -29,25 +30,26 @@ const NavBar = () => {
   return (
     <div id="navbar">
       <div className="nav-links">
-        <Link to="/" >Thwart Me</Link>
-        <Link to="/rules" >How to Play</Link>
-        <Link to="/about" >About Us</Link>
-        <Link to="/contact">Contact Us</Link>
-        <a href="https://discord.gg/tdyGFH6dwu" target="_blank" rel="noopener noreferrer">Discord Channel</a>
-        {!!user.email && <Link to="/shopping">Get Decks</Link>}
-        {!!user.email && <Link to="/gamepage">Play the Game</Link>}
+        <DropdownButton id="dropdown-basic-button" title="About the Game">
+          <Dropdown.Item href="#/rules">How to Play</Dropdown.Item>
+          <Dropdown.Item href="#/about">About Us</Dropdown.Item>
+          <Dropdown.Item href="#/contact">Contact Us</Dropdown.Item>
+        </DropdownButton>
+        <DropdownButton id="dropdown-basic-button" title="Game Links">
+          <Dropdown.Item href="#/">Home</Dropdown.Item>
+          <Dropdown.Item href="https://discord.gg/tdyGFH6dwu" target="_blank" rel="noopener noreferrer">Discord</Dropdown.Item>
+        </DropdownButton>
+        {!!user.email &&
+        <DropdownButton id="dropdown-basic-button" title="Members Only">
+          <Dropdown.Item href="#/shopping">Buy New Decks</Dropdown.Item>
+          <Dropdown.Item href="#/gamepage">Play the Game</Dropdown.Item>
+        </DropdownButton>}
+        <DropdownButton id="dropdown-basic-button" title="Account">
+          <Dropdown.Item href="#/login">Log In</Dropdown.Item>
+          <Dropdown.Item href="#/createuser">Create An Account</Dropdown.Item>
+          <Dropdown.Item onClick={() => logout()}>Log out</Dropdown.Item>
+        </DropdownButton>
       </div>
-      {!user.email &&
-        <div className="nav-links">
-          <Link to="/login">Sign in</Link>
-          <Link to="/createuser">Create Account</Link>
-        </div>
-      }
-      {!!user.email && 
-        <div className="logout-text nav-links" onClick={() => logout()}>
-          Logout
-        </div>
-      }
     </div>
   );
 };
