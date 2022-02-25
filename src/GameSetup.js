@@ -53,6 +53,7 @@ const GameSetup = () =>   {
   const [timeLimit, setTimeLimit] = useState(0);
   const [usedCharacters, setUsedCharacters] = useState([]);
   let subtitle;
+  let tmpGlobal = {};
   const [modalIsOpen, setIsOpen] = useState(false);
   const [fired, setFired] = useState('');
   const [socket, setSocket] = useRecoilState(socketState);
@@ -71,12 +72,16 @@ const GameSetup = () =>   {
       socket.onopen = () => {
         console.log('Client Socket Opened!');
       };
-  
+/*
+      socket.onAfterOpen = () => {
+        console.log('socket opened');
+      }
+ */ 
       socket.onmessage = (event) => {
-        //const string = new TextDecoder('utf-8').decode(event);
-        //console.log('message sent from other player', string);
-        console.log(event.data);
+        console.log('event.data.players in onmessage: ', JSON.parse(event.data));
         //setGlobalGame(event.data);
+        //getGlobalPlayers();
+        setPlayers([...event.data]);
       };
     }
   }, [socket]);
@@ -126,9 +131,17 @@ const GameSetup = () =>   {
 
 
 
+  const getGlobalPlayers = () => {
+    console.log([...globalGame.players])
+    //setPlayers([...globalGame.players]);
+    //setPlayerName('');
+  };
 
-  const addUserName = () => {
-    const tmpGlobal = _.cloneDeep(globalGame);
+
+
+
+  const addUserName = () => {  
+    //let tmpGlobal //= _.cloneDeep(globalGame);
     if (!playerName) {
       alert('Oops! Player name can\'t be empty');
     } else {
@@ -143,24 +156,24 @@ const GameSetup = () =>   {
         setUsedCharacters([...usedCharacters, character]);
         const contestant = { Name: playerName, MyTurn: false, Score: 0, Background: character} ;
         players.length ? contestant.MyTurn = false : contestant.MyTurn = true;
-        //const globalContestants = Object.entries(tmpGlobal.players);
-        /* for (let i = 0; i < globalContestants.length; i++) {
-          if (!players.includes(globalContestants[i])) {
-            setPlayers([...players, globalContestants[i]]);
-          } else {
-            setPlayers([...players, contestant]);
-          }
-        }*/
-        tmpGlobal.players = players;
-        //console.log(tmpGlobal.players, players)
-        socket.send('sent from addUserName');
+        //tmpGlobal.players = [...players, contestant];
+        console.log('tmbGlobal.players in addUser: ', JSON.stringify(tmpGlobal.players))
+       // socket.send(tmpGlobal)
+        //setGlobalGame({...tmpGlobal});
         setPlayers([...players, contestant]);
       }
       setPlayerName('');
+      //tmpGlobal.players = [];
+      //tmpGlobal.players.push([...players])
+      //console.log('tmpGlobal after setPlayerName ', JSON.stringify(tmpGlobal))
+      socket.send(JSON.stringify(tmpGlobal))
     }
   };
 
 
+  useEffect(() => {
+  //  setGlobalGame({...tmpGlobal});
+  },[players]);
 
 
   const getDisplayGames = () => {
