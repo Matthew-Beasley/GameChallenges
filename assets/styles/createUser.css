@@ -5,8 +5,8 @@
   width: 100vw;
   height: 100vh;
   justify-content: center;
-  background-color: rgb(28, 9, 80);
-  color: aliceblue;
+  background-color: rgb(190, 205, 211);
+  color: black;
 }
 
 #create-column {
@@ -61,8 +61,8 @@
     width: 100vw;
     height: 100vh;
     align-items: center; 
-    background-color: rgb(28, 9, 80);
-    color: aliceblue;
+    background-color: rgb(190, 205, 211);
+    color: black;
   }
 
   #create-column > form > a {

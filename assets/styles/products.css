@@ -2,13 +2,13 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  background-color: rgb(28, 9, 80);
+  background-color: rgb(190, 205, 211);
   height: 100%;
-  color:rgb(191, 217, 240);
+  color: rgb(59, 62, 71);
  }
 
  #foxy a {
-  color: rgb(146, 146, 185);
+  color: rgb(74, 74, 235);
   text-decoration: none;
  }
 
@@ -20,7 +20,7 @@
   font-size: 2rem;
   margin-left: 5rem;
   margin-right: 5rem;
-  border-bottom: rgb(191, 217, 240) 2px solid;
+  border-bottom: rgb(59, 62, 71) 2px solid;
  }
 
  .decklist {

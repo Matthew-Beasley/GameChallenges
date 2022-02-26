@@ -8,9 +8,9 @@
   display: flex;
   flex-direction: column;
   min-height: fit-content;
-  background-color: rgb(28, 9, 80);
+  background-color: rgb(190, 205, 211);
   background-size: auto;
-  color:aliceblue;
+  color: rgb(59, 62, 71);
 }
 
 #outer-challenges-display {
@@ -117,6 +117,7 @@
 .setup-label {
   margin: 1rem .5rem 1rem 0rem;
   line-height: 120%;
+  color: rgb(59, 62, 71)
 }
 
 
@@ -131,10 +132,6 @@
 
   #navbar {
     margin-bottom: 2rem;
-  }
-
-  #game-container {
-    /*min-height: 500rem;*/
   }
 
   /* ===== GameSetup Styles ===== */
@@ -316,7 +313,7 @@
     min-width: 100vw;
     min-height: 130vh;
     margin: 0;
-    background-color: rgb(28, 9, 80);
+    background-color: rgb(190, 205, 211);
   }
 
   #challenge-container {
