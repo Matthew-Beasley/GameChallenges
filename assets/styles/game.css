@@ -133,9 +133,11 @@
     margin-bottom: 2rem;
   }
 
+  #game-container {
+    /*min-height: 500rem;*/
+  }
+
   /* ===== GameSetup Styles ===== */
-
-
 
   .setup-control {
     display: flex;
@@ -156,14 +158,13 @@
     height: 2rem;
     margin-top: 1rem;
     border: none;
-    background-color: 
-   rgb(54, 51, 51);
+    background-color: rgb(54, 51, 51);
     color: white;
-    border-radius: 8px;
+    border-radius: 6px;
   }
   
   #gamesetup-container button {
-    background-image: linear-gradient(rgb(40, 226, 214), rgb(57, 63, 65));
+    background-image: linear-gradient(rgb(73, 166, 179), rgb(57, 63, 65));
     color: white;
     font-size: 1.16rem;
   }
@@ -188,8 +189,9 @@
   }
 */
   #gamesetup-container {
-    min-width: 400px;  /*=== this adusts the width of setup ===*/
-    min-height: fit-content;
+    width: 100%;  /*=== this adusts the width of setup ===*/
+    height: 740px;
+    /*min-height: fit-content;*/
   }
 
   #gamesetup-container #playerbuttons{
@@ -224,6 +226,7 @@
   #phone-gamecomponents {
     display: flex;
     flex-direction: column;
+   /* min-height: 500rem; /* check this one */
   }
 
   .setup-control {
@@ -286,6 +289,7 @@
     display:flex;
     flex-direction: row;
     justify-content: center;
+   /* min-height: 500rem;*/
     width: 400px;
   }
 
@@ -296,7 +300,7 @@
     border: none;
     border-radius: 30px;
     color: white;
-    font-size: 25px;
+    font-size: 20px;
     font-weight: bold;
     background-image: none;
     background-color: rgb(243, 16, 16);
@@ -1597,7 +1601,7 @@
   #kitchencounter {
     height: 30rem;
     width: 110rem;
-    margin-top: 10rem;
+    margin-top: 10 rem;
     margin-left: -34rem;
   }
 
