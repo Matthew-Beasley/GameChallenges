@@ -628,9 +628,9 @@
   }
 
   #challenge-cards {
-    width: 20rem;
+    width: 25rem;
     height: 13rem;
-    margin-top: 8rem;
+    margin-top: 4rem;
   }
 
   #challenge-cards > div {
@@ -714,8 +714,8 @@
   #kitchencounter {
     height: 18rem;
     width: 55rem;
-    margin-top: 4rem;
-    margin-left: -18rem;
+    margin-top: 8rem;
+    margin-left: -16rem;
   }
 }
 
@@ -933,9 +933,9 @@
   }
 
   #challenge-cards {
-    width: 28rem;
+    width: 34rem;
     height: 10.5rem;
-    margin-top: 8rem;
+    margin-top: 4rem;
   }
 
   #challenge-cards > div {
@@ -1028,8 +1028,8 @@
   #kitchencounter {
     height: 28rem;
     width: 77rem;
-    margin-top: 2rem;
-    margin-left: -25rem;
+    margin-top: 8rem;
+    margin-left: -22rem;
   }
 }
 
@@ -1249,9 +1249,9 @@
   }
 
   #challenge-cards {
-    width: 28rem;
+    width: 34rem;
     height: 10.5rem;
-    margin-top: 8rem;
+    margin-top: 4rem;
   }
 
   #challenge-cards > div {
@@ -1344,8 +1344,8 @@
   #kitchencounter {
     height: 28rem;
     width: 75rem;
-    margin-top: 7rem;
-    margin-left: -25rem;
+    margin-top: 12rem;
+    margin-left: -21rem;
   }
 }
 
@@ -1576,9 +1576,9 @@
   }
 
   #challenge-cards {
-    width: 40rem;
-    height: 20rem;
-    margin-top: 10rem;
+    width: 45rem;
+    height: 2rem;
+    margin-top: 5rem;
   }
 
   #challenge-cards > div {
@@ -1613,8 +1613,8 @@
   #kitchencounter {
     height: 30rem;
     width: 110rem;
-    margin-top: 5rem;
-    margin-left: -37rem;
+    margin-top: 11rem;
+    margin-left: -34rem;
   }
 
 
