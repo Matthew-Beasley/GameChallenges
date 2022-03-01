@@ -1,4 +1,72 @@
-#landingpage {
+
+#landingpage-desktop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(137, 207, 233);
+  min-height: 100vh;
+}
+
+#thwartme-heading {
+  margin-top: 8rem;
+  max-width: 600px;
+  max-height: 100px;
+}
+
+#landingpage-desktop > p {
+  font-size: 2rem;
+  text-align: center;
+  color:rgb(42, 62, 69);
+  margin-top: 4rem;
+}
+
+#landingpage-phone {
+  display: none;
+}
+
+
+/*----- BottoBar Styles =====*/
+
+#bottombar-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: rgb(47, 82, 114);
+  height: 4rem;
+  width: 100%;
+  padding: 1.5rem;
+}
+
+#bottombar-container > p {
+  color: white;
+}
+
+#bottombar-container > p > a {
+  color: white;
+  font-size: medium;
+  margin: 4rem 3rem 0rem 3rem;
+}
+
+
+
+@media only screen and (max-width: 900px) {
+  #landingpage-desktop {
+    display: none;
+  }
+
+  #landingpage-phone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media only screen and (min-width: 901px) {
+
+}
+
+
+/*#landingpage {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -492,5 +560,5 @@
     #signup-text > div {
       margin-top: 3rem;
     }
-  }
+  }*/
   

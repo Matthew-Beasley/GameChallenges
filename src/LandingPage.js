@@ -5,7 +5,7 @@ import { csrfState, tokenState, emailKeyState, userState , headerState } from '.
 import { useCookies } from 'react-cookie';
 import CryptoJS from 'crypto-js';
 import axios from 'axios';
-import NavBar from './NavBar';
+import BottomBar from './BottomBar';
 import Modal from 'react-modal';
 
 const customStyles = {
@@ -107,7 +107,7 @@ const LandingPage = () => {
       if (token) {
         axios.post('/user/token', { token: token }, headers).then(response => {
           setRecoilUser(response.data[0]);
-         // history.push('/shopping');
+          // history.push('/shopping');
         });
       }
     }
@@ -127,21 +127,10 @@ const LandingPage = () => {
         <button onClick={closeModal}>close</button>
       </Modal>
       <div id="landingpage">
-        <NavBar />
-        <div id="landingpage-wrapper">
-          <div id="landingpage-image">
-            <div id="signup" >
-              <div id="bubble">
-                <img src="../assets/images/SignupNow-small.png" />
-              </div>
-              <div id="signup-text" onClick={() => history.push('/login')}>
-                <div>Sign Up Now!</div>
-                <div>Play For Free!</div>
-              </div>
-            </div>
-            <img src="../assets/images/GameOn-full.png" />
-            <div className="lptable" />
-          </div>
+        <div id="landingpage-desktop">
+          <img src="../assets/images/lpthwartmeheading.png" id='thwartme-heading' />
+          <p>Challenge your friends to ridiculous stunts in<br /> games you already have!</p>
+          <BottomBar />
         </div>
         <div id="landingpage-phone">
           <img src="../assets/images/right-3.png" />
