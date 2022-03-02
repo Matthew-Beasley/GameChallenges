@@ -20,8 +20,59 @@
   margin-top: 4rem;
 }
 
+input {
+  border-width: 0;
+  border-radius: 4px;
+  margin: .5rem;
+  width: 15rem;
+  height: 1.5rem;
+}
+
+#play-now > img {
+  max-width: 15rem;
+  margin-top: 4rem;
+  cursor: pointer;
+}
+
 #landingpage-phone {
   display: none;
+}
+
+#register {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: end;
+  width: 15rem;
+  cursor: pointer;
+}
+
+#register > p {
+  margin-left: 11rem;
+  max-width: 5rem;
+}
+
+#partyguys {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content:  space-between;
+}
+
+#partyguysleft {
+  height: 420px;
+  width: 600px;
+  margin-top: -34rem;
+  z-index: 1;
+  }
+
+#partyguysright {
+  z-index: 1;
+  margin-top: -23rem;;
+  max-width: 400px;
+  max-height: 280px;
+  margin-right: 4rem;
 }
 
 
@@ -35,6 +86,8 @@
   height: 4rem;
   width: 100%;
   padding: 1.5rem;
+  margin-top: 8rem;
+  z-index: 2;
 }
 
 #bottombar-container > p {
@@ -46,6 +99,8 @@
   font-size: medium;
   margin: 4rem 3rem 0rem 3rem;
 }
+
+
 
 
 
