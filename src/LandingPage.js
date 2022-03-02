@@ -5,7 +5,7 @@ import { csrfState, tokenState, emailKeyState, userState , headerState } from '.
 import { useCookies } from 'react-cookie';
 import CryptoJS from 'crypto-js';
 import axios from 'axios';
-import NavBar from './NavBar';
+import BottomBar from './BottomBar';
 import Modal from 'react-modal';
 
 const customStyles = {
@@ -30,6 +30,51 @@ const LandingPage = () => {
   const [decryptedCreds, setDecryptedCreds] = useState('');
   const headers = useRecoilValue(headerState);
 
+  const [password, setPassword] = useState('');
+  const [user, setUser] = useRecoilState(userState);
+  const [email, setEmail] = useState('');
+
+
+
+
+
+  useEffect(() => {
+    axios.defaults.headers.post['X-CSRF-Token'] = csrf;
+  }, [csrf]);
+
+  useEffect(() => {
+    axios.defaults.headers.common['X-CSRF-Token'] = csrf;
+  }, [token]);
+
+  useEffect(() => {
+    const token = cookies.token;
+    if (token) {
+      axios.post('/user/token', { token: token }, headers).then(response => {
+        setUser(response.data[0]);
+        history.push('/shopping');
+      });
+    }
+  }, [token]);
+
+  // need to alert user that credentials are not valid
+  const login = async () => {
+    let creds = undefined;
+    try {
+      creds = (await axios.get('/auth', { headers: { email: email, password: password }})).data;
+    } catch (err) {
+      openModal();
+    }
+    setCookie('token', creds, { path: '/', maxAge: 43200 });
+    setEmail('');
+    setPassword('');
+    setToken(creds);
+  };
+
+
+
+
+
+
   let subtitle;
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
@@ -45,14 +90,14 @@ const LandingPage = () => {
   function closeModal() {
     setIsOpen(false);
   }
-
+/*
   const login = async (email, password) => {
     const creds = (await axios.get('/auth', { headers: { email, password }})).data;
     setCookie('token', creds, { path: '/', maxAge: 43200 });
     setToken(creds);
     history.push('/shopping');
   };
-
+*/
   const createFoxyCustomer = async (user) => {
     const token = (await axios.get('/foxy/apitoken')).data;
     const {email, password, first_name, last_name } = user;
@@ -107,7 +152,7 @@ const LandingPage = () => {
       if (token) {
         axios.post('/user/token', { token: token }, headers).then(response => {
           setRecoilUser(response.data[0]);
-         // history.push('/shopping');
+          // history.push('/shopping');
         });
       }
     }
@@ -127,20 +172,17 @@ const LandingPage = () => {
         <button onClick={closeModal}>close</button>
       </Modal>
       <div id="landingpage">
-        <NavBar />
-        <div id="landingpage-wrapper">
-          <div id="landingpage-image">
-            <div id="signup" >
-              <div id="bubble">
-                <img src="../assets/images/SignupNow-small.png" />
-              </div>
-              <div id="signup-text" onClick={() => history.push('/login')}>
-                <div>Sign Up Now!</div>
-                <div>Play For Free!</div>
-              </div>
-            </div>
-            <img src="../assets/images/GameOn-full.png" />
-            <div className="lptable" />
+        <div id="landingpage-desktop">
+          <img src="../assets/images/lpthwartmeheading.png" id='thwartme-heading' />
+          <p>Challenge your friends to ridiculous stunts in<br /> games you already have!</p>
+          <input type="email" placeholder='email' value={email} onChange={(ev) => setEmail(ev.target.value)} />
+          <input type='password' placeholder='password' value={password} onChange={(ev) => setPassword(ev.target.value)} />
+          <div id="register" onClick={() => history.push('/createuser')}><p>Register</p></div>
+          <div id="play-now" onClick={() => login()}><img src="../assets/images/playnowbutton.png" /></div>
+          <BottomBar />
+          <div id="partyguys" >
+            <img id="partyguysleft" src="../assets/images/partyguysleft.png" />
+            <img id="partyguysright" src="../assets/images/partyguysright.png" />
           </div>
         </div>
         <div id="landingpage-phone">
