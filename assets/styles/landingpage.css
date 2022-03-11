@@ -147,19 +147,20 @@ input {
     background-color: rgb(47, 82, 114);
     height: 4rem;
     width: 100%;
-    padding: .5rem;
+    padding: 0rem;
     margin-top: 8rem;
     z-index: 2;
   }
   
   #bottombar-container > p {
-    margin-top: .8rem;
+    margin-top: 1.1rem;
     color: white;
   }
   
   #bottombar-container > p > a {
     color: white;
-    font-size: 13px;
+    font-size: 12px;
+    margin: 0rem .2rem 0rem .2rem;
   }
 
   #partyguysleft {
