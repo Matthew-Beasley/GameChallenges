@@ -185,19 +185,6 @@ const LandingPage = () => {
             <img id="partyguysright" src="../assets/images/partyguysright.png" />
           </div>
         </div>
-        <div id="landingpage-phone">
-          <img src="../assets/images/lpthwartmeheading.png" id='thwartme-heading' />
-          <p>Challenge your friends to ridiculous stunts in games you already have!</p>
-          <input type="email" placeholder='email' value={email} onChange={(ev) => setEmail(ev.target.value)} />
-          <input type='password' placeholder='password' value={password} onChange={(ev) => setPassword(ev.target.value)} />
-          <div id="register" onClick={() => history.push('/createuser')}><p>Register</p></div>
-          <div id="play-now" onClick={() => login()}><img src="../assets/images/playnowbutton.png" /></div>
-          <BottomBar />
-          <div id="partyguys" >
-            <img id="partyguysleft" src="../assets/images/partyguysleft.png" />
-            <img id="partyguysright" src="../assets/images/partyguysright.png" />
-          </div>
-        </div>
       </div>
     </div>
   );
