@@ -18,7 +18,7 @@ const NavBar = () => {
     removeCookie('token');
     setToken('');
     setUser({});
-    //history.push('/');
+    history.push('/');
     window.location.href = window.location.href.split('?')[0];
   };
 
@@ -29,18 +29,14 @@ const NavBar = () => {
   return (
     <div id="navbar">
       <div className="nav-links">
-        <Link to="/" >Thwart Me</Link>
-        <Link to="/rules" >How to Play</Link>
-        <Link to="/about" >About Us</Link>
-        <Link to="/contact">Contact Us</Link>
-        <a href="https://discord.gg/tdyGFH6dwu" target="_blank" rel="noopener noreferrer">Discord Channel</a>
-        {!!user.email && <Link to="/shopping">Get Decks</Link>}
-        {!!user.email && <Link to="/gamepage">Play the Game</Link>}
+        <Link to="/" >Thwart Me</Link><label>|</label><Link to="/rules" >How to Play</Link><label>|</label><Link to="/shopping" >Shop</Link>
+        
+        {/*<a href="https://discord.gg/tdyGFH6dwu" target="_blank" rel="noopener noreferrer">Discord Channel</a>*/}
       </div>
-      {!user.email &&
+      {console.log('history.location: ', history.location)}
+      {!user.email  &&
         <div className="nav-links">
-          <Link to="/login">Sign in</Link>
-          <Link to="/createuser">Create Account</Link>
+          <Link to="/">Sign in</Link>
         </div>
       }
       {!!user.email && 

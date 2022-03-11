@@ -2,8 +2,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  background-color: rgb(190, 205, 211);
-  font-family: 'Arial Rounded MT Bold', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  background-color: rgb(137, 207, 233);
   height: 100%;
  }
 
@@ -16,6 +15,12 @@
   margin-left: 5rem;
   margin-right: 5rem;
   border-bottom: black 2px solid;
+ }
+
+ .ownedlist {
+   min-width: 100%;
+   height: 18rem;
+   background-color: rgb(47, 82, 114);
  }
 
  .decklist {
@@ -33,7 +38,7 @@
   flex-direction: column;
   justify-content: flex-start;
   flex-wrap: wrap;
-  margin: 1rem 0rem 1rem 8rem;
+  margin: 1rem 0rem 1rem 0rem;
   height: 100vh;
   width: 60rem;
  }
@@ -55,7 +60,7 @@
 
  .decks {
   font-size: 1.3rem;
-  margin: 0rem 0rem 1rem 5rem;
+  margin: 0rem 0rem 1rem 0rem;
  }
 
  #creditslink {

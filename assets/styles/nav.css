@@ -4,12 +4,11 @@
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
-  background-color: rgb(54, 51, 51);
+  background-color: rgb(47, 82, 114);
   min-width: 100%;
   min-height: 3.5rem;
-  margin-top: 0rem;
+  margin-top: 3rem;
   color: white;
-  font-family: 'Arial Rounded MT Bold', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .logout-text {
@@ -30,8 +29,13 @@
   font-size: 1.4rem;
   color: white;
   text-decoration: none;
-  margin: 1rem 4rem 0rem 2rem;
+  margin: 1rem 2rem 0rem 2rem;
 }
+
+.nav-links > label {
+  margin-top: 1rem;
+}
+
 
 @media only screen and (max-width: 1112px) {
   .nav-links > a {
