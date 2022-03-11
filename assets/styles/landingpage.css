@@ -52,7 +52,7 @@ input {
   max-width: 5rem;
 }
 
-/*===== bottom bar styles =====*/
+/*====== bottom bar styles ======*/
 #bottombar-container {
   display: flex;
   flex-direction: row;
