@@ -52,32 +52,7 @@ input {
   max-width: 5rem;
 }
 
-#partyguys {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content:  space-between;
-}
-
-#partyguysleft {
-  height: 420px;
-  width: 600px;
-  margin-top: -34rem;
-  z-index: 1;
-  }
-
-#partyguysright {
-  z-index: 1;
-  margin-top: -23rem;;
-  max-width: 400px;
-  max-height: 280px;
-  margin-right: 4rem;
-}
-
-
-/*----- BottoBar Styles =====*/
-
+/*===== bottom bar styles =====*/
 #bottombar-container {
   display: flex;
   flex-direction: row;
@@ -100,7 +75,28 @@ input {
   margin: 4rem 3rem 0rem 3rem;
 }
 
+#partyguys {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content:  space-between;
+}
 
+#partyguysleft {
+  height: 400px;
+  width: 560px;
+  margin-top: -32rem;
+  z-index: 1;
+  }
+
+#partyguysright {
+  z-index: 1;
+  margin-top: -23rem;;
+  max-width: 400px;
+  max-height: 280px;
+  margin-right: 4rem;
+}
 
 
 
@@ -113,507 +109,365 @@ input {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: rgb(137, 207, 233);
+    min-height: 100vh;
+  }
+
+  #thwartme-heading {
+    margin-top: 2rem;
+    max-width: 400px;
+    max-height: 66px;
+  }
+  
+  #landingpage-phone > p {
+    font-size: 2rem;
+    text-align: center;
+    color:rgb(42, 62, 69);
+    margin-top: 1rem;
+  }
+  
+  input {
+    border-width: 0;
+    border-radius: 4px;
+    margin: 1rem;
+    width: 18rem;
+    height: 2rem;
+  }
+  
+  #play-now > img {
+    max-width: 18rem;
+    margin-top: 4rem;
+    cursor: pointer;
+  }
+
+  #bottombar-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: rgb(47, 82, 114);
+    height: 4rem;
+    width: 100%;
+    padding: .5rem;
+    margin-top: 8rem;
+    z-index: 2;
+  }
+  
+  #bottombar-container > p {
+    margin-top: .8rem;
+    color: white;
+  }
+  
+  #bottombar-container > p > a {
+    color: white;
+    font-size: 13px;
+  }
+
+  #partyguysleft {
+    height: 125px;
+    width: 150px;
+    margin-top: -12.9rem;
+    z-index: 1;
+  }
+  
+  #partyguysright {
+    z-index: 1;
+    margin-top: -11rem;;
+    max-width: 150px;
+    max-height: 105px;
+    margin-right: 1rem;
   }
 }
+
 
 @media only screen and (min-width: 901px) {
+  #landingpage-desktop > p {
+    font-size: 1.75rem;
+    text-align: center;
+    color:rgb(42, 62, 69);
+    margin-top: 2rem;
+  }
 
+  #thwartme-heading {
+    margin-top: 8rem;
+    max-width: 800px;
+    max-height: 82px;
+  }
+
+  #partyguysleft {
+    height: 313px;
+    width: 375px;
+    margin-top: -26rem;
+    z-index: 1;
+  }
+  
+  #partyguysright {
+    z-index: 1;
+    margin-top: -18rem;;
+    max-width: 300px;
+    max-height: 210px;
+    margin-right: 4rem;
+  }
+}
+
+@media only screen and (min-width: 1020px) {
+  #landingpage-desktop > p {
+    font-size: 1.75rem;
+    text-align: center;
+    color:rgb(42, 62, 69);
+    margin-top: 2.5rem;
+  }
+
+  #thwartme-heading {
+    margin-top: 8rem;
+    max-width: 560px;
+    max-height: 92px;
+  }
+
+  #partyguysleft {
+    height: 355px;
+    width: 425px;
+    margin-top: -27rem;
+    z-index: 1;
+  }
+  
+  #partyguysright {
+    z-index: 1;
+    margin-top: -21rem;;
+    max-width: 350px;
+    max-height: 245px;
+    margin-right: 4rem;
+  }
 }
 
 
-/*#landingpage {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    min-height: 100vh;
-    height: fit-content;
-    width: 100vw;
-    background-color: rgb(190, 205, 211);
-    font-family: 'Arial Rounded MT Bold', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    position: relative;
-    z-index: 0;
+@media only screeen and (min-width: 1150) {
+  #partyguysleft {
+    height: 400px;
+    width: 560px;
+    margin-top: -32rem;
+    z-index: 1;
   }
 
-  #landingpage-wrapper {
-    overflow-y:auto;
-    margin-top: -8rem;
+  #partyguysright {
+    z-index: 1;
+    margin-top: -23rem;;
+    max-width: 400px;
+    max-height: 280px;
+    margin-right: 4rem;
+  }
+}
+
+
+@media only screen and (min-width: 1250px) {
+  #partyguysleft {
+    height: 400px;
+    width: 560px;
+    margin-top: -32rem;
+    z-index: 1;
   }
 
-  .lptable {
-    width: 100%;
-    height: 35px;
-    border-radius: 17px;
-    background-image: linear-gradient(rgb(194, 136, 136), rgb(102, 43, 43));
-    margin: -5px 0px 0px 1rem;
+  #partyguysright {
+    z-index: 1;
+    margin-top: -23rem;;
+    max-width: 400px;
+    max-height: 280px;
+    margin-right: 9rem;
+  }
+
+  input {
+    border-width: 0;
+    border-radius: 4px;
+    margin: .5rem;
+    width: 18rem;
+    height: 2.5rem;
+  }
+  
+  #play-now > img {
+    max-width: 18rem;
+    margin-top: 6rem;
+    cursor: pointer;
+  }
+}
+
+
+@media only screen and (min-width: 1500px) {
+  #landingpage-desktop > p {
+    font-size: 2rem;
+    text-align: center;
+    color:rgb(42, 62, 69);
+    margin-top: 3rem;
+  }
+
+  #thwartme-heading {
+    margin-top: 8rem;
+    max-width: 600px;
+    max-height: 99px;
+  }
+
+  #partyguysleft {
+    height: 460px;
+    width: 550px;
+    margin-top: -36rem;
+    margin-left: 5rem;
+    z-index: 1;
+  }
+
+  #partyguysright {
+    z-index: 1;
+    margin-top: -25rem;;
+    max-width: 430px;
+    max-height: 301px;
+    margin-right: 4rem;
+  }
+
+  input {
+    border-width: 0;
+    border-radius: 4px;
+    margin: .5rem;
+    width: 18rem;
+    height: 2.5rem;
+  }
+  
+  #play-now > img {
+    max-width: 18rem;
+    margin-top: 6rem;
+    cursor: pointer;
   }
 
 
-
-
-  @media only screen and (max-width: 900px) {
-    #landingpage-wrapper {
-      display: none;
-    }
-
-    #landingpage-phone {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    #landingpage-phone > img {
-      width: 10rem;
-      height: 8rem;
-    }
-
-    .phone-bubble {
-      background-color: white;
-      margin: 1rem;
-      border-radius: 18px;  
-      display:flex;
-      flex-direction: column;
-      align-items: center;  
-      width: fit-content;  
-      height: fit-content;
-      padding: 1rem;
-    }
-
-    .top-bubble > div{
-      height: fit-content;
-      margin: 1rem;
-      font-size: 2rem;
-      cursor: pointer;
-    }
-
-    #thwartme-header {
-      font-size: 1.5rem;
-    }
-  }
-
-  
-  @media only screen and (min-width: 901px) {
-
-    #landingpage-phone {
-      display: none;
-    }
-  
-    #landingpage-wrapper {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      z-index: 0;
-      position: relative;
-    }
-  
-    #landingpage-image {
-      width: fit-content;
-      position: relative;
-      z-index: 1;
-    }
-    
-    #landingpage-image img {
-      width: 1300px;
-    }
-    
-    #landingpage-text > button {
-      margin-top: 20px;
-      margin-left: 50px;
-      border-radius: 8px;
-      border-width: 0;
-      background-color: gray;
-      color: white;
-      cursor: pointer;
-    }
-    
-    #signup {
-    z-index: 2;
-    font-size: 1.1rem;
-    width: 22rem;
-    height: fit-content;
-    margin-left: 300px;
-    margin-top: 9rem;
-    position: absolute;
-  }
-  
-    #bubble {
-      width: fit-content;
-      height: fit-content;
-      z-index: 2;
-      position: absolute;
-    }
-  
-    #signup img {
-      width: 260px;;
-    }
-  
-    #signup-text {
-      z-index: 3;
-      font-size: 2rem;
-      height: 130px;
-      width: 400px;
-      margin-left: 40px;
-      margin-top: 15px;
-      position: absolute;
-      cursor: pointer;
-    }
-  
-    #signup-text > div {
-      margin-top: 1.2rem;
-    }
-  }
-  
-  @media only screen and (min-width: 1400px) {
-
-    #landingpage-phone {
-      display: none;
-    }
-    
-    #landingpage-wrapper {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      z-index: 0;
-      position: relative;
-    }
-  
-    #landingpage-image {
-      width: fit-content;
-      position: relative;
-      z-index: 1;
-    }
-    
-    #landingpage-image img {
-      width: 1400px;
-    }
-    
-    #landingpage-text > button {
-      margin-top: 20px;
-      margin-left: 50px;
-      border-radius: 8px;
-      border-width: 0;
-      background-color: gray;
-      color: white;
-      cursor: pointer;
-    }
-    
-    #signup {
-    z-index: 2;
-    font-size: 1.1rem;
-    width: 22rem;
-    height: fit-content;
-    margin-left: 300px;
-    margin-top: 10rem;
-    position: absolute;
-  }
-  
-    #bubble {
-      width: fit-content;
-      height: fit-content;
-      z-index: 2;
-      position: absolute;
-    }
-  
-    #signup img {
-      width: 260px;;
-    }
-  
-    #signup-text {
-      z-index: 3;
-      font-size: 2rem;
-      height: 130px;
-      width: 400px;
-      margin-left: 40px;
-      margin-top: 15px;
-      position: absolute;
-      cursor: pointer;
-    }
-  
-    #signup-text > div {
-      margin-top: 1.4rem;
-    }
-  }
-  
   @media only screen and (min-width: 1500px) {
-
-    #landingpage-phone {
-      display: none;
+    #landingpage-desktop > p {
+      font-size: 3rem;
+      text-align: center;
+      color:rgb(42, 62, 69);
+      margin-top: 4rem;
     }
   
-    #landingpage-wrapper {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      z-index: 0;
-      position: relative;
-    }
-  
-    #landingpage-image {
-      width: fit-content;
-      position: relative;
-      z-index: 1;
-    }
-    
-    #landingpage-image img {
-      width: 1500px;
-    }
-    
-    #landingpage-text > button {
-      margin-top: 20px;
-      margin-left: 50px;
-      border-radius: 8px;
-      border-width: 0;
-      background-color: gray;
-      color: white;
-      cursor: pointer;
-    }
-    
-    #signup {
-    z-index: 2;
-    font-size: 1.3rem;
-    width: 27rem;
-    height: fit-content;
-    margin-left: 300px;
-    margin-top: 10rem;
-    position: absolute;
-  }
-  
-    #bubble {
-      width: fit-content;
-      height: fit-content;
-      z-index: 2;
-      position: absolute;
-    }
-  
-    #signup img {
-      width: 325px;;
-    }
-  
-    #signup-text {
-      z-index: 3;
-      font-size: 2.8rem;
-      height: 130px;
-      width: 400px;
-      margin-left: 40px;
-      margin-top: 15px;
-      position: absolute;
-      cursor: pointer;
-    }
-  
-    #signup-text > div {
-      margin-top: 2rem;
-    }
-  }
-  
-  @media only screen and (min-width: 1600px) {
-
-    #landingpage-phone {
-      display: none;
-    }
-  
-    #landingpage-wrapper {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      z-index: 0;
-      position: relative;
-    }
-  
-    #landingpage-image {
-      width: fit-content;
-      position: relative;
-      z-index: 1;
-    }
-    
-    #landingpage-image img {
-      width: 1600px;
-    }
-    
-    #landingpage-text > button {
-      margin-top: 20px;
-      margin-left: 50px;
-      border-radius: 8px;
-      border-width: 0;
-      background-color: gray;
-      color: white;
-      cursor: pointer;
-    }
-    
-    #signup {
-    z-index: 2;
-    font-size: 1.3rem;
-    width: 27rem;
-    height: fit-content;
-    margin-left: 350px;
-    margin-top: 15rem;
-    position: absolute;
-  }
-  
-    #bubble {
-      width: fit-content;
-      height: fit-content;
-      z-index: 2;
-      position: absolute;
-    }
-  
-    #signup img {
-      width: 325px;;
-    }
-  
-    #signup-text {
-      z-index: 3;
-      font-size: 2.8rem;
-      height: 130px;
-      width: 400px;
-      margin-left: 40px;
-      margin-top: 15px;
-      position: absolute;
-      cursor: pointer;
-    }
-  
-    #signup-text > div {
-      margin-top: 2rem;
-    }
-  }
-  
-  @media only screen and (min-width: 1900px) {
-
-    #landingpage-phone {
-      display: none;
-    }
-  
-    #landingpage-wrapper {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      z-index: 0;
-      position: relative;
-    }
-  
-    #landingpage-image {
-      width: fit-content;
-      position: relative;
-      z-index: 1;
-    }
-    
-    #landingpage-image img {
-      width: 1920px;
-    }
-    
-    #landingpage-text > button {
-      margin-top: 20px;
-      margin-left: 50px;
-      border-radius: 8px;
-      border-width: 0;
-      background-color: gray;
-      color: white;
-      cursor: pointer;
-    }
-    
-    #signup {
-    z-index: 2;
-    font-size: 1.3rem;
-    width: 27rem;
-    height: fit-content;
-    margin-left: 400px;
-    margin-top: 14rem;
-    position: absolute;
-  }
-  
-    #bubble {
-      width: fit-content;
-      height: fit-content;
-      z-index: 2;
-      position: absolute;
-    }
-  
-    #signup img {
-      width: 425px;;
-    }
-  
-    #signup-text {
-      z-index: 3;
-      font-size: 3.5rem;
-      height: 130px;
-      width: 500px;
-      margin-left: 60px;
-      margin-top: 15px;
-      position: absolute;
-      cursor: pointer;
-    }
-  
-    #signup-text > div {
-      margin-top: 3rem;
-    }
-  }
-  
-  @media only screen and (min-width: 2500px) {
-  
-    #landingpage-phone {
-      display: none;
+    #thwartme-heading {
+      margin-top: 10rem;
+      max-width: 640px;
+      max-height: 105px;
     }
 
-    #landingpage-wrapper {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      z-index: 0;
-      position: relative;
-    }
-  
-    #landingpage-image {
-      width: fit-content;
-      position: relative;
+    #partyguysleft {
+      height: 460px;
+      width: 550px;
+      margin-top: -36rem;
+      margin-left: 10rem;
       z-index: 1;
     }
-    
-    #landingpage-image img {
-      width: 2500px;
+  
+    #partyguysright {
+      z-index: 1;
+      margin-top: -25rem;;
+      max-width: 430px;
+      max-height: 301px;
+      margin-right: 9rem;
     }
-     
-    #landingpage-text > button {
-      margin-top: 20px;
-      margin-left: 50px;
-      border-radius: 8px;
+
+    input {
       border-width: 0;
-      background-color: gray;
-      color: white;
+      border-radius: 4px;
+      margin: .5rem;
+      width: 18rem;
+      height: 2.5rem;
+    }
+    
+    #play-now > img {
+      max-width: 18rem;
+      margin-top: 6rem;
       cursor: pointer;
     }
+  }
+
+  @media only screen and (min-width: 1800px) {
+    #landingpage-desktop > p {
+      font-size: 3.25rem;
+      text-align: center;
+      color:rgb(42, 62, 69);
+      margin-top: 5rem;
+    }
+  
+    #thwartme-heading {
+      margin-top: 10rem;
+      max-width: 680px;
+      max-height: 112px;
+    }
+
+    #partyguysleft {
+      height: 520px;
+      width: 625px;
+      margin-top: -41rem;
+      margin-left: 10rem;
+      z-index: 1;
+    }
+  
+    #partyguysright {
+      z-index: 1;
+      margin-top: -28rem;;
+      max-width: 490px;
+      max-height: 343px;
+      margin-right: 9rem;
+    }
+
+    input {
+      border-width: 0;
+      border-radius: 4px;
+      margin: .5rem;
+      width: 18rem;
+      height: 2.5rem;
+    }
     
-    #signup {
-    z-index: 2;
-    font-size: 1.3rem;
-    width: 27rem;
-    height: fit-content;
-    margin-left: 520px;
-    margin-top: 20rem;
-    position: absolute;
+    #play-now > img {
+      max-width: 18rem;
+      margin-top: 6rem;
+      cursor: pointer;
+    }
   }
   
-    #bubble {
-      width: fit-content;
-      height: fit-content;
-      z-index: 2;
-      position: absolute;
+  @media only screen and (min-width: 2200px) {
+    #landingpage-desktop > p {
+      font-size: 3.75rem;
+      text-align: center;
+      color:rgb(42, 62, 69);
+      margin-top: 5rem;
     }
   
-    #signup img {
-      width: 425px;;
+    #thwartme-heading {
+      margin-top: 10rem;
+      max-width: 740px;
+      max-height: 122px;
+    }
+
+    #partyguysleft {
+      height: 520px;
+      width: 625px;
+      margin-top: -41rem;
+      margin-left: 15rem;
+      z-index: 1;
     }
   
-    #signup-text {
-      z-index: 3;
-      font-size: 3.5rem;
-      height: 130px;
-      width: 500px;
-      margin-left: 60px;
-      margin-top: 15px;
-      position: absolute;
+    #partyguysright {
+      z-index: 1;
+      margin-top: -28rem;;
+      max-width: 490px;
+      max-height: 343px;
+      margin-right: 14rem;
+    }
+
+    input {
+      border-width: 0;
+      border-radius: 4px;
+      margin: .5rem;
+      width: 18rem;
+      height: 2.5rem;
+    }
+    
+    #play-now > img {
+      max-width: 18rem;
+      margin-top: 6rem;
       cursor: pointer;
     }
-  
-    #signup-text > div {
-      margin-top: 3rem;
-    }
-  }*/
-  
+  }
+}
+
