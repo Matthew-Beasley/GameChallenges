@@ -90,7 +90,7 @@ const LandingPage = () => {
   function closeModal() {
     setIsOpen(false);
   }
-/*
+  /*
   const login = async (email, password) => {
     const creds = (await axios.get('/auth', { headers: { email, password }})).data;
     setCookie('token', creds, { path: '/', maxAge: 43200 });
@@ -186,26 +186,16 @@ const LandingPage = () => {
           </div>
         </div>
         <div id="landingpage-phone">
-          <img src="../assets/images/right-3.png" />
-          <div className="phone-bubble top-bubble" onClick={() => history.push('/login')}>
-            <div className="signup-text">Sign Up Now!</div> 
-            <div className="signup-text">Play For Free!</div>
-          </div>
-          <div className="phone-bubble">
-            <div id="thwartme-header">Thwart Me!</div>
-            <div className="landingpage-header" >Challenge your friends to ridiculous stunts in games you already have!</div>
-            <div className="landingpage-header" >Never play the objective again:</div>
-            <ol>
-              <li>Gather your gaming friends.</li>
-              <li>Pull out all those games that you loved but have played out.</li>
-              <li>Start a round of “Thwart Me!”</li>
-            </ol>
-            <p>
-            You’ll find new ways to love your games all over again, as you attempt crazy 
-            challenges that have nothing to do with how the game was meant to be played.  
-            Whether it’s an unconventional race or a treasure hunt, you’ll laugh your 
-            way through an epic fail or ultimate victory.
-            </p>
+          <img src="../assets/images/lpthwartmeheading.png" id='thwartme-heading' />
+          <p>Challenge your friends to ridiculous stunts in games you already have!</p>
+          <input type="email" placeholder='email' value={email} onChange={(ev) => setEmail(ev.target.value)} />
+          <input type='password' placeholder='password' value={password} onChange={(ev) => setPassword(ev.target.value)} />
+          <div id="register" onClick={() => history.push('/createuser')}><p>Register</p></div>
+          <div id="play-now" onClick={() => login()}><img src="../assets/images/playnowbutton.png" /></div>
+          <BottomBar />
+          <div id="partyguys" >
+            <img id="partyguysleft" src="../assets/images/partyguysleft.png" />
+            <img id="partyguysright" src="../assets/images/partyguysright.png" />
           </div>
         </div>
       </div>
