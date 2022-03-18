@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { cloneDeep, set } from 'lodash';
 import NavBar from './NavBar';
+import BottomBar from './BottomBar';
 import axios from 'axios';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { userState, headerState, csrfState, keyState, tokenState } from './RecoilState';
@@ -35,7 +36,7 @@ const Foxy = () => {
         .then(() => {
           axios.post('/challenge/list', {}, headers)
             .then(response => {
-              console.log('challenges in foxy useEffect: ', response.data.games)
+              console.log('challenges in foxy useEffect: ', response.data.games);
               setChallenges(response.data.games);
             });
         });
@@ -161,7 +162,7 @@ const Foxy = () => {
             })}
           </ul>
         </div>
-        <Link id="creditslink" to="/credits">Art credits</Link>
+        <BottomBar />
       </div>
     );
   } else {
