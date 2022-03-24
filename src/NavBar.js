@@ -33,7 +33,6 @@ const NavBar = () => {
         
         {/*<a href="https://discord.gg/tdyGFH6dwu" target="_blank" rel="noopener noreferrer">Discord Channel</a>*/}
       </div>
-      {console.log('history.location: ', history.location)}
       {!user.email  &&
         <div className="nav-links">
           <Link to="/">Sign in</Link>
