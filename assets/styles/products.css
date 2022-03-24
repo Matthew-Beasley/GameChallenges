@@ -82,7 +82,11 @@
 
  .game-slide {
    width: fit-content;
-   height: fit-content
+   height: fit-content;
+ }
+
+ #link-container {
+   padding-left: 1rem;
  }
 
  .game-slide-inner {

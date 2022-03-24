@@ -141,7 +141,9 @@ const Foxy = () => {
                       <div className="game-slide-inner" style={{backgroundColor: chooseColor()}}>
                         <img className="slide-image" src={`../assets/images/Characters-${Math.floor(Math.floor(Math.random() * (8 - 1 + 1)) + 1)}.png`} />
                       </div>
-                      <Link to="/gamepage">{item.name}</Link>
+                      <div id="link-container">
+                        <Link to="/gamepage">{item.name}</Link>
+                      </div>
                     </div>
                   );
                 })}
