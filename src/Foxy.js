@@ -8,6 +8,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { userState, headerState, csrfState, keyState, tokenState } from './RecoilState';
 import { useCookies } from 'react-cookie';
 import  CryptoJS from 'crypto-js';
+import Slider from 'react-slick';
 
 
 const Foxy = () => {
@@ -36,7 +37,6 @@ const Foxy = () => {
         .then(() => {
           axios.post('/challenge/list', {}, headers)
             .then(response => {
-              console.log('challenges in foxy useEffect: ', response.data.games);
               setChallenges(response.data.games);
             });
         });
@@ -109,22 +109,45 @@ const Foxy = () => {
     return `https://thwartme.foxycart.com/cart?code=${code}||${codeHex}&name=${parsedName}||${nameHex}&price=1.99||${priceHex}&quantity_max=1||${quantityHex}`;
   };
 
+  const chooseColor = () => {
+    const colors = ['blue', 'green', 'yellow', 'pink', 'purple', 'grey', 'orange', 'aqua'];
+    const colorIndex = Math.floor(Math.floor(Math.random() * (7 - 1 + 1)) + 1);
+    return colors[colorIndex];
+  };
+
+  console.log(chooseColor());
+
+  const settings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    draggable: true
+  };
 
   if(cookies.token) {
     return (
       <div id="foxy">
         <NavBar />
         <div className="shoppinglist" id="owned-decks">
-          <h3 className="heading">Decks I own</h3>
-          <ul className="decklist decks ownedlist">
-            {!!user.email && user.decks.map((item, ord) => {
-              return (
-                <li key={ord}>
-                  <Link to="/gamepage">{item.name}</Link>
-                </li>
-              );
-            })}
-          </ul>
+          <div id="slider-container">
+            <h3 className="foxy-heading">My Library</h3>
+            <div id="foxyslider">
+              <Slider {...settings}>
+                {!!user.email && user.decks.map((item, ord) => {
+                  return (
+                    <div className="game-slide" key={ord}>
+                      <div className="game-slide-inner" style={{backgroundColor: chooseColor()}}>
+                        <img className="slide-image" src={`../assets/images/Characters-${Math.floor(Math.floor(Math.random() * (8 - 1 + 1)) + 1)}.png`} />
+                      </div>
+                      <Link to="/gamepage">{item.name}</Link>
+                    </div>
+                  );
+                })}
+              </Slider>
+            </div>
+          </div>
           <h3 className="heading">Buy some of these</h3>
           <ul className="gamelist decklist">
             {!!decks && Object.entries(decks).map(([game, deckList]) => {

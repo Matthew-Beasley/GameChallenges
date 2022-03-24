@@ -10,17 +10,16 @@
   margin-bottom: 3rem;
  }
 
- .heading {
-  font-size: 2rem;
-  margin-left: 5rem;
+ .foxy-heading {
+  color: white;
+  font-size: 1.2rem;
+  margin-left: 10rem;
   margin-right: 5rem;
-  border-bottom: black 2px solid;
  }
 
- .ownedlist {
-   min-width: 100%;
-   height: 18rem;
-   background-color: rgb(47, 82, 114);
+ #foxy a {
+   color: white;
+   text-decoration: none;
  }
 
  .decklist {
@@ -63,35 +62,46 @@
   margin: 0rem 0rem 1rem 0rem;
  }
 
- #creditslink {
-     align-self: center;
-     margin-top: 3rem;
-     margin-bottom: 1rem;
- }
-
  .playforfree {
   color: rgb(21, 121, 160);
   cursor: pointer;
  }
 
- #creditsdiv {
-  background-color: rgb(190, 205, 211);
-  font-family: 'Arial Rounded MT Bold', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  min-height: 100vh;
+ #slider-container {
+  background-color: rgb(47, 82, 114);
+  width: 100%;
+  height: 19rem;
+  padding-top: 1rem;
  }
 
- #credits {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-top: 3rem;
+ #foxyslider {
+   width: 45rem;
+   height: 18rem;
+   margin-left: 18rem;
  }
 
- #creditlist {
-  list-style: none;
-  padding: 0;
-  margin-top: 3rem;
+ .game-slide {
+   width: fit-content;
+   height: fit-content
  }
+
+ .game-slide-inner {
+   display: flex;
+   flex-direction: row;
+   flex-wrap: nowrap;
+   justify-content: center;
+   height: 10rem;
+   width: 7rem;
+   margin: 1rem;
+   border-radius: 10px;
+ }
+
+ .slide-image {
+   height: 7rem;
+   width: 4rem;
+   align-self: flex-end;
+ }
+
 
 
  /*==== Media Queries =====*/
