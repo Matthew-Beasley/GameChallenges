@@ -22,24 +22,26 @@
    text-decoration: none;
  }
 
+ #decklist-container {
+   width: 15rem;
+  margin-left: 15rem;
+ }
+
  .decklist {
   list-style: none;
   padding: 0;
   margin: 0;
+  width: 7rem;
  }
 
- .decks > li {
-  margin: .5rem;
+ .decklist-card-container {
+   width: 7rem;
+   padding: 1rem;
  }
 
- .gamelist {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  margin: 1rem 0rem 1rem 0rem;
-  height: 100vh;
-  width: 60rem;
+ .decklist-card a {
+   max-width: 7rem;
+   font-size: .8rem;
  }
 
  .gamename-img-container {
@@ -48,7 +50,8 @@
 }
 
  .gamename {
-  font-size: 1.6rem;
+  width: 7rem;
+  font-size: 1rem;
   margin: .5rem 0rem .5rem 2rem;
 }
 
@@ -67,17 +70,29 @@
   cursor: pointer;
  }
 
- #slider-container {
+ .slider-container {
   background-color: rgb(47, 82, 114);
   width: 100%;
   height: 19rem;
   padding-top: 1rem;
  }
 
- #foxyslider {
+ .foxyslider {
    width: 45rem;
    height: 18rem;
    margin-left: 18rem;
+ }
+
+ .decklist-container {
+  width: 100%;
+  height: 19rem;
+  padding-top: 1rem;
+ }
+ 
+ .deckslider-container {
+  width: 100%;
+  height: 19rem;
+  padding-top: 1rem;
  }
 
  .game-slide {
