@@ -1,54 +1,74 @@
- #foxy {
+#foxy {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   background-color: rgb(137, 207, 233);
-  height: 100%;
- }
+  background-position: 0rem;
+  min-height: 100vh;
+}
 
- #navbar {
+#navbar {
   margin-bottom: 3rem;
- }
+}
 
- .foxy-heading {
+.library-p {
+  color: white;
+}
+
+.foxy-heading {
   color: white;
   font-size: 1.2rem;
   margin-left: 10rem;
   margin-right: 5rem;
- }
+}
 
- #foxy a {
-   color: white;
-   text-decoration: none;
- }
+.buy {
+  color: black;
+  font-size: 1.2rem;
+  margin-left: 10rem;
+  margin-right: 5rem;
+}
 
- .decklist {
+#foxy a {
+  text-decoration: none;
+}
+/*
+.decklist {
   list-style: none;
   padding: 0;
   margin: 0;
- }
-
- .decks > li {
-  margin: .5rem;
- }
-
- .gamelist {
+  width: 7rem;
+}
+*/
+/*
+.decklist-card-container {
+  width: 7rem;
+  padding: 1rem;
+}
+*/
+/*.decklist-card {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  margin: 1rem 0rem 1rem 0rem;
-  height: 100vh;
-  width: 60rem;
- }
+  flex-direction: row;
+  justify-content: center;
+  width: 6rem;
+}
+*/
+/*
+.decklist-card a {
+  max-width: 7rem;
+  font-size: 1rem;
+  margin-right: 2rem;
+}
+*/
 
- .gamename-img-container {
+.gamename-img-container {
   display: flex;
   flex-direction: row;
 }
 
- .gamename {
-  font-size: 1.6rem;
+.gamename {
+  width: 7rem;
+  font-size: 1rem;
   margin: .5rem 0rem .5rem 2rem;
 }
 
@@ -57,50 +77,67 @@
   width: 40px;
 }
 
- .decks {
-  font-size: 1.3rem;
+.decks {
+  font-size: 1rem;
   margin: 0rem 0rem 1rem 0rem;
- }
+  padding-left: 2rem;
+}
 
- .playforfree {
+.playforfree {
   color: rgb(21, 121, 160);
   cursor: pointer;
- }
+}
 
- #slider-container {
+.slider-container {
   background-color: rgb(47, 82, 114);
   width: 100%;
   height: 19rem;
   padding-top: 1rem;
- }
+}
 
- #foxyslider {
-   width: 45rem;
-   height: 18rem;
-   margin-left: 18rem;
- }
+.foxyslider {
+  width: 45rem;
+  height: 18rem;
+  margin-left: 18rem;
+}
 
- .game-slide {
-   width: fit-content;
-   height: fit-content
- }
+.decklist-container {
+  width: 100%;
+  height: 19rem;
+  padding-top: 1rem;
+}
+ 
+.deckslider-container {
+  width: 100%;
+  height: 19rem;
+  padding-top: 1rem;
+}
 
- .game-slide-inner {
-   display: flex;
-   flex-direction: row;
-   flex-wrap: nowrap;
-   justify-content: center;
-   height: 10rem;
-   width: 7rem;
-   margin: 1rem;
-   border-radius: 10px;
- }
+.game-slide {
+  width: fit-content;
+  height: fit-content;
+}
 
- .slide-image {
-   height: 7rem;
-   width: 4rem;
-   align-self: flex-end;
- }
+#link-container {
+  padding-left: 1rem;
+}
+
+.game-slide-inner {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  height: 10rem;
+  width: 7rem;
+  margin: 1rem;
+  border-radius: 10px;
+}
+
+.slide-image {
+  height: 7rem;
+  width: 4rem;
+  align-self: flex-end;
+}
 
 
 
@@ -109,11 +146,11 @@
  @media only screen and (min-width: 1700px) {
 
   .gamename {
-      font-size: 2rem;
+    font-size: 1rem;
   }
   .decks {
-      font-size: 1.8rem;
-      margin: 1.5rem;
+    font-size: 1rem;
+    margin: 1.5rem;
   }
 
   .ownedlist {

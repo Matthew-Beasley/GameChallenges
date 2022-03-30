@@ -115,13 +115,29 @@ const Foxy = () => {
     return colors[colorIndex];
   };
 
-  console.log(chooseColor());
-
   const settings = {
     dots: false,
     infinite: false,
     speed: 500,
     slidesToShow: 5,
+    slidesToScroll: 5,
+    draggable: true
+  };
+
+  const deckSettings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 5,
+    slidesToScroll: 5,
+    draggable: true
+  };
+
+  const innerDeckSettings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 1,
     slidesToScroll: 1,
     draggable: true
   };
@@ -131,9 +147,9 @@ const Foxy = () => {
       <div id="foxy">
         <NavBar />
         <div className="shoppinglist" id="owned-decks">
-          <div id="slider-container">
+          <div className="slider-container">
             <h3 className="foxy-heading">My Library</h3>
-            <div id="foxyslider">
+            <div className="foxyslider">
               <Slider {...settings}>
                 {!!user.email && user.decks.map((item, ord) => {
                   return (
@@ -141,49 +157,64 @@ const Foxy = () => {
                       <div className="game-slide-inner" style={{backgroundColor: chooseColor()}}>
                         <img className="slide-image" src={`../assets/images/Characters-${Math.floor(Math.floor(Math.random() * (8 - 1 + 1)) + 1)}.png`} />
                       </div>
-                      <Link to="/gamepage">{item.name}</Link>
+                      <div id="link-container">
+                        <p className="library-p">{item.name}</p>
+                      </div>
                     </div>
                   );
                 })}
               </Slider>
             </div>
           </div>
-          <h3 className="heading">Buy some of these</h3>
-          <ul className="gamelist decklist">
-            {!!decks && Object.entries(decks).map(([game, deckList]) => {
-              if(deckList.includes(0) && deckList.length > 1 || !deckList.includes(0)) {
-                return (
-                  <li key={game} >
-                    <div className="gamename-img-container">
-                      <img className="icon" src={`../assets/icons/${game.replace(':', '')}.png`} />
-                      <div className="gamename" >{game}</div>
-                    </div>
-                    <ul className="decks decklist">
-                      {deckList.map((deck, el) => {
-                        {/* deck list is a list of deck numbers */}
-                        if(deck !== 0 && user.decks.length !== 0 && !user.decks.find(testDeck => testDeck.code === `${game}${deck}`)) {
-                          return (
-                            <li key={el} >
-                              <a href={hashedRef(game, deck)}>Buy {`Deck ${deck} $1.99`}</a>
-                            </li>
-                          );
-                        } else if(deck !== 0 && user.decks.find(testDeck => testDeck.code === `${game}${deck}`)) {
-                          return (
-                            <li key={el}><Link to="/gamepage">{`deck ${deck} You already own this deck!`}</Link></li>
-                          );
-                        } else if(user.decks.length === 0) {
-                          return (
-                            <li key={el}>
-                              <div className="playforfree" onClick={(ev) => addFreeDeck(ev)}>{`Play this deck free! ${game} deck ${deck}`}</div>
-                            </li>
-                          );
-                        } 
-                      })}
-                    </ul>
-                  </li>
-                );} 
-            })}
-          </ul>
+          <div className='decklist-container'>
+            <h3 className="buy">Buy</h3>
+            <div className="foxyslider">
+              <Slider {...settings}>
+                {!!decks && Object.entries(decks).map(([game, deckList]) => {
+                  if(deckList.includes(0) && deckList.length > 1 || !deckList.includes(0)) {
+                    console.log(deckList)
+                    return (
+                      <div key={game} >
+                        <div className="game-slide">
+                          <div className="game-slide-inner" style={{backgroundColor: chooseColor()}}>
+                            <img className="slide-image" src={`../assets/images/Characters-${Math.floor(Math.floor(Math.random() * (8 - 1 + 1)) + 1)}.png`} />
+                          </div>
+                        </div>
+                        <div className="gamename-img-container">
+                          <div className="gamename" >{game}</div>
+                        </div>
+                        <div className="decks decklist">
+                          <Slider {...innerDeckSettings}>
+                            {deckList.map((deck, el) => {
+                              {/* deck list is a list of deck numbers */}
+                              if(deck !== 0 && user.decks.length !== 0 && !user.decks.find(testDeck => testDeck.code === `${game}${deck}`)) {
+                                return (
+                                  <div key={el} className="decklist-card-container">
+                                    <div className="decklist-card" key={el} >
+                                      <a href={hashedRef(game, deck)}>Buy {`Deck ${deck} $1.99`}</a>
+                                    </div>
+                                  </div>
+                                );
+                              } else if(deck !== 0 && user.decks.find(testDeck => testDeck.code === `${game}${deck}`)) {
+                                {/* This is where logic was to display decks already purchased. nothing is being displayed now */}
+                              } else if(user.decks.length === 0) {
+                                return (
+                                  <div className="decklist-card-container">
+                                    <div className="decklist-card" key={el}>
+                                      <div className="playforfree" onClick={(ev) => addFreeDeck(ev)}>{`Play this deck free! ${game} deck ${deck}`}</div>
+                                    </div>
+                                  </div>
+                                );
+                              } 
+                            })}
+                          </Slider>
+                        </div>
+                      </div>
+                    );} 
+                })}
+              </Slider>
+            </div>
+          </div>
         </div>
         <BottomBar />
       </div>
