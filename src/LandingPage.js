@@ -29,7 +29,6 @@ const LandingPage = () => {
   const [emailKey, setEmailKey] = useRecoilState(emailKeyState);
   const [decryptedCreds, setDecryptedCreds] = useState('');
   const headers = useRecoilValue(headerState);
-
   const [password, setPassword] = useState('');
   const [user, setUser] = useRecoilState(userState);
   const [email, setEmail] = useState('');
