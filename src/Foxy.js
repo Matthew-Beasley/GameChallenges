@@ -158,7 +158,7 @@ const Foxy = () => {
                         <img className="slide-image" src={`../assets/images/Characters-${Math.floor(Math.floor(Math.random() * (8 - 1 + 1)) + 1)}.png`} />
                       </div>
                       <div id="link-container">
-                        <Link to="/gamepage">{item.name}</Link>
+                        <p className="library-p">{item.name}</p>
                       </div>
                     </div>
                   );
@@ -167,11 +167,10 @@ const Foxy = () => {
             </div>
           </div>
           <div className='decklist-container'>
-            <h3 className="foxy-heading">Buy</h3>
+            <h3 className="buy">Buy</h3>
             <div className="foxyslider">
               <Slider {...settings}>
                 {!!decks && Object.entries(decks).map(([game, deckList]) => {
-                  console.log(game)
                   if(deckList.includes(0) && deckList.length > 1 || !deckList.includes(0)) {
                     console.log(deckList)
                     return (
