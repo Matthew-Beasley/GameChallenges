@@ -6,6 +6,7 @@ import GameSetup from './GameSetup';
 import ChallengeDisplay from './ChallengeDisplay';
 import Players, { PlayerButtons } from './Players';
 import NavBar from './NavBar';
+import BottomBar from './BottomBar';
 
 const GameContainer = () => {
   const [user, setUser] = useRecoilState(userState);
@@ -28,6 +29,7 @@ const GameContainer = () => {
           <PlayerButtons />
         </div>
       </div>
+      <BottomBar />
       <div id="phone-gamecomponents">
         <GameSetup />
       </div>

@@ -38,8 +38,11 @@
 
 
 @media only screen and (max-width: 1112px) {
+  #navbar {
+    margin-bottom: 0rem;
+  }
   .nav-links > a {
-    margin: 1rem 3rem 1rem 2rem
+    margin: 2rem 3rem 1rem 2rem
   }
 }
 

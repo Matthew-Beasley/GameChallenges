@@ -29,22 +29,7 @@ const Login = () => {
   const headers = useRecoilValue(headerState);
   const [cookies, setCookie, removeCookie] = useCookies(['token']);
   const history = useHistory();
-  let subtitle;
-  const [modalIsOpen, setIsOpen] = useState(false);
 
-
-  function openModal() {
-    setIsOpen(true);
-  }
-
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    subtitle.style.color = '#f00';
-  }
-
-  function closeModal() {
-    setIsOpen(false);
-  }
 
   useEffect(() => {
     axios.defaults.headers.post['X-CSRF-Token'] = csrf;
@@ -70,7 +55,7 @@ const Login = () => {
     try {
       creds = (await axios.get('/auth', { headers: { email: email, password: password }})).data;
     } catch (err) {
-      openModal();
+      alert('Authorization failed');
     }
     setCookie('token', creds, { path: '/', maxAge: 43200 });
     setEmail('');
@@ -87,17 +72,6 @@ const Login = () => {
 
   return (
     <div id="login-container" >
-      <Modal
-        isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
-        onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="Modal"
-      >
-        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Login failed</h2>
-        <div>Check your user name and password</div>
-        <button onClick={closeModal}>close</button>
-      </Modal>
       <img src="../assets/images/right-3.png" />
       <NavBar />
       <div id="login-inputs">

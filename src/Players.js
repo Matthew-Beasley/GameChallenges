@@ -8,10 +8,9 @@ const Player = ({player}) => {
   player.MyTurn ? itsMyTurn = 'myturn' : itsMyTurn = '';
   return ( 
     <div id="player-container">
-      <div>{player.Name}</div>
-      <div>{player.Score}</div>
       <div className={`player ${itsMyTurn} ${player.Background}`} >
       </div>
+      <div>{player.Score}</div>
     </div>
   );
 };
@@ -61,8 +60,8 @@ const PlayerButtons = () => {
     <div id="playerbutton-container">
       {!!players.length && 
       <div id="playerbuttons">
-        <button className="score-button" onClick={() => addPoint()}>Add a Point!</button>
-        <button className="score-button" onClick={() => failed()}>Sorry, Next!</button>
+        <button className="score-button" onClick={() => addPoint()}>+</button>
+        <button className="score-button" onClick={() => failed()}>{'>'}</button>
       </div>}
     </div>
   );
@@ -74,7 +73,6 @@ const Players = () => {
   
   return (
     <div id="player-container">
-
       <div id="player-list">
         {players.map((player, idx) => {
           return (
@@ -84,7 +82,6 @@ const Players = () => {
       </div>
       <div id="phone-playerline" />
     </div>
-
   );
 };
 

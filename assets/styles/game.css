@@ -7,9 +7,9 @@
 #game-container {
   display: flex;
   flex-direction: column;
-  min-height: fit-content;
-  background-color: rgb(190, 205, 211);
-  background-size: auto;
+  min-height: 100vh;
+  background-color: rgb(137, 207, 233);
+  background-size: 100vh;
 }
 
 #outer-challenges-display {
@@ -50,9 +50,12 @@
 }
 
 .score-button {
-  width: 12rem;
-  height: 3rem;
+  background-color: white;
+  color: black;
+  font-size: 1rem;
   margin-top: 0rem;
+  border: none;
+  border-radius: 50%;
   z-index: 4;
 }
 
@@ -111,11 +114,6 @@
 #platform-groups {
   margin-top: -3.75rem;
   margin-bottom: 1rem;
-}
-
-.setup-label {
-  margin: 1rem .5rem 1rem 0rem;
-  line-height: 120%;
 }
 
 
@@ -426,8 +424,11 @@
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    width: 1024px;
-    height: 120vh;
+    height: auto;
+  }
+
+  #sub-gamecomponents {
+    max-height: fit-content;
   }
 
   #phone-gamecomponents {
@@ -450,75 +451,53 @@
   }
 
   #gamesetup-container {
-    font-family: 'Arial Rounded MT Bold', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 1.16rem;
     min-width: 26rem;
-    height: 37.87rem;
-    margin-left: 5%;
+    max-height: fit-content;
   }
 
   .setup-control {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    justify-content: space-between;
+    justify-content: left;
     width: 24rem;
   } 
 
   #gamesetup-container label {
     color: black;
     margin-top: 1rem;
-    font-size: 1.16rem;
-  }
-
-  #gamesetup-container select {
     font-size: 1rem;
-    width: 14rem;
-    height: 2rem;
-    margin-top: 1rem;
-    border: none;
-    background-color: 
-  rgb(54, 51, 51);
-    color: white;
-    border-radius: 8px;
-  }
-
-  #gamesetup-container button {
-    background-image: linear-gradient(rgb(40, 226, 214), rgb(57, 63, 65));
-    color: white;
-    font-size: 1.16rem;
   }
 
   #players > label {
     margin-top: 3rem;
+    margin-left: 3rem;
   }
 
   #text-bttn-combo {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    justify-content: right;
+    justify-content: left;
   }
 
   #text-bttn-combo > input {
-    background-color: rgb(54, 51, 51);
-    color: white;
-    border-radius: 8px;
-    width: 10rem;
-    height: 2rem;
-    font-size: 1.16rem;
-    margin-top: 3rem;
-    margin-bottom: 1rem;
-    margin-right: 0
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    width: 8rem;
+    height: 1.2rem;
+    font-size: .8rem;
+    margin: 3rem 0rem 1rem 2rem;
   }
 
-  #player-submit-btn {
-    width: 8rem;
-    height: 2rem;
+  #text-bttn-combo > button {
+    width: 4.5rem;
+    height: 1.2rem;
     margin-top: 3rem;
     border: none;
-    border-radius: 6px;
-    font-size: 26px;
+    border-radius: 5px;
+    font-size: 1rem;
     line-height: 40%;
   }
 
@@ -526,30 +505,15 @@
     display: none;
   }
 
-  .platform-checkgroup {
-    max-width: 14rem;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    margin-right: 0;
-    margin-left: 10rem;
-  }
-
-  .platform-checkgroup label {
-    margin: 0rem .5rem 0rem .5rem;
-  }
-
-  .platform-checkgroup input {
-    margin: 0;
-  }
-
-  #mobile-spacer {
-    width: 17.6rem;
-  }
+  
 
   #phone-gameselect {
     display: none;
+  }
+
+  #games-label {
+    margin-left: 2rem;
+    margin-right: 1rem;
   }
 
   #multi-control {
@@ -557,35 +521,41 @@
     flex-direction: row;
     flex-wrap: nowrap;
     color: white;
+
   }
 
   #multi-control > #scroller {
     margin-top: 1rem;
-    height: 10rem;
+    height: 15rem;
     overflow-y: auto;
     overflow-x: hidden;
-    color: white;
+    color: black;
     border-radius: 8px;
-    background-color: rgb(54, 51, 51);
+    background-color: white;
   }
 
   #multi-list {
-    width: 14rem;
+    width: 12rem;
     list-style: none;
     padding: 0;
   }
 
   .multi-list-item {
-    font-size: 1rem;
-    background-color: rgb(54, 51, 51);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content:left;
+    font-size: .7rem;
+    background-color: white;
     height: 1.25rem;
     padding-top: 5px;
   }
 
   .multi-list-input {
-    border: solid white 5px;
-    margin: .25rem 1rem .25rem 1rem;
-    background-color: rgb(54, 51, 51);
+    width: 1rem;
+    border: solid black 1px;
+    margin: 0rem 1rem 0rem 1rem;
+    background-color: white;
   }
 
   #lets-play {
@@ -608,17 +578,17 @@
   #outer-challenges-display {
     min-width: 50rem;
     min-height: fit-content;
-    margin: 0rem 3rem 0rem 2rem;
+    margin: 2rem 3rem 0rem 2rem;
   }
 
   #challenge-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    background-size: 35rem 25rem;
+    background-size: 30rem 15rem;
     background-repeat: no-repeat;
-    width: 35rem;
-    height: 25rem;
+    width: 30rem;
+    height: 15rem;
   }
 
   #sub-gamecomponents {
@@ -682,22 +652,39 @@
     flex-direction: row;
     flex-wrap: wrap;
     width: 60rem;
-    height: 10rem;
+    height: 5rem;
     margin: 0rem 2rem -3.25rem 6rem;
     align-items: center;
   }
 
+  #player-submit-btn {
+    width: 6rem;
+    height: 1rem;
+    margin-top: 3rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 26px;
+    line-height: 40%;
+  }
+
+  .score-button {
+    width: 1.7rem;
+    height: 1.7rem;
+    margin-top: 20rem;
+    z-index: -1;
+  }
+
   .player {
-    height: 8rem;
-    width: 4rem;
+    height: 6rem;
+    width: 3rem;
     margin: 1rem;
-    padding-top: 6rem;
+    padding-top: 2rem;
     color: black;
   }
 
   .myturn {
-    height: 12rem;
-    width: 4rem;
+    height: 9rem;
+    width: 3rem;
     margin: 1rem;
     color: black;
   }
@@ -705,17 +692,17 @@
   #playerbutton-container {
     height: fit-content;
     width: fit-content;
-    width: 26rem;
-    margin-left: 7rem;
+    width: 6rem;
+    margin-left: 14rem;
     margin-top: -23rem;
     z-index: 4;
   }
 
   #kitchencounter {
-    height: 18rem;
-    width: 55rem;
-    margin-top: 8rem;
-    margin-left: -16rem;
+    height: 12rem;
+    width: 42rem;
+    margin-top: 0rem;
+    margin-left: -9rem;
   }
 }
 

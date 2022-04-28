@@ -50,7 +50,7 @@ const LandingPage = () => {
     if (token) {
       axios.post('/user/token', { token: token }, headers).then(response => {
         setUser(response.data[0]);
-        history.push('/shopping');
+        history.push('/gamepage');
       });
     }
   }, [token]);
@@ -61,7 +61,7 @@ const LandingPage = () => {
     try {
       creds = (await axios.get('/auth', { headers: { email: email, password: password }})).data;
     } catch (err) {
-      openModal();
+      alert('Authorization failed');
     }
     setCookie('token', creds, { path: '/', maxAge: 43200 });
     setEmail('');
@@ -69,26 +69,6 @@ const LandingPage = () => {
     setToken(creds);
   };
 
-
-
-
-
-
-  let subtitle;
-  const [modalIsOpen, setIsOpen] = React.useState(false);
-
-  function openModal() {
-    setIsOpen(true);
-  }
-
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    subtitle.style.color = '#f00';
-  }
-
-  function closeModal() {
-    setIsOpen(false);
-  }
   /*
   const login = async (email, password) => {
     const creds = (await axios.get('/auth', { headers: { email, password }})).data;
@@ -120,7 +100,7 @@ const LandingPage = () => {
       if (email && password && first_name && last_name) {
         let foxy_id = await createFoxyCustomer({ email, password, first_name, last_name });
         if (foxy_id === 'Request failed with status code 409') {
-          openModal();
+          alert('Authentication error');
           return;
         }
         await axios.post('/user', { password, email, first_name, last_name, foxy_id });
@@ -159,17 +139,6 @@ const LandingPage = () => {
 
   return (
     <div>
-      <Modal
-        isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
-        onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="Modal"
-      >
-        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Data error on server</h2>
-        <div>This is most likely a duplicate user. Try just signing in with this email, or try a different email or use the contact us link for help.</div>
-        <button onClick={closeModal}>close</button>
-      </Modal>
       <div id="landingpage">
         <div id="landingpage-desktop">
           <img src="../assets/images/lpthwartmeheading.png" id='thwartme-heading' />
