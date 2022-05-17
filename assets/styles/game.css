@@ -1,8 +1,4 @@
 /* ===== GameContainer Styles ===== */
-@font-face {
-  font-family: "Inkfree";
-  src: url("../fonts/Inkfree.ttf") format("truetype")
-}
 
 #game-container {
   display: flex;
@@ -41,12 +37,24 @@
   z-index: 0;
 }
 
+#ribbon-list {
+  z-index: 4;
+}
+
+.player {
+  z-index: -1;
+}
+
+.ribbondiv {
+  z-index: 4;
+}
+
 #playerbuttons {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
-  z-index: 4;
+  z-index: 5;
 }
 
 .score-button {
@@ -61,49 +69,49 @@
 
 .character1 {
   background-repeat: no-repeat;
-  background-size: auto;
+  background-size: contain;
   background-image: url("../images/Characters-1.png");
 }
 
 .character2 {
   background-repeat: no-repeat;
-  background-size: auto;
+  background-size: contain;
   background-image: url("../images/Characters-2.png");
 }
 
 .character3 {
   background-repeat: no-repeat;
-  background-size: auto;
+  background-size: contain;
   background-image: url("../images/Characters-3.png");
 }
 
 .character4 {
   background-repeat: no-repeat;
-  background-size: auto;
+  background-size: contain;
   background-image: url("../images/Characters-4.png");
 }
 
 .character5 {
   background-repeat: no-repeat;
-  background-size: auto;
+  background-size: contain;
   background-image: url("../images/Characters-5.png");
 }
 
 .character6 {
   background-repeat: no-repeat;
-  background-size: auto;
+  background-size: contain;
   background-image: url("../images/Characters-6.png");
 }
 
 .character7 {
   background-repeat: no-repeat;
-  background-size: auto;
+  background-size: contain;
   background-image: url("../images/Characters-7.png");
 }
 
 .character8 {
   background-repeat: no-repeat;
-  background-size: auto;
+  background-size: contain;
   background-image: url("../images/Characters-8.png");
 }
 
@@ -505,8 +513,6 @@
     display: none;
   }
 
-  
-
   #phone-gameselect {
     display: none;
   }
@@ -521,7 +527,6 @@
     flex-direction: row;
     flex-wrap: nowrap;
     color: white;
-
   }
 
   #multi-control > #scroller {
@@ -600,7 +605,7 @@
   #challenge-cards {
     width: 25rem;
     height: 13rem;
-    margin-top: 4rem;
+    margin-top: 2rem;
   }
 
   #challenge-cards > div {
@@ -608,16 +613,16 @@
     width: 100%;
     height: 10rem;
     padding: .5rem 1rem 0rem 1rem;
-    font-size: 1.5rem;
+    font-size: 1rem;
     margin: 0;
   }
 
   .challenge-title {
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: 1rem;
     min-width: 100%;
     text-align: center;
-    margin-bottom: 1rem;
+    margin-bottom: .5rem;
   }
 
   .challenge-rules {
@@ -626,13 +631,13 @@
   }
 
   .challenge-time {
-    margin-top: 1rem;
+    margin-top: .25rem;
     min-width: 100%;
     text-align: center;
   }
 
   .challenge-attempts {
-    margin-top: 1rem;
+    margin-top: .25rem;
     min-width: 100%;
     text-align: center;
   }
@@ -645,16 +650,6 @@
   
   #phone-counter-image {
     display: none;
-  }
-
-  #player-list {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 60rem;
-    height: 5rem;
-    margin: 0rem 2rem -3.25rem 6rem;
-    align-items: center;
   }
 
   #player-submit-btn {
@@ -671,22 +666,51 @@
     width: 1.7rem;
     height: 1.7rem;
     margin-top: 20rem;
-    z-index: -1;
+    z-index: 4;
+  }
+
+  #player-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 26rem;
+    height: 10rem;
+    margin: 0rem 2rem -10rem 6rem;
+    justify-content: right;
+  }
+
+  #ribbon-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 26rem;
+    height: 10rem;
+    margin: 0rem 2rem -10rem 6rem;
+    justify-content: right;
   }
 
   .player {
-    height: 6rem;
-    width: 3rem;
-    margin: 1rem;
-    padding-top: 2rem;
+    height: 4rem;
+    width: 2rem;
+    margin: 2.3rem 1rem 0rem 1rem;
     color: black;
   }
 
   .myturn {
-    height: 9rem;
-    width: 3rem;
-    margin: 1rem;
+    height: 4rem;
+    width: 2rem;
+    margin: 1.1rem 1rem 0rem 1rem;
+  }
+
+  .ribbondiv {
+    background-image: url('../images/ribbon.png');
+    background-size: contain;
+    background-repeat: no-repeat;
     color: black;
+    height: 3rem;
+    width: 1.85rem;
+    margin: 4rem 1.1rem 0rem 1rem;
+    padding: .55rem;
   }
 
   #playerbutton-container {
@@ -771,8 +795,7 @@
     height: 2rem;
     margin-top: 1rem;
     border: none;
-    background-color: 
-  rgb(54, 51, 51);
+    background-color: rgb(54, 51, 51);
     color: white;
     border-radius: 8px;
   }

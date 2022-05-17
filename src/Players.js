@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useRecoilState } from 'recoil';
-import {playersState} from './RecoilState'; 
+import { playersState } from './RecoilState'; 
 
 
 const Player = ({player}) => {
@@ -8,13 +8,10 @@ const Player = ({player}) => {
   player.MyTurn ? itsMyTurn = 'myturn' : itsMyTurn = '';
   return ( 
     <div id="player-container">
-      <div className={`player ${itsMyTurn} ${player.Background}`} >
-      </div>
-      <div>{player.Score}</div>
+      <div className={`player ${itsMyTurn} ${player.Background}`} ></div>
     </div>
   );
 };
-
 
 const PlayerButtons = () => {
   const [players, setPlayers] = useRecoilState(playersState);
@@ -79,6 +76,13 @@ const Players = () => {
             <Player player={player} key={idx} />
           );
         })} 
+      </div>
+      <div id="ribbon-list">
+        {players.map((player, idx) => {
+          return(
+            <div className="ribbondiv" key={idx}>{player.Score}</div>
+          );
+        })}
       </div>
       <div id="phone-playerline" />
     </div>
