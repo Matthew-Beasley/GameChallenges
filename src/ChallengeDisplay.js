@@ -45,6 +45,7 @@ const ChallengeDisplay = () => {
         </div> 
       </div>
       <div className="mobilechallenge-container">
+        <NavBar />
         <Players />
         <PlayerButtons />
         <div id="mobilebackground">
@@ -65,6 +66,7 @@ const ChallengeDisplay = () => {
           </div>
           <img id="kitchencounter" src="../assets/images/kitchencounter.png" />
         </div>
+        <BottomBar />
       </div>
     </div>
   );

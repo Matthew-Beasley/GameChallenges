@@ -50,6 +50,7 @@ input {
 }
 
 /*====== bottom bar styles ======*/
+
 #bottombar-container {
   display: flex;
   flex-direction: row;
@@ -111,10 +112,11 @@ input {
     margin-top: 2rem;
     max-width: 400px;
     max-height: 66px;
+    margin-bottom: -2rem;
   }
   
   #landingpage-phone > p {
-    font-size: 2rem;
+    font-size: 1.8rem;
     text-align: center;
     color:rgb(42, 62, 69);
     margin-top: 1rem;
@@ -130,7 +132,8 @@ input {
   
   #play-now > img {
     max-width: 18rem;
-    margin-top: 4rem;
+    margin-top: 0rem;
+    margin-bottom: 8rem;
     cursor: pointer;
   }
 
@@ -278,6 +281,7 @@ input {
     margin-top: 6rem;
     cursor: pointer;
   }
+}
 
 
   @media only screen and (min-width: 1500px) {
@@ -323,9 +327,24 @@ input {
       margin-top: 5rem;
       cursor: pointer;
     }
+
+    /*====== bottom bar styles ======*/
+  #bottombar-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      background-color: rgb(47, 82, 114);
+      height: 6rem;
+      width: 100%;
+      padding: 2rem;
+      margin-top: 6rem;
+      z-index: 3;
+    }
   }
 
-  @media only screen and (min-width: 1800px) {
+
+
+  @media only screen and (min-width: 1700px) {
     #landingpage-desktop > p {
       font-size: 2.5rem;
       text-align: center;
@@ -368,7 +387,23 @@ input {
       margin-top: 6rem;
       cursor: pointer;
     }
+
+     /*====== bottom bar styles ======*/
+    #bottombar-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      background-color: rgb(47, 82, 114);
+      height: 6rem;
+      width: 100%;
+      padding: 2rem;
+      margin-top: 14rem;
+      z-index: 3;
+    }
   }
+
+
+
   
   @media only screen and (min-width: 2000px) {
     #landingpage-desktop > p {
@@ -413,6 +448,17 @@ input {
       margin-top: 6rem;
       cursor: pointer;
     }
+
+    #bottombar-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      background-color: rgb(47, 82, 114);
+      height: 6rem;
+      width: 100%;
+      padding: 2rem;
+      margin-top: 18rem;
+      z-index: 3;
+    }
   }
-}
 

@@ -19,21 +19,27 @@ const GameContainer = () => {
   }, []);
 
   return (
-    <div id="game-container">
-      <NavBar />
-      <div id='main-gamecomponents'>
-        <GameSetup />
-        <div id="sub-gamecomponents">
-          <Players />
-          <ChallengeDisplay />
-          <PlayerButtons />
+    <div>
+      <div id="game-container">
+        <NavBar />
+        <div id='main-gamecomponents'>
+          <GameSetup />
+          <div id="sub-gamecomponents">
+            <Players />
+            <ChallengeDisplay />
+            <PlayerButtons />
+          </div>
         </div>
+        <div id="bottombar-buffer"></div>
+        <BottomBar />
       </div>
-      <BottomBar />
       <div id="phone-gamecomponents">
+        <NavBar />
         <GameSetup />
+        <BottomBar />
       </div>
     </div>
+
   );
 };
 

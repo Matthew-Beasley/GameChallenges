@@ -57,8 +57,8 @@ const PlayerButtons = () => {
     <div id="playerbutton-container">
       {!!players.length && 
       <div id="playerbuttons">
-        <button className="score-button" onClick={() => addPoint()}>+</button>
-        <button className="score-button" onClick={() => failed()}>{'>'}</button>
+        <button className="score-button score-button-left" onClick={() => addPoint()}>+</button>
+        <button className="score-button score-button-right" onClick={() => failed()}>{'>'}</button>
       </div>}
     </div>
   );
