@@ -38,21 +38,7 @@ const CreateUser = () => {
   const [lastName, setLastName] = useState('');
   const history = useHistory();
   const [cookies, setCookie] = useCookies(['token']);
-  let subtitle;
-  const [modalIsOpen, setIsOpen] = React.useState(false);
 
-  function openModal() {
-    setIsOpen(true);
-  }
-
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    subtitle.style.color = '#f00';
-  }
-
-  function closeModal() {
-    setIsOpen(false);
-  }
 
   useEffect(() => {
     axios.defaults.headers.post['X-CSRF-Token'] = csrf;
@@ -80,23 +66,12 @@ const CreateUser = () => {
         alert('All data fields must be filled out');
       }
     } else if (usr.email) {
-      openModal();
+      alert('User already exists, try logging in');
     }
   };
 
   return (
     <div id="createuser-container">
-      <Modal
-        isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
-        onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="Modal"
-      >
-        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>User already exists</h2>
-        <div>There is already a user with this email. Either go to sign in to sign in to your account, or create a user with a different email.</div>
-        <button onClick={closeModal}>close</button>
-      </Modal>
       <div id="create-column">
         <NavBar />
         <form onSubmit={(ev) => checkCredentials(ev)}>

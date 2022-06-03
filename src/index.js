@@ -16,7 +16,6 @@ import '../assets/styles/game.css';
 import '../assets/styles/login.css';
 import '../assets/styles/createUser.css';
 import '../assets/styles/nav.css';
-import '../assets/fonts/Inkfree.ttf';
 
 const root = document.querySelector('#root');
 

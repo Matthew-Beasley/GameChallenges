@@ -3,6 +3,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import Slider from 'react-slick';
 import { challengesState } from './RecoilState';
 import NavBar from './NavBar';
+import BottomBar from './BottomBar';
 import Players, {PlayerButtons} from './Players';
 
 
@@ -24,7 +25,6 @@ const ChallengeDisplay = () => {
 
   return (
     <div id="outer-challenges-display">
-      <NavBar />
       <div id="challenge-container"> 
         <div id="challenge-cards">
           <Slider {...settings}>
@@ -45,6 +45,7 @@ const ChallengeDisplay = () => {
         </div> 
       </div>
       <div className="mobilechallenge-container">
+        <NavBar />
         <Players />
         <PlayerButtons />
         <div id="mobilebackground">
@@ -65,6 +66,7 @@ const ChallengeDisplay = () => {
           </div>
           <img id="kitchencounter" src="../assets/images/kitchencounter.png" />
         </div>
+        <BottomBar />
       </div>
     </div>
   );
