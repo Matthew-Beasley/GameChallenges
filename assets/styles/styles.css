@@ -22,25 +22,5 @@
 }
 
 
-/* ===== Terms Styles ===== */
-
-#terms-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: fit-content;
-  height: 100vw;
-  font-family: 'Arial Rounded MT Bold', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  background-color: rgb(190, 205, 211);
-  color: black;
-}
-
-#terms {
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  padding: 2rem;
-}
-
 
 
