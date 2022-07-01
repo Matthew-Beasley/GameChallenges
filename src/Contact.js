@@ -27,7 +27,6 @@ const Contact = () => {
 
   return (
     <div id="contactpage">
-      <NavBar />
       <form id="contact-form" onSubmit={(ev) => sendEmail(ev)}>
         <h3>Have a comment, need some help? Let us know!</h3>
         <input type="email" id="contact-email" placeholder="email@example.com" onChange={(ev) => setEmail(ev.target.value)} />

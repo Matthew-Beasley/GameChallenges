@@ -1,0 +1,23 @@
+#aboutcontact {
+  background-color: rgb(137, 207, 233);
+  min-height: 100vh;
+  background-size: 100vh;
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+#aboutcontactrow {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content:space-between;
+}
+
+#about-container {
+  width: 50%;
+}
+
+#contactpage {
+  width: 50%;
+}

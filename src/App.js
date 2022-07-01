@@ -15,6 +15,7 @@ import Credits from './Credits';
 import CreateUser, { StandbyForVerification } from './CreateUser';
 import Terms from './Terms';
 import Rules from './Rules';
+import AboutContact from './AboutContact';
 
 
 const App = () => {
@@ -32,6 +33,7 @@ const App = () => {
       <Route exact path="/" component={LandingPage} />
       <Route path="/gamepage" component={GameContainer} />
       <Route path="/challenges" component={ChallengeDisplay} />
+      <Route path="/aboutcontact" component={AboutContact} />
       <Route path="/contact" component={Contact} />
       <Route path="/about" component={About} />
       <Route path="/login" component={Login} />

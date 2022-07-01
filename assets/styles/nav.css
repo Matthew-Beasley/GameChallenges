@@ -8,6 +8,7 @@
   min-height: 6rem;
   margin-top: 3rem;
   color: white;
+  z-index: 6;
 }
 
 .logout-text {

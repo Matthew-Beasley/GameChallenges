@@ -17,6 +17,7 @@ import '../assets/styles/login.css';
 import '../assets/styles/createUser.css';
 import '../assets/styles/nav.css';
 import '../assets/styles/terms.css';
+import '../assets/styles/aboutcontact.css';
 
 const root = document.querySelector('#root');
 

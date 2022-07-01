@@ -1,16 +1,16 @@
 /* These styles apply to Rules.js as well */
 
 #about-container {
-  background-color: rgb(190, 205, 211);
-  min-height: fit-content;
   display: flex;
   flex-direction: column;
+  z-index: 1;
 }
 
 #about-plate {
   background-color: white;
   width: 80%;
-  height: fit-content;
+  height: 49rem;
+  overflow-y: scroll;
   margin: 5rem 10% 5rem 10%;
   padding: 4rem;
   border-radius: 2rem;

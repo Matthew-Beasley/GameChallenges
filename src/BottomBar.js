@@ -7,7 +7,7 @@ const BottomBar = () => {
   return (
     <div id="bottombar-container">
       <p>
-        <Link to='/terms'>Terms and Conditions</Link>  |  <Link to='/terms'>Privacy Policy</Link>  |  <Link to='/contact'>Contact Us</Link>  |  <Link to='/about'>About Us</Link>
+        <Link to='/terms'>Terms and Conditions</Link>  |  <Link to='/terms'>Privacy Policy</Link>  |  <Link to='/aboutcontact'>Contact Us</Link>  |  <Link to='/aboutcontact'>About Us</Link>
       </p>
     </div>
   );

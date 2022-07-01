@@ -4,7 +4,6 @@ import NavBar from './NavBar';
 const About = () => {
   return (
     <div id="about-container">
-      <NavBar />
       <div id="about-plate">
         <img id="about-character" src="../assets/images/Characters-8.png" />
         <div id="about-definition">
