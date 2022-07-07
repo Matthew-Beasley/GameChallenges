@@ -1,23 +1,100 @@
-#aboutcontact {
-  background-color: rgb(137, 207, 233);
-  min-height: 100vh;
-  background-size: 100vh;
-  z-index: 0;
-  display: flex;
-  flex-direction: column;
+@media only screen and (min-width: 901px) {
+
+  #aboutcontactphone {
+    display: none;
+  }
+
+  #aboutcontactrow {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content:space-between;
+  }
+
+  #about-container {
+    width: 50%;
+  }
+
+  #contactpage {
+    width: 50%;
+  }
 }
 
-#aboutcontactrow {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content:space-between;
-}
 
-#about-container {
-  width: 50%;
-}
 
-#contactpage {
-  width: 50%;
+@media only screen and (max-width: 900px) {
+
+  #aboutcontactrow {
+    display:none;
+  }
+
+  #aboutcontact {
+    background-color: rgb(137, 207, 233);
+    min-height: 100vh;
+    background-size: fit-content;
+    z-index: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #navbar {
+    margin-top: 0rem;
+  }
+
+  #bottombar-container {
+    margin-top: 22.75rem;
+  }
+
+  #about-container {
+    height: 27rem;
+    margin-top: -4rem;
+  }
+
+  #about-container li  {
+    font-size: smaller;
+  }
+
+  #about-container p {
+    font-size: smaller;
+  }
+
+  #about-character {
+    height: 6rem;
+    width: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  #contact-form {
+    height: 18rem;
+  }
+
+  #contact-email {
+    margin-top: -1rem;
+  }
+
+  #contact-text {
+    min-height: 5rem;
+    margin-bottom: 0rem;
+  }
+
+  #aboutcontactphone {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content:space-between;
+    width: 100%;
+    height: 15rem;
+  }
+
+  #contactpage {
+    height: 18rem;
+    margin-top: -9rem;
+    width: 100%;
+    height: 5rem;
+  }
+
+  #contactpage p {
+    font-size:medium;
+    margin: 2rem;
+  }
 }

@@ -7,8 +7,8 @@ const About = () => {
       <div id="about-plate">
         <img id="about-character" src="../assets/images/Characters-8.png" />
         <div id="about-definition">
-          <h1>/THwôrt/</h1>
-          <h2>verb</h2>
+          <h3>/THwôrt/</h3>
+          <h4>verb</h4>
           <ol>
             <li>prevent (someone) from accomplishing something. "He never did anything to thwart his father"</li>
           </ol>

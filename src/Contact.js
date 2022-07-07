@@ -28,7 +28,7 @@ const Contact = () => {
   return (
     <div id="contactpage">
       <form id="contact-form" onSubmit={(ev) => sendEmail(ev)}>
-        <h3>Have a comment, need some help? Let us know!</h3>
+        <p>Have a comment, need some help? Let us know!</p>
         <input type="email" id="contact-email" placeholder="email@example.com" onChange={(ev) => setEmail(ev.target.value)} />
         <textarea type="text" id="contact-text" placeholder="message" onChange={(ev) => setMessage(ev.target.value)} />
         <input type="submit" id="contact-submit" value="Submit" />
