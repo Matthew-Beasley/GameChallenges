@@ -4,6 +4,12 @@
     display: none;
   }
 
+  #aboutcontact {
+    background-color: rgb(137, 207, 233);
+    min-height: 100vh;
+    background-size: fit-content;
+  }
+
   #aboutcontactrow {
     display: flex;
     flex-direction: row;
