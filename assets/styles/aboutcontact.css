@@ -1,27 +1,44 @@
 @media only screen and (min-width: 901px) {
 
-  #aboutcontactphone {
-    display: none;
-  }
-
   #aboutcontact {
     background-color: rgb(137, 207, 233);
     min-height: 100vh;
-    background-size: fit-content;
+    background-size: 100vh;
+    z-index: 0;
+    display: flex;
+    flex-direction: column;
   }
-
+  
   #aboutcontactrow {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content:space-between;
+    height: 40rem;
+    margin-bottom: -6rem;
   }
 
+  #contact-form {
+    height: 30rem;
+  }
+
+  #contact-text {
+    min-height: 15rem;
+    margin-bottom: 2rem;
+  }
+
+  #contact-form > p {
+    font-size: 1.5rem;
+    margin: 1rem;
+  }
+  
   #about-container {
+    height: 40rem;
     width: 50%;
   }
-
+  
   #contactpage {
+    height: 40rem;
     width: 50%;
   }
 }

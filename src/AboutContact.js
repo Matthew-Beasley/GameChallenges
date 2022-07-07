@@ -13,10 +13,6 @@ const AboutContact = () => {
         <About />
         <Contact />
       </div>
-      <div id="aboutcontactphone">
-        <About />
-        <Contact />
-      </div>
       <BottomBar />
     </div>
   );
