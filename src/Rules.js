@@ -1,14 +1,10 @@
 import React from 'react';
-import NavBar from './NavBar';
 
 const Rules = () => {
   return (
-    <div id="about-container">
-      <NavBar />
-      <div id="about-plate">
-        <img id="about-character" src="../assets/images/Characters-3.png" />
-        <h1>How to Play</h1>
-        
+    <div id="rules-container">
+      <div id="rules-plate">
+        <h1>How to Play</h1>  
         <p>Welcome to Thwart Me!</p> 
         <p>We have some basic rules (more “guidelines,” really) to help you get started, but this game is designed to provide you with ample opportunities for “house rules.”</p>
         <p>First, decide which device and user is going to run the game.  Everyone’s scores will be entered in the one place.</p> 
