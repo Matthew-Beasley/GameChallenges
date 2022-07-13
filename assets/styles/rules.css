@@ -9,6 +9,7 @@
   flex-direction: column;
   border: 4px black solid;
   border-radius: 5%;
+  /*border: 3rem*/
 }
 
 #rules-plate > p {

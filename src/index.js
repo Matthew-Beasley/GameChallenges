@@ -19,6 +19,7 @@ import '../assets/styles/nav.css';
 import '../assets/styles/terms.css';
 import '../assets/styles/aboutcontact.css';
 import '../assets/styles/rules.css';
+import '../assets/styles/video.css';
 
 const root = document.querySelector('#root');
 

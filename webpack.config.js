@@ -36,6 +36,15 @@ module.exports = {
         }
       },
       {
+        test: /\.(mp4|mp3|ogg)$/i,
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: '[name].[hash].[ext]'
+          }
+        }
+      },
+      {
         test: /\.(png|jpg|gif|svg)$/i,
         use: [
           {

@@ -16,6 +16,7 @@ import CreateUser, { StandbyForVerification } from './CreateUser';
 import Terms from './Terms';
 import Rules from './Rules';
 import AboutContact from './AboutContact';
+import Video from './Video';
 
 
 const App = () => {
@@ -43,6 +44,7 @@ const App = () => {
       <Route path='/verifyuser' component={StandbyForVerification} />
       <Route path='/terms' component={Terms} />
       <Route path='/rules' component={Rules} />
+      <Route path='/video' component={Video} />
     </div>
   );
 };
