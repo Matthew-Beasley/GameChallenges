@@ -1,6 +1,7 @@
 const express = require('express');
 const userRouter = express.Router();
 const CryptoJS = require('crypto-js');
+const nodemailer = require('nodemailer');
 const {
   createUser,
   getUserByEmail,
@@ -13,8 +14,6 @@ const {
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
-const nodemailer = require('nodemailer');
-const mg = require('nodemailer-mailgun-transport');
 
 userRouter.get('/', async (req, res, next) => {
   try {
@@ -57,70 +56,67 @@ userRouter.post('/updatedecks', isLoggedIn, async (req, res, next) => {
   }
 });
 
-userRouter.post('/mailgun', (req, res, next) => {
+userRouter.post('/mail', (req, res, next) => {
+
   const { password, email, first_name, last_name } = req.body;
+  console.log(password, email, first_name, last_name)
   const encrypted = CryptoJS.AES.encrypt(JSON.stringify({ password, email, first_name, last_name }), process.env.EMAILKEY);
   let url = '';
   if (process.env.NODE_ENV === 'test') {
     url = `http://localhost:3000?nonce=${encrypted}`;
-  } else if (process.env.NODE_ENV === 'staging') {
-    url = `http://fathomless-escarpment-51259.herokuapp.com?nonce=${encrypted}`;
   } else if (process.env.NODE_ENV === 'production') {
     url = `https://www.thwartme.com?nonce=${encrypted}`;
   }
-  const mailgunAuth = {
-    auth: {
-      api_key: process.env.MAILGUN_APIKEY,
-      domain: 'thwartme.com'
-    }
-  };
-  const smtpTransport = nodemailer.createTransport(mg(mailgunAuth));
   const htmlToSend = `<p>Click the link below to verify your thwartme account.</p>
 <a href="${url}">Click here to verify your Thwartme account</a>           
 <p>Your email will never be shared and this is the only email you will ever recieve from thwartme!</p>          
 <p>Enjoy the game!</p>`;
-  const mailOptions = {
-    from: 'Thwartme.com <game-team@thwartme.com>',
+  const transport = nodemailer.createTransport({
+    host: "smtp.mailgun.org",
+    port: 465,
+    auth: {
+      user: process.env.MAILGUN_USER,
+      pass: process.env.MAILGUN_PASSWORD
+    }
+  });
+  var mailOptions = {
+    from: '"Thwartme development team" <conbecdevelopment@outlook.com>',
     to: email,
-    subject: 'Verify new thwartme account',
+    subject: 'Thwartme user account confirmation',
     html: htmlToSend
   };
-  smtpTransport.sendMail(mailOptions, (error, response) => {
+  transport.sendMail(mailOptions, (error, info) => {
     if (error) {
-      next(error);
+      res.status(500).send('Internal error, mail failed to send');
     } else {
-      res.status(200).send(response);
+      res.status(200).send('Mail sent')
     }
   });
 });
 
 userRouter.post('/contactus', (req, res, next) => {
   const { email , message } = req.body;
-  const mailgunAuth = {
+  const transport = nodemailer.createTransport({
+    host: "smtp.mailgun.org",
+    port: 465,
     auth: {
-      api_key: process.env.MAILGUN_APIKEY,
-      domain: 'thwartme.com'
+      user: process.env.MAILGUN_USER,
+      pass: process.env.MAILGUN_PASSWORD
     }
-  };
-  const smtpTransport = nodemailer.createTransport(mg(mailgunAuth));
-  const mailOptions = {
-    from: 'Thwartme.com <contactus@thwartme.com>',
+  });
+  var mailOptions = {
+    from: email,
     to: 'conbecdevelopment@outlook.com',
-    subject: 'Contact Us',
-    text: `From: ${email}
-      ${message}`
+    subject: 'Thwartme contact us email',
+    text: message
   };
-  try {
-    smtpTransport.sendMail(mailOptions, (error, response) => {
-      if (error) {
-        next(error);
-      } else {
-        res.status(200).send(response);
-      }
-    });
-  } catch (error) {
-    next(error);
-  }
+  transport.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      res.status(500).send('Internal error, mail failed to send');
+    } else {
+      res.status(200).send('Mail sent')
+    }
+  });
 });
 
 module.exports = userRouter;

@@ -58,7 +58,8 @@ const CreateUser = () => {
     const usr = (await axios.get(`/user?email=${email}`)).data[0];
     if (!usr) {
       if (password && email && firstName && lastName) {
-        await axios.post('/user/mailgun', { password, email, first_name: firstName, last_name: lastName });
+        const err = await axios.post('/user/mail', { password, email, first_name: firstName, last_name: lastName });
+        console.log(err)
         setPassword('');
         setEmail('');
         history.push('/verifyuser');
