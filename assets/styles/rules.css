@@ -1,17 +1,42 @@
 #rules-container {
-  background-color: white;
-  min-height: 60vh;
-  background-size: 60vh;
-  max-width: 40%;
-  padding: 1rem;
-  z-index: 1;
+  background-color: rgb(137, 207, 233);
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  border: 4px black solid;
-  border-radius: 5%;
-  /*border: 3rem*/
 }
 
-#rules-plate > p {
+#rules-plate {
+  background-color: white;
   font-size: 1.5rem;
+  height: 60vh;
+  max-width: 70%;
+  padding: 1rem;
+  margin-left: 15%;
+  margin-bottom: -5rem;
+  z-index: 1;
+  border: 4px black solid;
+  border-radius: 5%;
+  overflow-y: scroll;
+}
+
+@media only screen and (max-width: 900px) {
+  #rules-plate {
+    font-size: 1rem;
+    height: 70vh;
+    max-width: 90%;
+    padding: 1rem;
+    margin-top: 2rem;
+    margin-left: 5%;
+    margin-bottom: -21rem;
+    z-index: 1;
+    border: 4px black solid;
+    border-radius: 5%;
+    overflow-y: scroll;
+  }
+}
+
+@media only screen and (max-width: 1115px) {
+  #rules-plate {
+    margin-top: 3rem;
+  }
 }
