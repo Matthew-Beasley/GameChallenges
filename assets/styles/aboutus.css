@@ -6,6 +6,14 @@
   z-index: 0;
 }
 
+#aboutcontactrow {
+  z-index: 3;
+}
+
+#aboutcontactbuffer {
+  height: 5rem;
+}
+
 #about-plate {
   background-color: white;
   width: 80%;

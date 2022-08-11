@@ -1,7 +1,7 @@
 #contactpage {
   display: flex;
   flex-direction: column;
-  z-index: 0;
+  z-index: 3;
 }
 
 #contact-form {

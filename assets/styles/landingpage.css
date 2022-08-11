@@ -144,7 +144,7 @@ input {
     height: 4rem;
     width: 100%;
     padding: 0rem;
-    z-index: 2;
+    z-index: 3;
   }
   
   #bottombar-container > p {

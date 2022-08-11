@@ -13,6 +13,7 @@ const AboutContact = () => {
         <About />
         <Contact />
       </div>
+      <div id="aboutcontactbuffer" />
       <BottomBar />
     </div>
   );
