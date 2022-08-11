@@ -457,6 +457,7 @@
     width: 24.25rem;
     margin-top: -3.2rem;
     margin-left: 0rem;
+    margin-bottom: -1.6rem;
   }
 }
 
@@ -503,6 +504,7 @@
   #gamesetup-container {
     min-width: 26rem;
     max-height: fit-content;
+    margin-bottom: 8rem;
   }
 
   .setup-control {
