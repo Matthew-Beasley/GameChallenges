@@ -44,7 +44,6 @@ const App = () => {
       <Route path='/verifyuser' component={StandbyForVerification} />
       <Route path='/terms' component={Terms} />
       <Route path='/rules' component={Rules} />
-      <Route path='/video' component={Video} />
     </div>
   );
 };

@@ -45,10 +45,6 @@
   margin-top: 15rem;
 }
 
-#terms-container > #bottombar-container {
-  margin-top: 0rem;
-}
-
 @media only screen and (max-width: 900px) {
   #terms-characters {
     display: none;

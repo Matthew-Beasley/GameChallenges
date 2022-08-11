@@ -6,8 +6,7 @@ const Video = () => {
 
   return (
     <div id="video-wrapper">
-      <hr></hr>
-      <video width="750" height="500" controls >
+      <video controls >
         <source src={video} type="video/mp4"/>
       </video>
     </div>

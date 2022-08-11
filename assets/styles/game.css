@@ -145,10 +145,6 @@
     background-size: 100vh;
   }
 
-  #bottombar-container {
-    margin-top: -1.5rem;
-  }
-
   /* ===== GameSetup Styles ===== */
 
   .setup-control {
@@ -1725,7 +1721,6 @@
   }
 
   #bottombar-container {
-    margin-top: 10rem;
     z-index: 2;
   }
 

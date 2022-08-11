@@ -1,3 +1,78 @@
-#video-wrapper {
-  background-color: beige;
+@media only screen and (min-width: 900px) {
+
+  #video-wrapper {
+    background-color: rgb(137, 207, 233);
+    margin-top: 3rem;
+    margin-right: 5rem;
+    margin-left: 3rem;
+  }
+
+  video {
+    width: 25rem;
+    height: 20rem;
+  }
+}
+
+
+@media only screen and (max-width: 900px) {
+
+  #video-wrapper {
+    background-color: rgb(137, 207, 233);
+    margin-top: -3rem;
+    margin-right: 5rem;
+    margin-left: 3rem;
+  }
+
+  video {
+    width: 20rem;
+    height: 15rem;
+  }
+}
+
+
+@media only screen and (min-width: 1300px) {
+
+  #video-wrapper {
+    background-color: rgb(137, 207, 233);
+    margin-top: -3rem;
+    margin-right: 5rem;
+    margin-left: 3rem;
+  }
+
+  video {
+    width: 35rem;
+    height: 30rem;
+  }
+}
+
+
+@media only screen and (min-width: 1500px) {
+
+  #video-wrapper {
+    background-color: rgb(137, 207, 233);
+    margin-top: -3rem;
+    margin-right: 5rem;
+    margin-left: 3rem;
+  }
+
+  video {
+    width: 42rem;
+    height: 30rem;
+  }
+}
+
+
+@media only screen and (min-width: 1900px) {
+
+  #video-wrapper {
+    background-color: rgb(137, 207, 233);
+    margin-top: -3rem;
+    margin-right: 5rem;
+    margin-left: 3rem;
+  }
+
+  video {
+    width: 50rem;
+    height: 34rem;
+  }
 }

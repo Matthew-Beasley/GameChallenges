@@ -31,7 +31,6 @@ input {
 
 #play-now > img {
   max-width: 15rem;
-  margin-top: 4rem;
   cursor: pointer;
 }
 
@@ -42,6 +41,7 @@ input {
   justify-content: end;
   width: 15rem;
   cursor: pointer;
+  z-index: 2;
 }
 
 #register > p {
@@ -59,7 +59,6 @@ input {
   height: 6rem;
   width: 100%;
   padding: 2rem;
-  margin-top: 8rem;
   z-index: 3;
 }
 
@@ -133,7 +132,7 @@ input {
   #play-now > img {
     max-width: 18rem;
     margin-top: 0rem;
-    margin-bottom: 8rem;
+    margin-bottom: 7rem;
     cursor: pointer;
   }
 
@@ -145,7 +144,6 @@ input {
     height: 4rem;
     width: 100%;
     padding: 0rem;
-    margin-top: 8rem;
     z-index: 2;
   }
   
@@ -163,13 +161,13 @@ input {
   #partyguysleft {
     height: 125px;
     width: 150px;
-    margin-top: -11.9rem;
+    margin-top: -11rem;
     z-index: 1;
   }
   
   #partyguysright {
     z-index: 1;
-    margin-top: -10rem;;
+    margin-top: -9rem;;
     max-width: 150px;
     max-height: 105px;
     margin-right: 1rem;
@@ -189,6 +187,10 @@ input {
     margin-top: 6rem;
     max-width: 800px;
     max-height: 82px;
+  }
+
+  #play-now {
+    margin-bottom: 5rem;
   }
 
   #partyguysleft {
@@ -337,7 +339,6 @@ input {
       height: 6rem;
       width: 100%;
       padding: 2rem;
-      margin-top: 6rem;
       z-index: 3;
     }
   }
@@ -397,7 +398,6 @@ input {
       height: 6rem;
       width: 100%;
       padding: 2rem;
-      margin-top: 14rem;
       z-index: 3;
     }
   }
@@ -457,7 +457,6 @@ input {
       height: 6rem;
       width: 100%;
       padding: 2rem;
-      margin-top: 18rem;
       z-index: 3;
     }
   }
