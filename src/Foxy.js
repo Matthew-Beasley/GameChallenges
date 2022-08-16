@@ -142,6 +142,33 @@ const Foxy = () => {
     draggable: true
   };
 
+  const phoneSettings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 3,
+    draggable: true
+  };
+
+  const phoneDeckSettings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 3,
+    draggable: true
+  };
+
+  const phoneInnerDeckSettings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    draggable: true
+  };
+
   if(cookies.token) {
     return (
       <div id="foxy">
@@ -151,6 +178,22 @@ const Foxy = () => {
             <h3 className="foxy-heading">My Library</h3>
             <div className="foxyslider">
               <Slider {...settings}>
+                {!!user.email && user.decks.map((item, ord) => {
+                  return (
+                    <div className="game-slide" key={ord}>
+                      <div className="game-slide-inner" style={{backgroundColor: chooseColor()}}>
+                        <img className="slide-image" src={`../assets/images/Characters-${Math.floor(Math.floor(Math.random() * (8 - 1 + 1)) + 1)}.png`} />
+                      </div>
+                      <div id="link-container">
+                        <p className="library-p">{item.name}</p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </Slider>
+            </div>
+            <div className="phonefoxyslider">
+              <Slider {...phoneSettings}>
                 {!!user.email && user.decks.map((item, ord) => {
                   return (
                     <div className="game-slide" key={ord}>
@@ -210,6 +253,52 @@ const Foxy = () => {
                           </Slider>
                         </div>
                       </div>
+                    );} 
+                })}
+              </Slider>
+            </div>
+            <div className="phonefoxyslider">
+              <Slider {...phoneSettings}>
+                {!!decks && Object.entries(decks).map(([game, deckList]) => {
+                  if(deckList.includes(0) && deckList.length > 1 || !deckList.includes(0)) {
+                    console.log(deckList)
+                    return (
+                      <div key={game} >
+                        <div className="game-slide">
+                          <div className="game-slide-inner" style={{backgroundColor: chooseColor()}}>
+                            <img className="slide-image" src={`../assets/images/Characters-${Math.floor(Math.floor(Math.random() * (8 - 1 + 1)) + 1)}.png`} />
+                          </div>
+                        </div>
+                        <div className="gamename-img-container">
+                          <div className="gamename" >{game}</div>
+                        </div>
+                        <div className="decks decklist">
+                          <Slider {...phoneInnerDeckSettings}>
+                            {deckList.map((deck, el) => {
+                              {/* deck list is a list of deck numbers */}
+                              if(deck !== 0 && user.decks.length !== 0 && !user.decks.find(testDeck => testDeck.code === `${game}${deck}`)) {
+                                return (
+                                  <div key={el} className="decklist-card-container">
+                                    <div className="decklist-card" key={el} >
+                                      <a href={hashedRef(game, deck)}>Buy {`Deck ${deck} $1.99`}</a>
+                                    </div>
+                                  </div>
+                                );
+                              } else if(deck !== 0 && user.decks.find(testDeck => testDeck.code === `${game}${deck}`)) {
+                                {/* This is where logic was to display decks already purchased. nothing is being displayed now */}
+                              } else if(user.decks.length === 0) {
+                                return (
+                                  <div className="decklist-card-container">
+                                    <div className="decklist-card" key={el}>
+                                      <div className="playforfree" onClick={(ev) => addFreeDeck(ev)}>{`Play this deck free! ${game} deck ${deck}`}</div>
+                                    </div>
+                                  </div>
+                                );
+                              } 
+                            })}
+                          </Slider>
+                        </div>
+                      </div>   
                     );} 
                 })}
               </Slider>

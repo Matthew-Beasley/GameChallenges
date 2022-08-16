@@ -101,6 +101,10 @@
   margin-left: 18rem;
 }
 
+.phonefoxyslider {
+  display: none;
+}
+
 .decklist-container {
   width: 100%;
   height: 19rem;
@@ -174,11 +178,11 @@
   }
 
   .gamename {
-    font-size: 1.3rem;
+    font-size: 1rem;
   }
 
   .decks {
-    font-size: 1.2rem;
+    font-size: .9rem;
     margin-bottom: 1rem;
   }
 
@@ -189,7 +193,34 @@
     flex-wrap: nowrap;
     margin: 1rem 0rem 1rem 2rem;
     height: fit-content;
-    width: 95%;
+    width: 100%;
+  }
+
+  .foxyslider {
+    display: none;
+  }
+  
+  .phonefoxyslider {
+    display: flex;
+    width: 100%;
+    height: 19rem;
+  }
+
+  .game-slide-inner {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    height: 8rem;
+    width: 6rem;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+  }
+  
+  .slide-image {
+    height: 6.5rem;
+    width: 3.5rem;
+    align-self: flex-end;
   }
 }
 
