@@ -48,7 +48,8 @@
 @media only screen and (max-width: 900px) {
 
   #aboutcontactrow {
-    display:none;
+    flex-direction: column;
+    margin-bottom: 14rem;
   }
 
   #aboutcontact {
