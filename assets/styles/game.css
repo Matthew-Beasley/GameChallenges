@@ -419,7 +419,7 @@
 
   #mobilebackground {
     background-image: url('../images/chalkboard.png');
-    background-size: 92vw 15rem;
+    background-size: 92vw 20rem;
     background-repeat: no-repeat;
     margin: 1rem 1rem 1rem 1rem;
     padding-top: .5rem;
@@ -455,7 +455,7 @@
   #kitchencounter {
     height: 8rem;
     width: 24.25rem;
-    margin-top: -3.2rem;
+    margin-top: 1rem;
     margin-left: 0rem;
     margin-bottom: -1.6rem;
   }
@@ -1043,16 +1043,16 @@
   }
 
   .player {
-    height: 4rem;
-    width: 2rem;
-    margin: 2.3rem 1rem 0rem 1rem;
+    height: 7rem;
+    width: 3rem;
+    margin: 1.8rem 1rem 0rem 1rem;
     color: black;
   }
 
   .myturn {
-    height: 4rem;
-    width: 2rem;
-    margin: 1.1rem 1rem 0rem 1rem;
+    height: 9rem;
+    width: 3rem;
+    margin: -.5rem 1rem 0rem 1rem;
   }
 
   .ribbondiv {
@@ -1060,10 +1060,11 @@
     background-size: contain;
     background-repeat: no-repeat;
     color: black;
-    height: 3rem;
-    width: 1.85rem;
+    height: 5rem;
+    width: 3rem;
     margin: 4rem 1.1rem 0rem 1rem;
-    padding: .55rem;
+    padding: 1rem;
+    font-size: 1.5rem;
   }
 
   #playerbutton-container {
@@ -1358,16 +1359,16 @@
   }
 
   .player {
-    height: 4rem;
-    width: 2rem;
-    margin: 2.3rem 1rem 0rem 1rem;
+    height: 7rem;
+    width: 3rem;
+    margin: 1.8rem 1rem 0rem 1rem;
     color: black;
   }
 
   .myturn {
-    height: 4rem;
-    width: 2rem;
-    margin: 1.1rem 1rem 0rem 1rem;
+    height: 9rem;
+    width: 3rem;
+    margin: -.5rem 1rem 0rem 1rem;
   }
 
   .ribbondiv {
@@ -1375,10 +1376,11 @@
     background-size: contain;
     background-repeat: no-repeat;
     color: black;
-    height: 3rem;
-    width: 1.85rem;
+    height: 5rem;
+    width: 3rem;
     margin: 4rem 1.1rem 0rem 1rem;
-    padding: .55rem;
+    padding: 1rem;
+    font-size: 1.5rem;
   }
 
   #playerbutton-container {
@@ -1678,16 +1680,16 @@
   }
 
   .player {
-    height: 4rem;
-    width: 2rem;
-    margin: 2.3rem 1rem 0rem 1rem;
+    height: 7rem;
+    width: 3rem;
+    margin: 1.8rem 1rem 0rem 1rem;
     color: black;
   }
 
   .myturn {
-    height: 4rem;
-    width: 2rem;
-    margin: 1.1rem 1rem 0rem 1rem;
+    height: 9rem;
+    width: 3rem;
+    margin: -.5rem 1rem 0rem 1rem;
   }
 
   .ribbondiv {
@@ -1695,10 +1697,11 @@
     background-size: contain;
     background-repeat: no-repeat;
     color: black;
-    height: 3rem;
-    width: 1.85rem;
+    height: 5rem;
+    width: 3rem;
     margin: 4rem 1.1rem 0rem 1rem;
-    padding: .55rem;
+    padding: 1rem;
+    font-size: 1.5rem;
   }
 
   #playerbutton-container {
@@ -2002,16 +2005,16 @@
   }
 
   .player {
-    height: 4rem;
-    width: 2rem;
-    margin: 2.3rem 1rem 0rem 1rem;
+    height: 7rem;
+    width: 3rem;
+    margin: 1.8rem 1rem 0rem 1rem;
     color: black;
   }
 
   .myturn {
-    height: 4rem;
-    width: 2rem;
-    margin: 1.1rem 1rem 0rem 1rem;
+    height: 9rem;
+    width: 3rem;
+    margin: -.5rem 1rem 0rem 1rem;
   }
 
   .ribbondiv {
@@ -2019,10 +2022,11 @@
     background-size: contain;
     background-repeat: no-repeat;
     color: black;
-    height: 3rem;
-    width: 1.85rem;
+    height: 5rem;
+    width: 3rem;
     margin: 4rem 1.1rem 0rem 1rem;
-    padding: .55rem;
+    padding: 1rem;
+    font-size: 1.5rem;
   }
 
   #playerbutton-container {
@@ -2051,6 +2055,14 @@
   }
 }
 
+
+
+
+
+
+
+
+
 @media only screen and (min-width: 2000px) {
   #bottombar-buffer {
     height: 11rem;
@@ -2076,6 +2088,31 @@
   #sub-gamecomponents {
     position: absolute;
     margin-left: 35rem;
+  }
+
+  .player {
+    height: 7rem;
+    width: 3rem;
+    margin: 1.8rem 1rem 0rem 1rem;
+    color: black;
+  }
+
+  .myturn {
+    height: 9rem;
+    width: 3rem;
+    margin: -.5rem 1rem 0rem 1rem;
+  }
+
+  .ribbondiv {
+    background-image: url('../images/ribbon.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    color: black;
+    height: 5rem;
+    width: 3rem;
+    margin: 4rem 1.1rem 0rem 1rem;
+    padding: 1rem;
+    font-size: 1.5rem;
   }
 
   #bottombar-buffer {
