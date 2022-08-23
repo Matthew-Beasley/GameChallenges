@@ -14,7 +14,7 @@
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
-  padding: 0rem 2rem 0rem 2rem;
+  padding: 2rem 2rem 0rem 2rem;
 }
 
 #terms {
@@ -24,7 +24,7 @@
   flex-direction: column;
   align-items: left;
   padding: 2rem;
-  height: 35rem;
+  height: 32rem;
   width: 60%;
   overflow-x: scroll;
   position: relative;
@@ -42,7 +42,7 @@
   height: 78%;
   width: 80%;
   margin-left: 1rem;
-  margin-top: 15rem;
+  margin-top: 12rem;
 }
 
 @media only screen and (max-width: 900px) {
