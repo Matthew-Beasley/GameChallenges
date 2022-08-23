@@ -130,7 +130,6 @@
 
 
 
-
 @media only screen and (max-width: 900px) {
 
   #game-container {
@@ -263,7 +262,6 @@
     margin-right: 2rem;
     margin-left: -1rem;
     border: none;
-    border-radius: 5px;
   }
 
   #platform-groups {
@@ -536,7 +534,6 @@
   #text-bttn-combo > input {
     background-color: white;
     color: black;
-    border-radius: 5px;
     width: 8rem;
     height: 1.2rem;
     font-size: .8rem;
@@ -548,7 +545,6 @@
     height: 1.2rem;
     margin-top: 3rem;
     border: none;
-    border-radius: 5px;
     font-size: 1rem;
     line-height: 40%;
   }
@@ -844,7 +840,6 @@
   #text-bttn-combo > input {
     background-color: white;
     color: black;
-    border-radius: 5px;
     width: 9rem;
     height: 1.2rem;
     font-size: .8rem;
@@ -856,7 +851,6 @@
     height: 1.2rem;
     margin-top: 3rem;
     border: none;
-    border-radius: 5px;
     font-size: 1rem;
     line-height: 40%;
   }
@@ -1160,7 +1154,6 @@
   #text-bttn-combo > input {
     background-color: white;
     color: black;
-    border-radius: 5px;
     width: 9rem;
     height: 1.5rem;
     font-size: 1.2rem;
@@ -1172,7 +1165,6 @@
     height: 1.5rem;
     margin-top: 3rem;
     border: none;
-    border-radius: 5px;
     font-size: 1.4rem;
     line-height: 40%;
   }
@@ -1481,7 +1473,6 @@
   #text-bttn-combo > input {
     background-color: white;
     color: black;
-    border-radius: 5px;
     width: 9rem;
     height: 1.5rem;
     font-size: 1.2rem;
@@ -1493,7 +1484,6 @@
     height: 1.5rem;
     margin-top: 3rem;
     border: none;
-    border-radius: 5px;
     font-size: 1.4rem;
     line-height: 40%;
   }
@@ -1806,7 +1796,6 @@
   #text-bttn-combo > input {
     background-color: white;
     color: black;
-    border-radius: 5px;
     width: 9rem;
     height: 1.5rem;
     font-size: 1.2rem;
@@ -1818,7 +1807,6 @@
     height: 1.5rem;
     margin-top: 3rem;
     border: none;
-    border-radius: 5px;
     font-size: 1.4rem;
     line-height: 40%;
   }
