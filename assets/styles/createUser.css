@@ -14,10 +14,14 @@
   flex-direction: column;
 }
 
+#create-column > form {
+  margin-left: 30%;
+}
+
 .create-input {
-  width: 98%;
+  width: 50%;
   margin-top: 1rem;
-  border-radius: 15px;
+  border-radius: 2px;
   height: 2rem;
 }
 
@@ -51,6 +55,8 @@
   margin: 5rem 35% 3rem 40%; /* top margin not working */
 }
 
+
+
 @media only screen and (max-width: 700px) {
   #create-column form {
     display: flex;
@@ -61,9 +67,12 @@
     width: 100vw;
     height: 100vh;
     align-items: center;
-    font-family: 'Arial Rounded MT Bold', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    background-color: rgb(190, 205, 211);
+    background-color: rgb(137, 207, 233);
     color: black;
+  }
+
+  #create-column > form {
+    margin-left: 0%;
   }
 
   #create-column > form > a {
