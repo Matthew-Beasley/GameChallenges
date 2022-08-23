@@ -751,9 +751,9 @@
     background-size: contain;
     background-repeat: no-repeat;
     color: black;
-    height: 3rem;
-    width: 1.85rem;
-    margin: 4rem 1.1rem 0rem 1rem;
+    height: 3.2rem;
+    width: 2rem;
+    margin: 4rem 1rem 0rem 1rem;
     padding: .55rem;
   }
 
@@ -943,10 +943,10 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    background-size: 40rem 20rem;
+    background-size: 40rem 23rem;
     background-repeat: no-repeat;
     width: 40rem;
-    height: 20rem;
+    height: 23rem;
   }
 
   #sub-gamecomponents {
@@ -958,7 +958,7 @@
   #challenge-cards {
     width: 31rem;
     height: 17rem;
-    margin-top: 2.5rem;
+    margin-top: 5rem;
   }
 
   #challenge-cards > div {
@@ -966,13 +966,13 @@
     width: 100%;
     height: 12rem;
     padding: .5rem 1rem 0rem 1rem;
-    font-size: 1.4rem;
+    font-size: 1rem;
     margin: 0;
   }
 
   .challenge-title {
     font-weight: bold;
-    font-size: 1.4rem;
+    font-size: 1rem;
     min-width: 100%;
     text-align: center;
     margin-bottom: .5rem;
