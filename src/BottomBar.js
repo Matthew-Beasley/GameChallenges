@@ -7,7 +7,7 @@ const BottomBar = () => {
   return (
     <div id="bottombar-container">
       <p>
-        <Link to='/terms'>Terms and Conditions</Link>  |  <Link to='/terms'>Privacy Policy</Link>  |  <Link to='/aboutcontact'>Contact Us</Link>  |  <Link to='/aboutcontact'>About Us</Link>
+        <Link to='/terms'>Terms and Conditions</Link>  |  <Link to='/aboutcontact'>Contact Us</Link>  |  <Link to='/aboutcontact'>About Us</Link>  |  <a href="https://discord.gg/tdyGFH6dwu" target="_blank" rel="noopener noreferrer">Discord Channel</a>
       </p>
     </div>
   );

@@ -22,7 +22,7 @@ Modal.setAppElement('#root');
 const StandbyForVerification = () => {
   return (
     <div>
-      <h3>Please check your email to verify your account</h3>
+      <h3>Please check your email to verify your account, or spam filter if you don't see it.</h3>
     </div>
   );
 };
