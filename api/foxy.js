@@ -2,7 +2,6 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
 const express = require('express');
-const { redisClient } = require('../mongo/client');
 const foxyRouter = express.Router();
 const crypto = require('crypto');
 const { addTransaction } = require('../mongo/crud/users');
@@ -23,23 +22,7 @@ const createURL = (fcsid, customerId) => {
   return uri;
 };
 
-const checkCache = (req, res, next) => {
-  redisClient.get('foxyaccesstoken', (err, data) => {
-    if (err) {
-      console.log(err);
-      res.status(500).send(err);
-    }
-    else if (data) {
-      console.log('FOXY ACCESS TOKEN SERVED UP BY REDIS');
-      res.send(data);
-    }
-    else {
-      next();
-    } 
-  });
-};
-
-foxyRouter.get('/apitoken', checkCache, async (req, res, next) => {
+foxyRouter.get('/apitoken', async (req, res, next) => {
   const encryptedHeader = `Basic ${Buffer.from(`${process.env.foxy_client_id}:${process.env.foxy_client_secret}`).toString('base64')}`;
   const headers = {
     headers: { 
@@ -53,8 +36,6 @@ foxyRouter.get('/apitoken', checkCache, async (req, res, next) => {
   try {
     const accessToken = await axios.post('https://api.foxycart.com/token', params, headers);
     console.log('FOXY ACCESS TOKEN SERVED UP BY foxycart.com/token');
-    redisClient.set('foxyaccesstoken', JSON.stringify(accessToken.data.access_token));
-    redisClient.expire('foxyaccesstoken', 7100);
     res.status(200).send(JSON.stringify(accessToken.data.access_token));
   } catch (error) {
     next(error);
