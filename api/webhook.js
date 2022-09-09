@@ -2,7 +2,6 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
 const express = require('express');
-const { redisClient } = require('../mongo/client');
 const webhook = express.Router();
 const crypto = require('crypto');
 const { addTransaction } = require('../mongo/crud/users');
